@@ -1,12 +1,15 @@
-// Browser check, render and print for the full v02 deck (42 slides).
+// Browser check, render and print for the 42-slide deck.
 //
 // Usage (from the project root, after build_v02.py):
 //   PLAYWRIGHT_MODULE=/path/to/node_modules/playwright/index.js \
 //     node slides/src/v02/check_v02.mjs
+// DECK_VERSION selects the deck (default v03). Running it for v02 rewrites the
+// delivered v02 PDF and evidence, so leave v02 alone unless that is intended.
 //
-// Renders every slide at 1920 x 1080 to slides/render/v02/ (git-ignored),
-// prints slides/harness-engineering-workshop-v02.pdf from a non-first slide,
-// and writes slides/v02-check-evidence.json. Checks:
+// Renders every slide at 1920 x 1080 to slides/render/VER/ (git-ignored),
+// prints slides/harness-engineering-workshop-VER.pdf from a non-first slide,
+// and writes slides/VER-check-evidence.json. From v03 it also checks the
+// physical page number on every slide, in the page and in the PDF text. Checks:
 //   - manifest and data attributes: 42 slides, 120 minutes, 25 v10 terms in
 //     order, five cases, one three-minute CEO Agent slide, a ten-minute break;
 //   - notes: every term and case slide carries its full v10 block;
@@ -19,6 +22,7 @@
 //     console errors and network requests.
 
 import { createRequire } from "node:module";
+import { execFileSync } from "node:child_process";
 import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -29,9 +33,12 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-const file = path.join(slidesDir, "harness-engineering-workshop-v02.html");
-const pdfPath = path.join(slidesDir, "harness-engineering-workshop-v02.pdf");
-const outDir = path.join(slidesDir, "render", "v02");
+const VER = process.env.DECK_VERSION || "v03";
+if (!/^v0[23]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+const PAGENO = VER >= "v03";
+const file = path.join(slidesDir, `harness-engineering-workshop-${VER}.html`);
+const pdfPath = path.join(slidesDir, `harness-engineering-workshop-${VER}.pdf`);
+const outDir = path.join(slidesDir, "render", VER);
 const url = pathToFileURL(file).href;
 const rel = (p) => path.relative(root, p).split(path.sep).join("/");
 mkdirSync(outDir, { recursive: true });
@@ -60,7 +67,7 @@ function v10Block(sid) {
 }
 
 const browser = await pw.chromium.launch({ headless: true, channel: "chrome" });
-const evidence = { browser: `Chrome ${browser.version()} (headless)`, file: rel(file), slides: [] };
+const evidence = { version: VER, browser: `Chrome ${browser.version()} (headless)`, file: rel(file), slides: [] };
 try {
   const ctx = await browser.newContext({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
   const page = await ctx.newPage();
@@ -102,10 +109,11 @@ try {
       fail(`slide ${i + 1}: data attributes differ from the manifest`);
     }
     const nt = squash(meta.notes[i]);
-    if ([9, 23, 29, 30].includes(i + 1)) {
-      const fix = nt.indexOf(squash("v02 정정 (아래 v10 원문보다 우선)"));
+    const fixes = { 9: "v02", 23: "v02", 29: "v02", 30: "v02", ...(VER >= "v03" ? { 2: "v03" } : {}) };
+    if (fixes[i + 1]) {
+      const fix = nt.indexOf(squash(`${fixes[i + 1]} 정정 (아래 v10 원문보다 우선)`));
       const src = nt.indexOf(squash("v10 원문 S"));
-      if (fix < 0 || src < 0 || fix > src) fail(`slide ${i + 1}: v02 correction must come before the v10 source block`);
+      if (fix < 0 || src < 0 || fix > src) fail(`slide ${i + 1}: ${fixes[i + 1]} correction must come before the v10 source block`);
     }
     if (nt.length < 80) fail(`slide ${i + 1}: notes are too short`);
     for (const sid of it.v10 || []) {
@@ -157,6 +165,8 @@ try {
           if (ox > 2 && oy > 4) out.overlaps.push(`"${A.text}" x "${B.text}"`);
         }
       }
+      const pn = canvas.querySelector(".pageno");
+      out.pageno = pn ? { text: pn.textContent.trim(), ...box(pn.getBoundingClientRect()), color: getComputedStyle(pn).color } : null;
       canvas.querySelectorAll("*").forEach((el) => {
         if (el instanceof SVGElement) return;
         if (el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflow !== "visible") {
@@ -218,10 +228,19 @@ try {
     r.clipped.forEach((x) => fail(`${tag}: clipped box: ${x}`));
     r.spills.forEach((x) => fail(`${tag}: label: ${x}`));
     r.crossings.forEach((x) => fail(`${tag}: ${x}`));
+    if (PAGENO) {
+      const q = r.pageno;
+      const want = `${i + 1} / ${items.length}`;
+      if (!q || q.text !== want) fail(`${tag}: page number is ${q ? q.text : "missing"}, expected ${want}`);
+      else if (q.x < 1500 || q.y < 960 || q.x + q.w > 1880 || q.y + q.h > 1040) {
+        fail(`${tag}: page number not in the bottom-right safe corner (${q.x.toFixed(0)},${q.y.toFixed(0)})`);
+      }
+    } else if (r.pageno) fail(`${tag}: ${VER} should not carry a page number`);
     const png = path.join(outDir, `s${String(i + 1).padStart(2, "0")}.png`);
     await page.screenshot({ path: png });
     evidence.slides.push({ physical: i + 1, kind: items[i].kind, layout: items[i].layout, text_runs: r.runs,
-      min_font_px: r.minFont, png: rel(png) });
+      min_font_px: r.minFont, ...(r.pageno ? { page_number: r.pageno.text, page_number_color: r.pageno.color } : {}),
+      png: rel(png) });
   }
 
   // ---------------------------------------------------------------- interactions
@@ -304,8 +323,8 @@ try {
   await nj.close();
 
   // ---------------------------------------------------------------- single file from an empty folder
-  const tmp = mkdtempSync(path.join(os.tmpdir(), "deck-v02-"));
-  const copy = path.join(tmp, "harness-engineering-workshop-v02.html");
+  const tmp = mkdtempSync(path.join(os.tmpdir(), `deck-${VER}-`));
+  const copy = path.join(tmp, path.basename(file));
   copyFileSync(file, copy);
   const sc = await browser.newContext({ viewport: { width: 1600, height: 900 } });
   const ps = await sc.newPage();
@@ -336,6 +355,16 @@ try {
     ratio: Number(ratio.toFixed(4)) };
   if (pages !== 42) fail(`PDF has ${pages} pages, expected 42`);
   if (Math.abs(ratio - 16 / 9) > 0.01) fail(`PDF page ratio ${ratio}`);
+  if (PAGENO) {
+    // the printed page itself must carry its number (poppler pdftotext, one page at a time)
+    const missing = [];
+    for (let k = 1; k <= pages; k++) {
+      const txt = execFileSync("pdftotext", ["-f", String(k), "-l", String(k), "-layout", pdfPath, "-"], { encoding: "utf8" });
+      if (!txt.replace(/\s+/g, " ").includes(`${k} / ${pages}`)) missing.push(k);
+    }
+    evidence.pdf.page_numbers_in_text = missing.length ? `missing on ${missing.join(", ")}` : `all ${pages} pages`;
+    if (missing.length) fail(`PDF pages without their page number: ${missing.join(", ")}`);
+  }
   await ctx.close();
 } finally {
   await browser.close();
@@ -346,7 +375,7 @@ if (consoleErrors.length) fail(`console errors: ${consoleErrors.join(" | ")}`);
 if (external.length) fail(`network requests: ${external.join(" | ")}`);
 evidence.problems = problems;
 evidence.passed = !problems.length;
-writeFileSync(path.join(slidesDir, "v02-check-evidence.json"), JSON.stringify(evidence, null, 2) + "\n");
+writeFileSync(path.join(slidesDir, `${VER}-check-evidence.json`), JSON.stringify(evidence, null, 2) + "\n");
 problems.forEach((x) => console.log("FAIL", x));
 console.log(problems.length ? `${problems.length} problem(s)` : "ok");
 process.exit(problems.length ? 1 : 0);

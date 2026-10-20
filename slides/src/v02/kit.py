@@ -27,6 +27,10 @@ SKY = "#8DB4FF"
 CHAPTER_SOFT = "#BFD3FF"
 MONO = "SF Mono, Menlo, Consolas, monospace"
 
+# Deck version being built. build_v02.py sets it before the slide functions run;
+# slides that differ between versions read it. "v02" reproduces the v02 export.
+VERSION = "v02"
+
 MARKERS = {"ink": INK, "blue": BLUE, "amber": AMBER, "muted": MUTED, "white": WHITE, "sky": SKY}
 
 

@@ -1,5 +1,6 @@
 """Slides 1 to 21 of the v02 deck: opening, chapter 1, chapter 2, start of chapter 3."""
 
+import kit
 from kit import (AMBER, AMBER_SOFT, BLUE, BLUE_SOFT, INK, INK2, MUTED, PAPER2, RULE, WHITE, Svg,
                  case_head, diff, e, kicker, p, scene)
 
@@ -114,6 +115,54 @@ def s1():
 # ---------------------------------------------------------------- 2 opening scene (S1)
 
 def s2():
+    return s2_v03() if kit.VERSION >= "v03" else s2_v02()
+
+
+def s2_v03():
+    """v03: the author finds the topic and writes v01; AI joins only from review onward."""
+    s = Svg("s2", 120, 360, 1680, 440, "AI교양 글 한 편: 작가가 주제를 고르고 초고를 직접 쓴 뒤, AI와 함께 다듬고, 작가가 확정한 다음 제작이 이어진다")
+    steps = [(["주제를", "찾고 고른다"], "author"), (["초고 v01을", "직접 쓴다"], "author"),
+             (["AI와 함께", "검토, 수정"], "ai"), (["최종본", "확정"], "author"),
+             (["삽화 생성,", "보관"], "run"), (["네이버", "비공개 초안"], "run"), (["다시 열어", "확인"], "run")]
+    w, gap = 212, 32
+    for i, (lab, who) in enumerate(steps):
+        x = i * (w + gap)
+        fill, stroke, sw = {"author": (AMBER_SOFT, AMBER, 3.5), "ai": (BLUE_SOFT, BLUE, 3.5),
+                            "run": (WHITE, INK, 2.5)}[who]
+        s.box(x, 110, w, 140, lab, size=28, weight=800, fill=fill, stroke=stroke, sw=sw)
+        s.num(x, 110, i + 1, fill=AMBER if who == "author" else BLUE if who == "ai" else INK)
+        if i < len(steps) - 1:
+            s.arrow([(x + w + 2, 180), (x + w + gap - 4, 180)])
+    # who does what, under the steps
+    s.line(0, 290, 2 * w + gap, 290, color=AMBER, sw=4)
+    s.text(0, 322, "작가가 한다", size=26, weight=800, fill=AMBER)
+    s.line(2 * (w + gap), 290, 3 * (w + gap) - gap, 290, color=BLUE, sw=4)
+    s.text(2 * (w + gap), 322, "AI와 함께", size=26, weight=800, fill=BLUE)
+    s.line(3 * (w + gap), 290, 4 * (w + gap) - gap, 290, color=AMBER, sw=4)
+    s.text(3 * (w + gap), 322, "작가가 정한다", size=26, weight=800, fill=AMBER)
+    s.line(4 * (w + gap), 290, 1680, 290, color=INK, sw=4)
+    s.text(4 * (w + gap), 322, "확정 뒤 정해진 절차", size=26, weight=800)
+    s.text(0, 30, "v01은 작가가 직접 쓴 원고다. AI가 만든 초안이 아니다.", size=28, weight=800, fill=AMBER)
+    s.rect(1180, 370, 500, 60, fill="none", stroke=AMBER, sw=2, dash="8 7")
+    s.text(1430, 400, "공개 발행은 이 흐름에 없다", size=28, weight=700, fill=AMBER, anchor="middle")
+    body = "\n  ".join([
+        p("kicker op-kicker", "시작"),
+        p("op-title", "완성된 업무 한 건에서 출발한다", "h2"),
+        p("qline", "AI교양 글 한 편이 끝났다. 작가가 주제를 고르고 초고를 직접 썼다. AI와 함께 다듬은 뒤 작가가 확정했고, 그다음 삽화와 비공개 초안을 만들어 다시 열어 확인했다.",
+          style="left:120px;top:262px;width:1680px;margin:0"),
+        s.render(),
+        p("big-q", "이 흐름이 단계를 건너뛰지 않게 하는 것은 누구일까?", "h3",
+          "left:120px;top:830px;width:1680px;font-size:56px"),
+        p("foot", "설명용 정리다. 실제 화면, 계정 정보, 공개 발행은 보여 주지 않는다. 낯선 라벨은 뒤에서 하나씩 설명한다.",
+          style="left:120px;top:960px;width:1680px;margin:0"),
+    ])
+    notes = '''<p>장면부터 말한다. AI교양 글 한 편이 끝났다. 순서가 중요하다. 작가가 주제를 찾고 골랐다. 작가가 초고 v01을 직접 썼다. v01은 작가의 원고이며 AI가 만든 초안이 아니다. 그다음에야 AI와 함께 문장과 논지를 검토하고 고쳤다(v02, v03처럼 새 버전으로 남기고 이전 본은 보존). 작가가 최종본을 확정했고, 확정 뒤에 삽화를 만들어 보관하고, 네이버 비공개 초안을 만든 뒤 다시 열어 확인했다. 공개 발행은 이 흐름에 없다.</p>
+<p>색 읽기: 호박색은 작가가 하거나 정하는 단계, 파랑은 AI와 함께하는 단계, 흰 상자는 확정 뒤 정해진 절차다.</p>
+<p>질문을 던지고 답은 받지 않는다: 이 흐름이 단계를 건너뛰지 않게 하는 것은 누구일까? 답은 3장의 AI교양 사례(25번)와 5장의 워크플로우(33번)에서 돌아온다.</p>'''
+    return dict(kind="opening", label="시작: 완성된 업무 한 건", theme="t-paper", body=body, notes=notes, v10=[1])
+
+
+def s2_v02():
     s = Svg("s2", 120, 380, 1680, 400, "AI교양 글 한 편이 끝나기까지의 다섯 단계")
     xs = [0, 350, 700, 1050, 1400]
     labels = [["원문을 받아", "v01로 보존"], ["최종본", "확정"], ["삽화를 만들어", "보관"],

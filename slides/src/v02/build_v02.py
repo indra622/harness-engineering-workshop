@@ -1,13 +1,19 @@
-"""Build the full v02 deck: 42 slides, 120 minutes, one self-contained HTML file.
+"""Build the 42-slide, 120-minute deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py
+    python3 slides/src/v02/build_v02.py                 # current version, v03
+    python3 slides/src/v02/build_v02.py --version v02   # reproduces the v02 export
+    python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
-Writes:
-    slides/harness-engineering-workshop-v02.html   canonical single-file export
-    slides/index.html                              current entry (same file)
-    slides/harness-engineering-workshop-v02.manifest.json
-    slides/speaker-notes-v02.md
+Writes, for version VER, into slides/ (or --out-dir):
+    harness-engineering-workshop-VER.html   canonical single-file export
+    harness-engineering-workshop-VER.manifest.json
+    speaker-notes-VER.md
+    index.html                              only for the current version in slides/
+
+v03 adds a physical page number inside every canvas and redraws slide 2 so the
+author finds the topic and writes v01 before any AI review. Everything else is
+shared, so v02 still builds byte-for-byte as exported.
 
 Slide content lives in deck_a.py and deck_b.py. Term and case notes carry the
 full v10 block for that slide. The build stops before writing if the deck no
@@ -16,6 +22,7 @@ cases, one three-minute CEO Agent slide and a ten-minute break.
 Needs only the Python standard library.
 """
 
+import argparse
 import json
 import re
 import sys
@@ -28,16 +35,24 @@ ROOT = SRC.parent.parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(SRC))
 
+import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
 from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
-EXPORT = SLIDES_DIR / "harness-engineering-workshop-v02.html"
-INDEX = SLIDES_DIR / "index.html"
-MANIFEST = SLIDES_DIR / "harness-engineering-workshop-v02.manifest.json"
-NOTES_MD = SLIDES_DIR / "speaker-notes-v02.md"
+CURRENT = "v03"
+VERSIONS = ("v02", "v03")
 PLAN = ROOT / v10notes.PLAN
+
+# Page number: inside the canvas, so it prints; bottom right, clear of the footers.
+PAGENO_CSS = """
+/* v03: physical page number, inside the canvas so print and PDF carry it */
+.pageno { position: absolute; right: 64px; top: 1000px; margin: 0; font-size: 24px; font-weight: 700;
+  letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--muted); }
+.t-night .pageno { color: var(--night-muted); }
+.t-chapter .pageno { color: var(--chapter-soft); }
+"""
 
 # Minutes per physical slide, from docs/production/slide-production-brief-v02.md.
 MINUTES = [1, 2, 1,
@@ -65,6 +80,14 @@ CORRECTIONS = {
          "v10의 '권한 경계', '쓰기 금지' 표현을 기술적으로 막힌 환경을 시연한 것으로 읽지 않는다."),
     30: ("v10 화면 구성의 '쓰기 권한 없음'은 v02에서 '읽기 전용 작업 지시 (이번 예시)'로 바뀌었다. 지시만으로 실제 "
          "쓰기 권한이 사라지지는 않는다. 권한은 설정에 따라 다르다."),
+}
+
+# v03 corrections, shown only in v03 notes.
+CORRECTIONS_V03 = {
+    2: ("v10 S1과 2.3은 '사용자가 원문을 보냈고, 받은 본문을 v01로 보존한다'고만 적어, v01이 누가 쓴 원고인지 드러내지 "
+        "않는다. 실제 순서는 작가가 주제를 찾고 고른다, 작가가 초고 v01을 직접 쓴다, AI와 함께 검토하고 수정한다, 작가가 "
+        "최종 확정한다, 삽화를 만들어 보관한다, 네이버 비공개 초안을 만든다, 다시 열어 확인한다이다. v01은 작가의 "
+        "원고이며 AI가 생성한 초안이 아니다. v02 화면의 '원문을 받아 v01로 보존' 표현도 이 순서로 대체한다."),
 }
 
 
@@ -117,8 +140,12 @@ def v10_body(sid):
 def build_notes(n, sl):
     """Notes HTML and Markdown for one slide."""
     mins, start = sl["minutes"], sl["start"]
-    head = f"v02 {n}번. {sl['label']}. {mins}분, {start}분부터 {start + mins}분까지."
+    ver = kit.VERSION
+    head = f"{ver} {n}번. {sl['label']}. {mins}분, {start}분부터 {start + mins}분까지."
     html, md = [f"<h3>{escape(head)}</h3>"], [head, ""]
+    if ver >= "v03" and n in CORRECTIONS_V03:
+        html.append(f'<p class="fix"><strong>v03 정정 (아래 v10 원문보다 우선):</strong> {escape(CORRECTIONS_V03[n])}</p>')
+        md += [f"v03 정정 (아래 v10 원문보다 우선): {CORRECTIONS_V03[n]}", ""]
     if n in CORRECTIONS:
         html.append(f'<p class="fix"><strong>v02 정정 (아래 v10 원문보다 우선):</strong> {escape(CORRECTIONS[n])}</p>')
         md += [f"v02 정정 (아래 v10 원문보다 우선): {CORRECTIONS[n]}", ""]
@@ -134,7 +161,7 @@ def build_notes(n, sl):
         html.append(f"<p><strong>진행:</strong> {escape(flow)}</p>")
         md += [f"진행: {flow}", ""]
         if mins == 2:
-            cut = "v10은 3분 기준이다. v02에서는 2분이므로 강사용 보충 예시는 생략하고 확인 질문은 짧게 묻는다."
+            cut = f"v10은 3분 기준이다. {ver}에서는 2분이므로 강사용 보충 예시는 생략하고 확인 질문은 짧게 묻는다."
             html.append(f"<p><strong>시간 조정:</strong> {escape(cut)}</p>")
             md += [f"시간 조정: {cut}", ""]
     if sl.get("notes"):
@@ -148,7 +175,10 @@ def build_notes(n, sl):
     return "\n".join(html), "\n".join(md).rstrip() + "\n"
 
 
-def slide_html(n, sl, notes):
+def slide_html(n, sl, notes, total=42):
+    body = sl["body"]
+    if kit.VERSION >= "v03":
+        body += f'\n  <p class="pageno" aria-label="{n}쪽, 전체 {total}쪽">{n} / {total}</p>'
     attrs = {"id": f"s{n}", "data-physical": n, "data-kind": sl["kind"], "data-label": f"{n}. {sl['label']}",
              "data-minutes": sl["minutes"], "data-start": sl["start"], "data-layout": sl.get("layout", sl["kind"])}
     if sl.get("chapter"):
@@ -163,7 +193,7 @@ def slide_html(n, sl, notes):
         attrs["data-v10"] = " ".join(f"S{s}" for s in sl["v10"])
     a = " ".join(f'{k}="{escape(str(v))}"' for k, v in attrs.items())
     return (f'<!-- ===================================================== {n} {escape(sl["label"])} -->\n'
-            f'<section class="slide" {a}>\n<div class="stage"><div class="canvas {sl["theme"]}">\n  {sl["body"]}\n'
+            f'<section class="slide" {a}>\n<div class="stage"><div class="canvas {sl["theme"]}">\n  {body}\n'
             f'</div></div>\n<aside class="notes">\n{notes}\n</aside>\n</section>')
 
 
@@ -198,6 +228,18 @@ def validate(slides):
 
 
 def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--version", choices=VERSIONS, default=CURRENT)
+    ap.add_argument("--out-dir", type=Path, default=SLIDES_DIR)
+    args = ap.parse_args()
+    ver = kit.VERSION = args.version
+    out = args.out_dir.resolve()
+    out.mkdir(parents=True, exist_ok=True)
+    export = out / f"harness-engineering-workshop-{ver}.html"
+    manifest_path = out / f"harness-engineering-workshop-{ver}.manifest.json"
+    notes_md = out / f"speaker-notes-{ver}.md"
+    index = SLIDES_DIR / "index.html" if (ver == CURRENT and out == SLIDES_DIR.resolve()) else None
+
     raw = [f() for f in SLIDES_A + SLIDES_B]
     start = 0
     for i, sl in enumerate(raw):
@@ -209,12 +251,12 @@ def main():
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
 
     sections, md, manifest = [], [], []
-    md.append("# 하네스 엔지니어링 v02 발표자 노트\n\n"
-              "slides/harness-engineering-workshop-v02.html의 발표자 노트와 같은 내용이다. 용어와 사례 슬라이드에는 "
+    md.append(f"# 하네스 엔지니어링 {ver} 발표자 노트\n\n"
+              f"slides/harness-engineering-workshop-{ver}.html의 발표자 노트와 같은 내용이다. 용어와 사례 슬라이드에는 "
               "docs/plans/slide-content-plan-v10.md의 해당 블록 전체가 들어 있다. 42장, 120분.\n")
     for n, sl in enumerate(raw, 1):
         nh, nm = build_notes(n, sl)
-        sections.append(slide_html(n, sl, nh))
+        sections.append(slide_html(n, sl, nh, len(raw)))
         md.append(f"## {n}. {sl['label']}\n\n{nm}")
         manifest.append({k: v for k, v in {
             "physical": n, "id": f"s{n}", "kind": sl["kind"], "label": sl["label"], "layout": sl.get("layout", sl["kind"]),
@@ -224,8 +266,10 @@ def main():
             if v not in (None, [])})
 
     css = (HERE / "v02.css").read_text(encoding="utf-8")
+    if ver >= "v03":
+        css += PAGENO_CSS
     js = (HERE / "v02.js").read_text(encoding="utf-8")
-    man = json.dumps({"deck": "harness-engineering-workshop", "version": "v02", "slides": len(raw),
+    man = json.dumps({"deck": "harness-engineering-workshop", "version": ver, "slides": len(raw),
                       "minutes": sum(s["minutes"] for s in raw), "items": manifest}, ensure_ascii=False, indent=1)
     for blob in (css, js, man):
         if "</style" in blob or "</script" in blob:
@@ -240,13 +284,16 @@ def main():
                      ("claude.ai" + "/code/session", "session link")):
         if bad in html:
             raise SystemExit(f"output contains a {why}")
-    EXPORT.write_text(html, encoding="utf-8")
-    INDEX.write_text(html, encoding="utf-8")
-    MANIFEST.write_text(man + "\n", encoding="utf-8")
-    NOTES_MD.write_text("\n".join(md), encoding="utf-8")
-    print(f"wrote {EXPORT.relative_to(ROOT)} ({len(html.encode('utf-8'))} bytes, {len(raw)} slides, "
-          f"{sum(s['minutes'] for s in raw)} min), {INDEX.relative_to(ROOT)}, {MANIFEST.relative_to(ROOT)}, "
-          f"{NOTES_MD.relative_to(ROOT)}")
+    export.write_text(html, encoding="utf-8")
+    manifest_path.write_text(man + "\n", encoding="utf-8")
+    notes_md.write_text("\n".join(md), encoding="utf-8")
+    written = [export, manifest_path, notes_md]
+    if index:
+        index.write_text(html, encoding="utf-8")
+        written.append(index)
+    show = lambda q: q.relative_to(ROOT) if q.is_relative_to(ROOT) else q.name  # noqa: E731
+    print(f"{ver}: {len(html.encode('utf-8'))} bytes, {len(raw)} slides, {sum(s['minutes'] for s in raw)} min; wrote "
+          + ", ".join(str(show(q)) for q in written))
 
 
 if __name__ == "__main__":

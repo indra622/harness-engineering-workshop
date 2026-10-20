@@ -1,21 +1,24 @@
-"""Tile the 42 v02 slide renders into contact sheets of twelve.
+"""Tile the 42 slide renders into contact sheets of twelve.
 
 Usage (from the project root, after check_v02.mjs):
-    python3 slides/src/v02/contact_sheet_deck.py
+    python3 slides/src/v02/contact_sheet_deck.py [v03]
 
-Writes slides/render/v02/contact-1.png to contact-4.png (git-ignored). Needs
-Pillow and fontconfig (fc-match) to find Nanum Gothic for the labels.
+Writes slides/render/VER/contact-1.png to contact-4.png (git-ignored); the
+version defaults to v03. Needs Pillow and fontconfig (fc-match) to find
+Nanum Gothic for the labels.
 """
 
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[3]
-DIR = ROOT / "slides" / "render" / "v02"
-MANIFEST = ROOT / "slides" / "harness-engineering-workshop-v02.manifest.json"
+VER = sys.argv[1] if len(sys.argv) > 1 else "v03"
+DIR = ROOT / "slides" / "render" / VER
+MANIFEST = ROOT / "slides" / f"harness-engineering-workshop-{VER}.manifest.json"
 W, H, PAD, LAB, COLS, PER = 576, 324, 28, 40, 3, 12
 
 
