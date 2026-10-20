@@ -37,7 +37,8 @@ def main():
             im = Image.open(DIR / f"s{n:02d}.png").convert("RGB").resize((W, H), Image.LANCZOS)
             x = PAD + (i % COLS) * (W + PAD)
             y = PAD + (i // COLS) * (H + LAB + PAD)
-            draw.text((x, y + 6), f"{n}. {it['label']}  ({it['minutes']}분, {it.get('layout', it['kind'])})",
+            timing = f"{it['minutes']}분, " if "minutes" in it else ""  # v04 manifests carry no lecture time
+            draw.text((x, y + 6), f"{n}. {it['label']}  ({timing}{it.get('layout', it['kind'])})",
                       fill="#14171C", font=font)
             sheet.paste(im, (x, y + LAB))
         out = DIR / f"contact-{sheet_no}.png"

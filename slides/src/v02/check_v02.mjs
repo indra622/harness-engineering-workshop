@@ -33,9 +33,13 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-const VER = process.env.DECK_VERSION || "v03";
-if (!/^v0[23]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+const VER = process.env.DECK_VERSION || "v04";
+if (!/^v0[234]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
+// v02 and v03 carry the 120-minute lecture schedule; v04 has no lecture timing at all
+const TIMED = VER < "v04";
+// lecture time on screen or in notes (tool and task times such as 09:12 or cron do not match)
+const LECTURE_TIME = /\d+\s*분(?!기)|\d+\s*초(에서|이내|부터)|약\s*\d+\s*분|\d+\s*min\b/g;
 const file = path.join(slidesDir, `harness-engineering-workshop-${VER}.html`);
 const pdfPath = path.join(slidesDir, `harness-engineering-workshop-${VER}.pdf`);
 const outDir = path.join(slidesDir, "render", VER);
@@ -65,6 +69,15 @@ function v10Block(sid) {
   return squash(m[0].split("\n").filter((l) => !l.trim().startsWith("```"))
     .map((l) => l.replace(/\*\*/g, "").replace(/^### /, "").trim().replace(/^- /, "")).join(""));
 }
+// v04 keeps the teaching content of each v10 block: these labelled lines must be there in full
+const KEY_FIELDS = ["장면과 질문", "한 문장 정의", "장면에 다시 적용", "강사용 보충 예시", "구체 예시", "헷갈리는 지점",
+  "확인 질문과 모범 답안", "핵심 메시지", "전환 질문", "측정 상태"];
+function v10KeyLines(sid) {
+  const m = plan.match(new RegExp(`^### S${sid}\\. [\\s\\S]*?(?=^### S\\d+\\. |^## )`, "m"));
+  if (!m) return null;
+  return m[0].split("\n").filter((l) => KEY_FIELDS.some((k) => l.startsWith(`**${k}`)))
+    .map((l) => squash(l.replace(/\*\*/g, "")));
+}
 
 const browser = await pw.chromium.launch({ headless: true, channel: "chrome" });
 const evidence = { version: VER, browser: `Chrome ${browser.version()} (headless)`, file: rel(file), slides: [] };
@@ -86,41 +99,74 @@ try {
   });
   const items = meta.man.items;
   const m = {
-    slides: items.length, minutes: items.reduce((a, b) => a + b.minutes, 0),
+    slides: items.length, ...(TIMED ? { minutes: items.reduce((a, b) => a + b.minutes, 0) } : {}),
     terms: items.filter((i) => i.kind === "term").map((i) => i.term),
-    cases: items.filter((i) => i.kind === "case").map((i) => `${i.case} (${i.minutes}분)`),
+    cases: items.filter((i) => i.kind === "case").map((i) => (TIMED ? `${i.case} (${i.minutes}분)` : i.case)),
     chapters: items.filter((i) => i.kind === "chapter").length,
-    break_minutes: items.filter((i) => i.kind === "break").map((i) => i.minutes),
-    ceo: items.filter((i) => i.case === "CEO Agent").map((i) => ({ physical: i.physical, minutes: i.minutes })),
+    breaks: items.filter((i) => i.kind === "break").map((i) => (TIMED ? i.minutes : i.physical)),
+    ceo: items.filter((i) => i.case === "CEO Agent").map((i) => ({ physical: i.physical, ...(TIMED ? { minutes: i.minutes } : {}) })),
     layouts: [...new Set(items.filter((i) => i.kind === "term").map((i) => i.layout))],
   };
   evidence.manifest = m;
   if (m.slides !== 42 || meta.attrs.length !== 42) fail(`slide count ${m.slides}/${meta.attrs.length} != 42`);
-  if (m.minutes !== 120) fail(`minutes ${m.minutes} != 120`);
+  if (TIMED && m.minutes !== 120) fail(`minutes ${m.minutes} != 120`);
+  if (!TIMED) {
+    const sched = items.filter((it) => "minutes" in it || "start" in it || "end" in it).map((it) => it.physical);
+    if ("minutes" in meta.man || sched.length) fail(`v04 manifest still carries schedule fields: ${sched}`);
+    const attrSched = meta.attrs.filter((a) => "minutes" in a || "start" in a).map((a) => a.physical);
+    if (attrSched.length) fail(`v04 data attributes still carry schedule fields: ${attrSched}`);
+  }
   if (JSON.stringify(m.terms) !== JSON.stringify(V10_TERMS)) fail("terms do not match the 25 v10 terms in order");
   if (m.cases.length !== 5) fail(`cases: ${m.cases.length}`);
-  if (m.ceo.length !== 1 || m.ceo[0].minutes !== 3) fail(`CEO Agent: ${JSON.stringify(m.ceo)}`);
-  if (JSON.stringify(m.break_minutes) !== "[10]") fail(`break: ${m.break_minutes}`);
+  if (m.ceo.length !== 1 || (TIMED && m.ceo[0].minutes !== 3)) fail(`CEO Agent: ${JSON.stringify(m.ceo)}`);
+  if (m.breaks.length !== 1 || (TIMED && m.breaks[0] !== 10)) fail(`break: ${m.breaks}`);
   if (m.layouts.length < 3) fail(`only ${m.layouts.length} term layout families`);
   items.forEach((it, i) => {
     const a = meta.attrs[i];
-    if (Number(a.physical) !== it.physical || a.kind !== it.kind || Number(a.minutes) !== it.minutes ||
+    if (Number(a.physical) !== it.physical || a.kind !== it.kind || (TIMED && Number(a.minutes) !== it.minutes) ||
         (it.term || "") !== (a.term || "") || (it.v10 || []).join(" ") !== (a.v10 || "")) {
       fail(`slide ${i + 1}: data attributes differ from the manifest`);
     }
     const nt = squash(meta.notes[i]);
     const fixes = { 9: "v02", 23: "v02", 29: "v02", 30: "v02", ...(VER >= "v03" ? { 2: "v03" } : {}) };
     if (fixes[i + 1]) {
-      const fix = nt.indexOf(squash(`${fixes[i + 1]} 정정 (아래 v10 원문보다 우선)`));
-      const src = nt.indexOf(squash("v10 원문 S"));
-      if (fix < 0 || src < 0 || fix > src) fail(`slide ${i + 1}: ${fixes[i + 1]} correction must come before the v10 source block`);
+      const label = TIMED ? `${fixes[i + 1]} 정정 (아래 v10 원문보다 우선)` : "정정 (아래 v10 발췌보다 우선)";
+      const fix = nt.indexOf(squash(label));
+      const src = nt.indexOf(squash(TIMED ? "v10 원문 S" : "v10 발췌 S"));
+      if (fix < 0 || src < 0 || fix > src) fail(`slide ${i + 1}: correction must come before the v10 source block`);
     }
     if (nt.length < 80) fail(`slide ${i + 1}: notes are too short`);
     for (const sid of it.v10 || []) {
-      const b = v10Block(Number(sid.slice(1)));
-      if (!b || !nt.includes(b)) fail(`slide ${i + 1}: notes do not carry the full v10 block ${sid}`);
+      const n = Number(sid.slice(1));
+      if (TIMED) {
+        const b = v10Block(n);
+        if (!b || !nt.includes(b)) fail(`slide ${i + 1}: notes do not carry the full v10 block ${sid}`);
+      } else {
+        if (!nt.includes(squash(`v10 발췌 ${sid} (v04 편집)`))) fail(`slide ${i + 1}: notes lack the labelled v10 excerpt ${sid}`);
+        const missing = (v10KeyLines(n) || []).filter((l) => !nt.includes(l));
+        if (missing.length) fail(`slide ${i + 1}: v10 ${sid} teaching lines missing from notes: ${missing.length}`);
+      }
+    }
+    if (!TIMED) {
+      const hits = meta.notes[i].match(LECTURE_TIME);
+      if (hits) fail(`slide ${i + 1}: lecture time in notes: ${hits.join(", ")}`);
     }
   });
+
+  if (!TIMED) {
+    // nothing on screen, in labels or in the page head may give a lecture time
+    const vis = await page.evaluate(() => ({
+      head: document.title + " " + (document.querySelector('meta[name="description"]')?.content || ""),
+      slides: [...document.querySelectorAll(".slide .canvas")].map((c) => c.textContent + " " +
+        [...c.querySelectorAll("[aria-label]")].map((e) => e.getAttribute("aria-label")).join(" ")),
+    }));
+    const headHits = vis.head.match(LECTURE_TIME);
+    if (headHits) fail(`lecture time in the page head: ${headHits}`);
+    const slideHits = vis.slides.map((t, k) => [k + 1, t.match(LECTURE_TIME)]).filter(([, h]) => h);
+    slideHits.forEach(([k, h]) => fail(`slide ${k}: lecture time on screen: ${h.join(", ")}`));
+    evidence.lecture_time_references = { screen_and_labels: slideHits.length, page_head: headHits ? headHits.length : 0,
+      notes: meta.notes.filter((t) => t.match(LECTURE_TIME)).length };
+  }
 
   // ---------------------------------------------------------------- per-slide layout
   for (let i = 0; i < items.length; i++) {

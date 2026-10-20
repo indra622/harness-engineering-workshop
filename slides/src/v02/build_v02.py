@@ -1,8 +1,8 @@
-"""Build the 42-slide, 120-minute deck as one self-contained HTML file.
+"""Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v03
-    python3 slides/src/v02/build_v02.py --version v02   # reproduces the v02 export
+    python3 slides/src/v02/build_v02.py                 # current version, v04
+    python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
 Writes, for version VER, into slides/ (or --out-dir):
@@ -12,13 +12,16 @@ Writes, for version VER, into slides/ (or --out-dir):
     index.html                              only for the current version in slides/
 
 v03 adds a physical page number inside every canvas and redraws slide 2 so the
-author finds the topic and writes v01 before any AI review. Everything else is
-shared, so v02 still builds byte-for-byte as exported.
+author finds the topic and writes v01 before any AI review. v04 removes all
+lecture timing (screen, notes, manifest, data attributes) and applies the
+edited presentation copy from copy_v04.py. Everything else is shared, so v02
+and v03 still build byte-for-byte as exported.
 
 Slide content lives in deck_a.py and deck_b.py. Term and case notes carry the
-full v10 block for that slide. The build stops before writing if the deck no
-longer adds up: 42 slides, 120 minutes, 25 distinct terms in v10 order, five
-cases, one three-minute CEO Agent slide and a ten-minute break.
+v10 block for that slide (in full for v02 and v03, as a labelled excerpt
+without lecture timing for v04). The build stops before writing if the deck no
+longer adds up: 42 slides, 25 distinct terms in v10 order, five cases, one
+CEO Agent slide and one break, plus 120 minutes for the timed versions.
 Needs only the Python standard library.
 """
 
@@ -35,14 +38,15 @@ ROOT = SRC.parent.parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(SRC))
 
+import copy_v04  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
 from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
-CURRENT = "v03"
-VERSIONS = ("v02", "v03")
+CURRENT = "v04"
+VERSIONS = ("v02", "v03", "v04")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -52,6 +56,13 @@ PAGENO_CSS = """
   letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--muted); }
 .t-night .pageno { color: var(--night-muted); }
 .t-chapter .pageno { color: var(--chapter-soft); }
+"""
+
+# v04: the break slide loses its duration line, so its title moves down to keep the balance.
+V04_CSS = """
+/* v04: no lecture timing; break title recentred, edited-excerpt label in notes */
+.brk-word { top: 330px; }
+.notes-body .src { color: var(--muted); font-size: 14px; }
 """
 
 # Minutes per physical slide, from docs/production/slide-production-brief-v02.md.
@@ -175,12 +186,42 @@ def build_notes(n, sl):
     return "\n".join(html), "\n".join(md).rstrip() + "\n"
 
 
+def build_notes_v04(n, sl):
+    """v04 notes: no lecture timing anywhere; v10 blocks as labelled edited excerpts."""
+    head = f"v04 {n}번. {sl['label']}"
+    html, md = [f"<h3>{escape(head)}</h3>"], [head, ""]
+    fixes = [CORRECTIONS_V03.get(n), CORRECTIONS.get(n)]
+    for fix in filter(None, fixes):
+        html.append(f'<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> {escape(fix)}</p>')
+        md += [f"정정 (아래 v10 발췌보다 우선): {fix}", ""]
+    if sl["kind"] in ("term", "case", "synthesis"):
+        sc = v10_scene(sl["v10"][0])
+        if sc:
+            html.append(f"<p><strong>장면 먼저:</strong> {escape(sc)}</p>")
+            md += [f"장면 먼저: {sc}", ""]
+    if sl["kind"] == "term":
+        html.append(f"<p><strong>진행:</strong> {escape(copy_v04.FLOW)}</p>")
+        md += [f"진행: {copy_v04.FLOW}", ""]
+    if sl.get("notes"):
+        html.append(sl["notes"])
+        md += [re.sub(r"<[^>]+>", "", re.sub(r"</(p|li|h3)>", "\n", sl["notes"])).strip(), ""]
+    for sid in sl.get("v10", []):
+        body = copy_v04.excerpt(sid, v10_body(sid))
+        html.append(f"<h3>v10 발췌 S{sid} (v04 편집)</h3>")
+        html.append(f'<p class="src">{escape(copy_v04.EXCERPT_NOTE)}</p>')
+        html.append(v10_html(body))
+        md += [f"[v10 발췌 S{sid} (v04 편집)]", copy_v04.EXCERPT_NOTE, "", body, ""]
+    return "\n".join(html), "\n".join(md).rstrip() + "\n"
+
+
 def slide_html(n, sl, notes, total=42):
     body = sl["body"]
     if kit.VERSION >= "v03":
         body += f'\n  <p class="pageno" aria-label="{n}쪽, 전체 {total}쪽">{n} / {total}</p>'
-    attrs = {"id": f"s{n}", "data-physical": n, "data-kind": sl["kind"], "data-label": f"{n}. {sl['label']}",
-             "data-minutes": sl["minutes"], "data-start": sl["start"], "data-layout": sl.get("layout", sl["kind"])}
+    attrs = {"id": f"s{n}", "data-physical": n, "data-kind": sl["kind"], "data-label": f"{n}. {sl['label']}"}
+    if "minutes" in sl:  # v02 and v03 carry the lecture schedule; v04 has none
+        attrs.update({"data-minutes": sl["minutes"], "data-start": sl["start"]})
+    attrs["data-layout"] = sl.get("layout", sl["kind"])
     if sl.get("chapter"):
         attrs["data-chapter"] = sl["chapter"]
     if sl.get("term"):
@@ -201,7 +242,7 @@ def validate(slides):
     problems = []
     if len(slides) != 42:
         problems.append(f"{len(slides)} slides, expected 42")
-    if sum(s["minutes"] for s in slides) != 120:
+    if all("minutes" in s for s in slides) and sum(s["minutes"] for s in slides) != 120:
         problems.append(f"minutes sum to {sum(s['minutes'] for s in slides)}, expected 120")
     terms = [s for s in slides if s["kind"] == "term"]
     if [s["term"] for s in terms] != V10_TERMS:
@@ -212,11 +253,11 @@ def validate(slides):
     if [s["case"] for s in cases] != ["OpenClaw", "OMH", "Grokbot", "AI교양", "CEO Agent"]:
         problems.append("cases are not the five cases in order")
     ceo = [s for s in slides if s.get("case") == "CEO Agent"]
-    if len(ceo) != 1 or ceo[0]["minutes"] != 3:
-        problems.append("CEO Agent must be exactly one three-minute slide")
+    if len(ceo) != 1 or ceo[0].get("minutes", 3) != 3:
+        problems.append("CEO Agent must be exactly one slide (three minutes where timed)")
     brk = [s for s in slides if s["kind"] == "break"]
-    if len(brk) != 1 or brk[0]["minutes"] != 10:
-        problems.append("break must be one ten-minute slide")
+    if len(brk) != 1 or brk[0].get("minutes", 10) != 10:
+        problems.append("break must be one slide (ten minutes where timed)")
     if len([s for s in slides if s["kind"] == "chapter"]) != 5:
         problems.append("expected five chapter screens")
     v10_terms = [s["v10"][0] for s in terms]
@@ -241,11 +282,15 @@ def main():
     index = SLIDES_DIR / "index.html" if (ver == CURRENT and out == SLIDES_DIR.resolve()) else None
 
     raw = [f() for f in SLIDES_A + SLIDES_B]
+    timed = ver < "v04"  # v04 drops the lecture schedule entirely
     start = 0
     for i, sl in enumerate(raw):
-        sl["minutes"] = MINUTES[i]
-        sl["start"] = start
-        start += MINUTES[i]
+        if timed:
+            sl["minutes"] = MINUTES[i]
+            sl["start"] = start
+            start += MINUTES[i]
+        else:
+            copy_v04.apply(i + 1, sl)
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
@@ -253,14 +298,18 @@ def main():
     sections, md, manifest = [], [], []
     md.append(f"# 하네스 엔지니어링 {ver} 발표자 노트\n\n"
               f"slides/harness-engineering-workshop-{ver}.html의 발표자 노트와 같은 내용이다. 용어와 사례 슬라이드에는 "
-              "docs/plans/slide-content-plan-v10.md의 해당 블록 전체가 들어 있다. 42장, 120분.\n")
+              "docs/plans/slide-content-plan-v10.md의 해당 블록 전체가 들어 있다. 42장, 120분.\n" if timed else
+              f"# 하네스 엔지니어링 {ver} 발표자 노트\n\n"
+              f"slides/harness-engineering-workshop-{ver}.html의 발표자 노트와 같은 내용입니다. 42장. 용어와 사례 슬라이드에는 "
+              "docs/plans/slide-content-plan-v10.md의 해당 블록을 강의 시간 표기만 뺀 편집 발췌로 넣었습니다.\n")
     for n, sl in enumerate(raw, 1):
-        nh, nm = build_notes(n, sl)
+        nh, nm = build_notes(n, sl) if timed else build_notes_v04(n, sl)
         sections.append(slide_html(n, sl, nh, len(raw)))
         md.append(f"## {n}. {sl['label']}\n\n{nm}")
         manifest.append({k: v for k, v in {
             "physical": n, "id": f"s{n}", "kind": sl["kind"], "label": sl["label"], "layout": sl.get("layout", sl["kind"]),
-            "chapter": sl.get("chapter"), "minutes": sl["minutes"], "start": sl["start"], "end": sl["start"] + sl["minutes"],
+            "chapter": sl.get("chapter"), "minutes": sl.get("minutes"), "start": sl.get("start"),
+            "end": sl["start"] + sl["minutes"] if timed else None,
             "term": sl.get("term"), "term_index": sl.get("term_index"), "case": sl.get("case"),
             "case_index": sl.get("case_index"), "v10": [f"S{s}" for s in sl.get("v10", [])]}.items()
             if v not in (None, [])})
@@ -268,13 +317,22 @@ def main():
     css = (HERE / "v02.css").read_text(encoding="utf-8")
     if ver >= "v03":
         css += PAGENO_CSS
+    if ver >= "v04":
+        css += V04_CSS
     js = (HERE / "v02.js").read_text(encoding="utf-8")
-    man = json.dumps({"deck": "harness-engineering-workshop", "version": ver, "slides": len(raw),
-                      "minutes": sum(s["minutes"] for s in raw), "items": manifest}, ensure_ascii=False, indent=1)
+    head = {"deck": "harness-engineering-workshop", "version": ver, "slides": len(raw)}
+    if timed:
+        head["minutes"] = sum(s["minutes"] for s in raw)
+    man = json.dumps({**head, "items": manifest}, ensure_ascii=False, indent=1)
     for blob in (css, js, man):
         if "</style" in blob or "</script" in blob:
             raise SystemExit("asset contains a closing tag; cannot inline safely")
     html = (HERE / "deck.src.html").read_text(encoding="utf-8")
+    if not timed:
+        for old, new in copy_v04.SHELL:
+            if old not in html:
+                raise SystemExit(f"v04 shell text not found: {old[:50]}")
+            html = html.replace(old, new)
     html = (html.replace("{{CSS}}", css).replace("{{JS}}", js).replace("{{MANIFEST}}", man)
             .replace("{{COUNT}}", str(len(raw))).replace("{{SLIDES}}", "\n\n".join(sections)))
     if "{{" in html:
@@ -284,6 +342,8 @@ def main():
                      ("claude.ai" + "/code/session", "session link")):
         if bad in html:
             raise SystemExit(f"output contains a {why}")
+    if not timed:
+        html = "\n".join(line.rstrip() for line in html.splitlines()) + "\n"
     export.write_text(html, encoding="utf-8")
     manifest_path.write_text(man + "\n", encoding="utf-8")
     notes_md.write_text("\n".join(md), encoding="utf-8")
@@ -292,7 +352,7 @@ def main():
         index.write_text(html, encoding="utf-8")
         written.append(index)
     show = lambda q: q.relative_to(ROOT) if q.is_relative_to(ROOT) else q.name  # noqa: E731
-    print(f"{ver}: {len(html.encode('utf-8'))} bytes, {len(raw)} slides, {sum(s['minutes'] for s in raw)} min; wrote "
+    print(f"{ver}: {len(html.encode('utf-8'))} bytes, {len(raw)} slides; wrote "
           + ", ".join(str(show(q)) for q in written))
 
 
