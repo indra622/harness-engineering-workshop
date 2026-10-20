@@ -1,4 +1,4 @@
-// Browser check, render and print for the 42-slide deck.
+// Browser check, render and print for the deck (42 slides, 44 from v07 with two reference slides).
 //
 // Usage (from the project root, after build_v02.py):
 //   PLAYWRIGHT_MODULE=/path/to/node_modules/playwright/index.js \
@@ -33,9 +33,11 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-const VER = process.env.DECK_VERSION || "v06";
-if (!/^v0[23456]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+const VER = process.env.DECK_VERSION || "v07";
+if (!/^v0[234567]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
+// v07 adds two optional reference slides after the OMH case
+const TOTAL = VER >= "v07" ? 44 : 42;
 // v02 and v03 carry the 120-minute lecture schedule; v04 has no lecture timing at all
 const TIMED = VER < "v04";
 // lecture time on screen or in notes (tool and task times such as 09:12 or cron do not match)
@@ -108,7 +110,16 @@ try {
     layouts: [...new Set(items.filter((i) => i.kind === "term").map((i) => i.layout))],
   };
   evidence.manifest = m;
-  if (m.slides !== 42 || meta.attrs.length !== 42) fail(`slide count ${m.slides}/${meta.attrs.length} != 42`);
+  if (m.slides !== TOTAL || meta.attrs.length !== TOTAL) fail(`slide count ${m.slides}/${meta.attrs.length} != ${TOTAL}`);
+  const refs = items.filter((it) => it.kind === "reference");
+  if (refs.length !== TOTAL - 42) fail(`reference slides: ${refs.length}`);
+  if (VER >= "v07") {
+    // originals keep their v06 numbering; references sit right after original 14
+    const origs = items.filter((it) => it.kind !== "reference").map((it) => it.original);
+    if (JSON.stringify(origs) !== JSON.stringify([...Array(42).keys()].map((k) => k + 1))) fail("original numbering broken");
+    if (refs.map((r) => `${r.physical}${r.reference}`).join(",") !== "15A,16B") fail(`reference placement: ${refs.map((r) => r.physical)}`);
+    evidence.reference_slides = refs.map((r) => ({ physical: r.physical, reference: r.reference, label: r.label }));
+  }
   if (TIMED && m.minutes !== 120) fail(`minutes ${m.minutes} != 120`);
   if (!TIMED) {
     const sched = items.filter((it) => "minutes" in it || "start" in it || "end" in it).map((it) => it.physical);
@@ -130,11 +141,12 @@ try {
     const nt = squash(meta.notes[i]);
     const fixes = { 9: "v02", 23: "v02", 29: "v02", 30: "v02", ...(VER >= "v03" ? { 2: "v03" } : {}),
       ...(VER >= "v06" ? { 18: "v06", 31: "v06" } : {}) };
-    if (fixes[i + 1]) {
-      const label = TIMED ? `${fixes[i + 1]} 정정 (아래 v10 원문보다 우선)` : "정정 (아래 v10 발췌보다 우선)";
+    const orig = it.original || it.physical;  // corrections are keyed by the original slide
+    if (it.kind !== "reference" && fixes[orig]) {
+      const label = TIMED ? `${fixes[orig]} 정정 (아래 v10 원문보다 우선)` : "정정 (아래 v10 발췌보다 우선)";
       const fix = nt.indexOf(squash(label));
       const src = nt.indexOf(squash(TIMED ? "v10 원문 S" : "v10 발췌 S"));
-      if (fix < 0 || src < 0 || fix > src) fail(`slide ${i + 1}: correction must come before the v10 source block`);
+      if (fix < 0 || src < 0 || fix > src) fail(`slide ${i + 1} (original ${orig}): correction must come before the v10 source block`);
     }
     if (nt.length < 80) fail(`slide ${i + 1}: notes are too short`);
     for (const sid of it.v10 || []) {
@@ -195,6 +207,26 @@ try {
     evidence.omh_before_after = { has: need14.filter((w) => s14.includes(w)) };
     evidence.role_wording = { slide9_has: need.filter((w) => roles.s9.includes(w)),
       parent_on_screen: roles.parentOnScreen, tool_route_label: roles.toolRoute };
+  }
+
+  if (VER >= "v07") {
+    // reference slides: content, provenance on screen, pinned sources in notes
+    const ref = await page.evaluate(() => ["#s15", "#s16"].map((id) => {
+      const s = document.querySelector(id);
+      return { text: s.querySelector(".canvas").textContent, notes: s.querySelector(".notes").innerHTML,
+        skip: s.querySelector(".canvas a.ref-skip")?.getAttribute("href") };
+    }));
+    const needA = ["참고 A", "같은 개발 요청, 서로 다른 작업 설계", "pstack", "Superpowers", "공통점", "실제 동작으로 검증",
+      "테스트 먼저 구현", "111cf6a", "b739a8a"];
+    const needB = ["참고 B", "가져올 것은 기능 목록보다 작업 방식", "내 환경에서 쓸", "적용 예: OMH", "비교 참고", "omh-rigorous"];
+    const pins = ["cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490", "obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12"];
+    [[ref[0], needA, "15"], [ref[1], needB, "16"]].forEach(([r, need, n]) => {
+      const lack = need.filter((w) => !r.text.includes(w));
+      if (lack.length) fail(`slide ${n} lacks: ${lack.join(", ")}`);
+      if (r.skip !== "#s17") fail(`slide ${n} skip link: ${r.skip}`);
+      if (!pins.every((u) => r.notes.includes(u))) fail(`slide ${n} notes lack pinned source links`);
+    });
+    evidence.reference_checks = { skip_links: ref.map((r) => r.skip), pinned_sources_in_notes: true };
   }
 
   // ---------------------------------------------------------------- per-slide layout
@@ -344,25 +376,35 @@ try {
   await p2.keyboard.press("f");
   await p2.waitForTimeout(300);
   ix.fullscreenOff = await p2.evaluate(() => !document.fullscreenElement);
-  const want = { arrowRight: "s2", pageDown: "s3", arrowLeft: "s2", end: "s42", home: "s1", nextButton: "s2", prevButton: "s1" };
+  const want = { arrowRight: "s2", pageDown: "s3", arrowLeft: "s2", end: `s${TOTAL}`, home: "s1", nextButton: "s2", prevButton: "s1" };
   for (const [kk, v] of Object.entries(want)) if (ix[kk] !== v) fail(`interaction ${kk}: ${ix[kk]}`);
   if (!ix.prevDisabledOnFirst) fail("previous button is enabled on the first slide");
   if (!ix.notes.open || ix.notes.chars < 100 || !ix.notesClosed) fail("notes did not open and close");
   if (!ix.fullscreenOn || !ix.fullscreenOff) fail(`full screen toggle: ${ix.fullscreenOn}/${ix.fullscreenOff}`);
-  await p2.goto(url + "?notes=1#s31");
+  const ceoAt = items.find((it) => it.case === "CEO Agent").physical;
+  await p2.goto(url + `?notes=1#s${ceoAt}`);
   await p2.waitForSelector(".slide.active");
   ix.deepLinkCeo = await p2.evaluate(() => ({ id: document.querySelector(".slide.active").id,
     notesOpen: !document.getElementById("notes-panel").hidden,
     canonical: document.getElementById("notes-body").textContent.includes("CEO Agent: 조사한 페르소나를 상황에 맞게 적용하기"),
     counter: document.getElementById("counter").textContent }));
-  if (ix.deepLinkCeo.id !== "s31" || !ix.deepLinkCeo.canonical || !ix.deepLinkCeo.notesOpen || ix.deepLinkCeo.counter !== "31 / 42") {
-    fail(`deep link s31: ${JSON.stringify(ix.deepLinkCeo)}`);
+  if (ix.deepLinkCeo.id !== `s${ceoAt}` || !ix.deepLinkCeo.canonical || !ix.deepLinkCeo.notesOpen || ix.deepLinkCeo.counter !== `${ceoAt} / ${TOTAL}`) {
+    fail(`deep link s${ceoAt}: ${JSON.stringify(ix.deepLinkCeo)}`);
   }
   await p2.goto(url + "#7");
   await p2.waitForSelector(".slide.active");
   ix.deepLinkNumber = await at();
   if (ix.deepLinkNumber !== "s7") fail(`deep link #7: ${ix.deepLinkNumber}`);
   await p2.screenshot({ path: path.join(outDir, "interaction-s7.png") });
+  if (VER >= "v07") {
+    // the optional reference slides can be skipped in one click
+    await p2.goto(url + "#s15");
+    await p2.waitForSelector(".slide.active");
+    await p2.click("#s15 a.ref-skip");
+    await p2.waitForFunction(() => document.querySelector(".slide.active")?.id === "s17");
+    ix.referenceSkip = await at();
+    if (ix.referenceSkip !== "s17") fail(`reference skip link: ${ix.referenceSkip}`);
+  }
   evidence.interactions = ix;
 
   // ---------------------------------------------------------------- viewports
@@ -393,7 +435,7 @@ try {
   await pn.goto(url);
   const visibleNoJs = await pn.evaluate(() => [...document.querySelectorAll(".slide")].filter((s) => s.getBoundingClientRect().height > 100).length);
   evidence.no_javascript_visible_slides = visibleNoJs;
-  if (visibleNoJs !== 42) fail(`without JavaScript only ${visibleNoJs} slides are visible`);
+  if (visibleNoJs !== TOTAL) fail(`without JavaScript only ${visibleNoJs} slides are visible`);
   await pn.screenshot({ path: path.join(outDir, "no-javascript.png") });
   await nj.close();
 
@@ -412,7 +454,7 @@ try {
     styled: getComputedStyle(document.querySelector(".controls")).display === "flex",
     stageW: document.querySelector(".slide.active .stage").getBoundingClientRect().width }));
   evidence.standalone_copy = { folder: "fresh temporary folder, no other files", ...solo };
-  if (solo.count !== 42 || solo.active !== "s15" || !solo.styled || solo.stageW < 800) fail(`standalone copy: ${JSON.stringify(solo)}`);
+  if (solo.count !== TOTAL || solo.active !== "s15" || !solo.styled || solo.stageW < 800) fail(`standalone copy: ${JSON.stringify(solo)}`);
   await sc.close();
 
   // ---------------------------------------------------------------- print from a non-first slide
@@ -428,7 +470,7 @@ try {
   const ratio = box ? Number(box[1]) / Number(box[2]) : 0;
   evidence.pdf = { file: rel(pdfPath), printed_from: activeBeforePrint, pages, media_box: box ? [Number(box[1]), Number(box[2])] : null,
     ratio: Number(ratio.toFixed(4)) };
-  if (pages !== 42) fail(`PDF has ${pages} pages, expected 42`);
+  if (pages !== TOTAL) fail(`PDF has ${pages} pages, expected ${TOTAL}`);
   if (Math.abs(ratio - 16 / 9) > 0.01) fail(`PDF page ratio ${ratio}`);
   if (PAGENO) {
     // the printed page itself must carry its number (poppler pdftotext, one page at a time)

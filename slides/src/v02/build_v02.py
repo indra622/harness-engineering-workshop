@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v06
+    python3 slides/src/v02/build_v02.py                 # current version, v07
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -15,7 +15,8 @@ v03 adds a physical page number inside every canvas and redraws slide 2 so the
 author finds the topic and writes v01 before any AI review. v04 removes all
 lecture timing (screen, notes, manifest, data attributes) and applies the
 edited presentation copy from copy_v04.py; v05 drops the roadmap break marker
-(copy_v05.py); v06 clarifies roles and wording (copy_v06.py). Everything else is shared, so v02
+(copy_v05.py); v06 clarifies roles and wording (copy_v06.py); v07 inserts two
+reference slides after the OMH case for 44 pages (copy_v07.py). Everything else is shared, so v02
 and v03 still build byte-for-byte as exported.
 
 Slide content lives in deck_a.py and deck_b.py. Term and case notes carry the
@@ -42,14 +43,15 @@ sys.path.insert(0, str(SRC))
 import copy_v04  # noqa: E402
 import copy_v05  # noqa: E402
 import copy_v06  # noqa: E402
+import copy_v07  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
 from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
-CURRENT = "v06"
-VERSIONS = ("v02", "v03", "v04", "v05", "v06")
+CURRENT = "v07"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -194,7 +196,8 @@ def build_notes_v04(n, sl):
     head = f"{kit.VERSION} {n}번. {sl['label']}"
     html, md = [f"<h3>{escape(head)}</h3>"], [head, ""]
     v06 = kit.VERSION >= "v06"
-    fixes = [CORRECTIONS_V03.get(n), CORRECTIONS.get(n), copy_v06.CORRECTIONS.get(n) if v06 else None]
+    o = sl.get("orig")  # original slide number; reference slides added in v07 have none
+    fixes = [CORRECTIONS_V03.get(o), CORRECTIONS.get(o), copy_v06.CORRECTIONS.get(o) if v06 else None]
     for fix in filter(None, fixes):
         html.append(f'<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> {escape(fix)}</p>')
         md += [f"정정 (아래 v10 발췌보다 우선): {fix}", ""]
@@ -229,6 +232,8 @@ def slide_html(n, sl, notes, total=42):
     if "minutes" in sl:  # v02 and v03 carry the lecture schedule; v04 has none
         attrs.update({"data-minutes": sl["minutes"], "data-start": sl["start"]})
     attrs["data-layout"] = sl.get("layout", sl["kind"])
+    if kit.VERSION >= "v07":  # original (v06) numbering kept for audits; reference slides have a letter instead
+        attrs.update({"data-reference": sl["reference"]} if sl.get("reference") else {"data-original": sl["orig"]})
     if sl.get("chapter"):
         attrs["data-chapter"] = sl["chapter"]
     if sl.get("term"):
@@ -247,8 +252,10 @@ def slide_html(n, sl, notes, total=42):
 
 def validate(slides):
     problems = []
-    if len(slides) != 42:
-        problems.append(f"{len(slides)} slides, expected 42")
+    refs = [s for s in slides if s["kind"] == "reference"]
+    want = 44 if kit.VERSION >= "v07" else 42
+    if len(slides) != want or len(refs) != want - 42:
+        problems.append(f"{len(slides)} slides with {len(refs)} reference slides, expected {want}")
     if all("minutes" in s for s in slides) and sum(s["minutes"] for s in slides) != 120:
         problems.append(f"minutes sum to {sum(s['minutes'] for s in slides)}, expected 120")
     terms = [s for s in slides if s["kind"] == "term"]
@@ -302,6 +309,11 @@ def main():
                 copy_v05.apply(i + 1, sl)
             if ver >= "v06":
                 copy_v06.apply(i + 1, sl)
+            if ver >= "v07":
+                copy_v07.apply(i + 1, sl)
+        sl["orig"] = i + 1
+    if ver >= "v07":
+        raw = copy_v07.insert(raw)
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
@@ -311,7 +323,7 @@ def main():
               f"slides/harness-engineering-workshop-{ver}.html의 발표자 노트와 같은 내용이다. 용어와 사례 슬라이드에는 "
               "docs/plans/slide-content-plan-v10.md의 해당 블록 전체가 들어 있다. 42장, 120분.\n" if timed else
               f"# 하네스 엔지니어링 {ver} 발표자 노트\n\n"
-              f"slides/harness-engineering-workshop-{ver}.html의 발표자 노트와 같은 내용입니다. 42장. 용어와 사례 슬라이드에는 "
+              f"slides/harness-engineering-workshop-{ver}.html의 발표자 노트와 같은 내용입니다. {len(raw)}장. 용어와 사례 슬라이드에는 "
               "docs/plans/slide-content-plan-v10.md의 해당 블록을 강의 시간 표기만 뺀 편집 발췌로 넣었습니다.\n")
     for n, sl in enumerate(raw, 1):
         nh, nm = build_notes(n, sl) if timed else build_notes_v04(n, sl)
@@ -322,7 +334,9 @@ def main():
             "chapter": sl.get("chapter"), "minutes": sl.get("minutes"), "start": sl.get("start"),
             "end": sl["start"] + sl["minutes"] if timed else None,
             "term": sl.get("term"), "term_index": sl.get("term_index"), "case": sl.get("case"),
-            "case_index": sl.get("case_index"), "v10": [f"S{s}" for s in sl.get("v10", [])]}.items()
+            "case_index": sl.get("case_index"), "v10": [f"S{s}" for s in sl.get("v10", [])],
+            "original": sl.get("orig") if ver >= "v07" else None,
+            "reference": sl.get("reference") if ver >= "v07" else None}.items()
             if v not in (None, [])})
 
     css = (HERE / "v02.css").read_text(encoding="utf-8")
@@ -330,6 +344,8 @@ def main():
         css += PAGENO_CSS
     if ver >= "v04":
         css += V04_CSS
+    if ver >= "v07":
+        css += copy_v07.V07_CSS
     js = (HERE / "v02.js").read_text(encoding="utf-8")
     head = {"deck": "harness-engineering-workshop", "version": ver, "slides": len(raw)}
     if timed:
@@ -347,6 +363,8 @@ def main():
                 raise SystemExit(f"v04 shell text not found: {old[:50]}")
             html = html.replace(old, new)
         html = html.replace("발표 자료 v04.", f"발표 자료 {ver}.")
+        if ver >= "v07":
+            html = html.replace("42장, 용어 25개와 사례 5개.", "44장(참고 2장 포함), 용어 25개와 사례 5개.")
     html = (html.replace("{{CSS}}", css).replace("{{JS}}", js).replace("{{MANIFEST}}", man)
             .replace("{{COUNT}}", str(len(raw))).replace("{{SLIDES}}", "\n\n".join(sections)))
     if "{{" in html:

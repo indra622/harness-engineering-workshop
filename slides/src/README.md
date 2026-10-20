@@ -30,8 +30,8 @@ Layout of `v02/`:
 - `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body. Slide 2 has a v02 and a v03 variant.
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
-- `build_v02.py`: assembles the deck and the notes for `--version v04` (default), `v03` or `v02`; `--out-dir` writes elsewhere and never touches `slides/index.html`. Term and case notes start with the scene, then any correction, then the full v10 block under a source heading. Stops before writing if the deck no longer adds up (42 slides, 120 minutes, the 25 v10 terms in order, five cases, one three-minute CEO Agent slide, a ten-minute break) or if the output contains a middle dot, a host path or a session link. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v06).
+- `build_v02.py`: assembles v07 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v07).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 
@@ -147,6 +147,15 @@ python3 slides/src/build_deck.py --set representative --out slides/previews/repr
 sh slides/src/render.sh slides/previews/representative-v01.pptx
 python3 slides/src/audit_deck.py slides/previews/representative-v01.pptx
 ```
+
+### v07 reference slides
+
+v07 keeps the 42 v06 slides and inserts two optional reference slides after original slide 14 (OMH), so the deck has 44 pages. `copy_v07.py` holds the layer:
+- `ref_a()` and `ref_b()`: 참고 A (pstack and Superpowers on the same feature request) and 참고 B (what to take: ways of working, applied to OMH). Kind `reference`, not counted among the 25 terms or five cases. Each has a "본문으로, 17쪽" skip link and notes with links pinned to cursor/plugins 111cf6a (pstack 0.15.29) and obra/superpowers b739a8a (7.0.0). The sources are reference data, not workflows this deck runs.
+- `apply()`: moves physical page pointers in the originals (Q&A index, the 27번 and 35번 pointers in the slide 2 notes). v10 source ids and correction ids stay keyed to the original (v06) numbers; the builder looks corrections up by `sl["orig"]`.
+- `insert()`: places the two slides after the OMH case.
+
+The v07 manifest and `data-` attributes carry `original` (v06 number) or `reference` (A, B). The builder and browser check default to v07; the check also verifies 44 pages, original numbering, reference placement and content, pinned sources in the notes, the skip link landing on 17, and the CEO deep link at its new page. `--version v06` (or v02 to v05) reproduces the preserved exports byte for byte. Sources and the claim-level summary: `docs/references/pstack-superpowers-comparison-v01.md`.
 
 ### v06 wording and role clarity
 
