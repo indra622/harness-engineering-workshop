@@ -31,7 +31,7 @@ Layout of `v02/`:
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
 - `build_v02.py`: assembles the deck and the notes for `--version v04` (default), `v03` or `v02`; `--out-dir` writes elsewhere and never touches `slides/index.html`. Term and case notes start with the scene, then any correction, then the full v10 block under a source heading. Stops before writing if the deck no longer adds up (42 slides, 120 minutes, the 25 v10 terms in order, five cases, one three-minute CEO Agent slide, a ten-minute break) or if the output contains a middle dot, a host path or a session link. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v04).
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v05).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 
@@ -147,3 +147,7 @@ python3 slides/src/build_deck.py --set representative --out slides/previews/repr
 sh slides/src/render.sh slides/previews/representative-v01.pptx
 python3 slides/src/audit_deck.py slides/previews/representative-v01.pptx
 ```
+
+### v05 roadmap adjustment
+
+v05 keeps the v04 presentation and removes only the slide 3 break marker, with five evenly spaced roadmap columns. `copy_v05.py` contains this edit. The separate break slide remains. The builder and browser check default to v05; use `--version v04` to reproduce the preserved v04 export.

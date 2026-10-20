@@ -33,8 +33,8 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-const VER = process.env.DECK_VERSION || "v04";
-if (!/^v0[234]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+const VER = process.env.DECK_VERSION || "v05";
+if (!/^v0[2345]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v02 and v03 carry the 120-minute lecture schedule; v04 has no lecture timing at all
 const TIMED = VER < "v04";

@@ -39,14 +39,15 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(SRC))
 
 import copy_v04  # noqa: E402
+import copy_v05  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
 from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
-CURRENT = "v04"
-VERSIONS = ("v02", "v03", "v04")
+CURRENT = "v05"
+VERSIONS = ("v02", "v03", "v04", "v05")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -188,7 +189,7 @@ def build_notes(n, sl):
 
 def build_notes_v04(n, sl):
     """v04 notes: no lecture timing anywhere; v10 blocks as labelled edited excerpts."""
-    head = f"v04 {n}번. {sl['label']}"
+    head = f"{kit.VERSION} {n}번. {sl['label']}"
     html, md = [f"<h3>{escape(head)}</h3>"], [head, ""]
     fixes = [CORRECTIONS_V03.get(n), CORRECTIONS.get(n)]
     for fix in filter(None, fixes):
@@ -291,6 +292,8 @@ def main():
             start += MINUTES[i]
         else:
             copy_v04.apply(i + 1, sl)
+            if ver >= "v05":
+                copy_v05.apply(i + 1, sl)
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
@@ -333,6 +336,7 @@ def main():
             if old not in html:
                 raise SystemExit(f"v04 shell text not found: {old[:50]}")
             html = html.replace(old, new)
+        html = html.replace("발표 자료 v04.", f"발표 자료 {ver}.")
     html = (html.replace("{{CSS}}", css).replace("{{JS}}", js).replace("{{MANIFEST}}", man)
             .replace("{{COUNT}}", str(len(raw))).replace("{{SLIDES}}", "\n\n".join(sections)))
     if "{{" in html:
