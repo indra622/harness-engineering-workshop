@@ -1,0 +1,71 @@
+{
+  "browser": "Chrome 155.0.8059.85 (headless)",
+  "file": "slides/previews/redesign-v02.html",
+  "screens": [
+    {
+      "id": "P1",
+      "name": "P1-cover",
+      "text_runs": 14,
+      "min_font_px": 28,
+      "png": "slides/previews/redesign-v02/P1-cover.png"
+    },
+    {
+      "id": "P2",
+      "name": "P2-chapter-1",
+      "text_runs": 16,
+      "min_font_px": 26,
+      "png": "slides/previews/redesign-v02/P2-chapter-1.png"
+    },
+    {
+      "id": "P3",
+      "name": "P3-term-runtime",
+      "text_runs": 35,
+      "min_font_px": 24,
+      "png": "slides/previews/redesign-v02/P3-term-runtime.png"
+    },
+    {
+      "id": "P4",
+      "name": "P4-case-omh",
+      "text_runs": 40,
+      "min_font_px": 24,
+      "png": "slides/previews/redesign-v02/P4-case-omh.png"
+    },
+    {
+      "id": "P5",
+      "name": "P5-case-ceo",
+      "text_runs": 30,
+      "min_font_px": 24,
+      "png": "slides/previews/redesign-v02/P5-case-ceo.png"
+    },
+    {
+      "id": "P6",
+      "name": "P6-closing",
+      "text_runs": 19,
+      "min_font_px": 26,
+      "png": "slides/previews/redesign-v02/P6-closing.png"
+    }
+  ],
+  "nanum_gothic_available": true,
+  "interactions": {
+    "arrowRight": "P2",
+    "end": "P6",
+    "home": "P1",
+    "next": "P2",
+    "notes": {
+      "open": true,
+      "chars": 324
+    },
+    "deepLink": {
+      "id": "P5",
+      "canonical": true
+    }
+  },
+  "pdf": {
+    "file": "slides/previews/redesign-v02.pdf",
+    "pages": 6
+  },
+  "console_errors": [],
+  "external_requests": [],
+  "problems": [],
+  "passed": true
+}

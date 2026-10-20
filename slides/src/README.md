@@ -1,10 +1,58 @@
 # Deck source
 
-The HTML presentation is the canonical output. A Python generator writes `slides/index.html` with one inline SVG diagram per slide, plus a single-file export and the presenter notes. A browser check then verifies the result in real headless Chrome. Visual rules are in `DESIGN.md` at the project root. Content comes from `docs/plans/slide-content-plan-v10.md` and `docs/production/slide-production-brief-v01.md`.
+## v02 (current)
+
+The current deck is v02: 42 slides, 120 minutes, built from `v02/`. Visual rules are in `DESIGN.md` at the project root. Content comes from `docs/plans/slide-content-plan-v10.md` and `docs/production/slide-production-brief-v02.md`; the brief's three "v02 정정" items override ambiguous v10 wording.
+
+Outputs:
+- `slides/harness-engineering-workshop-v02.html`: canonical single-file export, CSS and JS inlined.
+- `slides/index.html`: current entry, the same file.
+- `slides/harness-engineering-workshop-v02.pdf`: browser print, 42 pages, 16:9.
+- `slides/speaker-notes-v02.md`: presenter notes as Markdown.
+- `slides/harness-engineering-workshop-v02.manifest.json`: physical number, kind, layout, chapter, minutes, term, case and v10 source for every slide. The same data is on each `<section>` as `data-` attributes and in the page as `#deck-manifest`.
+- `slides/v02-check-evidence.json`: the latest browser check result.
+- `slides/render/v02/`: one PNG per slide, interaction and viewport screenshots, contact sheets. Git-ignored and regenerated.
+
+Layout of `v02/`:
+- `kit.py`: SVG drawing kit on canvas pixels (boxes, lines, arrows, ticks), plus small HTML helpers.
+- `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body.
+- `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build.
+- `build_v02.py`: assembles the deck and the notes. Term and case notes start with the scene, then any v02 correction, then the full v10 block under a source heading. Stops before writing if the deck no longer adds up (42 slides, 120 minutes, the 25 v10 terms in order, five cases, one three-minute CEO Agent slide, a ten-minute break) or if the output contains a middle dot, a host path or a session link. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install.
+- `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig).
+- `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
+
+Rebuild and check, from the project root:
+
+```sh
+python3 slides/src/v02/build_v02.py
+PLAYWRIGHT_MODULE=/path/to/node_modules/playwright/index.js node slides/src/v02/check_v02.mjs
+python3 slides/src/v02/contact_sheet_deck.py
+```
+
+`check_v02.mjs` covers:
+- manifest and `data-` attributes: 42 slides, 120 minutes, the 25 v10 terms in order, five cases, one three-minute CEO Agent slide, a ten-minute break, at least three term layout families;
+- notes: every term and case slide carries its full v10 block; slides 9, 23, 29 and 30 show their v02 correction before it;
+- every visible text run: inside the 40 px safe margin, at least 24 px on the canvas, no overlap, no clipped box;
+- diagram labels: each SVG label stays inside the box it sits in, and no visible connector runs through a label;
+- keyboard, buttons, notes, deep links (`#s31` with notes, `#7`), the F full-screen toggle;
+- 1280 x 720, 1920 x 1080 with notes, 390 x 844 with and without notes;
+- the no-JavaScript fallback;
+- the single file copied into an empty temporary folder;
+- print from slide 20 to a 42-page 16:9 PDF;
+- console errors and network requests.
+
+Passing checks are not a presentation review. Look at the renders and the contact sheets.
+
+## v01 (historical)
+
+The v01 sections below describe the earlier 35-slide deck. Its entry is now `slides/index-v01.html`, so rebuilding v01 does not overwrite the v02 entry. The v01 single-file export, PDF and `slides/speaker-notes.md` are kept unchanged.
+
+The v01 HTML presentation was built by a Python generator that writes `slides/index-v01.html` with one inline SVG diagram per slide, plus a single-file export and the presenter notes. Its visual rules are in `docs/design/DESIGN-v01.md`. Its content came from `docs/plans/slide-content-plan-v10.md` and `docs/production/slide-production-brief-v01.md`.
 
 ## Outputs
 
-- `slides/index.html`: the presentation. Uses `slides/assets/deck.css` and `slides/assets/deck.js`.
+- `slides/index-v01.html`: the v01 presentation. Uses `slides/assets/deck.css` and `slides/assets/deck.js`.
 - `slides/harness-engineering-workshop-v01.html`: the same deck in one file, with CSS and JS inlined.
 - `slides/harness-engineering-workshop-v01.pdf`: browser print, 35 pages, 16:9.
 - `slides/speaker-notes.md`: the presenter notes as Markdown.

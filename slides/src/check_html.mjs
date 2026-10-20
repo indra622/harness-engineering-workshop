@@ -23,7 +23,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..");
 const slidesDir = path.join(root, "slides");
 const renderDir = path.join(slidesDir, "render");
-const indexUrl = pathToFileURL(path.join(slidesDir, "index.html")).href;
+const indexUrl = pathToFileURL(path.join(slidesDir, "index-v01.html")).href;
 const rel = (p) => path.relative(root, p).split(path.sep).join("/");
 const standalonePath = path.join(slidesDir, "harness-engineering-workshop-v01.html");
 

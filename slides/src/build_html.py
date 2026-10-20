@@ -3,7 +3,7 @@
 Usage (from the project root):
     python3 slides/src/build_html.py
 
-Writes slides/index.html (35 slides, inline SVG diagrams, presenter notes)
+Writes slides/index-v01.html (35 slides, inline SVG diagrams, presenter notes)
 and slides/speaker-notes.md. Before writing, every slide is checked for
 shapes outside the 0.4 in safe area, text that does not fit its box (real
 Nanum Gothic metrics), unintended overlaps between boxes and labels, and
@@ -25,7 +25,7 @@ from deck import theme as T  # noqa: E402
 from web import kit  # noqa: E402
 from web.slides import SCREEN_TITLES, SLIDES  # noqa: E402
 
-OUT = ROOT / "slides" / "index.html"
+OUT = ROOT / "slides" / "index-v01.html"  # slides/index.html is now the v02 entry
 NOTES_MD = ROOT / "slides" / "speaker-notes.md"
 STANDALONE = ROOT / "slides" / "harness-engineering-workshop-v01.html"
 EPS = 0.02
