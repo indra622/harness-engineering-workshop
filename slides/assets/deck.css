@@ -1,0 +1,208 @@
+/* Harness Engineering Workshop deck. Tokens mirror DESIGN.md. Offline only:
+   fonts come from the system; no network requests. */
+
+:root {
+  --canvas: #F7F7F4;
+  --ink: #1F2328;
+  --muted: #5B6470;
+  --primary: #2B5FA8;
+  --warning: #B45309;
+  --band: #E9ECF1;
+  --surface: #FFFFFF;
+  --surround: #DCE0E5;
+  --bar-h: 60px;
+  --font: "Nanum Gothic", "NanumGothic", "Apple SD Gothic Neo", "Malgun Gothic",
+          "Noto Sans KR", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--surround);
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+.deck {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) var(--bar-h);
+  height: 100vh;
+  height: 100dvh;
+}
+
+.deck.notes-open {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 36vw);
+}
+
+/* ---------------------------------------------------------------- stage */
+
+.viewport {
+  grid-row: 1;
+  grid-column: 1;
+  min-height: 0;
+  min-width: 0;
+  container-type: size;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+}
+
+.slide { display: block; width: 100%; margin-bottom: 16px; }
+.js .slide { display: none; margin: 0; }
+.js .slide.active { display: contents; }
+
+.stage {
+  width: min(100cqw, calc(100cqh * 16 / 9));
+  aspect-ratio: 16 / 9;
+  background: var(--canvas);
+  box-shadow: 0 1px 3px rgba(31, 35, 40, 0.18);
+}
+
+.slide-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font);
+}
+
+.slide .notes { display: none; }
+
+/* ---------------------------------------------------------------- notes */
+
+.notes-panel {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  background: var(--surface);
+  border-left: 1px solid #C5CBD3;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.notes-panel[hidden] { display: none; }
+
+.notes-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--band);
+  font-weight: 700;
+}
+
+.notes-body {
+  overflow-y: auto;
+  padding: 8px 20px 32px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.notes-body h3 {
+  font-size: 15px;
+  color: var(--primary);
+  margin: 22px 0 6px;
+}
+
+.notes-body p { margin: 6px 0; }
+.notes-body ul { margin: 6px 0; padding-left: 20px; }
+.notes-body strong { color: var(--ink); }
+
+/* ---------------------------------------------------------------- controls */
+
+.controls {
+  grid-row: 2;
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  background: var(--surface);
+  border-top: 1px solid #C5CBD3;
+  min-width: 0;
+}
+
+.ctl {
+  font: inherit;
+  font-size: 15px;
+  min-height: 44px;
+  min-width: 64px;
+  padding: 0 14px;
+  border: 1px solid #9AA3AE;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.ctl:hover { border-color: var(--primary); color: var(--primary); }
+.ctl:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.ctl[aria-pressed="true"] { background: #E7EEF8; border-color: var(--primary); color: var(--primary); }
+.ctl:disabled { opacity: 0.45; cursor: default; }
+
+.progress {
+  flex: 1 1 auto;
+  height: 6px;
+  min-width: 40px;
+  background: var(--band);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--primary);
+}
+
+.counter {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.now {
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30vw;
+}
+
+.noscript { padding: 16px; }
+
+@media (max-width: 720px) {
+  .now { display: none; }
+  .deck.notes-open { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) var(--bar-h); }
+  .deck.notes-open .notes-panel { grid-row: 2; grid-column: 1; border-left: 0; border-top: 1px solid #C5CBD3; }
+  .deck.notes-open .controls { grid-row: 3; }
+  .ctl { min-width: 52px; padding: 0 10px; }
+}
+
+/* Without JavaScript every slide is shown in order and the page scrolls. */
+html:not(.js) .viewport { display: block; overflow-y: auto; container-type: inline-size; }
+html:not(.js) .stage { width: 100%; }
+html:not(.js) .controls { display: none; }
+
+/* ---------------------------------------------------------------- print */
+
+@page { size: 13.333in 7.5in; margin: 0; }
+
+@media print {
+  html, body { height: auto; background: #FFFFFF; }
+  .deck { display: block; height: auto; }
+  .controls, .notes-panel { display: none !important; }
+  .viewport { display: block; padding: 0; container-type: normal; }
+  /* Match the specificity of the screen rules (.js .slide.active) so every
+     slide prints, one 16:9 page each, whether or not JavaScript ran. */
+  html .slide, html.js .slide, html.js .slide.active {
+    display: block; width: 13.333in; height: 7.5in; margin: 0;
+    break-after: page; page-break-after: always; break-inside: avoid;
+  }
+  html .slide:last-child, html.js .slide:last-child { break-after: auto; page-break-after: auto; }
+  .stage { width: 13.333in; height: 7.5in; box-shadow: none; }
+  .slide .notes { display: none; }
+}

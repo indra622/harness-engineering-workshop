@@ -1,0 +1,163 @@
+{
+  "deck": "slides/previews/representative-v01.pptx",
+  "phase": "representative proof, 6 of 35 source slides; not the finished deck",
+  "slide_size_in": [
+    13.333,
+    7.5
+  ],
+  "slides": [
+    {
+      "page": 1,
+      "source_slide_id": "S1",
+      "title": "시작: 완성된 업무 한 건",
+      "minutes": 2,
+      "shapes": 25,
+      "text_shapes": 19,
+      "connectors": 4,
+      "diagram_nodes": 6,
+      "characters_on_slide": 283,
+      "notes_characters": 1358,
+      "notes_checks": {
+        "has_source_header": true,
+        "has_full_v10_block": true,
+        "has_brief_entry": true,
+        "has_time": true
+      }
+    },
+    {
+      "page": 2,
+      "source_slide_id": "S5",
+      "title": "런타임",
+      "minutes": 3,
+      "shapes": 26,
+      "text_shapes": 17,
+      "connectors": 5,
+      "diagram_nodes": 8,
+      "characters_on_slide": 263,
+      "notes_characters": 1841,
+      "notes_checks": {
+        "has_source_header": true,
+        "has_full_v10_block": true,
+        "has_brief_entry": true,
+        "has_time": true
+      }
+    },
+    {
+      "page": 3,
+      "source_slide_id": "S11",
+      "title": "OMH 사례: 모델을 바꾸지 않고 틀을 바꾼 이유",
+      "minutes": 5,
+      "shapes": 32,
+      "text_shapes": 25,
+      "connectors": 5,
+      "diagram_nodes": 15,
+      "characters_on_slide": 397,
+      "notes_characters": 2595,
+      "notes_checks": {
+        "has_source_header": true,
+        "has_full_v10_block": true,
+        "has_brief_entry": true,
+        "has_time": true
+      }
+    },
+    {
+      "page": 4,
+      "source_slide_id": "S17",
+      "title": "컨텍스트",
+      "minutes": 3,
+      "shapes": 25,
+      "text_shapes": 19,
+      "connectors": 3,
+      "diagram_nodes": 9,
+      "characters_on_slide": 303,
+      "notes_characters": 1591,
+      "notes_checks": {
+        "has_source_header": true,
+        "has_full_v10_block": true,
+        "has_brief_entry": true,
+        "has_time": true
+      }
+    },
+    {
+      "page": 5,
+      "source_slide_id": "S26",
+      "title": "CEO Agent: 조사한 페르소나를 상황에 맞게 적용하기",
+      "minutes": 3,
+      "shapes": 35,
+      "text_shapes": 22,
+      "connectors": 10,
+      "diagram_nodes": 14,
+      "characters_on_slide": 399,
+      "notes_characters": 2456,
+      "notes_checks": {
+        "has_source_header": true,
+        "has_full_v10_block": true,
+        "has_brief_entry": true,
+        "has_time": true
+      }
+    },
+    {
+      "page": 6,
+      "source_slide_id": "S34",
+      "title": "다섯 사례 종합",
+      "minutes": 4,
+      "shapes": 59,
+      "text_shapes": 43,
+      "connectors": 10,
+      "diagram_nodes": 22,
+      "characters_on_slide": 345,
+      "notes_characters": 1536,
+      "notes_checks": {
+        "has_source_header": true,
+        "has_full_v10_block": true,
+        "has_brief_entry": true,
+        "has_time": true
+      }
+    }
+  ],
+  "font_family": "Nanum Gothic",
+  "font_size_min_pt": 16.0,
+  "diagram_label_floor_pt": 20,
+  "pdf": {
+    "file": "slides/previews/representative-v01.pdf",
+    "pages": 6,
+    "embedded_fonts": [
+      "NanumGothic",
+      "NanumGothicBold"
+    ]
+  },
+  "render": {
+    "pages": 6,
+    "files": [
+      "slides/previews/representative-v01/page-1.png",
+      "slides/previews/representative-v01/page-2.png",
+      "slides/previews/representative-v01/page-3.png",
+      "slides/previews/representative-v01/page-4.png",
+      "slides/previews/representative-v01/page-5.png",
+      "slides/previews/representative-v01/page-6.png"
+    ]
+  },
+  "hashes_sha256": {
+    "slides/previews/representative-v01.pptx": "4f7334c02cfc86c6941d2d779a8e3decc3be6ad8d011f4f4b0244b49828bb27e",
+    "slides/previews/representative-v01.pdf": "56a28004d05bd382343cda5de45f5da58309e11a5ec1c0aec50aea13a22b408e",
+    "slides/previews/representative-v01/page-1.png": "534ed2bb8c3736b6a9a71e28cac7b02c6639542c17052844e17fb5bd143ad8db",
+    "slides/previews/representative-v01/page-2.png": "a000320ffec06080b4cb4a307f07391834d6caf3103630b8b12b5bfb14346900",
+    "slides/previews/representative-v01/page-3.png": "eab9ed0091ad268de84f1be4afc824ca2e7ac9adeb8903cedb08c1c87ba214fc",
+    "slides/previews/representative-v01/page-4.png": "c387844dde7949637d7acb9155fabc0d278fbac9803659e3779e71f3bcb03e99",
+    "slides/previews/representative-v01/page-5.png": "a72686384dcde195052a45dc1586077fe46c6fd9496aa652511d361a24888a0a",
+    "slides/previews/representative-v01/page-6.png": "30c9177af2f6655ca6ea0463be732440d820ade747222f53c80a250713360e84"
+  },
+  "checks": {
+    "source_ids_and_titles_match_v10": true,
+    "text_fits_boxes": true,
+    "fonts_at_or_above_floor": true,
+    "inside_safe_area": true,
+    "no_unintended_overlap": true,
+    "no_inherited_theme_effects": true,
+    "notes_populated": true,
+    "pdf_fonts_nanum_only": true,
+    "no_host_paths": true
+  },
+  "problems": [],
+  "visual_review": "page PNGs viewed by the worker; see report for findings"
+}
