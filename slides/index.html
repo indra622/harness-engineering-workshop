@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>하네스 엔지니어링 | 워크숍</title>
-<meta name="description" content="하네스 엔지니어링 워크숍 발표 자료 v05. 42장, 용어 25개와 사례 5개.">
+<meta name="description" content="하네스 엔지니어링 워크숍 발표 자료 v06. 42장, 용어 25개와 사례 5개.">
 <style>
 /* Harness Engineering deck, v02 redesign proof.
    Every slide is a 1920 x 1080 canvas scaled as one unit, so composition is
@@ -389,7 +389,7 @@ html:not(.js) .controls { display: none; }
   <p class="pageno" aria-label="1쪽, 전체 42쪽">1 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 1번. 표지</h3>
+<h3>v06 1번. 표지</h3>
 <p>주제는 하네스 엔지니어링. 모델 하나를 바꾸는 이야기가 아니라, 모델이 일하도록 둘러싼 구조를 설계하는 이야기입니다.</p>
 <p>그림 읽기: 가운데가 모델이고, 둘레에 컨텍스트, 도구, 실행 위치, 상태, 검증이 있습니다. 바깥 틀 전체를 하네스라고 부르고, 틀 아래쪽의 사람의 확인은 결과를 넘길지 정하는 마지막 결정입니다.</p>
 <p>이 정의는 이 워크숍의 작업 정의이고, 제품마다 하네스의 범위는 다를 수 있습니다. 하네스를 바꾼다고 결과가 반드시 좋아진다고 말하지 않습니다.</p>
@@ -462,20 +462,20 @@ html:not(.js) .controls { display: none; }
   <p class="pageno" aria-label="2쪽, 전체 42쪽">2 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 2번. 시작: AI교양 글 한 편</h3>
+<h3>v06 2번. 시작: AI교양 글 한 편</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10 S1과 2.3은 &#x27;사용자가 원문을 보냈고, 받은 본문을 v01로 보존한다&#x27;고만 적어, v01이 누가 쓴 원고인지 드러내지 않는다. 실제 순서는 작가가 주제를 찾고 고른다, 작가가 초고 v01을 직접 쓴다, AI와 함께 검토하고 수정한다, 작가가 최종 확정한다, 삽화를 만들어 보관한다, 네이버 비공개 초안을 만든다, 다시 열어 확인한다이다. v01은 작가의 원고이며 AI가 생성한 초안이 아니다. v02 화면의 &#x27;원문을 받아 v01로 보존&#x27; 표현도 이 순서로 대체한다.</p>
 <p>장면부터. AI교양 글 한 편이 끝났습니다. 순서가 중요합니다. 작가가 주제를 찾아 골랐고, 초고 v01을 직접 썼습니다. v01은 작가의 원고이지 AI가 만든 초안이 아닙니다. 그다음에야 AI와 함께 문장과 논지를 검토하고 고쳤고(v02, v03처럼 새 버전으로 남기고 이전 본은 보존), 작가가 최종본을 확정했습니다. 확정 뒤에 삽화를 만들어 보관하고, 네이버 비공개 초안을 만든 뒤 다시 열어 확인했습니다. 공개 발행은 이 흐름에 없습니다.</p>
 <p>색 읽기: 호박색은 작가가 하거나 정하는 단계, 파랑은 AI와 함께하는 단계, 흰 상자는 확정 뒤 정해진 절차.</p>
 <p>질문만 던지고 답은 미룹니다. 단계를 건너뛰지 않게 지켜 주는 건 사람의 확정일까, 기록된 규칙일까? 답은 AI교양 사례(25번)와 워크플로우(33번)에서 돌아옵니다.</p>
-<h3>v10 발췌 S1 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S1 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p><strong>S1. 시작:</strong> 완성된 업무 한 건</p>
 <p><strong>장면과 질문 (예시 초안):</strong> AI교양 글 한 편의 작업이 끝났다. 사용자가 원문을 보냈고, 최종본이 확정됐고, 삽화를 만들어 보관했고, 비공개 초안을 만든 뒤 다시 열어 확인했다. 질문: 이 흐름이 단계를 건너뛰지 않게 하는 것은 누구일까?</p>
 <p>이 장면은 개념 설명용이다. 실제 화면, 계정 정보, 공개 발행은 보여 주지 않는다. 참가자는 실습하지 않는다. 듣고 질문만 한다. 낯선 라벨 몇 개는 나중에 설명한다.</p>
 <p>학습 목표는 다음과 같다.</p>
 <p>1. 모델, 에이전트, 런타임, 하네스, 오케스트레이션, 도구, 스킬, 플러그인, 커넥터, MCP, 프롬프트, 컨텍스트, 토큰, 컨텍스트 창, 메모리, 세션, 워커, 서브에이전트, 워크플로우, 자동화, 완료 보고, 검증, 로컬 실행, 클라우드 실행, 리모트 컨트롤을 각각 설명할 수 있다.</p>
 <p>2. 같은 모델이라도 컨텍스트, 도구, 검증 기준이 다르면 결과의 재현성과 점검 가능성이 달라질 수 있음을 설명할 수 있다. 결과가 반드시 좋아진다고 말하지 않는다.</p>
-<p>3. 완료 보고와 검증 증거를 구분하고, 결정적으로 확인할 수 있는 검증 항목을 만들 수 있다.</p>
+<p>3. 완료 보고와 검증 증거를 구분하고, 같은 입력에 늘 같은 결과가 나오는 방법으로 확인할 수 있는 검증 항목을 만들 수 있다.</p>
 <p>4. 로컬 실행, 클라우드 실행, 리모트 컨트롤을 서로 다른 축으로 설명하고, 구성 요소별로 위치를 말할 수 있다.</p>
 <p>5. 업무용 하네스의 구성 요소, 즉 명세, 루브릭, 기록, 절차, 사람의 교정과 상황별 페르소나 선택이 어떻게 맞물리는지 실제 사례로 설명할 수 있다.</p>
 </aside>
@@ -506,11 +506,11 @@ html:not(.js) .controls { display: none; }
   <p class="pageno" aria-label="3쪽, 전체 42쪽">3 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 3번. 오늘의 길</h3>
+<h3>v06 3번. 오늘의 길</h3>
 <p>개념과 사례를 번갈아 봅니다. 각 장은 질문 하나로 열고, 그 질문에 답하는 용어를 익힌 뒤 사례에서 다시 찾습니다.</p>
 
-<h3>v10 발췌 S2 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S2 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S2. 로드맵과 예시 장면</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 개념이 먼저인가, 사례가 먼저인가? 질문: 이 워크샵을 들은 뒤 AI교양 흐름을 용어로 다시 읽을 수 있을까?</p>
 <p>오늘은 개념과 사례를 번갈아 본다. 먼저 실행 틀의 기본 네 개념을 익히고, 방금 익힌 개념을 OpenClaw 구조에서 찾는다. 쉬는 시간 뒤에는 세션, 워커, 서브에이전트를 배우고, 마지막에 다섯 사례를 한 흐름으로 되짚는다. 아직 배우지 않은 용어는 사례에서 미리 정의하지 않고, 이름만 보여 준 뒤 해당 슬라이드에서 다룬다고 약속한다.</p>
@@ -528,7 +528,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <p>2.2 설명에서 쓰는 확인 기준</p>
 <ul>
 <li>보고서 건수는 원본 행 수와 고유 티켓 수를 구분해 적는다.</li>
-<li>모호한 행은 빠짐없이 목록으로 적는다. 값이 없는 칸은 추정하지 않고 미확인으로 표시한다.</li>
+<li>판단이 어려운 행은 빠짐없이 목록으로 적는다. 값이 없는 칸은 추정하지 않고 미확인으로 표시한다.</li>
 <li>주요 주장마다 행 식별자를 인용한다. 중복 ticket_id만으로 행을 합치지 않는다.</li>
 </ul>
 <p>2.3 AI교양 제작 흐름 (S21, S27, S28 공통 사례)</p>
@@ -575,7 +575,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="4쪽, 전체 42쪽">4 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 4번. 1장 AI는 무엇을 하고, 누가 실행할까?</h3>
+<h3>v06 4번. 1장 AI는 무엇을 하고, 누가 실행할까?</h3>
 <p>질문: AI는 무엇을 하고, 누가 실행할까?</p>
 <p>순서: 모델, 에이전트, 런타임, 하네스, 그리고 사례 OpenClaw.</p>
 <p>왜 이 순서인가: 모델은 요청만 만든다는 점을 먼저 세우고, 반복 구조(에이전트), 실제 실행(런타임), 작업 틀(하네스)로 넓힙니다. 그다음 OpenClaw 구조에서 방금 배운 네 개념을 찾습니다. 워커와 세션은 OpenClaw에서 이름만 보고 4장에서 다룹니다.</p>
@@ -622,11 +622,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="5쪽, 전체 42쪽">5 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 5번. 용어 1 모델</h3>
+<h3>v06 5번. 용어 1 모델</h3>
 <p><strong>장면 먼저:</strong> 팀장이 AI에게 &#x27;내일 회의 준비해 줘&#x27;라고 한 줄만 보낸다. 안건과 참석자는 적지 않았다. 질문: 안건을 모르는데도 그럴듯한 준비안이 나올까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S3 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S3 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S3. 모델</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 팀장이 AI에게 &#x27;내일 회의 준비해 줘&#x27;라고 한 줄만 보낸다. 안건과 참석자는 적지 않았다. 질문: 안건을 모르는데도 그럴듯한 준비안이 나올까?</p>
 <p><strong>한 문장 정의:</strong> 모델은 입력된 텍스트와 맥락을 받아 다음 출력을 생성하는 학습된 계산 장치이며, 그 출력에는 답변 텍스트와 도구 호출 요청이 포함될 수 있다.</p>
@@ -678,11 +678,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="6쪽, 전체 42쪽">6 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 6번. 용어 2 에이전트</h3>
+<h3>v06 6번. 용어 2 에이전트</h3>
 <p><strong>장면 먼저:</strong> 일정 안내 메일의 초안을 AI에게 맡긴다. 일정 정보가 빠지면 되물어 채우고 고쳐 쓴다. 발송은 하지 않는다. 질문: 초안을 쓰고, 빠진 정보를 확인하고, 고치는 일을 끝나는 조건이 있는 반복으로 돌리면 에이전트에 가까울까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S4 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S4 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S4. 에이전트</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 일정 안내 메일의 초안을 AI에게 맡긴다. 일정 정보가 빠지면 되물어 채우고 고쳐 쓴다. 발송은 하지 않는다. 질문: 초안을 쓰고, 빠진 정보를 확인하고, 고치는 일을 끝나는 조건이 있는 반복으로 돌리면 에이전트에 가까울까?</p>
 <p><strong>한 문장 정의:</strong> 에이전트는 목표를 받아 모델의 판단, 도구 실행, 결과 확인을 반복하며, 종료 조건이 충족될 때까지 작업을 이어 가는 실행 구성이다.</p>
@@ -690,7 +690,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <ul>
 <li>핵심은 반복 루프다. 모델이 다음 행동을 고르고, 도구 결과를 보고, 다시 다음 행동을 고른다. 필요하면 다음 행동을 선택해 실행을 이어갈 수 있는 구조가 핵심이다. 실제 응답 횟수만으로 에이전트 여부를 판정하지 않는다.</li>
 <li>루프를 끝내는 조건이 있어야 한다. 예를 들어 &quot;보고서가 저장되고 체크리스트 항목이 모두 통과하면 종료&quot;다.</li>
-<li>한 실행 주체가 여러 단계를 도는 것도 에이전트 구성이다. 여러 에이전트가 있어야 하는 것은 아니다.</li>
+<li>작업자 하나가 여러 단계를 도는 것도 에이전트 구성이다. 여러 에이전트가 있어야 하는 것은 아니다.</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 메일 장면에서 목표는 &#x27;초안 완성, 발송 금지, 빠진 일정 확인 후 종료&#x27;다. 입력: 목표와 일정 메모. 출력: 초안 한 개와 확인 필요 항목 목록. 발송은 이 반복에 넣지 않는다.</p>
 <p><strong>강사용 보충 예시 (화면 생략):</strong> 목표는 &quot;tickets.csv로 보고서를 쓰고 가상의 경로 output/report.md에 저장하라. 체크리스트를 통과하면 끝낸다&quot;이다. 행동은 CSV 열기, 행 수 세기, 빈 칸 목록 만들기, 보고서 쓰기, 체크리스트 대조 순서다. 실패 항목이 있으면 보고서 쓰기로 돌아간다.</p>
@@ -720,11 +720,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="7쪽, 전체 42쪽">7 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 7번. 용어 3 런타임</h3>
+<h3>v06 7번. 용어 3 런타임</h3>
 <p><strong>장면 먼저:</strong> &#x27;지난주 회의 메모 파일 열어 줘&#x27;라는 요청을 보낸다. 실제로 파일을 여는 쪽은 누구일까? 질문: AI 모델이 파일을 직접 열까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S5 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S5 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S5. 런타임</p>
 <p><strong>장면과 질문 (예시 초안):</strong> &#x27;지난주 회의 메모 파일 열어 줘&#x27;라는 요청을 보낸다. 실제로 파일을 여는 쪽은 누구일까? 질문: AI 모델이 파일을 직접 열까?</p>
 <p><strong>한 문장 정의:</strong> 런타임은 모델의 도구 호출 요청을 받아 권한을 확인한 뒤 도구를 실행하고, 결과를 다시 모델 입력으로 돌려주며 다음 호출을 이어 주는 실행 계층이다.</p>
@@ -783,11 +783,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="8쪽, 전체 42쪽">8 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 8번. 용어 4 하네스</h3>
+<h3>v06 8번. 용어 4 하네스</h3>
 <p><strong>장면 먼저:</strong> 문서 검토자가 체크리스트 파일을 폴더에 넣어 두고 검토를 시작한다. 질문: 체크리스트 파일이 폴더에 있는 것만으로 검토 틀이 갖춰질까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S6 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S6 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S6. 하네스</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 문서 검토자가 체크리스트 파일을 폴더에 넣어 두고 검토를 시작한다. 질문: 체크리스트 파일이 폴더에 있는 것만으로 검토 틀이 갖춰질까?</p>
 <p><strong>한 문장 정의:</strong> 하네스는 모델이 안정적으로 일하도록 컨텍스트, 도구와 실행 위치, 상태 저장, 검증 절차를 묶은 작업 틀 전체다. 이 워크샵은 이 정의를 쓰며, 제품마다 범위가 다를 수 있다.</p>
@@ -809,9 +809,9 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <section class="slide" id="s9" data-physical="9" data-kind="case" data-label="9. 사례 1 OpenClaw" data-layout="case" data-chapter="1" data-case="OpenClaw" data-case-index="1" data-v10="S7">
 <div class="stage"><div class="canvas t-paper">
   <p class="abs kicker case-head"><span class="tag-case">사례 1 / 5</span>OpenClaw</p>
-  <p class="abs qline case-q"><b>질문</b>디스코드로 온 "보고서 검증해 줘". 받는 쪽, 맡기는 쪽, 확인하는 쪽은 각각 누구일까?</p>
-  <h2 class="abs case-title">요청을 받고, 맡기고, 따로 확인하는 작업 구조</h2>
-  <svg class="svg" style="left:120px;top:370px" width="1680" height="570" viewBox="0 0 1680 570" role="img" aria-label="OpenClaw 요청 흐름: 요청, 게이트웨이와 세션, 코디네이터, 직접 도구 또는 원격 워커, 파일과 테스트, 부모 검증, 답장"><defs><marker id="s9-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s9-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s9-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s9-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker><marker id="s9-muted" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#5E6570"/></marker><marker id="s9-muted-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#5E6570"/></marker></defs>
+  <p class="abs qline case-q"><b>질문</b>디스코드로 온 "보고서 검증해 줘". 누가 받고, 누가 맡기고, 누가 결과를 확인할까?</p>
+  <h2 class="abs case-title">요청을 받고, 맡기고, 돌아온 결과를 확인하는 구조</h2>
+  <svg class="svg" style="left:120px;top:370px" width="1680" height="570" viewBox="0 0 1680 570" role="img" aria-label="OpenClaw 작업 흐름: 요청, 게이트웨이와 세션, 코디네이터가 직접 처리하거나 워커에게 위임, 작업 결과, 같은 코디네이터의 결과 검증, 답장. 작업 확인 화면은 워커가 하는 같은 작업을 본다"><defs><marker id="s9-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s9-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s9-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s9-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
     <rect x="0" y="0" width="1680" height="570" fill="none" stroke="#CFCBC2" stroke-width="2"/>
     <path d="M0 48 V0 H48 M1632 0 H1680 V48 M1680 522 V570 H1632 M48 570 H0 V522" fill="none" stroke="#2457A6" stroke-width="5"/>
     <text x="32" y="40" font-size="28" font-weight="800" fill="#2457A6" dominant-baseline="central">하네스: 이 구조 전체</text>
@@ -824,60 +824,63 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <rect x="680" y="130" width="300" height="120" fill="#2457A6" stroke="#2457A6" stroke-width="2.5"/>
     <text x="830.0" y="168.9" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">코디네이터</text>
     <text x="830.0" y="211.1" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">직접 할까, 맡길까</text>
-    <rect x="1060" y="70" width="280" height="110" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="1200.0" y="105.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">직접 도구</text>
-    <text x="1200.0" y="144.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">조회, 단순 편집</text>
-    <rect x="1060" y="250" width="280" height="120" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="1200.0" y="290.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">원격 워커</text>
-    <text x="1200.0" y="329.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">Codex 또는 Claude</text>
-    <rect x="1400" y="250" width="240" height="120" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="1520.0" y="291.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">프로젝트</text>
-    <text x="1520.0" y="328.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">파일과 테스트</text>
-    <rect x="1400" y="430" width="240" height="110" fill="#FFFFFF" stroke="#2457A6" stroke-width="4"/>
-    <text x="1520.0" y="466.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">부모의</text>
-    <text x="1520.0" y="503.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">독립 검증</text>
-    <rect x="1060" y="430" width="280" height="110" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="1200.0" y="465.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">답장</text>
-    <text x="1200.0" y="504.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">요약과 로그 경로</text>
-    <rect x="560" y="430" width="400" height="110" fill="#FFFFFF" stroke="#5E6570" stroke-width="2.5" stroke-dasharray="9 7"/>
-    <text x="760.0" y="465.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">원격 앱</text>
-    <text x="760.0" y="504.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">같은 워커를 보고 개입</text>
+    <rect x="1050" y="70" width="300" height="110" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="1200.0" y="105.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">직접 처리</text>
+    <text x="1200.0" y="144.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">코디네이터가 스스로</text>
+    <rect x="1050" y="250" width="300" height="120" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="1200.0" y="290.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">워커에게 위임</text>
+    <text x="1200.0" y="329.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">Codex 또는 Claude Code</text>
+    <rect x="1410" y="150" width="230" height="140" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="1525.0" y="200.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">작업 결과</text>
+    <text x="1525.0" y="239.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">파일과 테스트 출력</text>
+    <rect x="680" y="430" width="300" height="110" fill="#2457A6" stroke="#2457A6" stroke-width="2.5"/>
+    <text x="830.0" y="465.2" font-size="30" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">결과 검증</text>
+    <text x="830.0" y="504.8" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">코디네이터가 확인</text>
+    <rect x="350" y="430" width="270" height="110" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="485.0" y="465.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">답장</text>
+    <text x="485.0" y="504.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">요약과 로그 경로</text>
+    <rect x="1050" y="390" width="300" height="84" fill="#FFFFFF" stroke="#5E6570" stroke-width="2.5" stroke-dasharray="9 7"/>
+    <text x="1200.0" y="415.8" font-size="26" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">작업 확인 화면</text>
+    <text x="1200.0" y="448.2" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">진행 확인, 추가 지시</text>
+    <line x1="1200" y1="370" x2="1200" y2="390" stroke="#5E6570" stroke-width="3" stroke-dasharray="5 4"/>
     <polyline points="290,190 344,190" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s9-ink)"/>
     <polyline points="620,190 674,190" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s9-ink)"/>
-    <polyline points="980,165 1020,165 1020,125 1054,125" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s9-blue)"/>
-    <polyline points="980,215 1020,215 1020,310 1054,310" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s9-blue)"/>
-    <polyline points="1340,310 1394,310" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s9-ink)"/>
-    <polyline points="1340,125 1520,125 1520,244" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s9-ink)"/>
-    <polyline points="1520,370 1520,424" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s9-ink)"/>
-    <polyline points="1400,485 1346,485" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s9-ink)"/>
-    <polyline points="760,430 760,400 1200,400 1200,376" fill="none" stroke="#5E6570" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#s9-muted)"/>
-    <text x="485" y="280" font-size="24" font-weight="700" fill="#2457A6" text-anchor="middle" dominant-baseline="central">세션은 4장</text>
+    <polyline points="980,165 1015,165 1015,125 1044,125" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s9-blue)"/>
+    <polyline points="980,215 1015,215 1015,310 1044,310" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s9-blue)"/>
+    <polyline points="1350,125 1380,125 1380,200 1404,200" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s9-ink)"/>
+    <polyline points="1350,310 1380,310 1380,240 1404,240" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s9-ink)"/>
+    <polyline points="1525,290 1525,505 986,505" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s9-ink)"/>
+    <text x="1545" y="420" font-size="24" font-weight="700" fill="#14171C" dominant-baseline="central">결과를</text>
+    <text x="1545" y="452" font-size="24" font-weight="700" fill="#14171C" dominant-baseline="central">돌려받음</text>
+    <polyline points="680,485 626,485" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s9-ink)"/>
+    <line x1="830" y1="306" x2="830" y2="430" stroke="#2457A6" stroke-width="3" stroke-dasharray="6 6"/>
+    <text x="850" y="368" font-size="24" font-weight="800" fill="#2457A6" dominant-baseline="central">같은 코디네이터</text>
     <text x="830" y="280" font-size="24" font-weight="700" fill="#2457A6" text-anchor="middle" dominant-baseline="central">모델이 판단하고 반복</text>
-    <text x="1200" y="214" font-size="24" font-weight="700" fill="#2457A6" text-anchor="middle" dominant-baseline="central">런타임이 실행</text>
-    <text x="1310" y="400" font-size="24" font-weight="700" fill="#2457A6" dominant-baseline="central">워커는 4장</text>
+    <text x="1200" y="214" font-size="24" font-weight="700" fill="#2457A6" text-anchor="middle" dominant-baseline="central">런타임이 도구 실행</text>
   </svg>
-  <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">운영 문서를 바탕으로 한 가상 예시 (실시간 상태는 미확인). 위임 기준은 운영 지침일 뿐 자동 라우터가 아니고, 모델 추론 위치는 따로 따짐</p>
+  <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">운영 문서 기준의 가상 예시. 두 파란 상자는 같은 코디네이터의 단계. 결과는 테스트와 파일로 확인</p>
   <p class="pageno" aria-label="9쪽, 전체 42쪽">9 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 9번. 사례 1 OpenClaw</h3>
+<h3>v06 9번. 사례 1 OpenClaw</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10은 OpenClaw를 &#x27;로컬 구조&#x27;라고 부른다. v02 화면은 &#x27;작업 구조&#x27;라고 쓴다. 게이트웨이, 코디네이터, 워커가 어디서 도는지와 모델 추론이 어디서 일어나는지는 따로 확인하고 따로 말한다.</p>
+<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10의 &#x27;부모의 독립 검증&#x27;은 별도의 부모 에이전트가 아니라, 같은 코디네이터가 워커에게서 돌아온 결과를 확인하는 단계를 가리킨다. 아래 발췌의 해당 줄도 이 표현으로 바꿨다. 테스트 실행, 파일 상태, 원본과의 비교는 코디네이터가 쓰는 확인 방법이자 증거이지 새로운 행위자가 아니다. 독립된 방법이나 독립된 출처로 확인해도 확인하는 쪽은 같은 코디네이터이며, 같은 모델이라면 워커와 같은 오류를 함께 놓칠 수 있다. 코디네이터는 어떤 도구를 쓸지 고를 뿐이고, 도구를 실제로 실행하는 것은 런타임이다. 직접 처리는 코디네이터가 원격 워커에게 맡기지 않고 조회나 간단한 수정을 스스로 하는 경로이고, 워커에게 위임은 Codex나 Claude Code 같은 워커가 작업을 맡는 경로다. 위임 기준은 운영 지침이지 자동 라우터가 아니며, 모델 추론이 어디서 일어나는지는 따로 확인한다. 작업 확인 화면은 워커가 하고 있는 같은 작업과 세션을 보는 화면(예: 워커 쪽 공식 원격 앱)이며, 보고 지시할 뿐 파일을 따로 고치는 두 번째 작업자가 아니다. 게이트웨이와 연결된 화면으로 그리지 않았다.</p>
 <p><strong>장면 먼저:</strong> 디스코드에서 &#x27;보고서 검증해 줘&#x27;라는 요청이 들어왔다. 질문: 이 요청을 받는 쪽, 맡기는 쪽, 확인하는 쪽은 각각 누구일까?</p>
-<h3>v10 발췌 S7 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S7 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S7. OpenClaw 구조</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 디스코드에서 &#x27;보고서 검증해 줘&#x27;라는 요청이 들어왔다. 질문: 이 요청을 받는 쪽, 맡기는 쪽, 확인하는 쪽은 각각 누구일까?</p>
 <p><strong>찾기:</strong> 방금 배운 네 개념, 모델, 에이전트, 런타임, 하네스를 이 구조에서 찾는다. 워커와 세션은 미리 보기만 하며, S23과 S24에서 다시 다룬다. 이 장은 기능 목록이 아니다.</p>
 <p><strong>한 문장 정의:</strong> OpenClaw는 이 워크샵의 설명용 사례이며, 디스코드나 컨트롤 UI의 요청을 게이트웨이와 세션이 받고, 코디네이터가 직접 처리할지 워커에 맡길지 판단하는 로컬 구조다.</p>
 <p>상세 설명:</p>
 <ul>
-<li>흐름은 요청, 게이트웨이와 세션, 코디네이터, 직접 도구 또는 원격 워커, 프로젝트 파일과 테스트, 부모의 독립 검증, 답장 순서다.</li>
+<li>흐름은 요청, 게이트웨이와 세션, 코디네이터, 직접 처리 또는 워커에게 위임, 프로젝트 파일과 테스트, 코디네이터의 결과 검증, 답장 순서다.</li>
 <li>위임 기준은 코디네이터가 읽고 적용하는 운영 지침이다. 자동으로 강제되는 라우터가 아니다.</li>
-<li>원격 앱은 같은 워커를 보고 개입하는 화면이다. 두 번째 쓰기 주체가 아니다.</li>
+<li>작업 확인 화면(원격 앱)은 같은 워커의 작업을 보고 개입하는 화면이다. 파일을 따로 고치는 두 번째 작업자가 아니다.</li>
 <li>로컬 운영 문서의 기준이며, 실시간 상태는 이번 작업에서 확인하지 않았다.</li>
 </ul>
-<p><strong>구체 예시:</strong> 디스코드에서 &quot;보고서 검증해 줘&quot;라는 요청이 오면 게이트웨이가 세션을 만들고 코디네이터가 직접 확인할지 워커에 맡길지 정한다. 워커가 파일을 고치면 부모가 테스트와 파일 상태를 독립적으로 확인한 뒤 답장한다. 이 흐름은 가상 예시이며 실제 요청 기록이 아니다.</p>
-<p><strong>헷갈리는 지점:</strong> 게이트웨이는 채널과 세션을 관리하는 층이고, 코디네이터는 맡길지 판단하는 주체다. 워커는 배정된 실제 작업을 수행하며 쓰기를 맡은 경우 작성 책임을 진다(S24). 원격 앱은 리모트 컨트롤 화면이다(S33).</p>
+<p><strong>구체 예시:</strong> 디스코드에서 &quot;보고서 검증해 줘&quot;라는 요청이 오면 게이트웨이가 세션을 만들고 코디네이터가 직접 확인할지 워커에 맡길지 정한다. 워커가 파일을 고치면 같은 코디네이터가 테스트와 파일 상태로 결과를 확인한 뒤 답장한다. 이 흐름은 가상 예시이며 실제 요청 기록이 아니다.</p>
+<p><strong>헷갈리는 지점:</strong> 게이트웨이는 채널과 세션을 관리하는 층이고, 코디네이터는 맡길지 판단하는 쪽이다. 워커는 배정된 실제 작업을 수행하며 쓰기를 맡은 경우 작성 책임을 진다(S24). 작업 확인 화면은 리모트 컨트롤 화면이다(S33).</p>
 <p><strong>화면 구성:</strong> ASCII 다이어그램 한 장.</p>
 <pre>[Discord / Control UI]  요청과 대화
         |
@@ -887,7 +890,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
         v
 [OpenClaw 코디네이터]  직접 처리 또는 위임 판단 (S8)
         |
-        +--&gt; [직접 도구]  조회, 단순 편집 (S9, S31)
+        +--&gt; [직접 처리]  조회, 단순 편집 (S9, S31)
         |
         +--&gt; [Codex 또는 Claude 원격 워커]  쓰기 책임 (S24)
                  |
@@ -895,13 +898,13 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
         [프로젝트 파일 / 테스트]
                  |
                  v
-        [부모 독립 검증]  산출물과 프로세스 확인 (S30)
+        [코디네이터 결과 검증]  산출물과 프로세스 확인 (S30)
                  |
                  v
         [답장]  요약과 로그 경로
 
-[원격 앱]  같은 워커를 보고 개입 (S33), 두 번째 쓰기 주체 아님</pre>
-<p><strong>확인 질문과 모범 답안:</strong> 원격 앱에서 같은 세션이 보인다. 워커가 두 개인가? 아니다. 보기와 개입이 늘었을 뿐 쓰기 주체는 하나다.</p>
+[작업 확인 화면]  같은 워커의 작업을 보고 개입 (S33), 파일을 따로 고치는 작업자 아님</pre>
+<p><strong>확인 질문과 모범 답안:</strong> 작업 확인 화면에서 같은 세션이 보인다. 워커가 두 개인가? 아니다. 보기와 개입이 늘었을 뿐 파일을 고치는 작업자는 하나다.</p>
 <p><strong>전환 질문:</strong> 같은 세션을 두 화면에서 열면 워커가 두 명일까? (S23, S24에서 확인)</p>
 </aside>
 </section>
@@ -935,7 +938,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="10쪽, 전체 42쪽">10 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 10번. 2장 일하는 방법을 어디에 담을까?</h3>
+<h3>v06 10번. 2장 일하는 방법을 어디에 담을까?</h3>
 <p>질문: 일하는 방법을 어디에 담을까?</p>
 <p>순서: 오케스트레이션, 도구, 스킬, 사례 OMH, 플러그인, 커넥터, MCP, 사례 Grokbot.</p>
 <p>왜 이 순서인가: 누가 언제 무엇을 하는지(오케스트레이션), 실제로 실행되는 기능(도구), 다시 쓰는 절차(스킬)를 먼저 나눕니다. OMH에서 이 셋을 바꾼 사례를 본 뒤, 포장(플러그인), 외부 연결(커넥터), 통신 규약(MCP)을 가르고 Grokbot 설명과 비교합니다.</p>
@@ -948,9 +951,9 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <div class="stage"><div class="canvas t-paper">
   <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 5 / 25</p>
   <h2 class="abs tp-word">오케스트레이션</h2>
-  <p class="abs tp-def">여러 단계나 실행 주체에 순서, 입출력, 역할, 다음 단계로 넘어가는 조건을 배정하고 조율하는 일</p>
+  <p class="abs tp-def">여러 단계나 여러 작업자에게 순서, 입출력, 역할, 다음 단계로 넘어가는 조건을 배정하고 조율하는 일</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">회의 준비에 필요한 안건 초안, 확인, 최종 정리. 맡을 사람은 아직 미정.</p><p class="ask">담당이 없으면 같은 일을 두 번 하게 될까?</p></div>
-  <svg class="svg" style="left:120px;top:440px" width="1680" height="460" viewBox="0 0 1680 460" role="img" aria-label="기획, 실행, 검토 세 레인과 전환 조건"><defs><marker id="s11-amber" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#B45309"/></marker><marker id="s11-amber-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#B45309"/></marker><marker id="s11-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s11-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
+  <svg class="svg" style="left:120px;top:440px" width="1680" height="460" viewBox="0 0 1680 460" role="img" aria-label="기획, 실행, 검토 세 역할과 넘어가는 조건"><defs><marker id="s11-amber" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#B45309"/></marker><marker id="s11-amber-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#B45309"/></marker><marker id="s11-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s11-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
     <rect x="0" y="0" width="1680" height="140" fill="#ECE9E1"/>
     <text x="36" y="70" font-size="32" font-weight="800" fill="#14171C" dominant-baseline="central">기획</text>
     <rect x="0" y="160" width="1680" height="140" fill="#E1E9F6"/>
@@ -977,19 +980,19 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="11쪽, 전체 42쪽">11 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 11번. 용어 5 오케스트레이션</h3>
+<h3>v06 11번. 용어 5 오케스트레이션</h3>
 <p><strong>장면 먼저:</strong> 회의 준비에서 안건 초안, 확인, 최종 정리가 필요하다. 세 가지를 누가 언제 맡을지 아직 정하지 않았다. 질문: 맡는 사람이 정해지지 않으면 같은 일을 두 번 하게 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S8 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S8 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S8. 오케스트레이션</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 회의 준비에서 안건 초안, 확인, 최종 정리가 필요하다. 세 가지를 누가 언제 맡을지 아직 정하지 않았다. 질문: 맡는 사람이 정해지지 않으면 같은 일을 두 번 하게 될까?</p>
-<p><strong>한 문장 정의:</strong> 오케스트레이션은 여러 단계나 여러 실행 주체에 일의 순서, 입출력, 역할, 다음 단계로 넘어가는 조건을 배정하고 조율하는 일이다.</p>
+<p><strong>한 문장 정의:</strong> 오케스트레이션은 여러 단계나 여러 작업자에 일의 순서, 입출력, 역할, 다음 단계로 넘어가는 조건을 배정하고 조율하는 일이다.</p>
 <p>상세 설명:</p>
 <ul>
 <li>순서: 무엇을 먼저 하고 나중에 할지 정한다. 예를 들어 원본 행 확인이 끝난 뒤에만 집계한다.</li>
 <li>역할: 누가 기획, 실행, 검토를 맡는지 정한다. 한 사람이 역할을 번갈아 맡아도 역할 정의는 필요하다.</li>
-<li>여러 실행 주체가 필요하다는 뜻은 아니다. 단일 에이전트 안의 단계 배정도 오케스트레이션이다.</li>
+<li>여러 작업자가 필요하다는 뜻은 아니다. 단일 에이전트 안의 단계 배정도 오케스트레이션이다.</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 회의 준비 장면에서 기획 담당이 안건을 정하고, 실행 담당이 초안을 쓰고, 검토 담당이 체크한다. 입력: 안건 목록. 출력: 역할별 산출물 세 개와 전환 조건 메모.</p>
 <p><strong>강사용 보충 예시 (화면 생략):</strong> AI교양 제작에서 원문 보존은 먼저 하고, 사용자가 최종본을 확정한 뒤에만 삽화 단계를 연다(2.3). 이 순서와 전환 조건을 정하는 것이 오케스트레이션이다. CEO Agent 사례에서는 조사, 상황별 선택, 사람의 피드백이 서로 다른 주기와 주체로 배정되어 있다(S26).</p>
@@ -1040,11 +1043,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="12쪽, 전체 42쪽">12 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 12번. 용어 6 도구</h3>
+<h3>v06 12번. 용어 6 도구</h3>
 <p><strong>장면 먼저:</strong> 폴더에서 최근 회의 파일을 찾아 목록을 만든다. 손이 실제로 가는 곳은 어디일까? 질문: 목록을 가져오는 기능과, 찾는 순서를 적은 메모 중 무엇이 실제로 실행될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S9 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S9 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S9. 도구</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 폴더에서 최근 회의 파일을 찾아 목록을 만든다. 손이 실제로 가는 곳은 어디일까? 질문: 목록을 가져오는 기능과, 찾는 순서를 적은 메모 중 무엇이 실제로 실행될까?</p>
 <p><strong>한 문장 정의:</strong> 도구는 모델이 요청하고 런타임이 실행하는, 이름과 입력 형식과 결과 형식이 정해진 호출 가능한 기능이다.</p>
@@ -1076,11 +1079,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <line x1="58" y1="170" x2="110" y2="170" stroke="#14171C" stroke-width="3"/>
     <rect x="124" y="144" width="38" height="50" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
     <text x="190" y="158" font-size="32" font-weight="800" fill="#14171C" dominant-baseline="central">절차 설명 파일</text>
-    <text x="190" y="200" font-size="26" fill="#5E6570" dominant-baseline="central">행 수, 중복, 모호 행, 보고서, 대조 순서</text>
+    <text x="190" y="200" font-size="26" fill="#5E6570" dominant-baseline="central">행 수, 중복, 판단이 어려운 행, 보고서, 확인 순서</text>
     <line x1="58" y1="288" x2="110" y2="288" stroke="#14171C" stroke-width="3"/>
     <rect x="124" y="262" width="38" height="50" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
     <text x="190" y="276" font-size="32" font-weight="800" fill="#14171C" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">checklist.md</text>
-    <text x="190" y="318" font-size="26" fill="#5E6570" dominant-baseline="central">끝났는지 대조할 항목</text>
+    <text x="190" y="318" font-size="26" fill="#5E6570" dominant-baseline="central">끝났는지 확인할 항목</text>
     <line x1="58" y1="406" x2="110" y2="406" stroke="#14171C" stroke-width="3"/>
     <rect x="124" y="380" width="38" height="50" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
     <text x="190" y="394" font-size="32" font-weight="800" fill="#14171C" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">schema.md</text>
@@ -1104,11 +1107,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="13쪽, 전체 42쪽">13 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 13번. 용어 7 스킬</h3>
+<h3>v06 13번. 용어 7 스킬</h3>
 <p><strong>장면 먼저:</strong> 주간 고객 문의 요약을 매주 같은 순서로 만든다. 그 순서를 적은 메모가 있다. 질문: 매주 다시 쓸 수 있도록 순서를 묶어 둔 것은 무엇이라고 부를까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S10 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S10 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S10. 스킬</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 주간 고객 문의 요약을 매주 같은 순서로 만든다. 그 순서를 적은 메모가 있다. 질문: 매주 다시 쓸 수 있도록 순서를 묶어 둔 것은 무엇이라고 부를까?</p>
 <p><strong>한 문장 정의:</strong> 스킬은 특정 종류의 작업에 대한 절차, 입력과 출력 규칙, 필요한 자원을 묶어 다시 쓸 수 있게 만든 지침 묶음이다.</p>
@@ -1119,7 +1122,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <li>포장과 호출 방식은 도구마다 다르다. 여러 도구에서 그대로 옮겨 쓸 수 있다고 주장하지 않는다.</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 입력: 새 주간 CSV와 절차 파일. 출력: 같은 형식의 주간 요약. 절차 파일이 스킬 후보가 되고, 실행은 여전히 런타임과 도구가 맡는다.</p>
-<p><strong>강사용 보충 예시 (화면 생략):</strong> &quot;고객 문의 보고서 작성&quot; 스킬 후보는 입력이 tickets.csv, 출력이 보고서 파일이다. 절차는 행 수 세기, 중복 확인, 모호 행 목록, 보고서 쓰기, 체크리스트 대조다. 절차 설명 파일 하나와 체크리스트 파일 하나로 구성할 수 있다. CEO Agent 저장소에도 검수, 재검토, 교정 반영 같은 절차가 스킬 형태로 들어 있다(S26의 조사 절차 설명 참고).</p>
+<p><strong>강사용 보충 예시 (화면 생략):</strong> &quot;고객 문의 보고서 작성&quot; 스킬 후보는 입력이 tickets.csv, 출력이 보고서 파일이다. 절차는 행 수 세기, 중복 확인, 판단이 어려운 행 목록, 보고서 쓰기, 체크리스트 대조다. 절차 설명 파일 하나와 체크리스트 파일 하나로 구성할 수 있다. CEO Agent 저장소에도 검수, 재검토, 교정 반영 같은 절차가 스킬 형태로 들어 있다(S26의 조사 절차 설명 참고).</p>
 <p><strong>헷갈리는 지점:</strong> 스킬은 도구가 아니다(S9). 플러그인과도 다르다. 플러그인은 여러 기능과 지침을 배포하는 포장이며(S12), 스킬이 있다고 결과가 자동으로 맞아지지는 않는다.</p>
 <p><strong>화면 구성:</strong> 첫 화면은 장면과 질문만 보인다. 답을 공개한 뒤 정의와 적용을 보인다. 예시 폴더 구조. report-skill 폴더 아래 절차 설명 파일, checklist.md, schema.md, 선택 사항인 scripts 폴더가 있다. scripts 옆에 &quot;실행은 런타임과 도구가 맡음&quot;이라고 적는다.</p>
 <p><strong>확인 질문과 모범 답안:</strong> 스킬 폴더에 파이썬 스크립트가 있다. 스킬이 스스로 실행되는가? 아니다. 누군가 호출해야 하고, 실행은 런타임과 도구가 한다.</p>
@@ -1130,49 +1133,69 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <section class="slide" id="s14" data-physical="14" data-kind="case" data-label="14. 사례 2 OMH" data-layout="case" data-chapter="2" data-case="OMH" data-case-index="2" data-v10="S11">
 <div class="stage"><div class="canvas t-paper">
   <p class="abs kicker case-head"><span class="tag-case">사례 2 / 5</span>OMH</p>
-  <p class="abs qline case-q"><b>질문</b>모델만 더 좋은 것으로 바꾸면 이 일이 해결될까?</p>
-  <h2 class="abs case-title">모델은 그대로 두고, 일하는 틀을 바꾼 사례</h2>
-  <div class="abs omh-left">
-    <p class="col-lab">현장 제약</p>
-    <ol>
-      <li><span>1</span>오프라인 설치만</li>
-      <li><span>2</span>로컬 파일만</li>
-      <li><span>3</span>설정된 모델 하나</li>
-    </ol>
-  </div>
-  <div class="abs omh-stack">
-    <div class="slab slab-add">
-      <p class="slab-lab">추가한 것: 업무 도구와 절차</p>
-      <div class="chips">
-        <div class="chip"><code>data_inspect</code><span>구조 점검</span></div>
-        <div class="chip"><code>data_compare</code><span>키 기준 비교</span></div>
-        <div class="chip"><code>omh-rigorous</code><span>선택형 절차</span></div>
-      </div>
-    </div>
-    <div class="slab slab-keep"><b>유지</b><span>OpenCode와 OMO의 기존 역할</span></div>
-    <div class="slab slab-keep"><b>유지</b><span>설정된 단일 모델, 재학습 없음</span></div>
-  </div>
-  <div class="abs omh-right">
-    <p class="col-lab">확인 가능한 증거</p>
-    <div class="ev"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="#E1E9F6"/><path d="M8 17 L14.5 23.5 L26 10" fill="none" stroke="#2457A6" stroke-width="4"/></svg><span>설치와 점검 기록</span></div>
-    <div class="ev"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="#E1E9F6"/><path d="M8 17 L14.5 23.5 L26 10" fill="none" stroke="#2457A6" stroke-width="4"/></svg><span>모의 환경 테스트</span></div>
-    <div class="ev warn"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="#FBECDB"/><path d="M17 7 V20" stroke="#B45309" stroke-width="4"/><circle cx="17" cy="26" r="2.6" fill="#B45309"/></svg><span>사내 모델 품질은 미검증</span></div>
-    <p class="ev-note">모의, 오프라인 점검이 보여 주는 건 기능 연결까지. 실제 사내 모델의 품질은 별개 문제</p>
-  </div>
-  <div class="abs omh-flow">
-    <span class="lab">가상 예시</span>
-    <span class="step">새 CSV</span><span class="arr">→</span>
-    <span class="step">구조 점검<small>행 값 없이</small></span><span class="arr">→</span>
-    <span class="step">변경</span><span class="arr">→</span>
-    <span class="step">키 기준 비교<small>자동 병합 없음</small></span>
-  </div>
+  <p class="abs qline case-q"><b>질문</b>모델을 그대로 두고 도구와 절차만 더하면, 같은 일에서 무엇이 달라질까?</p>
+  <h2 class="abs case-title">같은 모델, 같은 일. 달라진 건 확인 수단</h2>
+  <svg class="svg" style="left:120px;top:340px" width="1680" height="600" viewBox="0 0 1680 600" role="img" aria-label="같은 일, CSV 빈 값 처리 후 무엇이 바뀌었는지 확인하기의 추가 전과 추가 후. 추가 전에도 파일을 보고 스크립트를 쓸 수 있고, 추가 후에는 data_inspect와 data_compare로 확인 수단을 다시 쓴다. 수정 규칙은 같다"><defs><marker id="s14-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s14-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s14-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s14-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
+    <rect x="0" y="0" width="1680" height="54" fill="#ECE9E1"/>
+    <text x="24" y="27" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">같은 일</text>
+    <text x="150" y="27" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">CSV 빈 값 처리 후, 무엇이 바뀌었는지 확인</text>
+    <text x="1656" y="27" font-size="26" fill="#3A4049" text-anchor="end" dominant-baseline="central">모델, 기존 역할, 오프라인 조건은 그대로</text>
+    <text x="330" y="92" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">1  구조 파악</text>
+    <text x="820" y="92" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">2  수정</text>
+    <text x="1210" y="92" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">3  변경 확인</text>
+    <rect x="0" y="116" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="150.0" y="149.4" font-size="32" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">추가 전</text>
+    <text x="150.0" y="191.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">OpenCode + OMO</text>
+    <text x="150.0" y="232.6" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">기존 도구와 역할</text>
+    <rect x="0" y="292" width="300" height="150" fill="#2457A6" stroke="#2457A6" stroke-width="2.5"/>
+    <text x="150.0" y="325.4" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">추가 후</text>
+    <text x="150.0" y="367.0" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">업무 도구와</text>
+    <text x="150.0" y="408.6" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">절차를 더함</text>
+    <rect x="330" y="116" width="460" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="560.0" y="173.1" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">파일을 열어 보거나</text>
+    <text x="560.0" y="208.9" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">점검 스크립트를 작성</text>
+    <polyline points="792,191 814,191" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s14-ink)"/>
+    <rect x="820" y="116" width="360" height="150" fill="#ECE9E1"/>
+    <text x="1000.0" y="173.1" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">고른 빈 값 규칙 적용</text>
+    <text x="1000.0" y="208.9" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">새 파일로 저장</text>
+    <polyline points="1182,191 1204,191" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s14-ink)"/>
+    <rect x="1210" y="116" width="470" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="1445.0" y="173.1" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">비교 기준 키를 정하고</text>
+    <text x="1445.0" y="208.9" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">비교 코드를 준비</text>
+    <polyline points="300,191 324,191" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s14-ink)"/>
+    <rect x="330" y="292" width="460" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="3"/>
+    <text x="560.0" y="328.4" font-size="28" font-weight="700" fill="#2457A6" text-anchor="middle" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">data_inspect</text>
+    <text x="560.0" y="367.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">열, 타입, 빈 값 수, 점검 범위</text>
+    <text x="560.0" y="405.6" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">행 값은 빼고 요약</text>
+    <polyline points="792,367 814,367" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s14-blue)"/>
+    <rect x="820" y="292" width="360" height="150" fill="#ECE9E1"/>
+    <text x="1000.0" y="349.1" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">고른 빈 값 규칙 적용</text>
+    <text x="1000.0" y="384.9" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">새 파일로 저장</text>
+    <polyline points="1182,367 1204,367" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s14-blue)"/>
+    <rect x="1210" y="292" width="470" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="3"/>
+    <text x="1445.0" y="328.4" font-size="28" font-weight="700" fill="#2457A6" text-anchor="middle" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">data_compare (id 기준)</text>
+    <text x="1445.0" y="367.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">추가, 삭제, 변경 행 요약</text>
+    <text x="1445.0" y="405.6" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">자동 병합 없음</text>
+    <polyline points="300,367 324,367" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s14-blue)"/>
+    <text x="1000" y="278" font-size="24" font-weight="700" fill="#5E6570" text-anchor="middle" dominant-baseline="central">수정 단계는 같음</text>
+    <rect x="0" y="476" width="1680" height="124" fill="#FFFFFF" stroke="#2457A6" stroke-width="3"/>
+    <text x="28" y="516" font-size="26" font-weight="800" fill="#2457A6" dominant-baseline="central">달라진 것</text>
+    <text x="190" y="516" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">그때그때 준비하던 점검과 비교를, 만들어 둔 도구로. 결과는 같은 형식으로</text>
+    <text x="190" y="562" font-size="24" fill="#3A4049" dominant-baseline="central">omh-rigorous: 필요할 때 골라 쓰는 계획, 실행, 근거 확인 절차 (모델 성능 향상과는 별개)</text>
+  </svg>
+  <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0;color:#B45309;font-weight:700">추가 전 흐름은 설명용 예시. 모의, 오프라인 기능 점검만 했고 실제 사내 모델의 품질 비교는 하지 않음</p>
   <p class="pageno" aria-label="14쪽, 전체 42쪽">14 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 14번. 사례 2 OMH</h3>
+<h3>v06 14번. 사례 2 OMH</h3>
 <p><strong>장면 먼저:</strong> 새 CSV 파일을 받았다. 열이 무엇인지, 빈 값이 얼마나 있는지 먼저 알아야 한다. 질문: 모델만 더 좋은 것으로 바꾸면 이 일이 해결될까?</p>
-<h3>v10 발췌 S11 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<p><strong>추가 전과 추가 후 읽기:</strong> 두 줄은 같은 일, 같은 모델, 같은 OpenCode와 OMO 역할입니다. 추가 전에도 파일을 열어 보고, 스크립트를 쓰고, 계획하고 확인할 수 있습니다. 추가 전 줄은 그 일을 하는 한 가지 흐름을 보여 주는 설명용 예시이지, 측정한 실패 사례가 아닙니다.</p>
+<p><strong>달라진 것:</strong> 구조 파악과 변경 확인에 매번 새로 준비하던 수단(점검 스크립트, 비교 코드)을 이 업무용 도구로 다시 씁니다. data_inspect는 열, 타입, 빈 값 수, 점검 범위를 행 값 없이 요약하고, data_compare는 정한 키(예: id) 기준으로 추가, 삭제, 변경 행을 요약하며 자동으로 병합하지 않습니다. 결과가 매번 같은 형식으로 남아 사람이 확인하기 쉬워집니다. 필요하면 omh-rigorous로 계획, 실행, 근거 확인 절차를 골라 씁니다. 기존 구성에도 계획과 확인은 있으며, 이 절차는 그중 일부를 이 업무에 맞게 고른 것입니다.</p>
+<p><strong>달라지지 않은 것:</strong> 모델은 그대로이고 재학습하지 않았습니다. 수정 단계(빈 값 규칙 적용)도 같습니다. 도구가 생겼다고 오류가 사라지거나 결과 품질이 보장되지는 않습니다. 속도나 정확도를 수치로 비교하지 않았습니다.</p>
+<p><strong>여전히 사람과 모델이 정하는 것:</strong> 어떤 키가 의미 있는 비교 기준인지, 빈 값을 어떤 규칙으로 처리할지, 비교 결과를 받아들일지는 도구가 정하지 않습니다.</p>
+<p><strong>근거의 한계:</strong> 설치와 점검 기록, 모의 환경 테스트는 기능이 연결됐다는 증거입니다. 실제 사내 모델의 품질 비교는 하지 않았습니다. 화면 아래 v10 발췌는 원래 세 칸 구성(현장 제약, 바꾼 것, 증거와 한계)을 설명하며, 원문은 docs/plans/slide-content-plan-v10.md에 그대로 있습니다.</p>
+<h3>v10 발췌 S11 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p><strong>S11. OMH 사례:</strong> 모델을 바꾸지 않고 틀을 바꾼 이유</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 새 CSV 파일을 받았다. 열이 무엇인지, 빈 값이 얼마나 있는지 먼저 알아야 한다. 질문: 모델만 더 좋은 것으로 바꾸면 이 일이 해결될까?</p>
 <p><strong>핵심 질문:</strong> 왜 모델만 바꾸지 않고 작업 틀을 바꾸는가?</p>
@@ -1223,7 +1246,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <rect x="940" y="76" width="48" height="48" fill="#E1E9F6"/>
     <path d="M951.52 100.96000000000001 L960.64 110.08 L976.96 90.4" fill="none" stroke="#2457A6" stroke-width="5.3"/>
     <text x="1010" y="100" font-size="34" font-weight="800" fill="#14171C" dominant-baseline="central">설치</text>
-    <text x="1220" y="100" font-size="30" fill="#3A4049" dominant-baseline="central">포장 가져오기</text>
+    <text x="1220" y="100" font-size="30" fill="#3A4049" dominant-baseline="central">기능 묶음 설치</text>
     <line x1="964" y1="132" x2="964" y2="188" stroke="#CFCBC2" stroke-width="3"/>
     <rect x="940" y="196" width="48" height="48" fill="#FBECDB" stroke="#B45309" stroke-width="2"/>
     <text x="964.0" y="221.0" font-size="30" font-weight="800" fill="#B45309" text-anchor="middle" dominant-baseline="central">?</text>
@@ -1240,11 +1263,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="15쪽, 전체 42쪽">15 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 15번. 용어 8 플러그인</h3>
+<h3>v06 15번. 용어 8 플러그인</h3>
 <p><strong>장면 먼저:</strong> 메일 작성 도구에 쓰기 지침, 서식 기능, 외부 계정 연결 설정이 한 묶음으로 설치된다. 질문: 이 묶음을 설치하면 계정 연결까지 끝난 것으로 봐도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S12 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S12 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S12. 플러그인</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 메일 작성 도구에 쓰기 지침, 서식 기능, 외부 계정 연결 설정이 한 묶음으로 설치된다. 질문: 이 묶음을 설치하면 계정 연결까지 끝난 것으로 봐도 될까?</p>
 <p><strong>한 문장 정의:</strong> 플러그인은 여러 기능과 지침과 설정을 한 번에 설치하고 버전으로 관리하기 위해 배포하는 패키지 단위이며, 포함 범위와 설치 방식은 호스트 제품마다 다르다.</p>
@@ -1298,15 +1321,15 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1300" y="330.0" font-size="26" fill="#5E6570" dominant-baseline="central">실제로 호출되는 것은 별개</text>
     <text x="1300" y="366.4" font-size="26" fill="#5E6570" dominant-baseline="central">확인은 호출 결과로</text>
   </svg>
-  <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">커넥터는 외부와의 연결 지점, 도구는 모델이 호출하는 기능. 커넥터 하나가 도구 여럿을 노출하기도 함</span></div>
+  <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">커넥터는 외부와의 연결 지점, 도구는 모델이 호출하는 기능. 커넥터 하나가 도구 여럿을 제공하기도 함</span></div>
   <p class="pageno" aria-label="16쪽, 전체 42쪽">16 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 16번. 용어 9 커넥터</h3>
+<h3>v06 16번. 용어 9 커넥터</h3>
 <p><strong>장면 먼저:</strong> 이번 주 회의 일정을 캘린더에서 가져와 준비 목록에 넣어야 한다. 질문: AI가 캘린더를 바로 읽을 수 있을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S13 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S13 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S13. 커넥터</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 이번 주 회의 일정을 캘린더에서 가져와 준비 목록에 넣어야 한다. 질문: AI가 캘린더를 바로 읽을 수 있을까?</p>
 <p><strong>한 문장 정의:</strong> 커넥터는 모델과 런타임이 외부 서비스, 데이터 저장소, 다른 앱의 기능에 접근하도록 만든 연결 지점이며, 연결 설정과 인증 절차를 포함한다.</p>
@@ -1338,7 +1361,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="210.0" y="199.3" font-size="24" fill="#5E6570" text-anchor="middle" dominant-baseline="central">목록을 모델에 전달</text>
     <rect x="1260" y="30" width="420" height="240" fill="#FFFFFF" stroke="#2457A6" stroke-width="3.5"/>
     <text x="1470.0" y="125.3" font-size="34" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">MCP 서버</text>
-    <text x="1470.0" y="174.6" font-size="26" fill="#3A4049" text-anchor="middle" dominant-baseline="central">도구와 자원을 노출</text>
+    <text x="1470.0" y="174.6" font-size="26" fill="#3A4049" text-anchor="middle" dominant-baseline="central">도구와 자원을 제공</text>
     <text x="840" y="14" font-size="26" font-weight="800" fill="#2457A6" text-anchor="middle" dominant-baseline="central">공통 규약</text>
     <polyline points="430,100 1250,100" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s17-blue)" marker-start="url(#s17-blue-s)"/>
     <rect x="740" y="82" width="200" height="36" fill="#F5F3EE"/>
@@ -1364,11 +1387,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="17쪽, 전체 42쪽">17 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 17번. 용어 10 MCP</h3>
+<h3>v06 17번. 용어 10 MCP</h3>
 <p><strong>장면 먼저:</strong> 여러 도구가 파일 목록과 파일 내용을 서로 같은 방식으로 주고받아야 한다. 질문: 도구마다 따로 약속을 만들어야 할까, 공통 약속이 있으면 충분할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S14 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S14 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S14. MCP</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 여러 도구가 파일 목록과 파일 내용을 서로 같은 방식으로 주고받아야 한다. 질문: 도구마다 따로 약속을 만들어야 할까, 공통 약속이 있으면 충분할까?</p>
 <p><strong>한 문장 정의:</strong> MCP(Model Context Protocol)는 호스트 애플리케이션과 외부 도구 및 자원 서버가 도구 목록 조회, 도구 호출, 자원 읽기를 주고받는 방식을 정한 통신 규약이다.</p>
@@ -1422,8 +1445,8 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <p class="col-lab">네 개의 비교 축</p>
     <div class="axis first"><p class="axis-q"><span>1</span>누가 책임지는가?</p>
       <p class="axis-a"><b>Grokbot 설명</b>역할별 봇이 책임을 나눠 맡음</p>
-      <p class="axis-a"><b>OpenClaw</b>판단은 코디네이터, 작성은 워커, 검증은 부모</p>
-      <p class="axis-a"><b>CEO Agent</b>반영 책임은 실무자, 에이전트는 초안까지</p></div>
+      <p class="axis-a"><b>OpenClaw</b>판단과 결과 확인은 코디네이터, 작성은 워커</p>
+      <p class="axis-a"><b>CEO Agent</b>최종 반영은 실무자, 에이전트는 초안까지</p></div>
     <div class="axis"><p class="axis-q"><span>2</span>작업은 어디서 실행되는가?</p></div>
     <div class="axis"><p class="axis-q"><span>3</span>상태는 어디에 남는가?</p></div>
     <div class="axis"><p class="axis-q"><span>4</span>사람은 어디서 개입하는가?</p></div>
@@ -1432,10 +1455,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="18쪽, 전체 42쪽">18 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 18번. 사례 3 Grokbot</h3>
+<h3>v06 18번. 사례 3 Grokbot</h3>
+<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> OpenClaw 줄의 확인 역할은 v10의 &#x27;부모&#x27;가 아니라 같은 코디네이터다. 결과 확인을 코디네이터가 하더라도 그것이 독립된 다른 에이전트의 검토가 되지는 않는다.</p>
 <p><strong>장면 먼저:</strong> 여러 봇이 역할을 나눠 맡고 하나의 공유 공간을 쓴다는 설명을 들었다. 질문: 우리 팀에도 이런 구조가 맞을까?</p>
-<h3>v10 발췌 S15 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S15 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S15. Grokbot 패턴 비교</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 여러 봇이 역할을 나눠 맡고 하나의 공유 공간을 쓴다는 설명을 들었다. 질문: 우리 팀에도 이런 구조가 맞을까?</p>
 <p><strong>한 문장 정의:</strong> Grokbot은 사용자가 설명한 사례의 패턴이며, 역할별 봇 네 개, 공유 클라우드 환경, 커넥터와 루틴을 비교 틀로만 쓴다. 제품 사양이나 벤치마크가 아니다.</p>
@@ -1443,9 +1467,9 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <ul>
 <li>이번 수정에서도 첨부 자료를 열 수 없었다. 이 슬라이드는 이전에 받은 설명 요약만 쓰고, 그 요약도 독립 검증하지 않았다.</li>
 <li>비교 축은 네 가지다. 누가 책임지는가, 작업이 어디서 실행되는가, 상태가 어디에 남는가, 사람이 어디서 개입하는가.</li>
-<li>클라우드가 항상 동작한다거나 모든 파일이 전역으로 공유된다거나 구글 브라우저 로그인 제한이 있다고 말하지 않는다.</li>
+<li>클라우드가 항상 동작한다거나 모든 파일이 어디서나 공유된다거나 구글 브라우저 로그인 제한이 있다고 말하지 않는다.</li>
 </ul>
-<p><strong>구체 예시:</strong> 책임 축에서 Grokbot 설명은 역할별 봇이 각자 책임을 나눈다고 쓴다. OpenClaw 사례는 코디네이터가 판단하고 워커가 쓰며 부모가 검증한다. CEO Agent 사례는 실무자가 반영 책임을 지고, 에이전트는 초안까지만 낸다.</p>
+<p><strong>구체 예시:</strong> 책임 축에서 Grokbot 설명은 역할별 봇이 각자 책임을 나눈다고 쓴다. OpenClaw 사례는 코디네이터가 판단하고 결과를 확인하며, 워커가 쓴다. CEO Agent 사례는 실무자가 최종 반영을 맡고, 에이전트는 초안까지만 낸다.</p>
 <p><strong>헷갈리는 지점:</strong> 봇이 네 개라고 에이전트가 많이 필요한 것은 아니다. 하네스는 단일 도구와 컨텍스트, 검증만으로도 성립할 수 있다. 공유 클라우드는 실행 위치의 한 형태이고 개입 방식과는 별개다(S32, S33).</p>
 <p><strong>화면 구성:</strong> 네 축 목록. 각 축마다 Grokbot 설명, OpenClaw 사례, CEO Agent 사례를 한 줄씩 쓴다. 표가 아니라 목록이다. 맨 아래에 &quot;사용자 설명, 첨부 미확인, 패턴 비교만&quot;이라고 적는다.</p>
 <p><strong>확인 질문과 모범 답안:</strong> 우리 팀 도구를 고른다면 네 축 중 무엇이 가장 중요한가? 정답은 없다. 청중의 답을 받고, 각 축의 책임과 상태 위치를 확인하는 질문으로 마무리한다.</p>
@@ -1479,12 +1503,12 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1398" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">저장과 불러오기</text>
     <rect x="1664" y="124" width="52" height="52" fill="#FFFFFF"/>
     <text x="1690" y="96" font-size="38" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">사례 AI교양</text>
-    <text x="1690" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">확정 게이트</text>
+    <text x="1690" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">작가의 확정</text>
   </svg>
   <p class="pageno" aria-label="19쪽, 전체 42쪽">19 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 19번. 3장 AI는 무엇을 알고 있을까?</h3>
+<h3>v06 19번. 3장 AI는 무엇을 알고 있을까?</h3>
 <p>질문: AI는 무엇을 알고 있을까?</p>
 <p>순서: 프롬프트, 컨텍스트, 토큰, 컨텍스트 창, 메모리, 그리고 사례 AI교양.</p>
 <p>핵심 구분: 디스크에 있는 파일이 아니라 이번 호출에 실제로 들어간 정보가 컨텍스트입니다. 모델은 학습으로 얻은 일반 지식도 갖고 있지만, 이 업무의 파일, 결정, 규칙은 입력에 들어가야 근거로 쓸 수 있습니다.</p>
@@ -1522,11 +1546,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="20쪽, 전체 42쪽">20 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 20번. 용어 11 프롬프트</h3>
+<h3>v06 20번. 용어 11 프롬프트</h3>
 <p><strong>장면 먼저:</strong> 회의 준비를 AI에게 맡기면서 두 가지 요청 중 하나를 고른다. 하나는 &#x27;회의 준비해 줘&#x27;다. 질문: 안건, 참석자, 지난 결정을 넣은 요청과 한 줄 요청 중 어느 쪽이 결과를 더 좌우할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S16 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S16 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S16. 프롬프트</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 회의 준비를 AI에게 맡기면서 두 가지 요청 중 하나를 고른다. 하나는 &#x27;회의 준비해 줘&#x27;다. 질문: 안건, 참석자, 지난 결정을 넣은 요청과 한 줄 요청 중 어느 쪽이 결과를 더 좌우할까?</p>
 <p><strong>한 문장 정의:</strong> 프롬프트는 모델에 주는 입력 중 지시, 질문, 역할, 제약을 담은 부분이며, 한 번만 쓰일 수도 있고 여러 실행에 반복되는 지속 지침일 수도 있다.</p>
@@ -1537,7 +1561,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <li>완료 기준과 출력 형식을 명시하면 검증이 쉬워진다. 다만 길게 쓴다고 결과가 보장되지는 않는다.</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 입력 A: &#x27;회의 준비해 줘&#x27;. 출력 A: 일반 목록. 입력 B: 안건, 참석자, 지난 결정 세 줄을 더한 요청. 출력 B: 안건 중심 준비안. 다만 입력에 없는 사실은 입력을 넣어도 참이라고 보장되지 않으니 확인이 필요하다.</p>
-<p><strong>강사용 보충 예시 (화면 생략):</strong> 1차 프롬프트는 &quot;이 CSV로 주간 고객 문의 보고서를 써 줘&quot;다. 2차 프롬프트는 &quot;규칙 파일, 작업 절차 파일, 출력 형식 파일, 체크리스트를 먼저 읽고 그 기준대로 작업하라&quot;와 가상의 저장 경로를 담는다. CEO Agent 사례에서도 과업과 독자를 적는 문장이 어떤 등록과 기준을 고를지 정한다(S26).</p>
+<p><strong>강사용 보충 예시 (화면 생략):</strong> 1차 프롬프트는 &quot;이 CSV로 주간 고객 문의 보고서를 써 줘&quot;다. 2차 프롬프트는 &quot;규칙 파일, 작업 절차 파일, 출력 형식 파일, 체크리스트를 먼저 읽고 그 기준대로 작업하라&quot;와 가상의 저장 경로를 담는다. CEO Agent 사례에서도 과업과 독자를 적는 문장이 어떤 말투와 검토 기준을 고를지 정한다(S26).</p>
 <p><strong>헷갈리는 지점:</strong> 프롬프트는 지시 문장이고, 컨텍스트는 실제로 입력된 전체다(S17). 규칙 파일이 폴더에 있는 것만으로 입력 포함 여부를 확정할 수는 없다. 제품의 자동 지침 탐색이나 명시적 읽기를 통해 실제로 입력됐는지 확인한다.</p>
 <p><strong>화면 구성:</strong> 첫 화면은 장면과 질문만 보인다. 답을 공개한 뒤 정의와 적용을 보인다. 프롬프트 상자에 실제 문장 두 줄. 아래에 읽을 파일 목록 상자를 두고 규칙, 작업 절차, 출력 형식, 체크리스트 파일로 화살표를 긋는다. 화살표 끝에 &quot;입력에 포함됨&quot;이라고 적는다.</p>
 <p><strong>확인 질문과 모범 답안:</strong> 규칙 파일을 폴더에 두었지만 프롬프트에 언급하지 않았다. 모델이 그 규칙을 따른다고 확정할 수 있는가? 아니다. 자동 탐색 여부는 도구와 설정에 따라 다르므로, 명시적으로 읽히는지 확인한다.</p>
@@ -1579,11 +1603,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="21쪽, 전체 42쪽">21 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 21번. 용어 12 컨텍스트</h3>
+<h3>v06 21번. 용어 12 컨텍스트</h3>
 <p><strong>장면 먼저:</strong> 회의 요청에 안건과 참석자, 지난 결정 사항을 빼고 보낸다. 지난 회의록 파일 경로는 알려 준다. 질문: AI는 지난 회의의 결정을 떠올릴 수 있을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S17 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S17 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S17. 컨텍스트</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 회의 요청에 안건과 참석자, 지난 결정 사항을 빼고 보낸다. 지난 회의록 파일 경로는 알려 준다. 질문: AI는 지난 회의의 결정을 떠올릴 수 있을까?</p>
 <p><strong>한 문장 정의:</strong> 컨텍스트는 특정 호출에서 모델이 실제로 입력받은 모든 내용, 즉 지시, 파일 내용, 도구 결과, 이전 대화 중 포함된 부분이다.</p>
@@ -1644,11 +1668,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="22쪽, 전체 42쪽">22 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 22번. 용어 13 토큰</h3>
+<h3>v06 22번. 용어 13 토큰</h3>
 <p><strong>장면 먼저:</strong> 같은 안내 메일을 한국어 한 통과 영어 한 통으로 준비한다. 질문: 두 메일의 글자 수가 같으면 토큰 수도 같을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S18 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S18 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S18. 토큰</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 같은 안내 메일을 한국어 한 통과 영어 한 통으로 준비한다. 질문: 두 메일의 글자 수가 같으면 토큰 수도 같을까?</p>
 <p><strong>한 문장 정의:</strong> 토큰은 모델이 입력과 출력을 처리할 때 세는 텍스트 조각의 단위이며, 단어 수나 글자 수와 같지 않다.</p>
@@ -1698,12 +1722,12 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="23쪽, 전체 42쪽">23 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 23번. 용어 14 컨텍스트 창</h3>
+<h3>v06 23번. 용어 14 컨텍스트 창</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10의 &#x27;압축은 현재 창을 줄이는 일&#x27;은 이전 표현이다. 압축은 창에 넣는 내용, 즉 입력의 분량을 줄이는 일이며 모델의 컨텍스트 창 크기는 그대로다. 화면의 현재 표현을 따른다.</p>
 <p><strong>장면 먼저:</strong> 100쪽짜리 계약 문서를 한 번에 넣고 검토를 맡긴다. 질문: 문서 전체가 한 번의 입력에 들어가고, 앞부분 내용도 끝까지 기억될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S19 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S19 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S19. 컨텍스트 창</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 100쪽짜리 계약 문서를 한 번에 넣고 검토를 맡긴다. 질문: 문서 전체가 한 번의 입력에 들어가고, 앞부분 내용도 끝까지 기억될까?</p>
 <p><strong>한 문장 정의:</strong> 컨텍스트 창은 모델이 한 번의 호출에서 입력과 출력을 함께 처리할 수 있는 토큰 범위의 한계다.</p>
@@ -1764,11 +1788,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="24쪽, 전체 42쪽">24 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 24번. 용어 15 메모리</h3>
+<h3>v06 24번. 용어 15 메모리</h3>
 <p><strong>장면 먼저:</strong> 어제 정한 회의 날짜를 적은 인계 파일이 있다. 오늘은 새 대화를 연다. 질문: 새 대화를 열면 어제의 결정이 자동으로 따라올까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S20 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S20 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S20. 메모리</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 어제 정한 회의 날짜를 적은 인계 파일이 있다. 오늘은 새 대화를 연다. 질문: 새 대화를 열면 어제의 결정이 자동으로 따라올까?</p>
 <p><strong>한 문장 정의:</strong> 메모리는 세션이나 실행이 끝난 뒤에도 나중에 다시 불러올 수 있도록 파일이나 저장소에 남긴 정보이며, 모델의 가중치를 바꾸지 않는다.</p>
@@ -1779,7 +1803,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <li>재학습이 아니다. 가중치는 그대로이고 입력에 무엇이 들어가는지만 달라진다.</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 입력: 인계 파일이 있으나 읽히지 않은 상태에서 &#x27;회의 날짜가 언제였지?&#x27;라고 묻는다. 출력: 모른다는 답. 같은 질문에 인계 파일을 읽히면 그 결정을 근거로 답할 수 있다. 자동으로 기억한다고 가정하지 않는다.</p>
-<p><strong>강사용 보충 예시 (화면 생략):</strong> 한 차례 작업 후 인계 파일에 &quot;모호 행 7건, 날짜 규칙 적용 결과 3건 미확인&quot;을 적는다. 다음 세션이 이 파일을 읽으면 미확인 항목부터 이어갈 수 있다. 읽히지 않으면 이 내용을 모른다. CEO Agent 사례의 검수 기록과 교정 세션 기록도 이런 저장물이다(S26).</p>
+<p><strong>강사용 보충 예시 (화면 생략):</strong> 한 차례 작업 후 인계 파일에 &quot;판단이 어려운 행 7건, 날짜 규칙 적용 결과 3건 미확인&quot;을 적는다. 다음 세션이 이 파일을 읽으면 미확인 항목부터 이어갈 수 있다. 읽히지 않으면 이 내용을 모른다. CEO Agent 사례의 검수 기록과 교정 세션 기록도 이런 저장물이다(S26).</p>
 <p><strong>헷갈리는 지점:</strong> 메모리와 컨텍스트는 다르다(S17). 메모리와 세션도 다르다. 세션이 이어진다고 메모리가 생기는 것은 아니다(S23).</p>
 <p><strong>화면 구성:</strong> 첫 화면은 장면과 질문만 보인다. 답을 공개한 뒤 정의와 적용을 보인다. 저장소 상자(인계 파일, 기록 파일)에서 읽기 화살표가 컨텍스트 상자로 간다. 저장소 옆에 &quot;자동으로 전부 로드되지 않음&quot;과 &quot;가중치는 변하지 않음&quot;이라고 적는다.</p>
 <p><strong>확인 질문과 모범 답안:</strong> 어제 세션에서 말한 내용을 오늘 모델이 아는가? 세션 복원, 메모리 검색, 파일 읽기 등으로 그 내용이 현재 입력에 실제 포함됐는지 확인해야 한다. 재학습으로 기억이 생긴 것은 아니다.</p>
@@ -1804,10 +1828,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1168" y="84" font-size="26" fill="#3A4049" dominant-baseline="central">파일 저장, 이미지 생성, 초안 작성</text>
     <rect x="0" y="440" width="825" height="120" fill="#ECE9E1"/>
     <text x="28" y="478" font-size="28" font-weight="800" fill="#2457A6" dominant-baseline="central">상태</text>
-    <text x="28" y="524" font-size="26" fill="#3A4049" dominant-baseline="central">현재 버전, 확정 여부, 단계별 결과, 초안 식별자</text>
+    <text x="28" y="524" font-size="26" fill="#3A4049" dominant-baseline="central">현재 버전, 확정 여부, 단계별 결과, 초안 번호</text>
     <rect x="855" y="440" width="825" height="120" fill="#ECE9E1"/>
     <text x="883" y="478" font-size="28" font-weight="800" fill="#2457A6" dominant-baseline="central">검증</text>
-    <text x="883" y="524" font-size="26" fill="#3A4049" dominant-baseline="central">저장본 대조, 초안 재열람</text>
+    <text x="883" y="524" font-size="26" fill="#3A4049" dominant-baseline="central">저장본과 비교, 초안 다시 열어 확인</text>
     <rect x="0" y="220" width="290" height="130" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
     <text x="145.0" y="265.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">초고 v01 보존</text>
     <text x="145.0" y="304.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">작가 원고, 인덱스</text>
@@ -1819,7 +1843,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="830" y="303.5" font-size="28" font-weight="800" fill="#B45309" text-anchor="middle" dominant-baseline="central">최종 확정</text>
     <rect x="1020" y="220" width="380" height="130" fill="#FFFFFF" stroke="#2457A6" stroke-width="3.5"/>
     <text x="1210.0" y="265.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">삽화, 보관,</text>
-    <text x="1210.0" y="304.8" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">비공개 초안, 재열람</text>
+    <text x="1210.0" y="304.8" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">비공개 초안, 재확인</text>
     <rect x="1460" y="220" width="220" height="130" fill="none" stroke="#B45309" stroke-width="2.5" stroke-dasharray="9 7"/>
     <text x="1570.0" y="266.5" font-size="28" font-weight="800" fill="#B45309" text-anchor="middle" dominant-baseline="central">공개 발행</text>
     <text x="1570.0" y="303.5" font-size="28" font-weight="800" fill="#B45309" text-anchor="middle" dominant-baseline="central">범위 밖</text>
@@ -1835,10 +1859,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="25쪽, 전체 42쪽">25 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 25번. 사례 4 AI교양</h3>
+<h3>v06 25번. 사례 4 AI교양</h3>
 <p><strong>장면 먼저:</strong> AI교양 원문이 들어왔다. 최종본은 아직 확정되지 않았는데, 삽화부터 만들어 보자는 요청이 온다. 질문: 확정 전에 삽화를 만들어도 될까?</p>
-<h3>v10 발췌 S21 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S21 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S21. AI교양 좁은 업무 하네스</p>
 <p><strong>장면과 질문 (예시 초안):</strong> AI교양 원문이 들어왔다. 최종본은 아직 확정되지 않았는데, 삽화부터 만들어 보자는 요청이 온다. 질문: 확정 전에 삽화를 만들어도 될까?</p>
 <p><strong>한 문장 정의:</strong> AI교양 제작 흐름은 워크플로우이고, 그 흐름을 반복 가능하게 만드는 규칙, 컨텍스트, 도구, 상태, 검증을 묶으면 좁은 업무용 하네스로 설명할 수 있다. 자동 전환을 강제하는 별도 상태 머신이 구현되었다는 뜻은 아니다.</p>
@@ -1868,10 +1892,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="26쪽, 전체 42쪽">26 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 26번. 쉬는 시간</h3>
+<h3>v06 26번. 쉬는 시간</h3>
 <p>쉬는 시간. 돌아오면 4장에서 세션, 워커, 서브에이전트를 보고 CEO Agent 사례로 넘어갑니다.</p>
-<h3>v10 발췌 S22 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S22 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S22. 쉬는 시간</p>
 </aside>
 </section>
@@ -1882,7 +1906,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <div class="abs ch-num" aria-hidden="true">04</div>
   <p class="abs ch-label">4장</p>
   <h2 class="abs ch-question">누가 이어서<br>일할까?</h2>
-  <p class="abs ch-goal">대화를 묶는 단위, 실제로 일하는 주체, 맡겨진 하위 실행. 이 셋을 가른 뒤, 상황에 맞춰 페르소나를 고르는 사례로.</p>
+  <p class="abs ch-goal">대화를 묶는 단위, 실제로 일하는 작업자, 맡겨진 하위 실행. 이 셋을 가른 뒤, 상황에 맞춰 페르소나를 고르는 사례로.</p>
   <svg class="svg" style="left:0px;top:700px" width="1920" height="300" viewBox="0 0 1920 300" role="img" aria-label="이번 장의 경로: 세션, 워커, 서브에이전트, CEO Agent">
     <line x1="128" y1="150" x2="1792" y2="150" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.45"/>
     <circle cx="230" cy="150" r="15" fill="#FFFFFF"/>
@@ -1901,7 +1925,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="27쪽, 전체 42쪽">27 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 27번. 4장 누가 이어서 일할까?</h3>
+<h3>v06 27번. 4장 누가 이어서 일할까?</h3>
 <p>질문: 누가 이어서 일할까?</p>
 <p>순서: 세션, 워커, 서브에이전트, 그리고 사례 CEO Agent.</p>
 <p>핵심 구분: 세션은 작업 맥락, 워커는 실행 담당. 역할을 나눠도 그것만으로 독립 검증이 되지는 않습니다.</p>
@@ -1940,33 +1964,33 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1196" y="202" font-size="24" font-weight="800" fill="#2457A6" text-anchor="middle" dominant-baseline="central">실행은</text>
     <rect x="1300" y="150" width="380" height="160" fill="#2457A6" stroke="#2457A6" stroke-width="2.5"/>
     <text x="1490.0" y="208.9" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">워커 하나</text>
-    <text x="1490.0" y="251.1" font-size="26" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">파일을 고치는 주체</text>
+    <text x="1490.0" y="251.1" font-size="26" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">실제로 파일을 수정</text>
     <text x="1300" y="370" font-size="32" font-weight="800" fill="#14171C" dominant-baseline="central">화면 두 개, 세션 하나</text>
-    <text x="1300" y="416" font-size="26" fill="#5E6570" dominant-baseline="central">쓰기 주체는 하나</text>
+    <text x="1300" y="416" font-size="26" fill="#5E6570" dominant-baseline="central">파일을 고치는 작업자는 하나</text>
   </svg>
-  <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">세션은 실행 주체가 아님. 저장된 이력 가운데 이번 호출에 들어간 부분만 컨텍스트</span></div>
+  <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">세션 자체가 작업을 실행하지는 않음. 저장된 이력 가운데 이번 호출에 들어간 부분만 컨텍스트</span></div>
   <p class="pageno" aria-label="28쪽, 전체 42쪽">28 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 28번. 용어 16 세션</h3>
+<h3>v06 28번. 용어 16 세션</h3>
 <p><strong>장면 먼저:</strong> 같은 회의 준비 대화를 노트북과 휴대폰에서 연다. 질문: 같은 대화를 두 화면에서 보면 작업자도 두 명일까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S23 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S23 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S23. 세션</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 같은 회의 준비 대화를 노트북과 휴대폰에서 연다. 질문: 같은 대화를 두 화면에서 보면 작업자도 두 명일까?</p>
 <p><strong>한 문장 정의:</strong> 세션은 하나의 작업 흐름을 묶어 두는 대화와 상태의 단위이며, 입력, 출력, 도구 기록, 진행 상태가 여기에 연결된다.</p>
 <p>상세 설명:</p>
 <ul>
 <li>같은 세션을 다시 열면 이전 대화가 이어질 수 있다. 이어짐의 범위는 제품 기능에 따라 다르다.</li>
-<li>세션은 실행 주체가 아니다. 실제 파일을 고치는 주체는 워커다(S24).</li>
-<li>같은 세션을 여러 화면에서 볼 수 있다. 화면이 늘어도 세션과 쓰기 주체는 늘지 않는다.</li>
+<li>세션이 작업을 실행하지는 않는다. 실제로 파일을 고치는 것은 워커다(S24).</li>
+<li>같은 세션을 여러 화면에서 볼 수 있다. 화면이 늘어도 세션과 파일을 고치는 작업자는 늘지 않는다.</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 입력: 노트북에서 메시지 한 줄을 보낸다. 출력: 휴대폰 화면에도 같은 답이 보인다. 대화 이력은 하나이고, 두 번째 화면은 보기만 한다.</p>
-<p><strong>강사용 보충 예시 (화면 생략):</strong> 한 세션에서 초안 보고서를 만들었다. 같은 세션에서 &quot;모호 행 목록을 보강해 줘&quot;라고 하면 이전 결과를 이어받는다. 새 세션을 열면 이 대화를 모르므로 인계 파일을 읽혀야 한다.</p>
+<p><strong>강사용 보충 예시 (화면 생략):</strong> 한 세션에서 초안 보고서를 만들었다. 같은 세션에서 &quot;판단이 어려운 행 목록을 보강해 줘&quot;라고 하면 이전 결과를 이어받는다. 새 세션을 열면 이 대화를 모르므로 인계 파일을 읽혀야 한다.</p>
 <p><strong>헷갈리는 지점:</strong> 세션과 워커는 다르다(S24). 세션에 저장된 이력 전체와 현재 컨텍스트는 같지 않다. 저장된 이력 중 이번 호출에 포함된 부분만 컨텍스트이며, 저장 위치만으로 메모리와 컨텍스트를 나누지는 않는다(S20).</p>
 <p><strong>화면 구성:</strong> 첫 화면은 장면과 질문만 보인다. 답을 공개한 뒤 정의와 적용을 보인다. 세션 상자 안에 대화 이력, 도구 기록, 상태 파일 링크 세 칸. 바깥에 화면 A와 화면 B를 그리고 둘 다 같은 세션 상자를 가리키게 한다. &quot;화면 두 개, 세션 하나&quot;라고 적는다.</p>
-<p><strong>확인 질문과 모범 답안:</strong> 같은 세션 링크를 두 기기에서 열었다. 워커가 두 개인가? 아니다. 같은 세션을 보는 화면이 둘일 뿐이며, 쓰기 주체는 하나여야 한다.</p>
+<p><strong>확인 질문과 모범 답안:</strong> 같은 세션 링크를 두 기기에서 열었다. 워커가 두 개인가? 아니다. 같은 세션을 보는 화면이 둘일 뿐이며, 파일을 고치는 작업자는 하나여야 한다.</p>
 </aside>
 </section>
 
@@ -1975,7 +1999,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <div class="stage"><div class="canvas t-paper">
   <p class="abs kicker sp-kicker"><span class="dot"></span>4장<span class="gap"></span>용어 17 / 25</p>
   <h2 class="abs sp-word" style="font-size:140px">워커</h2>
-  <p class="abs sp-def">배정받은 작업을 실제로 수행하는 실행 주체. 읽기 전용 조사인지, 파일 수정인지에 따라 권한과 작업 범위도 달라짐</p>
+  <p class="abs sp-def">배정받은 작업을 실제로 수행하는 작업자. 읽기 전용 조사인지, 파일 수정인지에 따라 권한과 작업 범위도 달라짐</p>
   <div class="abs scene sp-scene"><p class="lab">장면</p><p class="say">한 사람은 고치기만, 다른 사람은 메모만.</p><p class="ask">문서를 실제로 고칠 담당은 누구로 정할까?</p></div>
   <svg class="svg" style="left:770px;top:120px" width="1040" height="760" viewBox="0 0 1040 760" role="img" aria-label="워커의 쓰기 허용 경계와 경계 밖의 쓰기 금지 파일"><defs><marker id="s29-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s29-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s29-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s29-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
     <rect x="300" y="40" width="720" height="500" fill="none" stroke="#2457A6" stroke-width="3" stroke-dasharray="12 9"/>
@@ -2007,15 +2031,15 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="29쪽, 전체 42쪽">29 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 29번. 용어 17 워커</h3>
+<h3>v06 29번. 용어 17 워커</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> 그림의 경계는 작업 지시상 범위이지 권한 샌드박스가 아니다. 실제로 강제되는 권한은 도구와 런타임 설정이 정한다. v10의 &#x27;권한 경계&#x27;, &#x27;쓰기 금지&#x27; 표현을 기술적으로 막힌 환경을 시연한 것으로 읽지 않는다.</p>
 <p><strong>장면 먼저:</strong> 문서 검토에서 한 사람은 고치기만 하고 다른 사람은 메모만 쓰기로 나뉘어 있다. 질문: 문서를 실제로 고칠 담당은 누구로 정해야 할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S24 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S24 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S24. 워커</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 문서 검토에서 한 사람은 고치기만 하고 다른 사람은 메모만 쓰기로 나뉘어 있다. 질문: 문서를 실제로 고칠 담당은 누구로 정해야 할까?</p>
-<p><strong>한 문장 정의:</strong> 워커는 배정받은 작업을 실제 수행하는 실행 주체이며, 읽기 전용 조사나 파일 수정 등 맡은 일에 따라 권한과 작업 범위가 달라진다.</p>
+<p><strong>한 문장 정의:</strong> 워커는 배정받은 작업을 실제 수행하는 작업자이며, 읽기 전용 조사나 파일 수정 등 맡은 일에 따라 권한과 작업 범위가 달라진다.</p>
 <p>상세 설명:</p>
 <ul>
 <li>워커는 읽기 전용일 수도 있고 쓰기를 맡을 수도 있다. 같은 파일을 여러 작성자가 동시에 고치면 충돌 위험이 있으므로 쓰기 담당과 경로를 명확히 한다.</li>
@@ -2023,10 +2047,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <li>워커의 보고는 자기 보고다. 완료 여부는 검증 단계가 판단한다(S30).</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 입력: 문서와 작업 지시(고칠 부분 목록). 출력: 담당 한 명이 고친 문서. 메모 담당은 고치지 않는다. 범위를 벗어난 수정이 있으면 그 담당의 결과부터 확인한다.</p>
-<p><strong>강사용 보충 예시 (화면 생략):</strong> 보고서 작성을 맡은 실행 주체가 워커다. 작업 지시에 쓰기 허용 경로를 한 곳으로 적고, tickets.csv는 쓰지 말라고 적는다. 범위를 벗어난 쓰기가 생기면 그 워커의 결과부터 확인한다.</p>
+<p><strong>강사용 보충 예시 (화면 생략):</strong> 보고서 작성을 맡은 작업자가 워커다. 작업 지시에 쓰기 허용 경로를 한 곳으로 적고, tickets.csv는 쓰지 말라고 적는다. 범위를 벗어난 쓰기가 생기면 그 워커의 결과부터 확인한다.</p>
 <p><strong>헷갈리는 지점:</strong> 워커와 서브에이전트는 다르다. 워커는 배정받은 일을 수행하는 역할이고, 서브에이전트는 상위와 하위의 위임 관계를 뜻한다. 하위 에이전트가 워커 역할을 할 수 있으며 둘 다 읽기 전용일 수 있다(S25).</p>
 <p><strong>화면 구성:</strong> 첫 화면은 장면과 질문만 보인다. 답을 공개한 뒤 정의와 적용을 보인다. 워커 상자 하나. 입력 칸에는 작업 지시 파일 목록, 출력 칸에는 쓰기 허용 경로를 적는다. 점선으로 권한 경계를 긋고, 경계 밖에 tickets.csv를 &quot;쓰기 금지&quot;로 표시한다.</p>
-<p><strong>확인 질문과 모범 답안:</strong> 워커가 &quot;보고서 저장 완료&quot;라고 했다. 쓰기 주체였으니 결과가 옳다고 말해도 되는가? 아니다. 쓰기 주체라는 것은 책임 범위를 말할 뿐이며, 결과 확인은 검증 단계에서 한다.</p>
+<p><strong>확인 질문과 모범 답안:</strong> 워커가 &quot;보고서 저장 완료&quot;라고 했다. 파일을 쓴 작업자였으니 결과가 옳다고 말해도 되는가? 아니다. 파일을 쓴 작업자라는 것은 책임 범위를 말할 뿐이며, 결과 확인은 검증 단계에서 한다.</p>
 </aside>
 </section>
 
@@ -2035,14 +2059,14 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <div class="stage"><div class="canvas t-paper mirror">
   <p class="abs kicker sp-kicker"><span class="dot"></span>4장<span class="gap"></span>용어 18 / 25</p>
   <h2 class="abs sp-word" style="font-size:100px">서브에이전트</h2>
-  <p class="abs sp-def">상위 작업이 맡긴 하위 작업을 별도의 입력 맥락에서 수행하고 결과를 돌려주는 하위 실행. 권한은 설정에 따라 읽기 전용일 수도, 쓰기 가능일 수도</p>
+  <p class="abs sp-def">다른 에이전트가 맡긴 작업을 별도의 입력 맥락에서 수행하고 결과를 돌려주는 하위 에이전트. 권한은 설정에 따라 읽기 전용일 수도, 쓰기 가능일 수도</p>
   <div class="abs scene sp-scene"><p class="lab">장면</p><p class="say">긴 문서에서 용어 정의만 뽑는 일을 떼어 맡기기.</p><p class="ask">그 작업자가 원문을 고쳐도 될까?</p></div>
-  <svg class="svg" style="left:120px;top:120px" width="1020" height="780" viewBox="0 0 1020 780" role="img" aria-label="상위 작업이 하위 실행에 맡기고 결과를 돌려받는 흐름"><defs><marker id="s30-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s30-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s30-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s30-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker><marker id="s30-muted" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#5E6570"/></marker><marker id="s30-muted-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#5E6570"/></marker></defs>
+  <svg class="svg" style="left:120px;top:120px" width="1020" height="780" viewBox="0 0 1020 780" role="img" aria-label="위임한 에이전트가 서브에이전트에게 맡기고 결과를 돌려받는 흐름"><defs><marker id="s30-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s30-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s30-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s30-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker><marker id="s30-muted" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#5E6570"/></marker><marker id="s30-muted-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#5E6570"/></marker></defs>
     <rect x="40" y="40" width="440" height="200" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="260.0" y="113.0" font-size="36" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">상위 작업</text>
+    <text x="260.0" y="113.0" font-size="36" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">위임한 에이전트</text>
     <text x="260.0" y="167.0" font-size="26" fill="#3A4049" text-anchor="middle" dominant-baseline="central">보고서 작성</text>
     <rect x="540" y="320" width="460" height="280" fill="#E1E9F6" stroke="#2457A6" stroke-width="3.5"/>
-    <text x="770" y="359.6" font-size="36" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">하위 실행</text>
+    <text x="770" y="359.6" font-size="36" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">서브에이전트</text>
     <text x="770" y="410.0" font-size="26" fill="#3A4049" text-anchor="middle" dominant-baseline="central">별도의 입력 맥락</text>
     <text x="770" y="460.4" font-size="26" fill="#3A4049" text-anchor="middle" dominant-baseline="central">용어 정의만 추출</text>
     <rect x="560" y="520" width="420" height="52" fill="#FBECDB"/>
@@ -2062,12 +2086,12 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="30쪽, 전체 42쪽">30 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 30번. 용어 18 서브에이전트</h3>
+<h3>v06 30번. 용어 18 서브에이전트</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10 화면 구성의 &#x27;쓰기 권한 없음&#x27;은 v02에서 &#x27;읽기 전용 작업 지시 (이번 예시)&#x27;로 바뀌었다. 지시만으로 실제 쓰기 권한이 사라지지는 않는다. 권한은 설정에 따라 다르다.</p>
 <p><strong>장면 먼저:</strong> 긴 문서에서 용어 정의만 따로 뽑는 일을 다른 작업자에게 나눠 준다. 질문: 그 작업자가 원문을 고쳐도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S25 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S25 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S25. 서브에이전트</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 긴 문서에서 용어 정의만 따로 뽑는 일을 다른 작업자에게 나눠 준다. 질문: 그 작업자가 원문을 고쳐도 될까?</p>
 <p><strong>한 문장 정의:</strong> 서브에이전트는 상위 작업이 맡긴 하위 작업을 별도의 입력 맥락에서 수행하고 결과를 상위에 돌려주는 하위 실행이며, 읽기 전용일 수도 있고 쓰기 권한을 가질 수도 있다.</p>
@@ -2078,7 +2102,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <li>서브에이전트가 있다고 독립 검토가 보장되지는 않는다. 같은 모델과 지침을 쓰면 편향을 공유할 수 있다.</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 입력: 용어 정의 추출 지시와 문서. 출력: 용어 목록, 원문은 그대로 둔다. 상위 작업이 이 목록을 보고서에 붙인다. 별도 실행이어도 같은 모델과 유사한 맥락에서는 오류가 겹칠 수 있다. 역할을 나눴다는 사실만으로 검증의 독립성을 보장하지 않는다.</p>
-<p><strong>강사용 보충 예시 (화면 생략):</strong> 모호한 행 목록만 따로 읽고 이유를 정리하는 하위 실행을 맡긴다. 이 서브에이전트는 파일을 쓰지 않는 읽기 전용 역할이다. 결과 목록을 상위 보고서에 붙인다. CEO Agent 사례의 보조 관점 기능은 서브에이전트를 띄우지 않는다(S26).</p>
+<p><strong>강사용 보충 예시 (화면 생략):</strong> 판단이 어려운 행 목록만 따로 읽고 이유를 정리하는 하위 실행을 맡긴다. 이 서브에이전트는 파일을 쓰지 않는 읽기 전용 역할이다. 결과 목록을 상위 보고서에 붙인다. CEO Agent 사례의 보조 관점 기능은 서브에이전트를 띄우지 않는다(S26).</p>
 <p><strong>헷갈리는 지점:</strong> 서브에이전트와 워커는 다르다(S24). 서브에이전트와 오케스트레이션도 다르다. 오케스트레이션은 배정 방식이고, 서브에이전트는 실행 단위다(S8).</p>
 <p><strong>화면 구성:</strong> 첫 화면은 장면과 질문만 보인다. 답을 공개한 뒤 정의와 적용을 보인다. 상위 작업 상자에서 하위 실행 상자로 입력을 보내고, 하위 상자에서 결과가 상위로 돌아온다. 하위 상자 안에 &quot;쓰기 권한 없음&quot;을 표시한다.</p>
 <p><strong>확인 질문과 모범 답안:</strong> 서브에이전트가 &quot;검토 완료&quot;라고 보고했다. 독립 검토가 이루어졌는가? 아니다. 같은 모델과 맥락을 공유하면 독립성이 약하다. 검증 기준을 별도로 확인해야 한다.</p>
@@ -2133,8 +2157,8 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     </g>
     <polyline points="1115,206 1115,358" fill="none" stroke="#2457A6" stroke-width="4" marker-end="url(#s31-blue)"/>
     <rect x="980" y="364" width="270" height="128" fill="#2457A6"/>
-    <text x="1115" y="414" font-size="30" font-weight="800" text-anchor="middle" fill="#FFFFFF">등록과 판단</text>
-    <text x="1115" y="454" font-size="30" font-weight="800" text-anchor="middle" fill="#FFFFFF">기준 선택</text>
+    <text x="1115" y="414" font-size="30" font-weight="800" text-anchor="middle" fill="#FFFFFF">상황별 말투와</text>
+    <text x="1115" y="454" font-size="30" font-weight="800" text-anchor="middle" fill="#FFFFFF">검토 기준 선택</text>
     <text x="1115" y="540" font-size="24" fill="#3A4049" text-anchor="middle">관련 맥락만 넣기</text>
     <polyline points="1256,410 1300,410 1300,352 1330,352" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s31-ink)"/>
     <polyline points="1256,446 1300,446 1300,500 1330,500" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s31-ink)"/>
@@ -2154,29 +2178,30 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="31쪽, 전체 42쪽">31 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 31번. 사례 5 CEO Agent</h3>
+<h3>v06 31번. 사례 5 CEO Agent</h3>
+<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10의 &#x27;등록(register)&#x27;은 데이터 등록이 아니라 상황에 맞는 말투와 문체를 뜻한다. &#x27;판단 루브릭&#x27;은 결과에서 무엇을 짚을지 정하는 검토 기준이다. 둘은 서로 다른 명세이며, 과업, 독자, 자리에 따라 각각 고른다. 아래 발췌의 해당 줄도 이 표현으로 바꿨다.</p>
 <p><strong>장면 먼저:</strong> 같은 사실을 사내 검토용 보고와 외부 연설용 문장으로 옮겨야 한다. 질문: 같은 사실이라면 강조도 같아야 할까?</p>
-<h3>v10 발췌 S26 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S26 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p><strong>S26. CEO Agent:</strong> 조사한 페르소나를 상황에 맞게 적용하기</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 같은 사실을 사내 검토용 보고와 외부 연설용 문장으로 옮겨야 한다. 질문: 같은 사실이라면 강조도 같아야 할까?</p>
 <p>이 단계들은 한 작업 흐름의 단계다. 여러 단계가 있다고 서로 독립된 작업자가 되는 것은 아니다.</p>
-<p><strong>한 문장 정의:</strong> 워크플로는 과업, 독자, 자리에 따라 조사에서 얻은 페르소나, 등록(register), 판단 루브릭을 골라 적용하며, 이 선택이 결과의 말투와 지적 우선순위를 바꾼다.</p>
+<p><strong>한 문장 정의:</strong> 워크플로는 과업, 독자, 자리에 따라 조사에서 얻은 페르소나, 상황별 말투(register), 검토 기준(판단 루브릭)을 골라 적용하며, 이 선택이 결과의 말투와 지적 우선순위를 바꾼다.</p>
 <p><strong>핵심 메시지:</strong> 이 사례에서 중요한 것은 기능 목록이 아니라 페르소나를 어떻게 얻고 어떻게 쓰는가다. 자료를 조사해 특성을 명세로 만들고, 상황에 맞게 골라 쓴다. 모델을 새로 학습한 것이 아니다.</p>
 <p>화면 구성 (두 줄 구조):</p>
 <ul>
 <li>윗줄, 조사 근거(RESEARCH): 본인이 쓴 자료(2024~2026년 레터, 신년사, 기념 메시지, 현장 방문 기록), 본인이 고친 초안의 변경 기록(삭제, 추가, 재작성, 순서 변경), 실제 피드백과 코멘트. 세 항목에서 상황별 특성을 뽑아 페르소나 명세로 만든다. 2차 언론 보도는 보조 근거로만 두고 본인 발언으로 귀속하지 않는다.</li>
-<li>아랫줄, 실행(EXECUTION): 과업, 독자, 자리를 정한다. 그다음 등록과 판단 기준을 고르고, 관련 맥락만 넣는다. 결과물을 내고 사람의 피드백을 받는다. 피드백은 다시 자료 쪽으로 돌아간다.</li>
+<li>아랫줄, 실행(EXECUTION): 과업, 독자, 자리를 정한다. 그다음 상황별 말투와 검토 기준을 고르고, 관련 맥락만 넣는다. 결과물을 내고 사람의 피드백을 받는다. 피드백은 다시 자료 쪽으로 돌아간다.</li>
 <li>두 줄 사이에 &quot;관찰된 특성과 가설적 특성은 표시해 구분한다&quot;는 주석을 단다.</li>
 </ul>
 <p>상세 설명:</p>
 <ul>
-<li>페르소나는 말투와 등록을 정하고, 루브릭은 무엇을 지적할지를 정한다. 둘은 서로 다른 명세 파일이다. 둘을 독립된 에이전트 두 개로 말하지 않는다.</li>
+<li>페르소나는 말투와 문체를 정하고, 루브릭(검토 기준)은 무엇을 지적할지를 정한다. 둘은 서로 다른 명세 파일이다. 둘을 독립된 에이전트 두 개로 말하지 않는다.</li>
 <li>보조 역할 관점, 예를 들어 재무 관점이나 리스크 관점은 실제 인물을 복사한 것이 아니라 기능적 관점이다.</li>
 </ul>
 <p><strong>구체 예시 (가상, 익명):</strong> 같은 사실, &quot;분기 일정 지연 두 건, 원인은 외부 승인 대기&quot;를 두 상황에 적용한다. 사내 보고 검수에서는 &quot;지연 두 건의 원인과 조치 기한을 확인할 수 있는가&quot;를 묻는다. 외부 발언에서는 &quot;외부 승인 대기로 분기 일정 두 건이 지연됐다&quot;는 동일한 사실을 청중이 이해할 배경과 함께 설명한다. 구체적인 화법은 해당 상황의 명세에 따른다. 이 예시는 설명용이며 실제 인물의 말투를 단정하지 않는다.</p>
 <p><strong>헷갈리는 지점:</strong> 이 선택은 모델 학습이 아니다. 입력 맥락과 명세를 고르는 일이다. 페르소나를 골랐다고 사실이 바뀌지는 않는다. 여러 관점이 함께 말한다고 독립 검증이 되지도 않는다.</p>
-<p><strong>확인 질문과 모범 답안:</strong> 같은 사실을 사내 보고와 외부 연설에 쓰면 결과가 같아야 하는가? 아니다. 독자와 자리에 따라 등록과 강조를 고르는 것이 목적이다. 다만 사실 자체는 같아야 하며, 그 점을 사람이 확인한다.</p>
+<p><strong>확인 질문과 모범 답안:</strong> 같은 사실을 사내 보고와 외부 연설에 쓰면 결과가 같아야 하는가? 아니다. 독자와 자리에 따라 말투와 강조를 고르는 것이 목적이다. 다만 사실 자체는 같아야 하며, 그 점을 사람이 확인한다.</p>
 <p><strong>측정 상태:</strong> CEO Agent 프로젝트의 방법 설명 문서에 근거한다. 실제 사용자 성과나 검수 정확도는 측정하지 않았다. 원자료는 이 공개 저장소에 없다. 근거 출처는 ceo-agent/sources/README.md, ceo-agent/.claude/skills/extract-persona-from-drafts/SKILL.md, ceo-agent/README.md 등 로컬 참고 자료다.</p>
 <p><strong>전환 질문:</strong> 같은 사실을 두 상황에 쓸 때 바뀌는 것과 바뀌지 않는 것은 무엇인가?</p>
 </aside>
@@ -2211,7 +2236,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="32쪽, 전체 42쪽">32 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 32번. 5장 끝났다는 말을 어떻게 믿을까?</h3>
+<h3>v06 32번. 5장 끝났다는 말을 어떻게 믿을까?</h3>
 <p>질문: 끝났다는 말을 어떻게 믿을까?</p>
 <p>순서: 워크플로우, 자동화, 완료 보고, 검증, 로컬 실행, 클라우드 실행, 리모트 컨트롤, 그리고 종합.</p>
 <p>왜 실행 위치가 이 장에 있나: "끝났다"는 말을 믿으려면 무엇이 어디서 돌았고 누가 개입했는지까지 적어야 하기 때문입니다. 로컬과 클라우드는 실행 위치, 리모트 컨트롤은 개입 방식이라는 다른 축입니다.</p>
@@ -2225,7 +2250,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <h2 class="abs tp-word">워크플로우</h2>
   <p class="abs tp-def">입력, 단계, 단계별 산출물, 다음 단계로 넘어가는 조건을 정해 둔 작업 흐름. 사람이 손으로 따라가도 워크플로우</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">작가의 초고 v01 도착. 최종본은 아직 확정 전.</p><p class="ask">삽화부터 만들어도 될까?</p></div>
-  <svg class="svg" style="left:120px;top:440px" width="1680" height="460" viewBox="0 0 1680 460" role="img" aria-label="초고 v01 보존, AI와 함께 수정, 작가의 최종 확정, 제작과 재열람 검증의 네 단계"><defs><marker id="s33-amber" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#B45309"/></marker><marker id="s33-amber-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#B45309"/></marker><marker id="s33-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s33-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
+  <svg class="svg" style="left:120px;top:440px" width="1680" height="460" viewBox="0 0 1680 460" role="img" aria-label="초고 v01 보존, AI와 함께 수정, 작가의 최종 확정, 제작과 다시 열어 확인하기의 네 단계"><defs><marker id="s33-amber" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#B45309"/></marker><marker id="s33-amber-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#B45309"/></marker><marker id="s33-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s33-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
     <text x="0" y="40" font-size="64" font-weight="800" fill="#2457A6" dominant-baseline="central">01</text>
     <rect x="0" y="100" width="340" height="130" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
     <text x="170.0" y="165.0" font-size="32" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">초고 v01 보존</text>
@@ -2245,9 +2270,9 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1180" y="40" font-size="64" font-weight="800" fill="#2457A6" dominant-baseline="central">04</text>
     <rect x="1180" y="100" width="500" height="130" fill="#FFFFFF" stroke="#2457A6" stroke-width="3.5"/>
     <text x="1430.0" y="145.2" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">삽화, 보존, 비공개 초안,</text>
-    <text x="1430.0" y="184.8" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">재열람 검증</text>
+    <text x="1430.0" y="184.8" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">다시 열어 확인</text>
     <text x="1180" y="270" font-size="24" font-weight="800" fill="#5E6570" dominant-baseline="central">산출물</text>
-    <text x="1180" y="306" font-size="26" fill="#3A4049" dominant-baseline="central">초안과 재열람 기록</text>
+    <text x="1180" y="306" font-size="26" fill="#3A4049" dominant-baseline="central">초안과 확인 기록</text>
     <polyline points="340,165 414,165" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s33-ink)"/>
     <polyline points="760,165 824,165" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s33-ink)"/>
     <polyline points="1090,165 1174,165" fill="none" stroke="#B45309" stroke-width="3" marker-end="url(#s33-amber)"/>
@@ -2259,11 +2284,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="33쪽, 전체 42쪽">33 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 33번. 용어 19 워크플로우</h3>
+<h3>v06 33번. 용어 19 워크플로우</h3>
 <p><strong>장면 먼저:</strong> AI교양 원문을 받았다. 최종본은 아직 확정되지 않았고, 삽화부터 만들어 보고 싶다. 질문: 최종 확정 전에 삽화를 만들어도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S27 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S27 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S27. 워크플로우</p>
 <p><strong>장면과 질문 (예시 초안):</strong> AI교양 원문을 받았다. 최종본은 아직 확정되지 않았고, 삽화부터 만들어 보고 싶다. 질문: 최종 확정 전에 삽화를 만들어도 될까?</p>
 <p><strong>한 문장 정의:</strong> 워크플로우는 입력, 단계, 각 단계의 산출물, 다음 단계로 넘어가는 조건을 정해 둔 작업 흐름이다.</p>
@@ -2307,7 +2332,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <rect x="770" y="222" width="500" height="60" fill="#ECE9E1"/>
     <text x="796" y="252" font-size="28" font-weight="700" fill="#14171C" dominant-baseline="central">비공개 초안 작성</text>
     <rect x="770" y="296" width="500" height="60" fill="#ECE9E1"/>
-    <text x="796" y="326" font-size="28" font-weight="700" fill="#14171C" dominant-baseline="central">초안 재열람</text>
+    <text x="796" y="326" font-size="28" font-weight="700" fill="#14171C" dominant-baseline="central">초안 다시 열어 확인</text>
     <polyline points="1300,120 1374,120" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s34-ink)"/>
     <rect x="1380" y="40" width="300" height="160" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
     <text x="1530.0" y="98.9" font-size="32" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">기록</text>
@@ -2322,11 +2347,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="34쪽, 전체 42쪽">34 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 34번. 용어 20 자동화</h3>
+<h3>v06 34번. 용어 20 자동화</h3>
 <p><strong>장면 먼저:</strong> AI교양 최종 확정 메시지가 도착했다. 저장과 비공개 초안 작성을 자동으로 이어 가게 하고 싶다. 질문: 확정 메시지 하나로 뒤의 제작 전체를 자동으로 시작해도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S28 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S28 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S28. 자동화</p>
 <p><strong>장면과 질문 (예시 초안):</strong> AI교양 최종 확정 메시지가 도착했다. 저장과 비공개 초안 작성을 자동으로 이어 가게 하고 싶다. 질문: 확정 메시지 하나로 뒤의 제작 전체를 자동으로 시작해도 될까?</p>
 <p><strong>한 문장 정의:</strong> 자동화는 시간, 이벤트, 또는 앞 단계의 결과 같은 조건이 충족되면 정해진 작업을 사람이 다시 시작하지 않아도 실행하도록 만든 장치다.</p>
@@ -2384,11 +2409,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="35쪽, 전체 42쪽">35 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 35번. 용어 21 완료 보고</h3>
+<h3>v06 35번. 용어 21 완료 보고</h3>
 <p><strong>장면 먼저:</strong> 작업자가 &#x27;검토 완료&#x27;라는 한 줄로 보고했다. 질문: 그 한 줄이면 검토가 끝났다고 말할 수 있을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S29 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S29 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S29. 완료 보고</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 작업자가 &#x27;검토 완료&#x27;라는 한 줄로 보고했다. 질문: 그 한 줄이면 검토가 끝났다고 말할 수 있을까?</p>
 <p><strong>한 문장 정의:</strong> 완료 보고는 작업자가 &quot;끝났다&quot;고 말한 기록이며, 무엇을 했고 무엇을 확인했다고 주장하는지를 담지만 그 자체가 검증 증거는 아니다.</p>
@@ -2420,20 +2445,20 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <line x1="0" y1="44" x2="1680" y2="44" stroke="#14171C" stroke-width="3"/>
     <rect x="0" y="56" width="1680" height="116" fill="#ECE9E1"/>
     <text x="24" y="96" font-size="32" font-weight="800" fill="#14171C" dominant-baseline="central">건수 일치</text>
-    <text x="24" y="140" font-size="24" font-weight="800" fill="#2457A6" dominant-baseline="central">결정적 확인</text>
+    <text x="24" y="140" font-size="24" font-weight="800" fill="#2457A6" dominant-baseline="central">원본 데이터와 대조</text>
     <text x="460" y="95.1" font-size="28" fill="#14171C" dominant-baseline="central">원본 행 수와 고유 ticket_id 수를</text>
     <text x="460" y="132.9" font-size="28" fill="#14171C" dominant-baseline="central">명령으로 세어 요약과 대조</text>
     <text x="1180" y="95.1" font-size="28" font-weight="700" fill="#14171C" dominant-baseline="central">원본 40, 고유 38, 보고서 42</text>
     <text x="1180" y="132.9" font-size="28" font-weight="800" fill="#B45309" dominant-baseline="central">실패</text>
-    <text x="24" y="220" font-size="32" font-weight="800" fill="#14171C" dominant-baseline="central">모호 행 목록</text>
-    <text x="24" y="264" font-size="24" font-weight="800" fill="#2457A6" dominant-baseline="central">결정적 확인</text>
+    <text x="24" y="220" font-size="32" font-weight="800" fill="#14171C" dominant-baseline="central">판단이 어려운 행 목록</text>
+    <text x="24" y="264" font-size="24" font-weight="800" fill="#2457A6" dominant-baseline="central">원본 데이터와 대조</text>
     <text x="460" y="219.1" font-size="28" fill="#14171C" dominant-baseline="central">빈 칸이나 형식이 다른 날짜가 있는</text>
     <text x="460" y="256.9" font-size="28" fill="#14171C" dominant-baseline="central">행 번호를 뽑아 보고서와 대조</text>
     <text x="1180" y="238.0" font-size="28" font-weight="700" fill="#14171C" dominant-baseline="central">빠진 행이 있으면 실패로 기록</text>
     <rect x="0" y="304" width="1680" height="116" fill="#ECE9E1"/>
     <text x="24" y="344" font-size="32" font-weight="800" fill="#14171C" dominant-baseline="central">근거 인용</text>
     <text x="24" y="388" font-size="24" font-weight="800" fill="#B45309" dominant-baseline="central">사람의 확인</text>
-    <text x="460" y="343.1" font-size="28" fill="#14171C" dominant-baseline="central">주요 주장마다 행 식별자가</text>
+    <text x="460" y="343.1" font-size="28" fill="#14171C" dominant-baseline="central">주요 주장마다 근거 행 번호가</text>
     <text x="460" y="380.9" font-size="28" fill="#14171C" dominant-baseline="central">인용됐는지 읽고 확인</text>
     <text x="1180" y="362.0" font-size="28" font-weight="700" fill="#5E6570" dominant-baseline="central">아직 확인 전</text>
     <text x="0" y="440" font-size="30" font-weight="800" fill="#2457A6" dominant-baseline="central">기준은 작업 전에. 한 항목 통과가 전체 통과는 아님</text>
@@ -2442,11 +2467,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="36쪽, 전체 42쪽">36 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 36번. 용어 22 검증</h3>
+<h3>v06 36번. 용어 22 검증</h3>
 <p><strong>장면 먼저:</strong> 주간 요약에 &#x27;이번 주 문의 42건&#x27;이라고 적혀 있다. 질문: 이 숫자가 맞는지 누가 어떻게 확인할까? 한 번 보는 것으로 충분할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S30 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S30 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S30. 검증</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 주간 요약에 &#x27;이번 주 문의 42건&#x27;이라고 적혀 있다. 질문: 이 숫자가 맞는지 누가 어떻게 확인할까? 한 번 보는 것으로 충분할까?</p>
 <p><strong>한 문장 정의:</strong> 검증은 미리 정한 기준에 따라 산출물, 숫자, 인용, 파일 상태, 실행 결과를 작업자의 말과 독립된 방법으로 확인해 판단하는 과정이다.</p>
@@ -2457,10 +2482,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <li>의미 판단이 필요한 항목은 사람이 읽고 확인하거나 별도 체크 항목으로 남긴다.</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 입력: 요약 파일과 원본 CSV. 확인 방법: 원본 행 수와 고유 ticket_id 수를 명령으로 세고 요약 숫자와 대조한다. 결과: 원본 40, 고유 38, 요약 42이므로 실패로 기록한다.</p>
-<p><strong>강사용 보충 예시 (화면 생략):</strong> 체크리스트에 &quot;모호 행이 빠짐없이 목록에 있는가&quot;를 넣는다. 도구로 tickets.csv에서 빈 칸이나 형식이 다른 날짜가 있는 행 번호를 뽑아 보고서 목록과 대조한다. 빠진 행이 있으면 실패로 기록한다.</p>
+<p><strong>강사용 보충 예시 (화면 생략):</strong> 체크리스트에 &quot;판단이 어려운 행이 빠짐없이 목록에 있는가&quot;를 넣는다. 도구로 tickets.csv에서 빈 칸이나 형식이 다른 날짜가 있는 행 번호를 뽑아 보고서 목록과 대조한다. 빠진 행이 있으면 실패로 기록한다.</p>
 <p><strong>헷갈리는 지점:</strong> 같은 작업자가 자기 결과를 다시 읽는 것은 약한 점검이다. 리뷰는 판단이고, 검증은 기준에 따른 확인이다. 둘을 함께 쓸 수 있지만 서로 대신하지는 못한다.</p>
 <p><strong>화면 구성:</strong> 첫 화면은 장면과 질문만 보인다. 답을 공개한 뒤 정의와 적용을 보인다. 목록 형식으로 항목, 확인 방법, 결과 기록 칸을 나란히 둔다. 예를 들어 항목은 건수 일치, 확인 방법은 행 수 세기 명령, 결과는 &quot;원본 40, 고유 38, 보고서 42, 실패&quot;다.</p>
-<p><strong>확인 질문과 모범 답안:</strong> 보고서 건수가 원본 행 수와 맞는다. 검증이 끝났는가? 아니다. 고유 티켓 수, 모호 행 목록, 근거 인용도 확인해야 한다. 한 항목 통과가 전체 통과는 아니다.</p>
+<p><strong>확인 질문과 모범 답안:</strong> 보고서 건수가 원본 행 수와 맞는다. 검증이 끝났는가? 아니다. 고유 티켓 수, 판단이 어려운 행 목록, 근거 인용도 확인해야 한다. 한 항목 통과가 전체 통과는 아니다.</p>
 </aside>
 </section>
 
@@ -2499,11 +2524,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="37쪽, 전체 42쪽">37 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 37번. 용어 23 로컬 실행</h3>
+<h3>v06 37번. 용어 23 로컬 실행</h3>
 <p><strong>장면 먼저:</strong> 내 노트북의 메모 폴더를 AI 도구가 읽고 요약한다. 질문: 파일을 읽는 일이 노트북에서 일어나면 모델의 요약 답변도 노트북에서 만들어질까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S31 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S31 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S31. 로컬 실행</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 내 노트북의 메모 폴더를 AI 도구가 읽고 요약한다. 질문: 파일을 읽는 일이 노트북에서 일어나면 모델의 요약 답변도 노트북에서 만들어질까?</p>
 <p><strong>한 문장 정의:</strong> 로컬 실행은 도구와 프로세스가 사용자의 컴퓨터에서 돌고, 파일 접근과 명령이 그 기기 안에서 일어나는 방식이며, 모델 추론의 위치와는 별도로 말해야 한다.</p>
@@ -2553,22 +2578,22 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1120.0" y="354.0" font-size="26" font-weight="800" fill="#B45309" text-anchor="middle" dominant-baseline="central">실행하지 않음</text>
     <text x="0" y="430" font-size="32" font-weight="800" fill="#2457A6" dominant-baseline="central">"클라우드 작업" 한 마디로는 어느 부분인지 알 수 없음</text>
   </svg>
-  <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">클라우드 실행과 리모트 컨트롤은 다른 축. 공유 범위는 제품 설정에 따르며, 전역 공유를 가정하지 않음</span></div>
+  <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">클라우드 실행과 리모트 컨트롤은 다른 축. 공유 범위는 제품 설정에 따르며, 모든 파일이 어디서나 공유된다고 가정하지 않음</span></div>
   <p class="pageno" aria-label="38쪽, 전체 42쪽">38 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 38번. 용어 24 클라우드 실행</h3>
+<h3>v06 38번. 용어 24 클라우드 실행</h3>
 <p><strong>장면 먼저:</strong> 모델은 외부 서버에서 초안을 쓰고, 초안 파일은 내 노트북에 저장한다. 질문: 이 작업을 클라우드 작업이라고 한 단어로 불러도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S32 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S32 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S32. 클라우드 실행</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 모델은 외부 서버에서 초안을 쓰고, 초안 파일은 내 노트북에 저장한다. 질문: 이 작업을 클라우드 작업이라고 한 단어로 불러도 될까?</p>
 <p><strong>한 문장 정의:</strong> 클라우드 실행은 도구, 워커, 또는 모델 추론 중 일부나 전부가 사용자 기기가 아닌 외부 서버 환경에서 돌아가는 방식이며, 어느 구성 요소가 클라우드인지 함께 말해야 한다.</p>
 <p>상세 설명:</p>
 <ul>
 <li>클라우드는 실행 환경의 위치다. 파일 환경이 서버에 있을 수도 있고, 모델 추론만 서버에 있을 수도 있다.</li>
-<li>공유 환경, 접근 권한, 상태 저장 위치가 로컬과 다를 수 있다. 공유 범위는 제품 설정에 따르며, 모든 파일이 전역으로 공유된다고 가정하지 않는다.</li>
+<li>공유 환경, 접근 권한, 상태 저장 위치가 로컬과 다를 수 있다. 공유 범위는 제품 설정에 따르며, 모든 파일이 어디서나 공유된다고 가정하지 않는다.</li>
 <li>클라우드 서비스가 항상 정상이라고 가정하지 않는다.</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 입력: 메일 요청. 출력: 초안 텍스트가 노트북에 저장된다. 추론은 클라우드, 파일 저장은 로컬이라고 구성 요소별로 나눠 적는다. 발송은 하지 않는다.</p>
@@ -2607,31 +2632,31 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1110" y="122" font-size="28" font-weight="800" fill="#2457A6" text-anchor="middle" dominant-baseline="central">보기와 지시</text>
     <polyline points="1384,350 950,350 950,260 906,260" fill="none" stroke="#B45309" stroke-width="3" marker-end="url(#s39-amber)"/>
     <text x="1170" y="322" font-size="28" font-weight="800" fill="#B45309" text-anchor="middle" dominant-baseline="central">중단 신호</text>
-    <text x="0" y="448" font-size="28" font-weight="800" fill="#3A4049" dominant-baseline="central">앱은 두 번째 쓰기 주체가 아님. 실행 위치는 그대로 노트북</text>
+    <text x="0" y="448" font-size="28" font-weight="800" fill="#3A4049" dominant-baseline="central">앱이 파일을 따로 고치는 두 번째 작업자는 아님. 실행 위치는 그대로 노트북</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">실행 위치와 개입 방식은 다른 축. 한 경로로 연결됐다고 다른 경로의 앱에서도 보인다는 보장은 없음</span></div>
   <p class="pageno" aria-label="39쪽, 전체 42쪽">39 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 39번. 용어 25 리모트 컨트롤</h3>
+<h3>v06 39번. 용어 25 리모트 컨트롤</h3>
 <p><strong>장면 먼저:</strong> 노트북에서 돌고 있는 회의 준비 작업을 휴대폰에서 보고 멈추고 싶다. 질문: 휴대폰에서 멈춤을 누르면 작업 장소가 휴대폰으로 옮겨질까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
-<h3>v10 발췌 S33 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S33 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S33. 리모트 컨트롤</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 노트북에서 돌고 있는 회의 준비 작업을 휴대폰에서 보고 멈추고 싶다. 질문: 휴대폰에서 멈춤을 누르면 작업 장소가 휴대폰으로 옮겨질까?</p>
 <p><strong>한 문장 정의:</strong> 리모트 컨트롤은 실제 실행을 원래 환경에서 계속하면서, 다른 화면이나 기기에서 그 세션을 보고 지시하거나 중단 신호를 보내는 접근 및 개입 방식이다.</p>
 <p>상세 설명:</p>
 <ul>
 <li>리모트 컨트롤은 실행 위치가 아니라 조작 방식이다. 실행은 원래 기기나 서버에서 돈다.</li>
-<li>연결되어 있다는 것과 앱에서 같은 세션이 보인다는 것은 다르다. 서버 연결 상태만으로 가시성을 주장하지 않는다.</li>
-<li>같은 워커를 보고 조종하는 것이지 두 번째 쓰기 주체가 아니다. 앱에서 파일을 따로 고치는 작업자가 생기면 충돌이 난다.</li>
+<li>연결되어 있다는 것과 앱에서 같은 세션이 보인다는 것은 다르다. 서버 연결 상태만으로 앱에서 보인다고 주장하지 않는다.</li>
+<li>같은 워커를 보고 조종하는 것이지 파일을 따로 고치는 두 번째 작업자가 아니다. 앱에서 파일을 따로 고치는 작업자가 생기면 충돌이 난다.</li>
 <li>참가자에게 필수가 아니다. 권한 우회 옵션도 필수 설정으로 가르치지 않는다. 짧은 시연 또는 정적 화면으로 설명한다. 시연과 녹화 자료는 아직 제작하지 않았다.</li>
 </ul>
 <p><strong>장면에 다시 적용 (예시 초안):</strong> 입력: 휴대폰에서 중단 신호. 출력: 노트북의 작업이 멈추고 로그가 남는다. 작업 장소는 노트북 그대로이고, 휴대폰은 보기와 중단만 맡는다.</p>
 <p><strong>강사용 보충 예시 (화면 생략):</strong> 노트북에서 실행 중인 워커 세션에 휴대폰 앱으로 중단 신호를 보낸다. 실행은 노트북에서 멈추고, 파일도 노트북에 그대로 남는다. 강사 시연에서는 로그의 활성 표시와 세션 링크를 확인하는 순서로 보여 준다.</p>
-<p><strong>헷갈리는 지점:</strong> 리모트 컨트롤은 클라우드 실행과 다르다(S32). 실행 위치와 개입 방식은 별개의 축이다. ACP 같은 다른 연결 경로와도 다르며, 한 경로로 연결되었다고 다른 경로의 앱 가시성이 보장되지는 않는다.</p>
-<p><strong>화면 구성:</strong> 첫 화면은 장면과 질문만 보인다. 답을 공개한 뒤 정의와 적용을 보인다. 노트북 상자 안에 워커와 파일, 앱 상자 안에 같은 세션 화면과 중단 버튼을 둔다. 두 상자 사이에 양방향 화살표로 &quot;보기와 지시&quot;를 적는다. 파일 상자는 노트북 안에만 두고, &quot;앱은 두 번째 쓰기 주체가 아니다&quot;라고 주석을 단다.</p>
+<p><strong>헷갈리는 지점:</strong> 리모트 컨트롤은 클라우드 실행과 다르다(S32). 실행 위치와 개입 방식은 별개의 축이다. ACP 같은 다른 연결 경로와도 다르며, 한 경로로 연결되었다고 다른 경로의 앱에서도 보인다는 보장은 없다.</p>
+<p><strong>화면 구성:</strong> 첫 화면은 장면과 질문만 보인다. 답을 공개한 뒤 정의와 적용을 보인다. 노트북 상자 안에 워커와 파일, 앱 상자 안에 같은 세션 화면과 중단 버튼을 둔다. 두 상자 사이에 양방향 화살표로 &quot;보기와 지시&quot;를 적는다. 파일 상자는 노트북 안에만 두고, &quot;앱은 파일을 따로 고치는 두 번째 작업자가 아니다&quot;라고 주석을 단다.</p>
 <p><strong>확인 질문과 모범 답안:</strong> 휴대폰 앱에서 세션이 보이고, 앱에서 수정을 지시하자 파일이 바뀌었다. 실행 위치는 어디인가? 워커가 원래 돌고 있던 노트북이다. 앱은 보고 지시하는 화면이다.</p>
 </aside>
 </section>
@@ -2642,27 +2667,27 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="abs kicker op-kicker">종합</p>
   <h2 class="abs op-title">다섯 사례, 같은 요소, 다른 무게</h2>
   <div class="abs syn-chips"><span>규칙</span><span>컨텍스트</span><span>도구와 실행 위치</span><span>상태</span><span>검증과 사람의 최종 책임</span></div>
-  <ol class="abs syn-list"><li><span class="c">AI교양</span><span class="w">흐름과 전환 조건, 사람의 확정 게이트</span><span class="n">재열람으로 검증</span></li><li><span class="c">OpenClaw</span><span class="w">실행 위치와 개입 방식</span><span class="n">워커와 원격 앱</span></li><li><span class="c">OMH</span><span class="w">제약에 맞춘 도구와 권한, 증거와 한계</span><span class="n">사내 모델 품질 미검증</span></li><li><span class="c">Grokbot</span><span class="w">책임과 실행 위치의 패턴</span><span class="n">사용자 설명, 첨부 미확인</span></li><li><span class="c">CEO Agent</span><span class="w">조사한 페르소나를 상황에 맞게 고르는 흐름</span><span class="n">단계는 독립 작업자가 아님</span></li></ol>
+  <ol class="abs syn-list"><li><span class="c">AI교양</span><span class="w">흐름과 넘어가는 조건, 작가의 확정</span><span class="n">다시 열어 확인</span></li><li><span class="c">OpenClaw</span><span class="w">실행 위치와 개입 방식</span><span class="n">워커와 작업 확인 화면</span></li><li><span class="c">OMH</span><span class="w">제약에 맞춘 도구와 권한, 증거와 한계</span><span class="n">사내 모델 품질 미검증</span></li><li><span class="c">Grokbot</span><span class="w">책임과 실행 위치의 패턴</span><span class="n">사용자 설명, 첨부 미확인</span></li><li><span class="c">CEO Agent</span><span class="w">조사한 페르소나를 상황에 맞게 고르는 흐름</span><span class="n">단계는 독립 작업자가 아님</span></li></ol>
   <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">측정한 성과의 비교가 아니라, 설계와 기록 구조의 비교</p>
   <p class="pageno" aria-label="40쪽, 전체 42쪽">40 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 40번. 종합: 다섯 사례</h3>
+<h3>v06 40번. 종합: 다섯 사례</h3>
 <p><strong>장면 먼저:</strong> 처음의 AI교양 글로 돌아간다. 원문을 받고, 확정을 기다리고, 삽화와 보존, 비공개 초안, 재열람까지 이어진 흐름을 용어로 다시 읽는다. 질문: 다른 네 사례에서도 같은 질문이 통할까?</p>
-<h3>v10 발췌 S34 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v10 발췌 S34 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S34. 다섯 사례 종합</p>
 <p><strong>장면과 질문 (예시 초안):</strong> 처음의 AI교양 글로 돌아간다. 원문을 받고, 확정을 기다리고, 삽화와 보존, 비공개 초안, 재열람까지 이어진 흐름을 용어로 다시 읽는다. 질문: 다른 네 사례에서도 같은 질문이 통할까?</p>
 <p><strong>한 문장 정의:</strong> 다섯 사례는 같은 요소, 즉 규칙, 컨텍스트, 도구와 실행 위치, 상태, 검증과 사람의 최종 책임으로 설명할 수 있다. 다만 사례마다 무게를 두는 곳이 다르다.</p>
 <p>상세 설명 (간결 비교):</p>
 <ul>
-<li>AI교양: 흐름과 전환 조건(사람의 확정 게이트)에 무게. 재열람으로 검증.</li>
-<li>OpenClaw: 실행 위치와 개입 방식에 무게(워커, 원격 앱).</li>
+<li>AI교양: 흐름과 전환 조건(사람이 확정하기 전에는 다음 단계로 가지 않음)에 무게. 초안을 다시 열어 확인.</li>
+<li>OpenClaw: 실행 위치와 개입 방식에 무게(워커, 작업 확인 화면).</li>
 <li>OMH: 제약에 맞춘 도구와 권한, 확인 가능한 증거와 한계에 무게.</li>
 <li>Grokbot 설명: 책임과 실행 위치의 패턴. 첨부 미확인, 독립 검증 없음.</li>
 <li>CEO Agent: 조사 근거에서 나온 페르소나를 상황에 맞게 고르는 흐름. 여러 단계는 한 흐름의 단계이며 독립 작업자가 아니다.</li>
 </ul>
-<p><strong>장면에 다시 적용 (예시 초안):</strong> 처음의 AI교양 흐름에 용어를 대입한다. 모델은 초안 문장을 만들고, 하네스는 원문 보존과 확정 게이트를 담고, 워크플로우는 단계 순서를 맡고, 자동화는 확정 뒤의 실행을 맡고, 검증은 재열람을 맡는다. 사람은 최종 확정을 한다.</p>
+<p><strong>장면에 다시 적용 (예시 초안):</strong> 처음의 AI교양 흐름에 용어를 대입한다. 모델은 초안 문장을 만들고, 하네스는 원문 보존과 확정 전에는 멈추는 조건을 담고, 워크플로우는 단계 순서를 맡고, 자동화는 확정 뒤의 실행을 맡고, 검증은 초안을 다시 열어 확인하는 일을 맡는다. 사람은 최종 확정을 한다.</p>
 <p><strong>헷갈리는 지점:</strong> 사례가 다섯이라고 방식이 다섯 가지인 것은 아니다. 같은 요소를 다른 강조로 쓴 것이다. 사례별 성과를 비교한 자료도 아니다.</p>
 <p><strong>화면 구성:</strong> 다섯 사례를 한 줄씩 적는 목록. 표 대신 목록을 쓴다. 아래 주석: 측정된 성과 비교 아님.</p>
 <p><strong>확인 질문과 모범 답안:</strong> 다섯 사례 가운데 실사용 성과가 측정된 사례가 있나? 이 워크샵에서는 없다. 설계와 기록 구조만 비교했다.</p>
@@ -2686,13 +2711,13 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="41쪽, 전체 42쪽">41 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 41번. 마치며</h3>
+<h3>v06 41번. 마치며</h3>
 <p>다섯 장의 질문을 한 줄씩 되짚습니다. 각 줄이 그 장의 핵심 구분입니다.</p>
 <ul>
 <li>1장: 모델은 출력과 도구 호출 요청을 만들고, 실제 실행은 런타임이 합니다.</li>
 <li>2장: 절차는 스킬, 기능은 도구, 배포는 플러그인, 연결은 커넥터, 규약은 MCP. 순서와 역할 배정은 오케스트레이션입니다.</li>
 <li>3장: 컨텍스트는 이번 호출에 실제로 들어간 정보 전체입니다. 지시와 요청, 읽힌 파일 내용, 도구 결과, 포함된 이전 대화가 모두 들어가고, 디스크에만 있는 파일은 들어가지 않습니다.</li>
-<li>4장: 세션은 작업 맥락을 묶는 단위, 워커는 실제로 일을 수행하는 주체입니다. 역할을 나누거나 서브에이전트를 써도 그것만으로 독립 검증이 되지는 않습니다.</li>
+<li>4장: 세션은 작업 맥락을 묶는 단위, 워커는 실제로 일을 수행하는 작업자입니다. 역할을 나누거나 서브에이전트를 써도 그것만으로 독립 검증이 되지는 않습니다.</li>
 <li>5장: 완료 보고는 주장이고, 검증은 미리 정한 기준으로 확인하는 일입니다. 사람의 확정은 자동화 바깥에 둡니다. 실행 위치와 개입 방식은 다른 축입니다.</li>
 </ul>
 <p>구조를 설계하면 점검 가능성과 재현성이 높아질 수 있지만, 결과가 반드시 좋아진다고 말하지 않습니다.</p>
@@ -2714,9 +2739,9 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="42쪽, 전체 42쪽">42 / 42</p>
 </div></div>
 <aside class="notes">
-<h3>v05 42번. 질의응답</h3>
-<h3>v10 발췌 S35 (v04 편집)</h3>
-<p class="src">v04 편집 발췌: 강의 시간 배분과 시간 지시는 뺐습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
+<h3>v06 42번. 질의응답</h3>
+<h3>v10 발췌 S35 (v06 편집)</h3>
+<p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S35. 질의응답과 정리</p>
 <p><strong>한 문장 정의:</strong> 질의응답은 참가자의 질문을 받아 용어와 다섯 사례를 다시 확인하는 시간이다.</p>
 <p>상세 설명:</p>
@@ -2747,8 +2772,158 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <script type="application/json" id="deck-manifest">
 {
  "deck": "harness-engineering-workshop",
- "version": "v05",
+ "version": "v06",
  "slides": 42,
+ "excerpt_edits": [
+  [
+   "부모가 테스트와 파일 상태를 독립적으로 확인한 뒤 답장한다",
+   "같은 코디네이터가 테스트와 파일 상태로 결과를 확인한 뒤 답장한다"
+  ],
+  [
+   "코디네이터가 판단하고 워커가 쓰며 부모가 검증한다",
+   "코디네이터가 판단하고 결과를 확인하며, 워커가 쓴다"
+  ],
+  [
+   "[부모 독립 검증]  산출물과 프로세스 확인",
+   "[코디네이터 결과 검증]  산출물과 프로세스 확인"
+  ],
+  [
+   "부모의 독립 검증",
+   "코디네이터의 결과 검증"
+  ],
+  [
+   "직접 도구 또는 원격 워커",
+   "직접 처리 또는 워커에게 위임"
+  ],
+  [
+   "[직접 도구]  조회, 단순 편집",
+   "[직접 처리]  조회, 단순 편집"
+  ],
+  [
+   "원격 앱은 같은 워커를 보고 개입하는 화면이다. 두 번째 쓰기 주체가 아니다.",
+   "작업 확인 화면(원격 앱)은 같은 워커의 작업을 보고 개입하는 화면이다. 파일을 따로 고치는 두 번째 작업자가 아니다."
+  ],
+  [
+   "[원격 앱]  같은 워커를 보고 개입 (S33), 두 번째 쓰기 주체 아님",
+   "[작업 확인 화면]  같은 워커의 작업을 보고 개입 (S33), 파일을 따로 고치는 작업자 아님"
+  ],
+  [
+   "원격 앱에서 같은 세션이 보인다. 워커가 두 개인가? 아니다. 보기와 개입이 늘었을 뿐 쓰기 주체는 하나다.",
+   "작업 확인 화면에서 같은 세션이 보인다. 워커가 두 개인가? 아니다. 보기와 개입이 늘었을 뿐 파일을 고치는 작업자는 하나다."
+  ],
+  [
+   "원격 앱은 리모트 컨트롤 화면이다(S33)",
+   "작업 확인 화면은 리모트 컨트롤 화면이다(S33)"
+  ],
+  [
+   "코디네이터는 맡길지 판단하는 주체다",
+   "코디네이터는 맡길지 판단하는 쪽이다"
+  ],
+  [
+   "실행 위치와 개입 방식에 무게(워커, 원격 앱)",
+   "실행 위치와 개입 방식에 무게(워커, 작업 확인 화면)"
+  ],
+  [
+   "화면이 늘어도 세션과 쓰기 주체는 늘지 않는다",
+   "화면이 늘어도 세션과 파일을 고치는 작업자는 늘지 않는다"
+  ],
+  [
+   "쓰기 주체는 하나여야 한다",
+   "파일을 고치는 작업자는 하나여야 한다"
+  ],
+  [
+   "쓰기 주체였으니 결과가 옳다고 말해도 되는가? 아니다. 쓰기 주체라는 것은 책임 범위를 말할 뿐이며",
+   "파일을 쓴 작업자였으니 결과가 옳다고 말해도 되는가? 아니다. 파일을 쓴 작업자라는 것은 책임 범위를 말할 뿐이며"
+  ],
+  [
+   "\"앱은 두 번째 쓰기 주체가 아니다\"",
+   "\"앱은 파일을 따로 고치는 두 번째 작업자가 아니다\""
+  ],
+  [
+   "같은 워커를 보고 조종하는 것이지 두 번째 쓰기 주체가 아니다.",
+   "같은 워커를 보고 조종하는 것이지 파일을 따로 고치는 두 번째 작업자가 아니다."
+  ],
+  [
+   "세션은 실행 주체가 아니다. 실제 파일을 고치는 주체는 워커다",
+   "세션이 작업을 실행하지는 않는다. 실제로 파일을 고치는 것은 워커다"
+  ],
+  [
+   "한 실행 주체가 여러 단계를",
+   "작업자 하나가 여러 단계를"
+  ],
+  [
+   "실제 수행하는 실행 주체이며",
+   "실제 수행하는 작업자이며"
+  ],
+  [
+   "맡은 실행 주체가 워커다",
+   "맡은 작업자가 워커다"
+  ],
+  [
+   "여러 실행 주체",
+   "여러 작업자"
+  ],
+  [
+   "실무자가 반영 책임을 지고",
+   "실무자가 최종 반영을 맡고"
+  ],
+  [
+   "페르소나, 등록(register), 판단 루브릭을",
+   "페르소나, 상황별 말투(register), 검토 기준(판단 루브릭)을"
+  ],
+  [
+   "등록과 판단 기준을 고르고",
+   "상황별 말투와 검토 기준을 고르고"
+  ],
+  [
+   "말투와 등록을 정하고, 루브릭은",
+   "말투와 문체를 정하고, 루브릭(검토 기준)은"
+  ],
+  [
+   "등록과 강조를",
+   "말투와 강조를"
+  ],
+  [
+   "어떤 등록과 기준을 고를지",
+   "어떤 말투와 검토 기준을 고를지"
+  ],
+  [
+   "서버 연결 상태만으로 가시성을 주장하지 않는다",
+   "서버 연결 상태만으로 앱에서 보인다고 주장하지 않는다"
+  ],
+  [
+   "다른 경로의 앱 가시성이 보장되지는 않는다",
+   "다른 경로의 앱에서도 보인다는 보장은 없다"
+  ],
+  [
+   "모든 파일이 전역으로 공유된다",
+   "모든 파일이 어디서나 공유된다"
+  ],
+  [
+   "(사람의 확정 게이트)에 무게. 재열람으로 검증.",
+   "(사람이 확정하기 전에는 다음 단계로 가지 않음)에 무게. 초안을 다시 열어 확인."
+  ],
+  [
+   "원문 보존과 확정 게이트를 담고",
+   "원문 보존과 확정 전에는 멈추는 조건을 담고"
+  ],
+  [
+   "검증은 재열람을 맡는다",
+   "검증은 초안을 다시 열어 확인하는 일을 맡는다"
+  ],
+  [
+   "결정적으로 확인할 수 있는 검증 항목",
+   "같은 입력에 늘 같은 결과가 나오는 방법으로 확인할 수 있는 검증 항목"
+  ],
+  [
+   "모호한 행",
+   "판단이 어려운 행"
+  ],
+  [
+   "모호 행",
+   "판단이 어려운 행"
+  ]
+ ],
  "items": [
   {
    "physical": 1,

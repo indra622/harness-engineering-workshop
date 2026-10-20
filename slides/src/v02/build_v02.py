@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v04
+    python3 slides/src/v02/build_v02.py                 # current version, v06
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -14,7 +14,8 @@ Writes, for version VER, into slides/ (or --out-dir):
 v03 adds a physical page number inside every canvas and redraws slide 2 so the
 author finds the topic and writes v01 before any AI review. v04 removes all
 lecture timing (screen, notes, manifest, data attributes) and applies the
-edited presentation copy from copy_v04.py. Everything else is shared, so v02
+edited presentation copy from copy_v04.py; v05 drops the roadmap break marker
+(copy_v05.py); v06 clarifies roles and wording (copy_v06.py). Everything else is shared, so v02
 and v03 still build byte-for-byte as exported.
 
 Slide content lives in deck_a.py and deck_b.py. Term and case notes carry the
@@ -40,14 +41,15 @@ sys.path.insert(0, str(SRC))
 
 import copy_v04  # noqa: E402
 import copy_v05  # noqa: E402
+import copy_v06  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
 from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
-CURRENT = "v05"
-VERSIONS = ("v02", "v03", "v04", "v05")
+CURRENT = "v06"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -191,7 +193,8 @@ def build_notes_v04(n, sl):
     """v04 notes: no lecture timing anywhere; v10 blocks as labelled edited excerpts."""
     head = f"{kit.VERSION} {n}번. {sl['label']}"
     html, md = [f"<h3>{escape(head)}</h3>"], [head, ""]
-    fixes = [CORRECTIONS_V03.get(n), CORRECTIONS.get(n)]
+    v06 = kit.VERSION >= "v06"
+    fixes = [CORRECTIONS_V03.get(n), CORRECTIONS.get(n), copy_v06.CORRECTIONS.get(n) if v06 else None]
     for fix in filter(None, fixes):
         html.append(f'<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> {escape(fix)}</p>')
         md += [f"정정 (아래 v10 발췌보다 우선): {fix}", ""]
@@ -208,10 +211,13 @@ def build_notes_v04(n, sl):
         md += [re.sub(r"<[^>]+>", "", re.sub(r"</(p|li|h3)>", "\n", sl["notes"])).strip(), ""]
     for sid in sl.get("v10", []):
         body = copy_v04.excerpt(sid, v10_body(sid))
-        html.append(f"<h3>v10 발췌 S{sid} (v04 편집)</h3>")
-        html.append(f'<p class="src">{escape(copy_v04.EXCERPT_NOTE)}</p>')
+        label, note = "v04 편집", copy_v04.EXCERPT_NOTE
+        if v06:  # v06 also swaps outdated expressions for the current wording
+            body, label, note = copy_v06.excerpt_edit(body), "v06 편집", copy_v06.EXCERPT_NOTE
+        html.append(f"<h3>v10 발췌 S{sid} ({label})</h3>")
+        html.append(f'<p class="src">{escape(note)}</p>')
         html.append(v10_html(body))
-        md += [f"[v10 발췌 S{sid} (v04 편집)]", copy_v04.EXCERPT_NOTE, "", body, ""]
+        md += [f"[v10 발췌 S{sid} ({label})]", note, "", body, ""]
     return "\n".join(html), "\n".join(md).rstrip() + "\n"
 
 
@@ -294,6 +300,8 @@ def main():
             copy_v04.apply(i + 1, sl)
             if ver >= "v05":
                 copy_v05.apply(i + 1, sl)
+            if ver >= "v06":
+                copy_v06.apply(i + 1, sl)
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
@@ -326,6 +334,8 @@ def main():
     head = {"deck": "harness-engineering-workshop", "version": ver, "slides": len(raw)}
     if timed:
         head["minutes"] = sum(s["minutes"] for s in raw)
+    if ver >= "v06":  # published so a reader or the check can follow the excerpt wording
+        head["excerpt_edits"] = [list(p) for p in copy_v06.EXCERPT_EDITS]
     man = json.dumps({**head, "items": manifest}, ensure_ascii=False, indent=1)
     for blob in (css, js, man):
         if "</style" in blob or "</script" in blob:

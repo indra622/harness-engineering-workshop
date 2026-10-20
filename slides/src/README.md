@@ -31,7 +31,7 @@ Layout of `v02/`:
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
 - `build_v02.py`: assembles the deck and the notes for `--version v04` (default), `v03` or `v02`; `--out-dir` writes elsewhere and never touches `slides/index.html`. Term and case notes start with the scene, then any correction, then the full v10 block under a source heading. Stops before writing if the deck no longer adds up (42 slides, 120 minutes, the 25 v10 terms in order, five cases, one three-minute CEO Agent slide, a ten-minute break) or if the output contains a middle dot, a host path or a session link. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v05).
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v06).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 
@@ -147,6 +147,17 @@ python3 slides/src/build_deck.py --set representative --out slides/previews/repr
 sh slides/src/render.sh slides/previews/representative-v01.pptx
 python3 slides/src/audit_deck.py slides/previews/representative-v01.pptx
 ```
+
+### v06 wording and role clarity
+
+v06 keeps the v05 presentation and design and changes wording only where an expression named the wrong actor or read like implementation jargon. `copy_v06.py` holds the layer, applied after `copy_v04.py` and `copy_v05.py`:
+- slide 9 is redrawn: the coordinator either handles the request directly (`직접 처리`, the user's wording) or delegates it to a worker (`워커에게 위임`); the same coordinator, in the same colour and linked by a "같은 코디네이터" line, checks the returned result (`결과 검증 / 코디네이터가 확인`). The viewing screen sits on the worker's task and is not wired to the gateway. The runtime still executes the tools the coordinator picks.
+- slide 14 is redrawn as a before and after of one task ("CSV 빈 값 처리 후, 무엇이 바뀌었는지 확인"): both lanes start from OpenCode + OMO with the same model; the after lane adds `data_inspect` and `data_compare`; the modification step is the same in both. Detail and evidence limits are in the notes (`OMH_NOTES`).
+- `EDITS`: per-slide before, after and reason for every other screen change.
+- `CORRECTIONS`: notes shown before the v10 excerpt on slides 9, 18 and 31.
+- `EXCERPT_EDITS`: ordered phrase swaps applied to the v10 excerpts in the notes, published in the manifest as `excerpt_edits` so the check follows the same wording. The source plan is untouched.
+
+`audit_v06.py` writes the per-slide audit (all 42 slides, changed or not) to `docs/production/wording-audit-v06.md` from these tables. The builder and browser check default to v06; `--version v05` (or v02 to v04) reproduces the preserved exports byte for byte. For v06 the check also requires slide 9 to show the coordinator, both routes, the result check and the viewing screen, and fails if "부모" or "도구로 처리" appears on any screen.
 
 ### v05 roadmap adjustment
 

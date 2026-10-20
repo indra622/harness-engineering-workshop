@@ -33,8 +33,8 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-const VER = process.env.DECK_VERSION || "v05";
-if (!/^v0[2345]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+const VER = process.env.DECK_VERSION || "v06";
+if (!/^v0[23456]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v02 and v03 carry the 120-minute lecture schedule; v04 has no lecture timing at all
 const TIMED = VER < "v04";
@@ -128,7 +128,8 @@ try {
       fail(`slide ${i + 1}: data attributes differ from the manifest`);
     }
     const nt = squash(meta.notes[i]);
-    const fixes = { 9: "v02", 23: "v02", 29: "v02", 30: "v02", ...(VER >= "v03" ? { 2: "v03" } : {}) };
+    const fixes = { 9: "v02", 23: "v02", 29: "v02", 30: "v02", ...(VER >= "v03" ? { 2: "v03" } : {}),
+      ...(VER >= "v06" ? { 18: "v06", 31: "v06" } : {}) };
     if (fixes[i + 1]) {
       const label = TIMED ? `${fixes[i + 1]} 정정 (아래 v10 원문보다 우선)` : "정정 (아래 v10 발췌보다 우선)";
       const fix = nt.indexOf(squash(label));
@@ -142,8 +143,12 @@ try {
         const b = v10Block(n);
         if (!b || !nt.includes(b)) fail(`slide ${i + 1}: notes do not carry the full v10 block ${sid}`);
       } else {
-        if (!nt.includes(squash(`v10 발췌 ${sid} (v04 편집)`))) fail(`slide ${i + 1}: notes lack the labelled v10 excerpt ${sid}`);
-        const missing = (v10KeyLines(n) || []).filter((l) => !nt.includes(l));
+        const label = VER >= "v06" ? "v06 편집" : "v04 편집";
+        if (!nt.includes(squash(`v10 발췌 ${sid} (${label})`))) fail(`slide ${i + 1}: notes lack the labelled v10 excerpt ${sid}`);
+        // v06 swaps outdated expressions in the excerpts; the manifest publishes the exact pairs, applied in order
+        const swaps = (meta.man.excerpt_edits || []).map(([a, b]) => [squash(a), squash(b)]);
+        const expect = (v10KeyLines(n) || []).map((l) => swaps.reduce((s, [a, b]) => s.split(a).join(b), l));
+        const missing = expect.filter((l) => !nt.includes(l));
         if (missing.length) fail(`slide ${i + 1}: v10 ${sid} teaching lines missing from notes: ${missing.length}`);
       }
     }
@@ -166,6 +171,30 @@ try {
     slideHits.forEach(([k, h]) => fail(`slide ${k}: lecture time on screen: ${h.join(", ")}`));
     evidence.lecture_time_references = { screen_and_labels: slideHits.length, page_head: headHits ? headHits.length : 0,
       notes: meta.notes.filter((t) => t.match(LECTURE_TIME)).length };
+  }
+
+  if (VER >= "v06") {
+    // slide 9: one coordinator judges, delegates or handles directly, and checks the returned result
+    const roles = await page.evaluate(() => {
+      const all = [...document.querySelectorAll(".slide .canvas")].map((c) => c.textContent);
+      const s9 = document.querySelector("#s9 .canvas").textContent;
+      return { s9, parentOnScreen: all.map((t, k) => (t.includes("부모") ? k + 1 : 0)).filter(Boolean),
+        toolRoute: all.map((t, k) => (t.includes("도구로 처리") ? k + 1 : 0)).filter(Boolean) };
+    });
+    const need = ["코디네이터", "직접 처리", "워커에게 위임", "결과 검증", "코디네이터가 확인", "같은 코디네이터", "작업 확인 화면"];
+    const lacking = need.filter((w) => !roles.s9.includes(w));
+    if (lacking.length) fail(`slide 9 lacks: ${lacking.join(", ")}`);
+    if (roles.parentOnScreen.length) fail(`"부모" still on screen: ${roles.parentOnScreen}`);
+    if (roles.toolRoute.length) fail(`"도구로 처리" on screen (route must be 직접 처리): ${roles.toolRoute}`);
+    // slide 14: the same task before and after the OMH additions, with the evidence limit on screen
+    const s14 = await page.evaluate(() => document.querySelector("#s14 .canvas").textContent);
+    const need14 = ["같은 일", "추가 전", "OpenCode + OMO", "추가 후", "data_inspect", "data_compare", "자동 병합 없음",
+      "달라진 것", "omh-rigorous", "사내 모델의 품질 비교는 하지 않음"];
+    const lack14 = need14.filter((w) => !s14.includes(w));
+    if (lack14.length) fail(`slide 14 lacks: ${lack14.join(", ")}`);
+    evidence.omh_before_after = { has: need14.filter((w) => s14.includes(w)) };
+    evidence.role_wording = { slide9_has: need.filter((w) => roles.s9.includes(w)),
+      parent_on_screen: roles.parentOnScreen, tool_route_label: roles.toolRoute };
   }
 
   // ---------------------------------------------------------------- per-slide layout
