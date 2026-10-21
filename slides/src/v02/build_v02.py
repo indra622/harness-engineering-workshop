@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v09
+    python3 slides/src/v02/build_v02.py                 # current version, v10
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -46,14 +46,16 @@ import copy_v06  # noqa: E402
 import copy_v07  # noqa: E402
 import copy_v08  # noqa: E402
 import copy_v09  # noqa: E402
+import copy_v10  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
 from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
-CURRENT = "v09"
-VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09")
+# versions compare as strings; two digits after "v" keep that ordering correct up to v99
+CURRENT = "v10"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -199,7 +201,8 @@ def build_notes_v04(n, sl):
     html, md = [f"<h3>{escape(head)}</h3>"], [head, ""]
     v06 = kit.VERSION >= "v06"
     o = sl.get("orig")  # original slide number; reference slides added in v07 have none
-    fixes = [CORRECTIONS_V03.get(o), CORRECTIONS.get(o), copy_v06.CORRECTIONS.get(o) if v06 else None]
+    fixes = [CORRECTIONS_V03.get(o), CORRECTIONS.get(o), copy_v06.CORRECTIONS.get(o) if v06 else None,
+             copy_v10.CORRECTIONS.get(o) if kit.VERSION >= "v10" else None]
     for fix in filter(None, fixes):
         html.append(f'<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> {escape(fix)}</p>')
         md += [f"정정 (아래 v10 발췌보다 우선): {fix}", ""]
@@ -317,9 +320,13 @@ def main():
                 copy_v08.apply(i + 1, sl)
             if ver >= "v09":
                 copy_v09.apply(i + 1, sl)
+            if ver >= "v10":
+                copy_v10.apply(i + 1, sl)
         sl["orig"] = i + 1
     if ver >= "v07":
         raw = copy_v07.insert(raw)
+    if ver >= "v10":
+        raw = copy_v10.apply_refs(raw)
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))

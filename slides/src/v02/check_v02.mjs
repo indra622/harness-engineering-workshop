@@ -33,8 +33,9 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-const VER = process.env.DECK_VERSION || "v09";
-if (!/^v0[23456789]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+// versions compare as strings: always two digits after "v" (v02 ... v10)
+const VER = process.env.DECK_VERSION || "v10";
+if (!/^v(0[2-9]|10)$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case
 const TOTAL = VER >= "v07" ? 44 : 42;
@@ -140,7 +141,7 @@ try {
     }
     const nt = squash(meta.notes[i]);
     const fixes = { 9: "v02", 23: "v02", 29: "v02", 30: "v02", ...(VER >= "v03" ? { 2: "v03" } : {}),
-      ...(VER >= "v06" ? { 18: "v06", 31: "v06" } : {}) };
+      ...(VER >= "v06" ? { 18: "v06", 31: "v06" } : {}), ...(VER >= "v10" ? { 14: "v10" } : {}) };
     const orig = it.original || it.physical;  // corrections are keyed by the original slide
     if (it.kind !== "reference" && fixes[orig]) {
       const label = TIMED ? `${fixes[orig]} 정정 (아래 v10 원문보다 우선)` : "정정 (아래 v10 발췌보다 우선)";
@@ -200,11 +201,34 @@ try {
     if (roles.toolRoute.length) fail(`"도구로 처리" on screen (route must be 직접 처리): ${roles.toolRoute}`);
     // slide 14: the same task before and after the OMH additions, with the evidence limit on screen
     const s14 = await page.evaluate(() => document.querySelector("#s14 .canvas").textContent);
-    const need14 = ["같은 일", "추가 전", "OpenCode + OMO", "추가 후", "data_inspect", "data_compare", "자동 병합 없음",
-      "달라진 것", "omh-rigorous", "사내 모델의 품질 비교는 하지 않음"];
+    const need14 = VER >= "v10"
+      ? ["같은 일", "OpenCode 순정", "범용 코딩 에이전트", "OMH 통합 구성", "OMO + 업무 도구 + 작업 절차",
+        "OMO의 역할 구성까지 묶은 OMH", "OMO", "data_inspect", "data_compare", "자동 병합 없음", "행 값 없이",
+        "omh-rigorous", "달라진 것", "사람이 결정", "사내 모델의 품질 비교는 하지 않음"]
+      : ["같은 일", "추가 전", "OpenCode + OMO", "추가 후", "data_inspect", "data_compare", "자동 병합 없음",
+        "달라진 것", "omh-rigorous", "사내 모델의 품질 비교는 하지 않음"];
     const lack14 = need14.filter((w) => !s14.includes(w));
     if (lack14.length) fail(`slide 14 lacks: ${lack14.join(", ")}`);
     evidence.omh_before_after = { has: need14.filter((w) => s14.includes(w)) };
+    if (VER >= "v10") {
+      // OMO must sit inside the OMH boundary, and bare OpenCode outside it
+      const geo = await page.evaluate(() => {
+        const g = (k) => {
+          const r = document.querySelector(`#s14 [data-box="${k}"]`);
+          if (!r) return null;
+          const [x, y, w, h] = ["x", "y", "width", "height"].map((a) => parseFloat(r.getAttribute(a)));
+          return [x, y, x + w, y + h];
+        };
+        return { omh: g("omh"), omo: g("omo"), tools: g("tools"), procedure: g("procedure"), opencode: g("opencode") };
+      });
+      const inside = (a, b) => a && b && a[0] >= b[0] && a[1] >= b[1] && a[2] <= b[2] && a[3] <= b[3];
+      const apart = (a, b) => a && b && (a[2] <= b[0] || b[2] <= a[0]);
+      const nested = ["omo", "tools", "procedure"].every((k) => inside(geo[k], geo.omh));
+      if (!nested) fail(`slide 14: OMO, tools and procedure must sit inside OMH: ${JSON.stringify(geo)}`);
+      if (!apart(geo.opencode, geo.omh)) fail("slide 14: OpenCode 순정 must sit outside OMH");
+      if (/추가 전|OpenCode \+ OMO/.test(s14)) fail("slide 14 still shows the old OpenCode + OMO baseline");
+      evidence.omh_v10_structure = { omo_tools_procedure_inside_omh: nested, opencode_outside_omh: apart(geo.opencode, geo.omh) };
+    }
     evidence.role_wording = { slide9_has: need.filter((w) => roles.s9.includes(w)),
       parent_on_screen: roles.parentOnScreen, tool_route_label: roles.toolRoute };
   }
@@ -216,9 +240,13 @@ try {
       return { text: s.querySelector(".canvas").textContent, notes: s.querySelector(".notes").innerHTML,
         skip: s.querySelector(".canvas a.ref-skip")?.getAttribute("href") };
     }));
-    const needA = ["참고 A", "같은 개발 요청, 서로 다른 작업 설계", "pstack", "Superpowers", "공통점", "실제 동작으로 검증",
-      "테스트 먼저 구현", "111cf6a", "b739a8a"];
-    const needB = ["참고 B", "가져올 것은 기능 목록보다 작업 방식", "내 환경에서 쓸", "적용 예: OMH", "비교 참고", "omh-rigorous"];
+    const needA = VER >= "v10"
+      ? ["참고 A", "AS-IS", "TO-BE", "Superpowers", "pstack", "작업별 절차 선택으로", "바뀌는 초점", "의도와 설계 합의",
+        "테스트 먼저 구현", "작업별 플레이북", "범위 정해 위임", "실제 동작으로 검증", "111cf6a", "b739a8a"]
+      : ["참고 A", "같은 개발 요청, 서로 다른 작업 설계", "pstack", "Superpowers", "공통점", "실제 동작으로 검증",
+        "테스트 먼저 구현", "111cf6a", "b739a8a"];
+    const needB = ["참고 B", "가져올 것은 기능 목록보다 작업 방식", "내 환경에서 쓸", "적용 예: OMH", "비교 참고", "omh-rigorous",
+      ...(VER >= "v10" ? ["TO-BE pstack", "AS-IS Superpowers", "OMO 역할 구성"] : [])];
     const pins = ["cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490", "obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12"];
     [[ref[0], needA, "15"], [ref[1], needB, "16"]].forEach(([r, need, n]) => {
       const lack = need.filter((w) => !r.text.includes(w));
@@ -227,6 +255,15 @@ try {
       if (!pins.every((u) => r.notes.includes(u))) fail(`slide ${n} notes lack pinned source links`);
     });
     evidence.reference_checks = { skip_links: ref.map((r) => r.skip), pinned_sources_in_notes: true };
+    if (VER >= "v10") {
+      // AS-IS sits above TO-BE on slide 15, joined by the transition arrow
+      const order = await page.evaluate(() => {
+        const at = (w) => parseFloat([...document.querySelectorAll("#s15 svg text")].find((n) => n.textContent === w)?.getAttribute("y"));
+        return { asis: at("AS-IS"), tobe: at("TO-BE"), arrow: !!document.querySelector("#s15 svg polygon") };
+      });
+      if (!(order.asis < order.tobe) || !order.arrow) fail(`slide 15 direction: ${JSON.stringify(order)}`);
+      evidence.reference_direction = order;
+    }
   }
 
   if (VER >= "v08") {

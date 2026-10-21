@@ -6,8 +6,8 @@
 
 ## 현재 기준
 
-- 발표 자료는 v09이다. 9쪽 게이트웨이에는 채널, 세션, 스케줄러를 표시했다. 사례 이름은 화면과 목차에서 클식이로 통일했다. 기반 소프트웨어 OpenClaw와는 노트에서 구분한다. 9쪽 코디네이터 상자에 업무 난이도를 자동 판단한다고 표시하고 직접 처리와 워커 위임으로 이어지게 했다. 44장(본문 42장과 참고 2장). [slides/index.html](slides/index.html)을 연다. v07은 v06 본문을 그대로 두고, OMH 사례(14쪽) 바로 뒤에 선택형 참고 화면 두 장을 넣었다. 참고 A(15쪽)는 같은 기능 추가 요청에서 pstack과 Superpowers가 먼저 챙기는 것을 나란히 보이고, 참고 B(16쪽)는 가져올 것을 기능 목록보다 작업 방식으로 정리하며 OMH를 적용 예로 든다. 두 장은 '본문으로, 17쪽' 링크로 건너뛸 수 있고, 근거는 [docs/references/pstack-superpowers-comparison-v01.md](docs/references/pstack-superpowers-comparison-v01.md), 제작 메모는 [docs/production/reference-slides-v07.md](docs/production/reference-slides-v07.md)에 있다. 원래 15쪽부터는 두 장씩 밀렸다(쉬는 시간 28쪽, CEO Agent 33쪽, 질의응답 44쪽). v06은 v05의 구성과 디자인을 그대로 두고 문구와 역할 표현을 점검했다. 9번 OpenClaw 도식은 코디네이터가 요청을 직접 처리하거나 워커에게 위임하고, 돌아온 결과를 같은 코디네이터가 확인하는 구조로 다시 그렸다. 14번 OMH는 같은 일(CSV 빈 값 처리 후 무엇이 바뀌었는지 확인)을 업무 도구와 절차를 더하기 전과 후로 나란히 비교한다. 부모, 쓰기 주체, 등록처럼 행위자가 흐리거나 구현 내부에서 온 표현은 누가 무엇을 하는지 드러나게 고쳤다. 점검 기록은 [docs/production/wording-audit-v06.md](docs/production/wording-audit-v06.md)에 있다. v05는 3페이지 목차의 쉬는 시간 표시를 없애고 다섯 항목의 간격을 맞췄다. v04는 v03의 구성과 도식을 그대로 두고, 강의 시간 배분을 화면과 발표자 노트와 목록 파일에서 모두 뺐으며, 화면 문구를 발표용 문장으로 다시 다듬었다. 쪽 번호와 2번 슬라이드의 작가 중심 순서(작가가 주제를 고르고 초고 v01을 직접 쓴 뒤 AI와 함께 다듬음)는 그대로다.
-- [슬라이드별 내용 정의 v10](docs/plans/slide-content-plan-v10.md): 용어와 사례의 뜻, 장면, 사실 제약의 기준. 발표자 노트에 표시한 정정(v06 번호로 2, 9, 18, 23, 29, 30, 31번, v07 쪽으로는 2, 9, 20, 25, 31, 32, 33쪽)만 v10보다 우선한다. v06과 v07 노트의 v10 발췌는 강의 시간 표기를 빼고 화면과 맞지 않던 표현 몇 곳을 현재 표현으로 바꾼 편집본이며, 원문은 이 파일에 그대로 있다.
+- 발표 자료는 v10이다. v10은 v09에서 14쪽, 15쪽, 16쪽만 바꿨다. 14쪽 OMH는 같은 일(CSV 빈 값 처리 후 무엇이 바뀌었는지 확인)을 'OpenCode 순정'과 'OMH 통합 구성'으로 비교하고, OMH 경계 안에 OMO와 업무 도구, 작업 절차를 함께 그렸다(OMO의 역할 구성까지 묶은 OMH). 15쪽 참고 A는 Superpowers를 AS-IS, pstack을 TO-BE로 놓은 이 발표의 전환 방향을 보이고, 16쪽 참고 B는 그 방향에 맞춰 라벨과 노트를 고쳤다. 근거와 관점은 [docs/references/pstack-superpowers-comparison-v02.md](docs/references/pstack-superpowers-comparison-v02.md), 제작 메모는 [docs/production/comparison-axes-v10.md](docs/production/comparison-axes-v10.md)에 있다. v09에서는 9쪽 게이트웨이에 채널, 세션, 스케줄러를 표시했다. 사례 이름은 화면과 목차에서 클식이로 통일했다. 기반 소프트웨어 OpenClaw와는 노트에서 구분한다. 9쪽 코디네이터 상자에 업무 난이도를 자동 판단한다고 표시하고 직접 처리와 워커 위임으로 이어지게 했다. 44장(본문 42장과 참고 2장). [slides/index.html](slides/index.html)을 연다. v07은 v06 본문을 그대로 두고, OMH 사례(14쪽) 바로 뒤에 선택형 참고 화면 두 장을 넣었다. 참고 A(15쪽)는 같은 기능 추가 요청에서 pstack과 Superpowers가 먼저 챙기는 것을 나란히 보이고, 참고 B(16쪽)는 가져올 것을 기능 목록보다 작업 방식으로 정리하며 OMH를 적용 예로 든다. 두 장은 '본문으로, 17쪽' 링크로 건너뛸 수 있고, 근거는 [docs/references/pstack-superpowers-comparison-v01.md](docs/references/pstack-superpowers-comparison-v01.md), 제작 메모는 [docs/production/reference-slides-v07.md](docs/production/reference-slides-v07.md)에 있다. 원래 15쪽부터는 두 장씩 밀렸다(쉬는 시간 28쪽, CEO Agent 33쪽, 질의응답 44쪽). v06은 v05의 구성과 디자인을 그대로 두고 문구와 역할 표현을 점검했다. 9번 OpenClaw 도식은 코디네이터가 요청을 직접 처리하거나 워커에게 위임하고, 돌아온 결과를 같은 코디네이터가 확인하는 구조로 다시 그렸다. 14번 OMH는 같은 일(CSV 빈 값 처리 후 무엇이 바뀌었는지 확인)을 업무 도구와 절차를 더하기 전과 후로 나란히 비교한다. 부모, 쓰기 주체, 등록처럼 행위자가 흐리거나 구현 내부에서 온 표현은 누가 무엇을 하는지 드러나게 고쳤다. 점검 기록은 [docs/production/wording-audit-v06.md](docs/production/wording-audit-v06.md)에 있다. v05는 3페이지 목차의 쉬는 시간 표시를 없애고 다섯 항목의 간격을 맞췄다. v04는 v03의 구성과 도식을 그대로 두고, 강의 시간 배분을 화면과 발표자 노트와 목록 파일에서 모두 뺐으며, 화면 문구를 발표용 문장으로 다시 다듬었다. 쪽 번호와 2번 슬라이드의 작가 중심 순서(작가가 주제를 고르고 초고 v01을 직접 쓴 뒤 AI와 함께 다듬음)는 그대로다.
+- [슬라이드별 내용 정의 v10](docs/plans/slide-content-plan-v10.md): 용어와 사례의 뜻, 장면, 사실 제약의 기준. 발표자 노트에 표시한 정정(v06 번호로 2, 9, 18, 23, 29, 30, 31번, v07 쪽으로는 2, 9, 20, 25, 31, 32, 33쪽)만 v10보다 우선한다. v10에서는 14쪽 비교 기준에 관한 정정도 내용 기획보다 우선한다. v06과 v07 노트의 v10 발췌는 강의 시간 표기를 빼고 화면과 맞지 않던 표현 몇 곳을 현재 표현으로 바꾼 편집본이며, 원문은 이 파일에 그대로 있다.
 - [슬라이드 제작 브리프 v02](docs/production/slide-production-brief-v02.md): 다섯 장 구성, 42장 화면 지도, 배치 계열, v02 정정. 이 브리프의 시간 배분은 v02와 v03 기준의 기록이며 v04에는 적용하지 않는다.
 - [DESIGN.md](DESIGN.md): v02 디자인 기준(표준 절 순서). v01 디자인은 [docs/design/DESIGN-v01.md](docs/design/DESIGN-v01.md)에 보존했다.
 - 용어 25개를 각각 독립 슬라이드에서 설명하고, 사례 다섯 개(클식이, OMH, Grokbot, AI교양, CEO Agent)를 관련 용어 바로 뒤에 둔다. CEO Agent는 한 장이다. 3장과 4장 사이에 쉬는 시간이 있고, 참가자 실습은 없다.
@@ -21,16 +21,16 @@
 - `slides/`: 발표 자료, PDF, 발표자 노트와 빌드 소스(`slides/src/`).
 - `assets/`: 현재 발표 자료의 표지 미리보기와 시각자료.
 
-## 발표 자료 v09 (현재)
+## 발표 자료 v10 (현재)
 
 HTML이 기준 산출물이다. 도식은 모두 편집 가능한 인라인 SVG와 실제 텍스트이며, 화면 전체를 이미지로 넣지 않았다. 네트워크 없이 열리고 외부 글꼴이나 CDN을 쓰지 않는다.
 
 - [slides/index.html](slides/index.html): 현재 입구. 단일 파일이라 파일 하나만 보내도 열린다.
-- [slides/harness-engineering-workshop-v09.html](slides/harness-engineering-workshop-v09.html): 기준 단일 파일 내보내기. `index.html`과 같은 내용이다.
-- [slides/harness-engineering-workshop-v09.pdf](slides/harness-engineering-workshop-v09.pdf): 브라우저 인쇄로 만든 44쪽, 16:9 PDF. 쪽마다 번호가 찍힌다.
-- [slides/speaker-notes-v09.md](slides/speaker-notes-v09.md): 발표자 노트 전문. 참고 화면 노트에는 고정 커밋의 출처 링크가 있다. 용어와 사례 슬라이드에는 v10 해당 블록의 편집 발췌(강의 시간 표기를 빼고 일부 표현을 현재 표현으로 바꿈)가 들어 있고, 정정이 필요한 곳은 정정이 발췌보다 먼저 나온다.
-- [slides/harness-engineering-workshop-v09.manifest.json](slides/harness-engineering-workshop-v09.manifest.json): 화면 번호, 원래 번호(`original`), 참고 표시(`reference`), 종류, 배치, 장, 용어, 사례, v10 출처 목록과 발췌에서 바꾼 표현 목록(`excerpt_edits`). 같은 정보가 각 슬라이드의 `data-` 속성에도 있다.
-- [slides/v09-check-evidence.json](slides/v09-check-evidence.json): 최근 브라우저 검사 결과.
+- [slides/harness-engineering-workshop-v10.html](slides/harness-engineering-workshop-v10.html): 기준 단일 파일 내보내기. `index.html`과 같은 내용이다.
+- [slides/harness-engineering-workshop-v10.pdf](slides/harness-engineering-workshop-v10.pdf): 브라우저 인쇄로 만든 44쪽, 16:9 PDF. 쪽마다 번호가 찍힌다.
+- [slides/speaker-notes-v10.md](slides/speaker-notes-v10.md): 발표자 노트 전문. 참고 화면 노트에는 고정 커밋의 출처 링크가 있다. 용어와 사례 슬라이드에는 v10 해당 블록의 편집 발췌(강의 시간 표기를 빼고 일부 표현을 현재 표현으로 바꿈)가 들어 있고, 정정이 필요한 곳은 정정이 발췌보다 먼저 나온다.
+- [slides/harness-engineering-workshop-v10.manifest.json](slides/harness-engineering-workshop-v10.manifest.json): 화면 번호, 원래 번호(`original`), 참고 표시(`reference`), 종류, 배치, 장, 용어, 사례, v10 출처 목록과 발췌에서 바꾼 표현 목록(`excerpt_edits`). 같은 정보가 각 슬라이드의 `data-` 속성에도 있다.
+- [slides/v10-check-evidence.json](slides/v10-check-evidence.json): 최근 브라우저 검사 결과.
 
 조작: 오른쪽, 아래, PageDown, 스페이스는 다음, 왼쪽, 위, PageUp은 이전, Home과 End는 처음과 끝, N은 발표자 노트, F는 전체 화면이다. `index.html#s33`이나 `#33`처럼 슬라이드 번호로 바로 연다. `?notes=1`을 붙이면 노트가 열린 채로 시작한다. 인쇄하면 슬라이드마다 한 쪽씩 나온다. 쪽 번호는 화면 오른쪽 아래에 "n / 44"로 보인다.
 
@@ -40,6 +40,7 @@ HTML이 기준 산출물이다. 도식은 모두 편집 가능한 인라인 SVG�
 
 ## 이전 판 (보존)
 
+- v09 발표 자료: [HTML](slides/harness-engineering-workshop-v09.html), [PDF](slides/harness-engineering-workshop-v09.pdf), [발표자 노트](slides/speaker-notes-v09.md). 14쪽 비교 축(OpenCode와 OMO를 공통 기반으로 둔 추가 전과 추가 후)과 15쪽 나란히 비교를 바꾸기 전 판.
 - v08 발표 자료: [HTML](slides/harness-engineering-workshop-v08.html), [PDF](slides/harness-engineering-workshop-v08.pdf). 9쪽 게이트웨이에 스케줄러를 표시하기 전 판.
 
 - v07 발표 자료: [HTML](slides/harness-engineering-workshop-v07.html), [PDF](slides/harness-engineering-workshop-v07.pdf). 9쪽 자동 난이도 판단 표기를 더하기 전 판.
@@ -60,6 +61,6 @@ HTML이 기준 산출물이다. 도식은 모두 편집 가능한 인라인 SVG�
 
 ## 버전과 공개 범위
 
-현재 발표 자료는 v09, 내용 정의는 v10이다. 과거 버전과 초기 노트는 개정 이력으로 보존하며 현재 진행안과 다를 수 있다.
+현재 발표 자료는 v10, 내용 정의는 v10이다. 과거 버전과 초기 노트는 개정 이력으로 보존하며 현재 진행안과 다를 수 있다.
 
 공개본은 로컬 절대 경로를 논리 경로로 바꿨다. `ceo-agent/`와 `workspace/`로 적힌 근거 자료는 이 저장소에 포함되지 않은 로컬 참고 자료다. CEO Agent의 실제 페르소나, 회사 내부 자료, 보고서, 인증정보와 실행 로그는 포함하지 않는다. Grokbot 첨부 원자료도 포함하지 않는다. 로컬 원본과 복사 검증 파일은 별도로 보존한다.

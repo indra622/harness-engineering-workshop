@@ -30,8 +30,8 @@ Layout of `v02/`:
 - `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body. Slide 2 has a v02 and a v03 variant.
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
-- `build_v02.py`: assembles v09 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v09).
+- `build_v02.py`: assembles v10 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v10).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 
@@ -175,6 +175,10 @@ v05 keeps the v04 presentation and removes only the slide 3 break marker, with f
 ### v08 coordinator wording
 
 `copy_v08.py` changes only original slide9: 업무 난이도 자동 판단, with notes on choosing direct handling or delegation under user instructions. Historical versions remain reproducible.
+
+### v10 comparison axes (slides 14 to 16)
+
+`copy_v10.py` changes three slides and nothing else. Slide 14 compares bare OpenCode with the OMH integrated package, drawn with OMO, the business tools and the procedure inside the OMH boundary (supersedes the v06 to v09 OpenCode + OMO before/after axis; a v10 correction precedes the historical v10 S11 excerpt in the notes). Slide 15 is a directional view chosen for this deck, AS-IS Superpowers to TO-BE pstack; source facts stay those of the pinned commits. Slide 16 labels and notes follow both changes, and the Superpowers line becomes dashed. The check accepts two-digit versions (`v10`), keeps the v06 to v09 slide 14 and 15 label sets, and for v10 also tests that OMO, tools and procedure sit inside the OMH box, that OpenCode sits outside it, and that AS-IS is drawn above TO-BE with the transition arrow. Builder and check default to v10.
 
 ### v09 gateway caption
 

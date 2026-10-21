@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>하네스 엔지니어링 | 워크숍</title>
-<meta name="description" content="하네스 엔지니어링 워크숍 발표 자료 v09. 44장(참고 2장 포함), 용어 25개와 사례 5개.">
+<meta name="description" content="하네스 엔지니어링 워크숍 발표 자료 v10. 44장(참고 2장 포함), 용어 25개와 사례 5개.">
 <style>
 /* Harness Engineering deck, v02 redesign proof.
    Every slide is a 1920 x 1080 canvas scaled as one unit, so composition is
@@ -395,7 +395,7 @@ html:not(.js) .controls { display: none; }
   <p class="pageno" aria-label="1쪽, 전체 44쪽">1 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 1번. 표지</h3>
+<h3>v10 1번. 표지</h3>
 <p>주제는 하네스 엔지니어링. 모델 하나를 바꾸는 이야기가 아니라, 모델이 일하도록 둘러싼 구조를 설계하는 이야기입니다.</p>
 <p>그림 읽기: 가운데가 모델이고, 둘레에 컨텍스트, 도구, 실행 위치, 상태, 검증이 있습니다. 바깥 틀 전체를 하네스라고 부르고, 틀 아래쪽의 사람의 확인은 결과를 넘길지 정하는 마지막 결정입니다.</p>
 <p>이 정의는 이 워크숍의 작업 정의이고, 제품마다 하네스의 범위는 다를 수 있습니다. 하네스를 바꾼다고 결과가 반드시 좋아진다고 말하지 않습니다.</p>
@@ -468,7 +468,7 @@ html:not(.js) .controls { display: none; }
   <p class="pageno" aria-label="2쪽, 전체 44쪽">2 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 2번. 시작: AI교양 글 한 편</h3>
+<h3>v10 2번. 시작: AI교양 글 한 편</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10 S1과 2.3은 &#x27;사용자가 원문을 보냈고, 받은 본문을 v01로 보존한다&#x27;고만 적어, v01이 누가 쓴 원고인지 드러내지 않는다. 실제 순서는 작가가 주제를 찾고 고른다, 작가가 초고 v01을 직접 쓴다, AI와 함께 검토하고 수정한다, 작가가 최종 확정한다, 삽화를 만들어 보관한다, 네이버 비공개 초안을 만든다, 다시 열어 확인한다이다. v01은 작가의 원고이며 AI가 생성한 초안이 아니다. v02 화면의 &#x27;원문을 받아 v01로 보존&#x27; 표현도 이 순서로 대체한다.</p>
 <p>장면부터. AI교양 글 한 편이 끝났습니다. 순서가 중요합니다. 작가가 주제를 찾아 골랐고, 초고 v01을 직접 썼습니다. v01은 작가의 원고이지 AI가 만든 초안이 아닙니다. 그다음에야 AI와 함께 문장과 논지를 검토하고 고쳤고(v02, v03처럼 새 버전으로 남기고 이전 본은 보존), 작가가 최종본을 확정했습니다. 확정 뒤에 삽화를 만들어 보관하고, 네이버 비공개 초안을 만든 뒤 다시 열어 확인했습니다. 공개 발행은 이 흐름에 없습니다.</p>
 <p>색 읽기: 호박색은 작가가 하거나 정하는 단계, 파랑은 AI와 함께하는 단계, 흰 상자는 확정 뒤 정해진 절차.</p>
@@ -512,7 +512,7 @@ html:not(.js) .controls { display: none; }
   <p class="pageno" aria-label="3쪽, 전체 44쪽">3 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 3번. 오늘의 길</h3>
+<h3>v10 3번. 오늘의 길</h3>
 <p>개념과 사례를 번갈아 봅니다. 각 장은 질문 하나로 열고, 그 질문에 답하는 용어를 익힌 뒤 사례에서 다시 찾습니다.</p>
 
 <h3>v10 발췌 S2 (v06 편집)</h3>
@@ -581,7 +581,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="4쪽, 전체 44쪽">4 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 4번. 1장 AI는 무엇을 하고, 누가 실행할까?</h3>
+<h3>v10 4번. 1장 AI는 무엇을 하고, 누가 실행할까?</h3>
 <p>질문: AI는 무엇을 하고, 누가 실행할까?</p>
 <p>순서: 모델, 에이전트, 런타임, 하네스, 그리고 사례 OpenClaw.</p>
 <p>왜 이 순서인가: 모델은 요청만 만든다는 점을 먼저 세우고, 반복 구조(에이전트), 실제 실행(런타임), 작업 틀(하네스)로 넓힙니다. 그다음 OpenClaw 구조에서 방금 배운 네 개념을 찾습니다. 워커와 세션은 OpenClaw에서 이름만 보고 4장에서 다룹니다.</p>
@@ -628,7 +628,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="5쪽, 전체 44쪽">5 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 5번. 용어 1 모델</h3>
+<h3>v10 5번. 용어 1 모델</h3>
 <p><strong>장면 먼저:</strong> 팀장이 AI에게 &#x27;내일 회의 준비해 줘&#x27;라고 한 줄만 보낸다. 안건과 참석자는 적지 않았다. 질문: 안건을 모르는데도 그럴듯한 준비안이 나올까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S3 (v06 편집)</h3>
@@ -684,7 +684,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="6쪽, 전체 44쪽">6 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 6번. 용어 2 에이전트</h3>
+<h3>v10 6번. 용어 2 에이전트</h3>
 <p><strong>장면 먼저:</strong> 일정 안내 메일의 초안을 AI에게 맡긴다. 일정 정보가 빠지면 되물어 채우고 고쳐 쓴다. 발송은 하지 않는다. 질문: 초안을 쓰고, 빠진 정보를 확인하고, 고치는 일을 끝나는 조건이 있는 반복으로 돌리면 에이전트에 가까울까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S4 (v06 편집)</h3>
@@ -726,7 +726,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="7쪽, 전체 44쪽">7 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 7번. 용어 3 런타임</h3>
+<h3>v10 7번. 용어 3 런타임</h3>
 <p><strong>장면 먼저:</strong> &#x27;지난주 회의 메모 파일 열어 줘&#x27;라는 요청을 보낸다. 실제로 파일을 여는 쪽은 누구일까? 질문: AI 모델이 파일을 직접 열까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S5 (v06 편집)</h3>
@@ -789,7 +789,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="8쪽, 전체 44쪽">8 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 8번. 용어 4 하네스</h3>
+<h3>v10 8번. 용어 4 하네스</h3>
 <p><strong>장면 먼저:</strong> 문서 검토자가 체크리스트 파일을 폴더에 넣어 두고 검토를 시작한다. 질문: 체크리스트 파일이 폴더에 있는 것만으로 검토 틀이 갖춰질까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S6 (v06 편집)</h3>
@@ -868,7 +868,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="9쪽, 전체 44쪽">9 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 9번. 사례 1 클식이</h3>
+<h3>v10 9번. 사례 1 클식이</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10은 OpenClaw를 &#x27;로컬 구조&#x27;라고 부른다. v02 화면은 &#x27;작업 구조&#x27;라고 쓴다. 게이트웨이, 코디네이터, 워커가 어디서 도는지와 모델 추론이 어디서 일어나는지는 따로 확인하고 따로 말한다.</p>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10의 &#x27;부모의 독립 검증&#x27;은 별도의 부모 에이전트가 아니라, 같은 코디네이터가 워커에게서 돌아온 결과를 확인하는 단계를 가리킨다. 아래 발췌의 해당 줄도 이 표현으로 바꿨다. 테스트 실행, 파일 상태, 원본과의 비교는 코디네이터가 쓰는 확인 방법이자 증거이지 새로운 행위자가 아니다. 독립된 방법이나 독립된 출처로 확인해도 확인하는 쪽은 같은 코디네이터이며, 같은 모델이라면 워커와 같은 오류를 함께 놓칠 수 있다. 코디네이터는 어떤 도구를 쓸지 고를 뿐이고, 도구를 실제로 실행하는 것은 런타임이다. 직접 처리는 코디네이터가 원격 워커에게 맡기지 않고 조회나 간단한 수정을 스스로 하는 경로이고, 워커에게 위임은 Codex나 Claude Code 같은 워커가 작업을 맡는 경로다. 위임 기준은 운영 지침이지 자동 라우터가 아니며, 모델 추론이 어디서 일어나는지는 따로 확인한다. 작업 확인 화면은 워커가 하고 있는 같은 작업과 세션을 보는 화면(예: 워커 쪽 공식 원격 앱)이며, 보고 지시할 뿐 파일을 따로 고치는 두 번째 작업자가 아니다. 게이트웨이와 연결된 화면으로 그리지 않았다.</p>
 <p><strong>장면 먼저:</strong> 디스코드에서 &#x27;보고서 검증해 줘&#x27;라는 요청이 들어왔다. 질문: 이 요청을 받는 쪽, 맡기는 쪽, 확인하는 쪽은 각각 누구일까?</p>
@@ -945,7 +945,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="10쪽, 전체 44쪽">10 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 10번. 2장 일하는 방법을 어디에 담을까?</h3>
+<h3>v10 10번. 2장 일하는 방법을 어디에 담을까?</h3>
 <p>질문: 일하는 방법을 어디에 담을까?</p>
 <p>순서: 오케스트레이션, 도구, 스킬, 사례 OMH, 플러그인, 커넥터, MCP, 사례 Grokbot.</p>
 <p>왜 이 순서인가: 누가 언제 무엇을 하는지(오케스트레이션), 실제로 실행되는 기능(도구), 다시 쓰는 절차(스킬)를 먼저 나눕니다. OMH에서 이 셋을 바꾼 사례를 본 뒤, 포장(플러그인), 외부 연결(커넥터), 통신 규약(MCP)을 가르고 Grokbot 설명과 비교합니다.</p>
@@ -987,7 +987,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="11쪽, 전체 44쪽">11 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 11번. 용어 5 오케스트레이션</h3>
+<h3>v10 11번. 용어 5 오케스트레이션</h3>
 <p><strong>장면 먼저:</strong> 회의 준비에서 안건 초안, 확인, 최종 정리가 필요하다. 세 가지를 누가 언제 맡을지 아직 정하지 않았다. 질문: 맡는 사람이 정해지지 않으면 같은 일을 두 번 하게 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S8 (v06 편집)</h3>
@@ -1050,7 +1050,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="12쪽, 전체 44쪽">12 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 12번. 용어 6 도구</h3>
+<h3>v10 12번. 용어 6 도구</h3>
 <p><strong>장면 먼저:</strong> 폴더에서 최근 회의 파일을 찾아 목록을 만든다. 손이 실제로 가는 곳은 어디일까? 질문: 목록을 가져오는 기능과, 찾는 순서를 적은 메모 중 무엇이 실제로 실행될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S9 (v06 편집)</h3>
@@ -1114,7 +1114,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="13쪽, 전체 44쪽">13 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 13번. 용어 7 스킬</h3>
+<h3>v10 13번. 용어 7 스킬</h3>
 <p><strong>장면 먼저:</strong> 주간 고객 문의 요약을 매주 같은 순서로 만든다. 그 순서를 적은 메모가 있다. 질문: 매주 다시 쓸 수 있도록 순서를 묶어 둔 것은 무엇이라고 부를까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S10 (v06 편집)</h3>
@@ -1140,67 +1140,65 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <section class="slide" id="s14" data-physical="14" data-kind="case" data-label="14. 사례 2 OMH" data-layout="case" data-original="14" data-chapter="2" data-case="OMH" data-case-index="2" data-v10="S11">
 <div class="stage"><div class="canvas t-paper">
   <p class="abs kicker case-head"><span class="tag-case">사례 2 / 5</span>OMH</p>
-  <p class="abs qline case-q"><b>질문</b>모델을 그대로 두고 도구와 절차만 더하면, 같은 일에서 무엇이 달라질까?</p>
-  <h2 class="abs case-title">같은 모델, 같은 일. 달라진 건 확인 수단</h2>
-  <svg class="svg" style="left:120px;top:340px" width="1680" height="600" viewBox="0 0 1680 600" role="img" aria-label="같은 일, CSV 빈 값 처리 후 무엇이 바뀌었는지 확인하기의 추가 전과 추가 후. 추가 전에도 파일을 보고 스크립트를 쓸 수 있고, 추가 후에는 data_inspect와 data_compare로 확인 수단을 다시 쓴다. 수정 규칙은 같다"><defs><marker id="s14-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s14-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s14-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s14-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
+  <p class="abs qline case-q"><b>질문</b>OpenCode만 쓸 때와, OMO까지 묶은 OMH로 같은 일을 할 때 무엇이 달라질까?</p>
+  <h2 class="abs case-title">같은 일, OpenCode 순정과 OMH 통합 구성</h2>
+  <svg class="svg" style="left:120px;top:340px" width="1680" height="600" viewBox="0 0 1680 600" role="img" aria-label="같은 일, CSV 빈 값 처리 후 무엇이 바뀌었는지 확인하기. 왼쪽 OpenCode 순정은 범용 코딩 에이전트가 파일 읽기, 쓰기, 명령 실행으로 필요한 점검과 비교를 그때그때 준비한다. 오른쪽 OMH 통합 구성은 OMO의 역할 협업과 작업 흐름, 업무 도구 data_inspect와 data_compare, 필요할 때 쓰는 작업 절차 omh-rigorous를 한 묶음 안에 담는다">
     <rect x="0" y="0" width="1680" height="54" fill="#ECE9E1"/>
     <text x="24" y="27" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">같은 일</text>
     <text x="150" y="27" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">CSV 빈 값 처리 후, 무엇이 바뀌었는지 확인</text>
-    <text x="1656" y="27" font-size="26" fill="#3A4049" text-anchor="end" dominant-baseline="central">모델, 기존 역할, 오프라인 조건은 그대로</text>
-    <text x="330" y="92" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">1  구조 파악</text>
-    <text x="820" y="92" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">2  수정</text>
-    <text x="1210" y="92" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">3  변경 확인</text>
-    <rect x="0" y="116" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="150.0" y="149.4" font-size="32" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">추가 전</text>
-    <text x="150.0" y="191.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">OpenCode + OMO</text>
-    <text x="150.0" y="232.6" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">기존 도구와 역할</text>
-    <rect x="0" y="292" width="300" height="150" fill="#2457A6" stroke="#2457A6" stroke-width="2.5"/>
-    <text x="150.0" y="325.4" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">추가 후</text>
-    <text x="150.0" y="367.0" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">업무 도구와</text>
-    <text x="150.0" y="408.6" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">절차를 더함</text>
-    <rect x="330" y="116" width="460" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="560.0" y="173.1" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">파일을 열어 보거나</text>
-    <text x="560.0" y="208.9" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">점검 스크립트를 작성</text>
-    <polyline points="792,191 814,191" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s14-ink)"/>
-    <rect x="820" y="116" width="360" height="150" fill="#ECE9E1"/>
-    <text x="1000.0" y="173.1" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">고른 빈 값 규칙 적용</text>
-    <text x="1000.0" y="208.9" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">새 파일로 저장</text>
-    <polyline points="1182,191 1204,191" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s14-ink)"/>
-    <rect x="1210" y="116" width="470" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="1445.0" y="173.1" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">비교 기준 키를 정하고</text>
-    <text x="1445.0" y="208.9" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">비교 코드를 준비</text>
-    <polyline points="300,191 324,191" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s14-ink)"/>
-    <rect x="330" y="292" width="460" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="3"/>
-    <text x="560.0" y="328.4" font-size="28" font-weight="700" fill="#2457A6" text-anchor="middle" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">data_inspect</text>
-    <text x="560.0" y="367.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">열, 타입, 빈 값 수, 점검 범위</text>
-    <text x="560.0" y="405.6" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">행 값은 빼고 요약</text>
-    <polyline points="792,367 814,367" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s14-blue)"/>
-    <rect x="820" y="292" width="360" height="150" fill="#ECE9E1"/>
-    <text x="1000.0" y="349.1" font-size="26" font-weight="700" fill="#14171C" text-anchor="middle" dominant-baseline="central">고른 빈 값 규칙 적용</text>
-    <text x="1000.0" y="384.9" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">새 파일로 저장</text>
-    <polyline points="1182,367 1204,367" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s14-blue)"/>
-    <rect x="1210" y="292" width="470" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="3"/>
-    <text x="1445.0" y="328.4" font-size="28" font-weight="700" fill="#2457A6" text-anchor="middle" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">data_compare (id 기준)</text>
-    <text x="1445.0" y="367.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">추가, 삭제, 변경 행 요약</text>
-    <text x="1445.0" y="405.6" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">자동 병합 없음</text>
-    <polyline points="300,367 324,367" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s14-blue)"/>
-    <text x="1000" y="278" font-size="24" font-weight="700" fill="#5E6570" text-anchor="middle" dominant-baseline="central">수정 단계는 같음</text>
-    <rect x="0" y="476" width="1680" height="124" fill="#FFFFFF" stroke="#2457A6" stroke-width="3"/>
-    <text x="28" y="516" font-size="26" font-weight="800" fill="#2457A6" dominant-baseline="central">달라진 것</text>
-    <text x="190" y="516" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">그때그때 준비하던 점검과 비교를, 만들어 둔 도구로. 결과는 같은 형식으로</text>
-    <text x="190" y="562" font-size="24" fill="#3A4049" dominant-baseline="central">omh-rigorous: 필요할 때 골라 쓰는 계획, 실행, 근거 확인 절차 (모델 성능 향상과는 별개)</text>
+    <text x="1656" y="27" font-size="26" fill="#3A4049" text-anchor="end" dominant-baseline="central">같은 모델 사용, 추가 학습 없음</text>
+    <rect x="0" y="80" width="620" height="390" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5" data-box="opencode"/>
+    <text x="28" y="118" font-size="32" font-weight="800" fill="#14171C" dominant-baseline="central">OpenCode 순정</text>
+    <text x="28" y="156" font-size="24" fill="#3A4049" dominant-baseline="central">범용 코딩 에이전트 환경</text>
+    <rect x="28" y="184" width="564" height="96" fill="#ECE9E1"/>
+    <text x="310.0" y="212.4" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">코딩 에이전트</text>
+    <text x="310.0" y="251.6" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">파일 읽기, 쓰기, 명령 실행, 계획과 확인</text>
+    <text x="28" y="318" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">1</text>
+    <text x="64" y="318" font-size="26" fill="#14171C" dominant-baseline="central">파일을 열거나 점검 스크립트 작성</text>
+    <text x="28" y="366" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">2</text>
+    <text x="64" y="366" font-size="26" fill="#14171C" dominant-baseline="central">고른 빈 값 규칙 적용</text>
+    <text x="28" y="414" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">3</text>
+    <text x="64" y="414" font-size="26" fill="#14171C" dominant-baseline="central">비교 코드를 그때그때 준비</text>
+    <rect x="680" y="80" width="1000" height="390" fill="none" stroke="#2457A6" stroke-width="4" data-box="omh"/>
+    <text x="708" y="118" font-size="32" font-weight="800" fill="#2457A6" dominant-baseline="central">OMH 통합 구성</text>
+    <text x="1652" y="118" font-size="26" font-weight="800" fill="#2457A6" text-anchor="end" dominant-baseline="central">OMO + 업무 도구 + 작업 절차</text>
+    <text x="708" y="156" font-size="24" fill="#3A4049" dominant-baseline="central">OMO의 역할 구성까지 묶은 OMH</text>
+    <rect x="708" y="184" width="280" height="112" fill="#E1E9F6" stroke="#2457A6" stroke-width="2.5" data-box="omo"/>
+    <text x="848" y="217.5" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">OMO</text>
+    <text x="848" y="262.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">역할 협업과 작업 흐름</text>
+    <rect x="1006" y="184" width="418" height="112" fill="#FFFFFF" stroke="#2457A6" stroke-width="2.5" data-box="tools"/>
+    <text x="1215" y="217.5" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">업무 도구</text>
+    <text x="1215" y="262.5" font-size="24" fill="#2457A6" text-anchor="middle" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">data_inspect, data_compare</text>
+    <rect x="1442" y="184" width="210" height="112" fill="#FFFFFF" stroke="#2457A6" stroke-width="2.5" data-box="procedure"/>
+    <text x="1547" y="217.5" font-size="30" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">작업 절차</text>
+    <text x="1547" y="262.5" font-size="24" fill="#2457A6" text-anchor="middle" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">omh-rigorous</text>
+    <text x="708" y="318" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">1</text>
+    <text x="744" y="318" font-size="24" fill="#2457A6" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">data_inspect</text>
+    <text x="944" y="318" font-size="26" fill="#14171C" dominant-baseline="central">열, 타입, 빈 값 수 요약 (행 값 없이)</text>
+    <text x="708" y="366" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">2</text>
+    <text x="744" y="366" font-size="26" fill="#14171C" dominant-baseline="central">같은 빈 값 규칙 적용</text>
+    <text x="708" y="414" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">3</text>
+    <text x="744" y="414" font-size="24" fill="#2457A6" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">data_compare</text>
+    <text x="944" y="414" font-size="26" fill="#14171C" dominant-baseline="central">id 기준 추가, 삭제, 변경 요약 (자동 병합 없음)</text>
+    <rect x="0" y="496" width="1680" height="104" fill="#FFFFFF" stroke="#2457A6" stroke-width="3"/>
+    <text x="28" y="532" font-size="26" font-weight="800" fill="#2457A6" dominant-baseline="central">달라진 것</text>
+    <text x="190" y="532" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">그때그때 꾸리던 역할 분담, 점검, 비교를 한 묶음으로</text>
+    <text x="190" y="574" font-size="24" fill="#3A4049" dominant-baseline="central">빈 값 규칙과 결과를 받아들일지는 여전히 사람이 결정</text>
   </svg>
-  <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0;color:#B45309;font-weight:700">추가 전 흐름은 설명용 예시. 모의, 오프라인 기능 점검만 했고 실제 사내 모델의 품질 비교는 하지 않음</p>
+  <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0;color:#B45309;font-weight:700">설명용 예시. 모의, 오프라인 기능 점검만 했고 실제 사내 모델의 품질 비교는 하지 않음</p>
   <p class="pageno" aria-label="14쪽, 전체 44쪽">14 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 14번. 사례 2 OMH</h3>
+<h3>v10 14번. 사례 2 OMH</h3>
+<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10부터 14쪽은 사용자 요청에 따라 &#x27;OpenCode 순정&#x27;과 &#x27;OMO까지 묶은 OMH 통합 구성&#x27;을 비교한다. 아래 v10 기획 발췌(S11)와 v06부터 v09까지의 14쪽은 OpenCode와 OMO를 양쪽 공통 기반으로 두고 OMH가 더한 부분만 비교했는데, 그 비교 축은 이전 판의 기록이다. 발췌 속 &#x27;OMH&#x27;는 OMH가 더한 도구와 절차를 가리키며, 이 화면의 &#x27;OMH 통합 구성&#x27;과 범위가 다르다.</p>
 <p><strong>장면 먼저:</strong> 새 CSV 파일을 받았다. 열이 무엇인지, 빈 값이 얼마나 있는지 먼저 알아야 한다. 질문: 모델만 더 좋은 것으로 바꾸면 이 일이 해결될까?</p>
-<p><strong>추가 전과 추가 후 읽기:</strong> 두 줄은 같은 일, 같은 모델, 같은 OpenCode와 OMO 역할입니다. 추가 전에도 파일을 열어 보고, 스크립트를 쓰고, 계획하고 확인할 수 있습니다. 추가 전 줄은 그 일을 하는 한 가지 흐름을 보여 주는 설명용 예시이지, 측정한 실패 사례가 아닙니다.</p>
-<p><strong>달라진 것:</strong> 구조 파악과 변경 확인에 매번 새로 준비하던 수단(점검 스크립트, 비교 코드)을 이 업무용 도구로 다시 씁니다. data_inspect는 열, 타입, 빈 값 수, 점검 범위를 행 값 없이 요약하고, data_compare는 정한 키(예: id) 기준으로 추가, 삭제, 변경 행을 요약하며 자동으로 병합하지 않습니다. 결과가 매번 같은 형식으로 남아 사람이 확인하기 쉬워집니다. 필요하면 omh-rigorous로 계획, 실행, 근거 확인 절차를 골라 씁니다. 기존 구성에도 계획과 확인은 있으며, 이 절차는 그중 일부를 이 업무에 맞게 고른 것입니다.</p>
-<p><strong>달라지지 않은 것:</strong> 모델은 그대로이고 재학습하지 않았습니다. 수정 단계(빈 값 규칙 적용)도 같습니다. 도구가 생겼다고 오류가 사라지거나 결과 품질이 보장되지는 않습니다. 속도나 정확도를 수치로 비교하지 않았습니다.</p>
-<p><strong>여전히 사람과 모델이 정하는 것:</strong> 어떤 키가 의미 있는 비교 기준인지, 빈 값을 어떤 규칙으로 처리할지, 비교 결과를 받아들일지는 도구가 정하지 않습니다.</p>
-<p><strong>근거의 한계:</strong> 설치와 점검 기록, 모의 환경 테스트는 기능이 연결됐다는 증거입니다. 실제 사내 모델의 품질 비교는 하지 않았습니다. 화면 아래 v10 발췌는 원래 세 칸 구성(현장 제약, 바꾼 것, 증거와 한계)을 설명하며, 원문은 docs/plans/slide-content-plan-v10.md에 그대로 있습니다.</p>
+<p><strong>비교의 두 쪽:</strong> 왼쪽은 OpenCode 순정, 곧 추가 묶음 없이 쓰는 범용 코딩 에이전트 환경입니다. 오른쪽은 OMH 통합 구성입니다. 이 발표에서 'OMH 통합 구성'은 OMO의 역할 협업과 작업 흐름, OMO의 원래 플러그인과 실행기, 의존성까지 한 패키지에 담고, 그 위에 OMH가 더한 업무 도구(data_inspect, data_compare)와 필요할 때 골라 쓰는 작업 절차(omh-rigorous)를 함께 묶은 것을 말합니다. 그래서 그림에서 OMO는 OMH 경계 안에 있습니다. 두 쪽은 서로 경쟁하는 대안이 아니라, 같은 일을 범용 환경으로 할 때와 묶음으로 할 때입니다.</p>
+<p><strong>이름 구분:</strong> 이전 판(v06부터 v09)에서 'OMH'는 OpenCode와 OMO 위에 더한 업무 도구와 절차만을 가리켰습니다. v10부터 14쪽의 'OMH'는 OMO까지 포함한 통합 구성 전체입니다. 업무 도구와 절차만 말할 때는 'OMH가 더한 도구와 절차'라고 부릅니다.</p>
+<p><strong>전제 조건:</strong> OpenCode와 Python은 미리 설치돼 있어야 하는 조건이고, 통합 패키지에 들어 있지 않습니다. OMO의 모든 역할은 고른 같은 모델을 함께 씁니다. 역할마다 다른 모델을 쓰거나, 별도의 상주 프로그램이 돌거나, 품질이 자동으로 보장되는 것은 아닙니다. 모델은 그대로이고 학습하지 않았습니다.</p>
+<p><strong>왼쪽도 할 수 있는 일:</strong> OpenCode 순정에서도 에이전트가 파일을 읽고 쓰고, 명령을 실행하고, 계획하고 확인할 수 있습니다. 같은 일을 할 수 있으며, 필요한 점검 스크립트와 비교 코드, 절차를 그때그때 준비합니다. 왼쪽 흐름은 설명용 예시이지 측정한 실패 사례가 아닙니다.</p>
+<p><strong>달라진 것:</strong> 역할 분담과 작업 흐름(OMO), 구조 점검과 비교 도구(data_inspect는 행 값 없이 열, 타입, 빈 값 수, 점검 범위를 요약하고, data_compare는 정한 키 기준으로 추가, 삭제, 변경 행을 요약하며 자동 병합하지 않음), 필요할 때 쓰는 절차(omh-rigorous)가 한 묶음으로 준비돼 있어 매번 새로 꾸리지 않아도 됩니다. 결과도 같은 형식으로 남습니다.</p>
+<p><strong>여전히 사람과 모델이 정하는 것:</strong> 어떤 키로 비교할지, 빈 값을 어떤 규칙으로 처리할지, 비교 결과를 받아들일지는 도구가 정하지 않습니다. 속도나 정확도를 수치로 비교하지 않았습니다.</p>
+<p><strong>근거:</strong> 패키지 관계는 OMH 통합 v04 참고 문서(구성과 조건, 역할, 도구)를 따랐습니다. 로컬 보관 자료이며 이 저장소에는 들어 있지 않습니다. 근거의 한계: 설치와 점검 기록, 모의 환경 테스트는 기능이 연결됐다는 증거일 뿐이고, 실제 사내 모델의 품질 비교는 하지 않았습니다.</p>
 <h3>v10 발췌 S11 (v06 편집)</h3>
 <p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p><strong>S11. OMH 사례:</strong> 모델을 바꾸지 않고 틀을 바꾼 이유</p>
@@ -1227,75 +1225,73 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 15 참고 A: 같은 개발 요청, 서로 다른 작업 설계 -->
-<section class="slide" id="s15" data-physical="15" data-kind="reference" data-label="15. 참고 A: 같은 개발 요청, 서로 다른 작업 설계" data-layout="reference" data-reference="A" data-chapter="2">
+<!-- ===================================================== 15 참고 A: AS-IS Superpowers, TO-BE pstack -->
+<section class="slide" id="s15" data-physical="15" data-kind="reference" data-label="15. 참고 A: AS-IS Superpowers, TO-BE pstack" data-layout="reference" data-reference="A" data-chapter="2">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker case-head"><span class="tag-case">참고 A</span>pstack과 Superpowers</p>
+  <p class="abs kicker case-head"><span class="tag-case">참고 A</span>Superpowers에서 pstack으로</p>
   <a class="abs ref-skip" href="#s17">본문으로, 17쪽</a>
-  <p class="abs qline case-q"><b>질문</b>같은 기능 추가 요청(가상): CSV 내보내기. 두 스킬 묶음은 무엇을 먼저 챙길까?</p>
-  <h2 class="abs case-title">같은 개발 요청, 서로 다른 작업 설계</h2>
-  <svg class="svg" style="left:120px;top:340px" width="1680" height="600" viewBox="0 0 1680 600" role="img" aria-label="같은 가상 개발 요청에 대한 pstack과 Superpowers의 대표 흐름 비교. pstack: 플레이북 고르기(이 예에서는 기능), 구조 파악과 설계, 범위를 정해 위임, 실제 동작으로 검증. Superpowers: 의도와 설계 합의, 작은 단위로 계획, 테스트 먼저 구현과 작업별 검토, 브랜치 전체 검토. 둘 다 스킬 묶음이고 둘 다 맡기고 검토할 수 있으며, 차이는 강조점"><defs><marker id="s15-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s15-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s15-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s15-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
-    <text x="340" y="14" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">1</text>
-    <text x="680" y="14" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">2</text>
-    <text x="1020" y="14" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">3</text>
-    <text x="1360" y="14" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">4</text>
-    <rect x="0" y="40" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="150.0" y="73.4" font-size="32" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">pstack</text>
-    <text x="150.0" y="115.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">작업별 플레이북</text>
-    <text x="150.0" y="156.6" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">위임, 실제 동작 검증</text>
-    <polyline points="300,115 334,115" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s15-ink)"/>
-    <rect x="340" y="40" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="490.0" y="96.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">플레이북 고르기</text>
-    <text x="490.0" y="133.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">이번엔 기능 플레이북</text>
-    <polyline points="642,115 674,115" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s15-ink)"/>
-    <rect x="680" y="40" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="830.0" y="96.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">구조 파악, 설계</text>
-    <text x="830.0" y="133.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">영향 범위, 데이터 구조</text>
-    <polyline points="982,115 1014,115" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s15-ink)"/>
-    <rect x="1020" y="40" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="1170.0" y="96.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">범위 정해 위임</text>
-    <text x="1170.0" y="133.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">성공 기준, 분할 점검</text>
-    <polyline points="1322,115 1354,115" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s15-ink)"/>
-    <rect x="1360" y="40" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="1510.0" y="96.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">실제 동작으로 검증</text>
-    <text x="1510.0" y="133.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">결과와 근거 대조</text>
-    <rect x="0" y="230" width="300" height="150" fill="#2457A6" stroke="#2457A6" stroke-width="2.5"/>
-    <text x="150.0" y="263.4" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">Superpowers</text>
-    <text x="150.0" y="305.0" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">설계, 계획, 테스트,</text>
-    <text x="150.0" y="346.6" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">단계마다 검토</text>
-    <polyline points="300,305 334,305" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s15-blue)"/>
-    <rect x="340" y="230" width="300" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="2.5"/>
-    <text x="490.0" y="286.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">의도와 설계 합의</text>
-    <text x="490.0" y="323.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">작업 크기에 맞게</text>
-    <polyline points="642,305 674,305" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s15-blue)"/>
-    <rect x="680" y="230" width="300" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="2.5"/>
-    <text x="830.0" y="286.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">작은 단위로 계획</text>
-    <text x="830.0" y="323.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">파일, 확인 방법까지</text>
-    <polyline points="982,305 1014,305" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s15-blue)"/>
-    <rect x="1020" y="230" width="300" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="2.5"/>
-    <text x="1170.0" y="286.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">테스트 먼저 구현</text>
-    <text x="1170.0" y="323.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">명세, 품질 함께 검토</text>
-    <polyline points="1322,305 1354,305" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s15-blue)"/>
-    <rect x="1360" y="230" width="300" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="2.5"/>
-    <text x="1510.0" y="286.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">브랜치 전체 검토</text>
-    <text x="1510.0" y="323.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">마무리 방식 선택</text>
-    <rect x="0" y="420" width="1680" height="130" fill="#ECE9E1"/>
-    <text x="28" y="462" font-size="26" font-weight="800" fill="#2457A6" dominant-baseline="central">공통점</text>
-    <text x="160" y="462" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">둘 다 다시 쓰는 스킬 묶음, 둘 다 하위 에이전트에 맡기고 검토할 수 있음</text>
-    <text x="160" y="508" font-size="24" fill="#3A4049" dominant-baseline="central">이 그림은 먼저 챙기는 것의 차이. 할 수 있는 일의 유무나 성능 순위가 아님. 대표 흐름을 편집한 요약</text>
+  <p class="abs qline case-q"><b>질문</b>같은 기능 추가 요청(가상): CSV 내보내기. 무엇을 먼저 챙기는 방식으로 바꿔 볼까?</p>
+  <h2 class="abs case-title">AS-IS Superpowers, TO-BE pstack</h2>
+  <svg class="svg" style="left:120px;top:330px" width="1680" height="620" viewBox="0 0 1680 620" role="img" aria-label="이 발표가 고른 전환 방향. AS-IS Superpowers: 의도와 설계 합의, 작은 단위로 계획, 테스트 먼저 구현과 작업별 검토, 브랜치 전체 검토. 큰 화살표로 TO-BE pstack: 작업별 플레이북 고르기, 구조 파악과 설계, 범위를 정해 위임, 실제 동작으로 검증. 둘 다 계획, 위임, 검토, 테스트를 할 수 있다"><defs><marker id="s15-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s15-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s15-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s15-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
+    <rect x="0" y="10" width="300" height="150" fill="#ECE9E1" stroke="#14171C" stroke-width="2.5"/>
+    <text x="150.0" y="41.8" font-size="24" font-weight="800" fill="#5E6570" text-anchor="middle" dominant-baseline="central">AS-IS</text>
+    <text x="150.0" y="85.0" font-size="32" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">Superpowers</text>
+    <text x="150.0" y="128.2" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">설계 합의와 단계 검토</text>
+    <rect x="340" y="10" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="490.0" y="66.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">의도와 설계 합의</text>
+    <text x="490.0" y="103.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">작업 크기에 맞게</text>
+    <polyline points="642,85 674,85" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s15-ink)"/>
+    <rect x="680" y="10" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="830.0" y="66.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">작은 단위로 계획</text>
+    <text x="830.0" y="103.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">파일, 확인 방법까지</text>
+    <polyline points="982,85 1014,85" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s15-ink)"/>
+    <rect x="1020" y="10" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="1170.0" y="66.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">테스트 먼저 구현</text>
+    <text x="1170.0" y="103.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">명세, 품질 함께 검토</text>
+    <polyline points="1322,85 1354,85" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s15-ink)"/>
+    <rect x="1360" y="10" width="300" height="150" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
+    <text x="1510.0" y="66.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">브랜치 전체 검토</text>
+    <text x="1510.0" y="103.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">마무리 방식 선택</text>
+    <polyline points="300,85 334,85" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s15-ink)"/>
+    <polygon points="900,178 1100,178 1100,210 1170,210 1000,262 830,210 900,210" fill="#2457A6"/>
+    <text x="1196" y="222" font-size="28" font-weight="800" fill="#2457A6" dominant-baseline="central">작업별 절차 선택으로</text>
+    <rect x="0" y="280" width="300" height="150" fill="#2457A6" stroke="#2457A6" stroke-width="2.5"/>
+    <text x="150.0" y="311.8" font-size="24" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">TO-BE</text>
+    <text x="150.0" y="355.0" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">pstack</text>
+    <text x="150.0" y="398.2" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">작업별 플레이북, 위임, 검증</text>
+    <rect x="340" y="280" width="300" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="3"/>
+    <text x="490.0" y="336.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">작업별 플레이북</text>
+    <text x="490.0" y="373.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">이번엔 기능 플레이북</text>
+    <polyline points="642,355 674,355" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s15-blue)"/>
+    <rect x="680" y="280" width="300" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="3"/>
+    <text x="830.0" y="336.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">구조 파악, 설계</text>
+    <text x="830.0" y="373.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">영향 범위, 데이터 구조</text>
+    <polyline points="982,355 1014,355" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s15-blue)"/>
+    <rect x="1020" y="280" width="300" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="3"/>
+    <text x="1170.0" y="336.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">범위 정해 위임</text>
+    <text x="1170.0" y="373.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">성공 기준, 안전한 분할</text>
+    <polyline points="1322,355 1354,355" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s15-blue)"/>
+    <rect x="1360" y="280" width="300" height="150" fill="#E1E9F6" stroke="#2457A6" stroke-width="3"/>
+    <text x="1510.0" y="336.5" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">실제 동작으로 검증</text>
+    <text x="1510.0" y="373.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">결과와 근거 대조</text>
+    <polyline points="300,355 334,355" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s15-blue)"/>
+    <rect x="0" y="470" width="1680" height="130" fill="#ECE9E1"/>
+    <text x="28" y="512" font-size="26" font-weight="800" fill="#2457A6" dominant-baseline="central">바뀌는 초점</text>
+    <text x="200" y="512" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">설계 합의와 단계별 검토 중심에서, 작업별 플레이북과 범위 정한 위임, 실제 동작 검증 중심으로</text>
+    <text x="200" y="558" font-size="24" fill="#3A4049" dominant-baseline="central">공통 기반: 계획, 위임, 검토와 테스트</text>
   </svg>
   <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">출처: pstack 0.15.29 (cursor/plugins 111cf6a), Superpowers 7.0.0 (obra/superpowers b739a8a), 2026-10-21 기준 편집 요약</p>
   <p class="pageno" aria-label="15쪽, 전체 44쪽">15 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 15번. 참고 A: 같은 개발 요청, 서로 다른 작업 설계</h3>
+<h3>v10 15번. 참고 A: AS-IS Superpowers, TO-BE pstack</h3>
 <p><strong>이 화면의 위치:</strong> 본문(25개 용어와 다섯 사례)에 들지 않는 참고 화면입니다. 필요하면 오른쪽 위 '본문으로'를 눌러 17쪽으로 건너뜁니다.</p>
-<p><strong>읽는 법:</strong> 같은 가상 요청(CSV 내보내기 기능 추가)을 두 스킬 묶음이 어떤 순서로 다루는지, 각자의 대표 흐름을 편집해 나란히 놓았습니다. 실제 실행 기록이 아니며, 속도나 품질을 잰 결과도 아닙니다.</p>
-<p><strong>pstack 줄:</strong> poteto-mode가 요청을 보고 플레이북(README 기준 23개, 기능, 버그 수정, 조사 등)을 고릅니다. 2단계부터는 이 예처럼 기능 플레이북을 고른 경우이며, 플레이북마다 단계는 다릅니다. 기능 플레이북은 영향 범위를 파악하고 설계를 탐색한 뒤, 먼저 끝내야 할 단계, 서로 독립인 작업, 공유 상태, 가장 작은 안전한 분할을 점검하고, 파일 범위와 데이터 구조, 성공 기준을 정해 구현을 하위 에이전트에 맡깁니다. 그다음 실제 동작으로 검증합니다. 코드, 테스트, 실행 결과를 근거와 대조하는 것이며, 화면 캡처만 보는 것이 아닙니다. 순서 없이 자동으로 병렬 분산하는 흐름이 아니며, 한 기능처럼 코드가 엮인 일은 한 담당자에게 둡니다.</p>
-<p><strong>Superpowers 줄:</strong> brainstorming이 먼저 의도를 끌어내고 이해한 내용을 되짚습니다. 작은 변경은 대화로, 큰 작업은 설계 문서로 합의합니다(작업 크기에 맞게). 이어서 작은 단위의 계획을 쓰고, 계획을 실행할 때는 작업마다 새 하위 에이전트가 테스트 먼저(RED, GREEN, REFACTOR) 구현하고 작업별 검토 한 번이 명세 충족과 코드 품질을 함께 봅니다. 마지막에 브랜치 전체를 검토하고 마무리 방식을 고릅니다. 하위 에이전트 대신 한 세션에서 계획을 그대로 실행하고 마지막에 한 번 검토하는 방식(executing-plans)도 있습니다.</p>
-<p><strong>공통점과 차이:</strong> 둘 다 다시 쓰는 스킬 묶음이고, 둘 다 하위 에이전트에 맡기고 검토할 수 있습니다. pstack은 작업에 맞는 플레이북과 위임 범위, 실제 동작으로 하는 검증을 앞에 두고, Superpowers는 설계 합의, 계획, 테스트 먼저, 단계마다 검토를 앞에 둡니다. 한쪽은 빠르고 한쪽은 꼼꼼하다는 식의 구분이나, 병렬과 직렬의 이분법으로 말하지 않습니다. 에이전트 수도 고정돼 있지 않습니다.</p>
-<p><strong>실행 환경:</strong> pstack은 Cursor 이름으로 쓰여 있고 Claude Code용 어댑터가 이름을 바꿔 대응하며, Cursor 전용 기능은 건너뜁니다. 그래서 호스트마다 똑같이 동작한다고 말하지 않습니다. Superpowers도 Claude Code만이 아니라 여러 코딩 에이전트에 설치 경로를 안내합니다.</p>
-<p><strong>표기 주의:</strong> Superpowers README의 스킬 목록에는 '두 단계 검토'라는 표현이 남아 있지만, 같은 커밋의 subagent-driven-development 스킬 본문은 작업별 검토 한 번이 명세와 품질을 함께 본다고 설명합니다. 이 화면은 스킬 본문을 따랐습니다.</p>
+<p><strong>전환 관점:</strong> 이 발표는 Superpowers식 흐름을 지금의 방식(AS-IS)으로, pstack식 흐름을 바꿔 가려는 방향(TO-BE)으로 놓고 봅니다. 이 발표가 고른 관점이며, 어느 쪽이 더 성숙하다는 단계표나 제품 순위가 아닙니다. 실제 조직이 이미 이 전환을 마쳤다는 기록도 아닙니다.</p>
+<p><strong>AS-IS, Superpowers:</strong> brainstorming이 먼저 의도를 끌어내고 이해한 내용을 되짚습니다. 작은 변경은 대화로, 큰 작업은 설계 문서로 합의합니다. 이어서 작은 단위의 계획을 쓰고, 실행할 때는 작업마다 새 하위 에이전트가 테스트 먼저(RED, GREEN, REFACTOR) 구현하고 작업별 검토 한 번이 명세 충족과 코드 품질을 함께 봅니다. 마지막에 브랜치 전체를 검토하고 마무리 방식을 고릅니다. 하위 에이전트 대신 한 세션에서 실행하고 마지막에 한 번 검토하는 방식(executing-plans)도 있습니다.</p>
+<p><strong>TO-BE, pstack:</strong> poteto-mode가 요청을 보고 작업에 맞는 플레이북(README 기준 23개)을 고릅니다. 2단계부터는 기능 플레이북을 고른 경우의 예이며, 플레이북마다 단계는 다릅니다. 기능 플레이북은 영향 범위를 파악하고 설계를 탐색한 뒤, 먼저 끝낼 단계, 독립 작업, 공유 상태, 가장 작은 안전한 분할을 점검하고, 파일 범위와 데이터 구조, 성공 기준을 정해 구현을 맡깁니다. 그다음 실제 동작으로 검증합니다. 코드, 테스트, 실행 결과를 근거와 대조하는 것이며, 화면 캡처만 보는 것이 아닙니다. 한 기능처럼 코드가 엮인 일은 한 담당자에게 둡니다.</p>
+<p><strong>바뀌는 것과 바뀌지 않는 것:</strong> 바뀌는 것은 무엇을 먼저 챙기는지입니다. 설계 합의와 단계별 검토 중심에서, 작업에 맞는 플레이북과 범위를 정한 위임, 실제 동작으로 하는 검증 중심으로 옮겨 갑니다. pstack에도 계획과 테스트가 있고 Superpowers에도 위임과 검토가 있습니다. 전환한다고 정확도나 속도가 저절로 오른다고 말하지 않으며, 잰 수치도 없습니다.</p>
+<p><strong>실행 환경:</strong> pstack은 Cursor 이름으로 쓰여 있고 Claude Code용 어댑터가 이름을 바꿔 대응하며, Cursor 전용 기능은 건너뜁니다. 호스트마다 똑같이 동작한다고 말하지 않습니다. Superpowers도 여러 코딩 에이전트에 설치 경로를 안내합니다.</p>
+<p><strong>표기 주의:</strong> Superpowers README의 스킬 목록에는 '두 단계 검토'라는 표현이 남아 있지만, 같은 커밋의 subagent-driven-development 본문은 작업별 검토 한 번이 명세와 품질을 함께 본다고 설명합니다. 이 화면은 스킬 본문을 따랐습니다.</p>
 <h3>출처 (고정된 커밋)</h3><ul><li><a href="https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/README.md">pstack README (cursor/plugins, 0.15.29)</a><br><span class="src">https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/README.md</span></li><li><a href="https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/plugin.json">pstack plugin.json (버전)</a><br><span class="src">https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/plugin.json</span></li><li><a href="https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/skills/poteto-mode/playbooks/feature.md">pstack 기능(feature) 플레이북</a><br><span class="src">https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/skills/poteto-mode/playbooks/feature.md</span></li><li><a href="https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/docs/harness/claude-code.md">pstack Claude Code 어댑터</a><br><span class="src">https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/docs/harness/claude-code.md</span></li><li><a href="https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/README.md">Superpowers README (obra/superpowers, 7.0.0)</a><br><span class="src">https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/README.md</span></li><li><a href="https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/.claude-plugin/plugin.json">Superpowers plugin.json (버전)</a><br><span class="src">https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/.claude-plugin/plugin.json</span></li><li><a href="https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/brainstorming/SKILL.md">Superpowers brainstorming</a><br><span class="src">https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/brainstorming/SKILL.md</span></li><li><a href="https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/subagent-driven-development/SKILL.md">Superpowers subagent-driven-development</a><br><span class="src">https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/subagent-driven-development/SKILL.md</span></li><li><a href="https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/test-driven-development/SKILL.md">Superpowers test-driven-development</a><br><span class="src">https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/test-driven-development/SKILL.md</span></li></ul>
 </aside>
 </section>
@@ -1307,14 +1303,14 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <a class="abs ref-skip" href="#s17">본문으로, 17쪽</a>
   <p class="abs qline case-q"><b>질문</b>다른 팀의 스킬 묶음에서 무엇을 가져와야 할까?</p>
   <h2 class="abs case-title">가져올 것은 기능 목록보다 작업 방식</h2>
-  <svg class="svg" style="left:120px;top:340px" width="1680" height="600" viewBox="0 0 1680 600" role="img" aria-label="pstack과 Superpowers에서 눈여겨볼 작업 방식과 내 환경의 조건이 '내 환경에서 쓸 절차와 도구 선택'으로 모이고, OMH의 경우 설정된 모델과 OpenCode, OMO 역할을 그대로 두고 업무 도구와 omh-rigorous를 더한다. Superpowers는 비교용 참고이고, 오른쪽은 이런 선택을 OMH에 적용한 예"><defs><marker id="s16-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s16-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s16-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s16-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker><marker id="s16-muted" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#5E6570"/></marker><marker id="s16-muted-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#5E6570"/></marker></defs>
+  <svg class="svg" style="left:120px;top:340px" width="1680" height="600" viewBox="0 0 1680 600" role="img" aria-label="pstack과 Superpowers에서 눈여겨볼 작업 방식과 내 환경의 조건이 '내 환경에서 쓸 절차와 도구 선택'으로 모이고, OMH의 경우 OMO의 역할 구성까지 묶고 설정된 모델은 같게 두며 업무 도구와 omh-rigorous를 더한다. Superpowers는 비교용 참고이고, 오른쪽은 이런 선택을 OMH에 적용한 예"><defs><marker id="s16-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="s16-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="s16-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="s16-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker><marker id="s16-muted" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#5E6570"/></marker><marker id="s16-muted-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#5E6570"/></marker></defs>
     <rect x="0" y="0" width="520" height="172" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="260.0" y="30.6" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">pstack에서 눈여겨볼 것</text>
+    <text x="260.0" y="30.6" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">TO-BE pstack에서 가져올 것</text>
     <text x="260.0" y="67.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">작업에 맞는 플레이북</text>
     <text x="260.0" y="104.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">범위와 성공 기준을 정한 위임</text>
     <text x="260.0" y="141.4" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">실제 동작으로 검증</text>
     <rect x="0" y="196" width="520" height="172" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
-    <text x="260.0" y="226.6" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">Superpowers (비교 참고)</text>
+    <text x="260.0" y="226.6" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">AS-IS Superpowers (비교 참고)</text>
     <text x="260.0" y="263.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">작업 크기에 맞춘 설계 합의</text>
     <text x="260.0" y="300.5" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">작은 단위 계획, 테스트 먼저</text>
     <text x="260.0" y="337.4" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">단계마다 검토</text>
@@ -1326,14 +1322,14 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="840.0" y="230.0" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">절차와 도구 선택</text>
     <text x="840.0" y="274.8" font-size="24" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">그대로 옮기지 않고 골라서 맞춤</text>
     <polyline points="520,86 570,86 570,180 614,180" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s16-ink)"/>
-    <polyline points="520,282 570,282 570,270 614,270" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#s16-ink)"/>
+    <polyline points="520,282 570,282 570,270 614,270" fill="none" stroke="#5E6570" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#s16-muted)"/>
     <polyline points="520,434 590,434 590,310 614,310" fill="none" stroke="#5E6570" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#s16-muted)"/>
     <polyline points="1060,230 1154,230" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#s16-blue)"/>
     <rect x="1160" y="0" width="520" height="470" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5"/>
     <text x="1190" y="40" font-size="30" font-weight="800" fill="#14171C" dominant-baseline="central">적용 예: OMH</text>
-    <text x="1190" y="110" font-size="24" font-weight="800" fill="#5E6570" dominant-baseline="central">그대로</text>
+    <text x="1190" y="110" font-size="24" font-weight="800" fill="#5E6570" dominant-baseline="central">같음</text>
     <text x="1310" y="110" font-size="26" font-weight="700" fill="#14171C" dominant-baseline="central">설정된 모델 하나</text>
-    <text x="1310" y="150" font-size="26" font-weight="700" fill="#14171C" dominant-baseline="central">OpenCode와 OMO 역할</text>
+    <text x="1190" y="150" font-size="24" font-weight="800" fill="#5E6570" dominant-baseline="central">포함</text><text x="1310" y="150" font-size="26" font-weight="700" fill="#14171C" dominant-baseline="central">OMO 역할 구성</text>
     <text x="1190" y="215" font-size="24" font-weight="800" fill="#5E6570" dominant-baseline="central">더함</text>
     <text x="1310" y="215" font-size="26" font-weight="700" fill="#2457A6" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">data_inspect</text>
     <text x="1310" y="253" font-size="26" font-weight="700" fill="#2457A6" font-family="SF Mono, Menlo, Consolas, monospace" dominant-baseline="central">data_compare</text>
@@ -1350,11 +1346,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="16쪽, 전체 44쪽">16 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 16번. 참고 B: 가져올 것은 기능 목록보다 작업 방식</h3>
+<h3>v10 16번. 참고 B: 가져올 것은 기능 목록보다 작업 방식</h3>
 <p><strong>이 화면의 위치:</strong> 참고 A에 이어지는 참고 화면입니다. 오른쪽 위 '본문으로'를 누르면 17쪽(플러그인)으로 갑니다.</p>
 <p><strong>읽는 법:</strong> 왼쪽은 두 스킬 묶음에서 눈여겨볼 작업 방식, 아래는 내 환경의 조건입니다. 셋이 가운데 '내 환경에서 쓸 절차와 도구 선택'으로 모입니다. 스킬 묶음을 통째로 설치해 그대로 따르기보다, 작업 방식을 보고 내 도구와 모델, 제약에 맞게 골라 쓰자는 교육용 정리입니다.</p>
-<p><strong>OMH와의 연결:</strong> 적용 예로 든 OMH는 설정된 모델 하나와 OpenCode, OMO의 기존 역할을 그대로 두고, 업무 도구(data_inspect, data_compare)와 필요할 때 골라 쓰는 절차(omh-rigorous)를 더했습니다(14쪽). v10 기획(S11)에는 omh-rigorous가 pstack에서 버그 수정, 기능 구현, 근거 기반 조사 절차를 골라 적응시킨 것이라고 적혀 있습니다. 이 화면의 pstack 연결은 그 기록에만 근거합니다. 어느 pstack 버전에서 가져왔는지는 이 저장소에 기록이 없어, 참고 A가 인용한 0.15.29와 같다고 말하지 않습니다.</p>
-<p><strong>Superpowers의 자리:</strong> Superpowers는 여기서 비교용 참고이며, OMH 구현의 근거로 제시하지 않습니다. 가운데 상자에서 오른쪽으로 가는 선은 '이렇게 골라 적용한다'는 설계 선택의 예이지, OMH가 실제로 어디서 무엇을 가져왔는지를 보여 주는 계보가 아닙니다.</p>
+<p><strong>OMH와의 연결:</strong> 적용 예로 든 OMH는 14쪽의 OMH 통합 구성입니다. OMO의 역할 구성까지 한 묶음에 담고, 설정된 모델 하나를 그대로 쓰며, 업무 도구(data_inspect, data_compare)와 필요할 때 골라 쓰는 절차(omh-rigorous)를 더했습니다. 오른쪽 상자의 '포함'은 OMO가 OMH 안에 들어 있다는 뜻입니다. v10 기획(S11)에는 omh-rigorous가 pstack에서 버그 수정, 기능 구현, 근거 기반 조사 절차를 골라 적응시킨 것이라고 적혀 있습니다. 이 화면의 pstack 연결은 그 기록에만 근거합니다. 어느 pstack 버전에서 가져왔는지는 이 저장소에 기록이 없어, 참고 A가 인용한 0.15.29와 같다고 말하지 않습니다.</p>
+<p><strong>Superpowers의 자리:</strong> 15쪽에서 Superpowers는 AS-IS, pstack은 TO-BE입니다. 이 화면에서도 pstack은 가져올 방향, Superpowers는 지금 방식의 비교 참고이며, OMH 구현의 근거로 제시하지 않습니다. 그래서 Superpowers에서 가운데로 가는 선은 점선입니다. 가운데 상자에서 오른쪽으로 가는 선은 '이렇게 골라 적용한다'는 설계 선택의 예이지, OMH가 실제로 어디서 무엇을 가져왔는지를 보여 주는 계보가 아닙니다.</p>
 <p><strong>화면에 쓰지 않은 단서:</strong> 이 화면은 교육용 정리입니다. 어느 쪽이 더 낫다는 점수, 벤치마크, 모든 환경에서 그대로 동작한다는 호환성 주장은 하지 않습니다. 설치 방법도 안내하지 않습니다. 두 묶음 모두 설치 경로가 호스트마다 다르고, pstack은 Cursor 전용 단계를 다른 호스트에서 건너뜁니다.</p>
 <h3>출처 (고정된 커밋)</h3><ul><li><a href="https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/README.md">pstack README (cursor/plugins, 0.15.29)</a><br><span class="src">https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/README.md</span></li><li><a href="https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/plugin.json">pstack plugin.json (버전)</a><br><span class="src">https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/plugin.json</span></li><li><a href="https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/skills/poteto-mode/playbooks/feature.md">pstack 기능(feature) 플레이북</a><br><span class="src">https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/skills/poteto-mode/playbooks/feature.md</span></li><li><a href="https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/docs/harness/claude-code.md">pstack Claude Code 어댑터</a><br><span class="src">https://github.com/cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490/pstack/docs/harness/claude-code.md</span></li><li><a href="https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/README.md">Superpowers README (obra/superpowers, 7.0.0)</a><br><span class="src">https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/README.md</span></li><li><a href="https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/.claude-plugin/plugin.json">Superpowers plugin.json (버전)</a><br><span class="src">https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/.claude-plugin/plugin.json</span></li><li><a href="https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/brainstorming/SKILL.md">Superpowers brainstorming</a><br><span class="src">https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/brainstorming/SKILL.md</span></li><li><a href="https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/subagent-driven-development/SKILL.md">Superpowers subagent-driven-development</a><br><span class="src">https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/subagent-driven-development/SKILL.md</span></li><li><a href="https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/test-driven-development/SKILL.md">Superpowers test-driven-development</a><br><span class="src">https://github.com/obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/skills/test-driven-development/SKILL.md</span></li></ul>
 </aside>
@@ -1403,7 +1399,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="17쪽, 전체 44쪽">17 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 17번. 용어 8 플러그인</h3>
+<h3>v10 17번. 용어 8 플러그인</h3>
 <p><strong>장면 먼저:</strong> 메일 작성 도구에 쓰기 지침, 서식 기능, 외부 계정 연결 설정이 한 묶음으로 설치된다. 질문: 이 묶음을 설치하면 계정 연결까지 끝난 것으로 봐도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S12 (v06 편집)</h3>
@@ -1465,7 +1461,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="18쪽, 전체 44쪽">18 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 18번. 용어 9 커넥터</h3>
+<h3>v10 18번. 용어 9 커넥터</h3>
 <p><strong>장면 먼저:</strong> 이번 주 회의 일정을 캘린더에서 가져와 준비 목록에 넣어야 한다. 질문: AI가 캘린더를 바로 읽을 수 있을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S13 (v06 편집)</h3>
@@ -1527,7 +1523,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="19쪽, 전체 44쪽">19 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 19번. 용어 10 MCP</h3>
+<h3>v10 19번. 용어 10 MCP</h3>
 <p><strong>장면 먼저:</strong> 여러 도구가 파일 목록과 파일 내용을 서로 같은 방식으로 주고받아야 한다. 질문: 도구마다 따로 약속을 만들어야 할까, 공통 약속이 있으면 충분할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S14 (v06 편집)</h3>
@@ -1595,7 +1591,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="20쪽, 전체 44쪽">20 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 20번. 사례 3 Grokbot</h3>
+<h3>v10 20번. 사례 3 Grokbot</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> OpenClaw 줄의 확인 역할은 v10의 &#x27;부모&#x27;가 아니라 같은 코디네이터다. 결과 확인을 코디네이터가 하더라도 그것이 독립된 다른 에이전트의 검토가 되지는 않는다.</p>
 <p><strong>장면 먼저:</strong> 여러 봇이 역할을 나눠 맡고 하나의 공유 공간을 쓴다는 설명을 들었다. 질문: 우리 팀에도 이런 구조가 맞을까?</p>
 <h3>v10 발췌 S15 (v06 편집)</h3>
@@ -1648,7 +1644,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="21쪽, 전체 44쪽">21 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 21번. 3장 AI는 무엇을 알고 있을까?</h3>
+<h3>v10 21번. 3장 AI는 무엇을 알고 있을까?</h3>
 <p>질문: AI는 무엇을 알고 있을까?</p>
 <p>순서: 프롬프트, 컨텍스트, 토큰, 컨텍스트 창, 메모리, 그리고 사례 AI교양.</p>
 <p>핵심 구분: 디스크에 있는 파일이 아니라 이번 호출에 실제로 들어간 정보가 컨텍스트입니다. 모델은 학습으로 얻은 일반 지식도 갖고 있지만, 이 업무의 파일, 결정, 규칙은 입력에 들어가야 근거로 쓸 수 있습니다.</p>
@@ -1686,7 +1682,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="22쪽, 전체 44쪽">22 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 22번. 용어 11 프롬프트</h3>
+<h3>v10 22번. 용어 11 프롬프트</h3>
 <p><strong>장면 먼저:</strong> 회의 준비를 AI에게 맡기면서 두 가지 요청 중 하나를 고른다. 하나는 &#x27;회의 준비해 줘&#x27;다. 질문: 안건, 참석자, 지난 결정을 넣은 요청과 한 줄 요청 중 어느 쪽이 결과를 더 좌우할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S16 (v06 편집)</h3>
@@ -1743,7 +1739,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="23쪽, 전체 44쪽">23 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 23번. 용어 12 컨텍스트</h3>
+<h3>v10 23번. 용어 12 컨텍스트</h3>
 <p><strong>장면 먼저:</strong> 회의 요청에 안건과 참석자, 지난 결정 사항을 빼고 보낸다. 지난 회의록 파일 경로는 알려 준다. 질문: AI는 지난 회의의 결정을 떠올릴 수 있을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S17 (v06 편집)</h3>
@@ -1808,7 +1804,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="24쪽, 전체 44쪽">24 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 24번. 용어 13 토큰</h3>
+<h3>v10 24번. 용어 13 토큰</h3>
 <p><strong>장면 먼저:</strong> 같은 안내 메일을 한국어 한 통과 영어 한 통으로 준비한다. 질문: 두 메일의 글자 수가 같으면 토큰 수도 같을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S18 (v06 편집)</h3>
@@ -1862,7 +1858,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="25쪽, 전체 44쪽">25 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 25번. 용어 14 컨텍스트 창</h3>
+<h3>v10 25번. 용어 14 컨텍스트 창</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10의 &#x27;압축은 현재 창을 줄이는 일&#x27;은 이전 표현이다. 압축은 창에 넣는 내용, 즉 입력의 분량을 줄이는 일이며 모델의 컨텍스트 창 크기는 그대로다. 화면의 현재 표현을 따른다.</p>
 <p><strong>장면 먼저:</strong> 100쪽짜리 계약 문서를 한 번에 넣고 검토를 맡긴다. 질문: 문서 전체가 한 번의 입력에 들어가고, 앞부분 내용도 끝까지 기억될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
@@ -1928,7 +1924,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="26쪽, 전체 44쪽">26 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 26번. 용어 15 메모리</h3>
+<h3>v10 26번. 용어 15 메모리</h3>
 <p><strong>장면 먼저:</strong> 어제 정한 회의 날짜를 적은 인계 파일이 있다. 오늘은 새 대화를 연다. 질문: 새 대화를 열면 어제의 결정이 자동으로 따라올까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S20 (v06 편집)</h3>
@@ -1999,7 +1995,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="27쪽, 전체 44쪽">27 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 27번. 사례 4 AI교양</h3>
+<h3>v10 27번. 사례 4 AI교양</h3>
 <p><strong>장면 먼저:</strong> AI교양 원문이 들어왔다. 최종본은 아직 확정되지 않았는데, 삽화부터 만들어 보자는 요청이 온다. 질문: 확정 전에 삽화를 만들어도 될까?</p>
 <h3>v10 발췌 S21 (v06 편집)</h3>
 <p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
@@ -2032,7 +2028,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="28쪽, 전체 44쪽">28 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 28번. 쉬는 시간</h3>
+<h3>v10 28번. 쉬는 시간</h3>
 <p>쉬는 시간. 돌아오면 4장에서 세션, 워커, 서브에이전트를 보고 CEO Agent 사례로 넘어갑니다.</p>
 <h3>v10 발췌 S22 (v06 편집)</h3>
 <p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
@@ -2065,7 +2061,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="29쪽, 전체 44쪽">29 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 29번. 4장 누가 이어서 일할까?</h3>
+<h3>v10 29번. 4장 누가 이어서 일할까?</h3>
 <p>질문: 누가 이어서 일할까?</p>
 <p>순서: 세션, 워커, 서브에이전트, 그리고 사례 CEO Agent.</p>
 <p>핵심 구분: 세션은 작업 맥락, 워커는 실행 담당. 역할을 나눠도 그것만으로 독립 검증이 되지는 않습니다.</p>
@@ -2112,7 +2108,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="30쪽, 전체 44쪽">30 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 30번. 용어 16 세션</h3>
+<h3>v10 30번. 용어 16 세션</h3>
 <p><strong>장면 먼저:</strong> 같은 회의 준비 대화를 노트북과 휴대폰에서 연다. 질문: 같은 대화를 두 화면에서 보면 작업자도 두 명일까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S23 (v06 편집)</h3>
@@ -2171,7 +2167,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="31쪽, 전체 44쪽">31 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 31번. 용어 17 워커</h3>
+<h3>v10 31번. 용어 17 워커</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> 그림의 경계는 작업 지시상 범위이지 권한 샌드박스가 아니다. 실제로 강제되는 권한은 도구와 런타임 설정이 정한다. v10의 &#x27;권한 경계&#x27;, &#x27;쓰기 금지&#x27; 표현을 기술적으로 막힌 환경을 시연한 것으로 읽지 않는다.</p>
 <p><strong>장면 먼저:</strong> 문서 검토에서 한 사람은 고치기만 하고 다른 사람은 메모만 쓰기로 나뉘어 있다. 질문: 문서를 실제로 고칠 담당은 누구로 정해야 할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
@@ -2226,7 +2222,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="32쪽, 전체 44쪽">32 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 32번. 용어 18 서브에이전트</h3>
+<h3>v10 32번. 용어 18 서브에이전트</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10 화면 구성의 &#x27;쓰기 권한 없음&#x27;은 v02에서 &#x27;읽기 전용 작업 지시 (이번 예시)&#x27;로 바뀌었다. 지시만으로 실제 쓰기 권한이 사라지지는 않는다. 권한은 설정에 따라 다르다.</p>
 <p><strong>장면 먼저:</strong> 긴 문서에서 용어 정의만 따로 뽑는 일을 다른 작업자에게 나눠 준다. 질문: 그 작업자가 원문을 고쳐도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
@@ -2318,7 +2314,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="33쪽, 전체 44쪽">33 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 33번. 사례 5 CEO Agent</h3>
+<h3>v10 33번. 사례 5 CEO Agent</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10의 &#x27;등록(register)&#x27;은 데이터 등록이 아니라 상황에 맞는 말투와 문체를 뜻한다. &#x27;판단 루브릭&#x27;은 결과에서 무엇을 짚을지 정하는 검토 기준이다. 둘은 서로 다른 명세이며, 과업, 독자, 자리에 따라 각각 고른다. 아래 발췌의 해당 줄도 이 표현으로 바꿨다.</p>
 <p><strong>장면 먼저:</strong> 같은 사실을 사내 검토용 보고와 외부 연설용 문장으로 옮겨야 한다. 질문: 같은 사실이라면 강조도 같아야 할까?</p>
 <h3>v10 발췌 S26 (v06 편집)</h3>
@@ -2376,7 +2372,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="34쪽, 전체 44쪽">34 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 34번. 5장 끝났다는 말을 어떻게 믿을까?</h3>
+<h3>v10 34번. 5장 끝났다는 말을 어떻게 믿을까?</h3>
 <p>질문: 끝났다는 말을 어떻게 믿을까?</p>
 <p>순서: 워크플로우, 자동화, 완료 보고, 검증, 로컬 실행, 클라우드 실행, 리모트 컨트롤, 그리고 종합.</p>
 <p>왜 실행 위치가 이 장에 있나: "끝났다"는 말을 믿으려면 무엇이 어디서 돌았고 누가 개입했는지까지 적어야 하기 때문입니다. 로컬과 클라우드는 실행 위치, 리모트 컨트롤은 개입 방식이라는 다른 축입니다.</p>
@@ -2424,7 +2420,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="35쪽, 전체 44쪽">35 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 35번. 용어 19 워크플로우</h3>
+<h3>v10 35번. 용어 19 워크플로우</h3>
 <p><strong>장면 먼저:</strong> AI교양 원문을 받았다. 최종본은 아직 확정되지 않았고, 삽화부터 만들어 보고 싶다. 질문: 최종 확정 전에 삽화를 만들어도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S27 (v06 편집)</h3>
@@ -2487,7 +2483,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="36쪽, 전체 44쪽">36 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 36번. 용어 20 자동화</h3>
+<h3>v10 36번. 용어 20 자동화</h3>
 <p><strong>장면 먼저:</strong> AI교양 최종 확정 메시지가 도착했다. 저장과 비공개 초안 작성을 자동으로 이어 가게 하고 싶다. 질문: 확정 메시지 하나로 뒤의 제작 전체를 자동으로 시작해도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S28 (v06 편집)</h3>
@@ -2549,7 +2545,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="37쪽, 전체 44쪽">37 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 37번. 용어 21 완료 보고</h3>
+<h3>v10 37번. 용어 21 완료 보고</h3>
 <p><strong>장면 먼저:</strong> 작업자가 &#x27;검토 완료&#x27;라는 한 줄로 보고했다. 질문: 그 한 줄이면 검토가 끝났다고 말할 수 있을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S29 (v06 편집)</h3>
@@ -2607,7 +2603,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="38쪽, 전체 44쪽">38 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 38번. 용어 22 검증</h3>
+<h3>v10 38번. 용어 22 검증</h3>
 <p><strong>장면 먼저:</strong> 주간 요약에 &#x27;이번 주 문의 42건&#x27;이라고 적혀 있다. 질문: 이 숫자가 맞는지 누가 어떻게 확인할까? 한 번 보는 것으로 충분할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S30 (v06 편집)</h3>
@@ -2664,7 +2660,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="39쪽, 전체 44쪽">39 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 39번. 용어 23 로컬 실행</h3>
+<h3>v10 39번. 용어 23 로컬 실행</h3>
 <p><strong>장면 먼저:</strong> 내 노트북의 메모 폴더를 AI 도구가 읽고 요약한다. 질문: 파일을 읽는 일이 노트북에서 일어나면 모델의 요약 답변도 노트북에서 만들어질까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S31 (v06 편집)</h3>
@@ -2722,7 +2718,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="40쪽, 전체 44쪽">40 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 40번. 용어 24 클라우드 실행</h3>
+<h3>v10 40번. 용어 24 클라우드 실행</h3>
 <p><strong>장면 먼저:</strong> 모델은 외부 서버에서 초안을 쓰고, 초안 파일은 내 노트북에 저장한다. 질문: 이 작업을 클라우드 작업이라고 한 단어로 불러도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S32 (v06 편집)</h3>
@@ -2778,7 +2774,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="41쪽, 전체 44쪽">41 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 41번. 용어 25 리모트 컨트롤</h3>
+<h3>v10 41번. 용어 25 리모트 컨트롤</h3>
 <p><strong>장면 먼저:</strong> 노트북에서 돌고 있는 회의 준비 작업을 휴대폰에서 보고 멈추고 싶다. 질문: 휴대폰에서 멈춤을 누르면 작업 장소가 휴대폰으로 옮겨질까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S33 (v06 편집)</h3>
@@ -2812,7 +2808,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="42쪽, 전체 44쪽">42 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 42번. 종합: 다섯 사례</h3>
+<h3>v10 42번. 종합: 다섯 사례</h3>
 <p><strong>장면 먼저:</strong> 처음의 AI교양 글로 돌아간다. 원문을 받고, 확정을 기다리고, 삽화와 보존, 비공개 초안, 재열람까지 이어진 흐름을 용어로 다시 읽는다. 질문: 다른 네 사례에서도 같은 질문이 통할까?</p>
 <h3>v10 발췌 S34 (v06 편집)</h3>
 <p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
@@ -2851,7 +2847,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="43쪽, 전체 44쪽">43 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 43번. 마치며</h3>
+<h3>v10 43번. 마치며</h3>
 <p>다섯 장의 질문을 한 줄씩 되짚습니다. 각 줄이 그 장의 핵심 구분입니다.</p>
 <ul>
 <li>1장: 모델은 출력과 도구 호출 요청을 만들고, 실제 실행은 런타임이 합니다.</li>
@@ -2879,7 +2875,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <p class="pageno" aria-label="44쪽, 전체 44쪽">44 / 44</p>
 </div></div>
 <aside class="notes">
-<h3>v09 44번. 질의응답</h3>
+<h3>v10 44번. 질의응답</h3>
 <h3>v10 발췌 S35 (v06 편집)</h3>
 <p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S35. 질의응답과 정리</p>
@@ -2912,7 +2908,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <script type="application/json" id="deck-manifest">
 {
  "deck": "harness-engineering-workshop",
- "version": "v09",
+ "version": "v10",
  "slides": 44,
  "excerpt_edits": [
   [
@@ -3241,7 +3237,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
    "physical": 15,
    "id": "s15",
    "kind": "reference",
-   "label": "참고 A: 같은 개발 요청, 서로 다른 작업 설계",
+   "label": "참고 A: AS-IS Superpowers, TO-BE pstack",
    "layout": "reference",
    "chapter": 2,
    "reference": "A"
