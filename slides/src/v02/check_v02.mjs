@@ -33,9 +33,9 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-// versions compare as strings: always two digits after "v" (v02 ... v12)
-const VER = process.env.DECK_VERSION || "v12";
-if (!/^v(0[2-9]|1[0-2])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+// versions compare as strings: always two digits after "v" (v02 ... v13)
+const VER = process.env.DECK_VERSION || "v13";
+if (!/^v(0[2-9]|1[0-3])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case
 const TOTAL = VER >= "v07" ? 44 : 42;
@@ -201,7 +201,12 @@ try {
     if (roles.toolRoute.length) fail(`"도구로 처리" on screen (route must be 직접 처리): ${roles.toolRoute}`);
     // slide 14: the same task before and after the OMH additions, with the evidence limit on screen
     const s14 = await page.evaluate(() => document.querySelector("#s14 .canvas").textContent);
-    const need14 = VER >= "v12"
+    const need14 = VER >= "v13"
+      ? ["요청", "표의 금액 빈칸만 0으로 채워 줘. 번호와 상품은 그대로", "빈칸만 채우랬는데, 번호까지 바뀌었다면?",
+        "OpenCode 순정", "전용 도구가 없으면", "직접 준비할 것", "OMH 통합 구성", "OMO 역할 협업", "총괄", "작업 담당",
+        "검토 담당", "맡김", "고친 표", "다시 고침", "원본과 결과", "검토 결과", "검토 통과 뒤 보고", "금액 빈칸 → 0", "요청한 변경", "상품 A 번호 0 → 3", "요청 밖 변경",
+        "준비된 비교 도구", "data_compare", "쓰는 이유", "설명용", "실제로 실행한 결과"]
+      : VER >= "v12"
       ? ["요청", "행 수는 그대로, 빠진 ID까지 찾아내기", "OpenCode 순정", "전용 도구가 없으면 직접 준비할 것", "OMH 통합 구성",
         "OMO: 역할 분담, 검토", "data_inspect, data_compare", "omh-rigorous", "첫 결과", "행 3 → 3", "빈 값 1 → 0",
         "id 기준 비교", "left_only 1", "right_only 1", "검토 기준", "추가, 삭제 0건", "완료 보고 전에 되돌림", "수정 결과",
@@ -222,7 +227,7 @@ try {
       const steps = await page.evaluate(() => [...document.querySelectorAll("#s14 [data-step]")]
         .map((r) => [r.getAttribute("data-step"), parseFloat(r.getAttribute("x"))]));
       const order = steps.map((x) => x[0]).join(",");
-      if (order !== "first,compare,review,fixed" || !steps.every((x, k) => !k || x[1] > steps[k - 1][1])) {
+      if (VER === "v12" && (order !== "first,compare,review,fixed" || !steps.every((x, k) => !k || x[1] > steps[k - 1][1]))) {
         fail(`slide 14 scene order: ${JSON.stringify(steps)}`);
       }
       const f1 = sum.first, f2 = sum.fixed;
@@ -233,6 +238,57 @@ try {
       if (!agrees) fail(`slide 14 counts do not match the recorded tool run: ${JSON.stringify(sum)}`);
       if (/%|항상|보장|자동으로 막|일마다|매번/.test(s14)) fail("slide 14 makes an absolute or speed claim on screen");
       evidence.omh_v12_scene = { order, first: f1, fixed: f2, engine_version: sum.engine_version };
+    }
+    if (VER >= "v13") {
+      // slide 14 as a role handoff: plain request, roles inside OMO, every arrow between the right roles in order,
+      // the correction back through the same 총괄, the report only after the re-check
+      if (/CSV|amount|left_only|right_only|value_changed/.test(s14)) fail("slide 14 shows technical field names on screen");
+      const r = await page.evaluate(() => {
+        const box = (el) => {
+          const [x, y, w, h] = ["x", "y", "width", "height"].map((a) => parseFloat(el.getAttribute(a)));
+          return [x, y, x + w, y + h];
+        };
+        const roles = Object.fromEntries([...document.querySelectorAll("#s14 [data-role]")]
+          .map((el) => [el.getAttribute("data-role"), box(el)]));
+        const flows = [...document.querySelectorAll("#s14 polyline[data-kind]")].map((el) => ({
+          from: el.getAttribute("data-from"), to: el.getAttribute("data-to"),
+          kind: el.getAttribute("data-kind"), dashed: el.hasAttribute("stroke-dasharray"),
+          pts: el.getAttribute("points").split(" ").map((p) => p.split(",").map(Number)) }));
+        const omo = document.querySelector('#s14 [data-box="omo"]');
+        return { roles, flows, omo: omo && box(omo) };
+      });
+      const inside = (a, b) => a && b && a[0] >= b[0] && a[1] >= b[1] && a[2] <= b[2] && a[3] <= b[3];
+      if (!["lead", "worker", "reviewer"].every((k) => inside(r.roles[k], r.omo))) fail(`slide 14 roles must sit inside OMO: ${JSON.stringify(r)}`);
+      // one arrow per role pair and direction, few enough to read at a glance
+      const seq = r.flows.map((x) => `${x.from}>${x.to}:${x.kind}`).join(" ");
+      const want = "lead>worker:assign worker>lead:result lead>worker:return lead>reviewer:assign reviewer>lead:evidence " +
+        "lead>requester:report";
+      if (seq !== want) fail(`slide 14 handoffs: ${seq}`);
+      // each arrow starts at its sender's edge and ends at its receiver's edge (within a marker's length)
+      const near = (v, w) => Math.abs(v - w) <= 8;
+      const ends = r.flows.filter((x) => x.to !== "requester").every((x) => {
+        const [[x1, y1], [x2, y2]] = x.pts;
+        const a = r.roles[x.from], b = r.roles[x.to];
+        const right = a[0] < b[0];
+        return y1 === y2 && y1 > a[1] && y1 < a[3] && y1 > b[1] && y1 < b[3] &&
+          near(x1, right ? a[2] : a[0]) && near(x2, right ? b[0] : b[2]);
+      });
+      if (!ends) fail("slide 14 handoff arrows do not join their roles");
+      const report = r.flows.find((x) => x.kind === "report");
+      const lead = r.roles.lead;
+      if (!report || !(report.pts[0][0] > lead[0] && report.pts[0][0] < lead[2] && near(report.pts[0][1], lead[1]) && report.pts[1][1] < 80)) {
+        fail(`slide 14 report must leave 총괄 for the request strip: ${JSON.stringify(report)}`);
+      }
+      if (!r.flows.find((x) => x.kind === "return").dashed) fail("slide 14 correction arrow must be dashed");
+      if (r.flows.some((x) => (x.from === "worker" && x.to === "reviewer") || (x.from === "reviewer" && x.to === "requester"))) {
+        fail("slide 14 has a handoff that bypasses 총괄");
+      }
+      // the change strip follows the real comparison: one number gone, one new; the fixed result passes
+      const sum = JSON.parse(readFileSync(path.join(root, "examples", "omh-v12", "evidence", "summary.json"), "utf8"));
+      if (!(sum.first.left_only === 1 && sum.first.right_only === 1 && sum.fixed.left_only === 0 && sum.fixed.right_only === 0)) {
+        fail("slide 14 change strip no longer matches the recorded tool run");
+      }
+      evidence.omh_v13_roles = { handoffs: seq, roles_inside_omo: true, arrows_join_roles: ends };
     }
     if (VER >= "v10") {
       // OMO must sit inside the OMH boundary, and bare OpenCode outside it
@@ -247,7 +303,8 @@ try {
       });
       const inside = (a, b) => a && b && a[0] >= b[0] && a[1] >= b[1] && a[2] <= b[2] && a[3] <= b[3];
       const apart = (a, b) => a && b && (a[2] <= b[0] || b[2] <= a[0]);
-      const nested = ["omo", "tools", "procedure"].every((k) => inside(geo[k], geo.omh));
+      // from v13 the procedure is named in the OMH header rather than drawn as its own box
+      const nested = (VER >= "v13" ? ["omo", "tools"] : ["omo", "tools", "procedure"]).every((k) => inside(geo[k], geo.omh));
       if (!nested) fail(`slide 14: OMO, tools and procedure must sit inside OMH: ${JSON.stringify(geo)}`);
       if (!apart(geo.opencode, geo.omh)) fail("slide 14: OpenCode 순정 must sit outside OMH");
       if (/추가 전|OpenCode \+ OMO/.test(s14)) fail("slide 14 still shows the old OpenCode + OMO baseline");

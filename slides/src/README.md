@@ -30,8 +30,8 @@ Layout of `v02/`:
 - `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body. Slide 2 has a v02 and a v03 variant.
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
-- `build_v02.py`: assembles v12 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v12).
+- `build_v02.py`: assembles v13 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v13).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 
@@ -175,6 +175,10 @@ v05 keeps the v04 presentation and removes only the slide 3 break marker, with f
 ### v08 coordinator wording
 
 `copy_v08.py` changes only original slide9: 업무 난이도 자동 판단, with notes on choosing direct handling or delegation under user instructions. Historical versions remain reproducible.
+
+### v13 role handoff (slide 14)
+
+`copy_v13.py` changes slide 14 and nothing else. The request is said plainly (fill only the blank prices, keep numbers and products). Inside the OMH boundary, the OMO boundary holds three roles: 총괄 sets the criterion and assigns, 작업 담당 edits the table, 검토 담당 compares original and result with the prepared comparison tool and flags the unrequested number change. Six labelled arrows, one per role pair and direction (the re-check reuses them): 맡김, 고친 표, 다시 고침 (dashed amber), 원본과 결과, 검토 결과, and 검토 통과 뒤 보고 from 총괄 to the request strip. The change facts are the v12 real tool run in `examples/omh-v12/`; the role flow is illustrative. Arrows carry `data-from`, `data-to` and `data-kind`, roles `data-role`. The check keeps the v12 slide 14 labels and scene order for v12 only; for v13 it requires the plain request and role labels, no CSV/amount/left_only on screen, roles inside OMO inside OMH, the six handoffs in order with each arrow ending on its roles' edges, a dashed correction, the report leaving 총괄 only, no bypass of 총괄, and change facts matching the recorded run. The v12 print settle and PDF title apply to v13. Builder, check and contact sheet default to v13.
 
 ### v12 impact and reading order (slides 14, 15 and 27)
 
