@@ -1,3 +1,6 @@
+> 제작 브랜치 `develop`입니다. 현재 공개 자료는 [main](https://github.com/indra622/harness-engineering-workshop/tree/main)에서 볼 수 있습니다.
+> 소스, 기획서, 과거 버전과 중간 산출물은 이 브랜치에 보관합니다. 일반 수정은 여기서 진행하고 공개판으로 확정할 때만 선택된 HTML/PDF를 `main`에 반영합니다. [운영 규칙](AGENTS.md)을 따릅니다.
+
 # 하네스 엔지니어링 워크샵
 
 하네스 엔지니어링 워크숍의 용어 설명과 사례를 준비하는 작업 디렉토리다.
