@@ -1,3 +1,7 @@
+# v20 OMH 이어지는 장
+
+현재 제작본은 v20(46장)이다. 14쪽 OMH 사례 뒤 15쪽에 작성자의 OMH v05 → OMP → OMH v06 전환 경험(`copy_v20.py`, 종류 `case-detail`, 원래 번호 `omh-evolution`)을 넣었고, 그 뒤 쪽과 쪽 표기(참고 링크, 질의응답 번호, 2쪽 노트, AI교양 정정)가 한 장씩 밀렸다. 검사는 참고 화면과 사례 위치를 manifest에서 찾는다. 기본 빌드와 검사는 v20이다. 아래 이전 판 설명은 제작 기록이다.
+
 # v19 맺음말 추가
 
 현재 제작본은 v19(45장)이다. v18의 질의응답(44쪽) 뒤에 조용한 맺음말 한 장(45쪽, `copy_v19.py`, 원래 번호 41 재사용)을 붙였고, 1쪽부터 44쪽은 v18과 같다. 기본 빌드와 검사는 v19다. 아래 이전 판 설명은 제작 기록이다.
@@ -42,8 +46,8 @@ Layout of `v02/`:
 - `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body. Slide 2 has a v02 and a v03 variant.
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
-- `build_v02.py`: assembles v19 by default (45 slides including three optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v19).
+- `build_v02.py`: assembles v20 by default (46 slides including three optional reference slides and one case follow-up); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v20).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 

@@ -33,12 +33,12 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-// versions compare as strings: always two digits after "v" (v02 ... v19)
-const VER = process.env.DECK_VERSION || "v19";
-if (!/^v(0[2-9]|1[0-9])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+// versions compare as strings: always two digits after "v" (v02 ... v20)
+const VER = process.env.DECK_VERSION || "v20";
+if (!/^v(0[2-9]|1[0-9]|20)$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case; v16 adds a third after the Grokbot case
-const TOTAL = VER >= "v19" ? 45 : VER >= "v18" ? 44 : VER >= "v16" ? 45 : VER >= "v07" ? 44 : 42;
+const TOTAL = VER >= "v20" ? 46 : VER >= "v19" ? 45 : VER >= "v18" ? 44 : VER >= "v16" ? 45 : VER >= "v07" ? 44 : 42;
 // v02 and v03 carry the 120-minute lecture schedule; v04 has no lecture timing at all
 const TIMED = VER < "v04";
 // lecture time on screen or in notes (tool and task times such as 09:12 or cron do not match)
@@ -101,6 +101,12 @@ try {
     return { man, attrs, notes };
   });
   const items = meta.man.items;
+  // physical pages found from the manifest, so each version's own numbering is checked (v20 shifts pages after 14)
+  const physOf = (f) => items.find(f)?.physical;
+  const REF_A = physOf((i) => i.reference === "A"), REF_B = physOf((i) => i.reference === "B"), REF_C = physOf((i) => i.reference === "C");
+  const AFTER_AB = REF_B + 1, AFTER_C = REF_C + 1;
+  await page.evaluate((r) => { window.__refs = r; }, { a: `#s${REF_A}`, ab: [`#s${REF_A}`, `#s${REF_B}`], c: `#s${REF_C}`,
+    grok: `#s${physOf((i) => i.case === "Grokbot")}`, syn: `#s${physOf((i) => i.kind === "synthesis")}`, last: `#s${TOTAL}` });
   const m = {
     slides: items.length, ...(TIMED ? { minutes: items.reduce((a, b) => a + b.minutes, 0) } : {}),
     terms: items.filter((i) => i.kind === "term").map((i) => i.term),
@@ -116,12 +122,12 @@ try {
   if (refs.length !== (VER >= "v16" ? 3 : VER >= "v07" ? 2 : 0)) fail(`reference slides: ${refs.length}`);
   if (VER >= "v07") {
     // originals keep their v06 numbering; references sit right after original 14
-    const origs = items.filter((it) => it.kind !== "reference").map((it) => it.original);
+    const origs = items.filter((it) => it.kind !== "reference" && it.kind !== "case-detail").map((it) => it.original);
     // v18 drops original 41; v19 brings id 41 back as the epilogue after the Q&A (42)
     const wantOrigs = [...Array(42).keys()].map((k) => k + 1).filter((n) => VER < "v18" || n !== 41);
     if (VER >= "v19") wantOrigs.push(41);
     if (JSON.stringify(origs) !== JSON.stringify(wantOrigs)) fail("original numbering broken");
-    const place = VER >= "v16" ? "15A,16B,21C" : "15A,16B";
+    const place = VER >= "v20" ? "16A,17B,22C" : VER >= "v16" ? "15A,16B,21C" : "15A,16B";
     if (refs.map((r) => `${r.physical}${r.reference}`).join(",") !== place) fail(`reference placement: ${refs.map((r) => r.physical)}`);
     evidence.reference_slides = refs.map((r) => ({ physical: r.physical, reference: r.reference, label: r.label }));
   }
@@ -364,7 +370,7 @@ try {
 
   if (VER >= "v07") {
     // reference slides: content, provenance on screen, pinned sources in notes
-    const ref = await page.evaluate(() => ["#s15", "#s16"].map((id) => {
+    const ref = await page.evaluate(() => window.__refs.ab.map((id) => {
       const s = document.querySelector(id);
       return { text: s.querySelector(".canvas").textContent, notes: s.querySelector(".notes").innerHTML,
         skip: s.querySelector(".canvas a.ref-skip")?.getAttribute("href") };
@@ -390,15 +396,15 @@ try {
     [[ref[0], needA, "15"], [ref[1], needB, "16"]].forEach(([r, need, n]) => {
       const lack = need.filter((w) => !r.text.includes(w));
       if (lack.length) fail(`slide ${n} lacks: ${lack.join(", ")}`);
-      if (r.skip !== "#s17") fail(`slide ${n} skip link: ${r.skip}`);
+      if (r.skip !== `#s${AFTER_AB}`) fail(`slide ${n} skip link: ${r.skip}`);
       if (!pins.every((u) => r.notes.includes(u))) fail(`slide ${n} notes lack pinned source links`);
     });
     evidence.reference_checks = { skip_links: ref.map((r) => r.skip), pinned_sources_in_notes: true };
     if (VER === "v10") {
       // AS-IS sits above TO-BE on slide 15, joined by the transition arrow
       const order = await page.evaluate(() => {
-        const at = (w) => parseFloat([...document.querySelectorAll("#s15 svg text")].find((n) => n.textContent === w)?.getAttribute("y"));
-        return { asis: at("AS-IS"), tobe: at("TO-BE"), arrow: !!document.querySelector("#s15 svg polygon") };
+        const at = (w) => parseFloat([...document.querySelectorAll(`${window.__refs.a} svg text`)].find((n) => n.textContent === w)?.getAttribute("y"));
+        return { asis: at("AS-IS"), tobe: at("TO-BE"), arrow: !!document.querySelector(`${window.__refs.a} svg polygon`) };
       });
       if (!(order.asis < order.tobe) || !order.arrow) fail(`slide 15 direction: ${JSON.stringify(order)}`);
       evidence.reference_direction = order;
@@ -406,7 +412,7 @@ try {
     if (VER >= "v11") {
       // slide 15 is an emphasis shift: no AS-IS/TO-BE anywhere on 15 or 16, no migration arrow,
       // the operating layer drawn above the execution habits, and no sweeping training claim
-      const v11 = await page.evaluate(() => ["#s15", "#s16"].map((id) => {
+      const v11 = await page.evaluate(() => window.__refs.ab.map((id) => {
         const s = document.querySelector(id);
         const c = s.querySelector(".canvas");
         const labels = [...c.querySelectorAll("[aria-label]")].map((n) => n.getAttribute("aria-label")).join(" ");
@@ -441,7 +447,7 @@ try {
     if (VER >= "v12") {
       // slide 15: the thesis is the title, above both rows; Superpowers is read first, pstack below it in blue
       const h = await page.evaluate(() => {
-        const s = document.querySelector("#s15");
+        const s = document.querySelector(window.__refs.a);
         const svg = s.querySelector("svg");
         const texts = [...svg.querySelectorAll("text")];
         const at = (w) => texts.find((n) => n.textContent === w);
@@ -494,7 +500,8 @@ try {
     const at = (f) => items.find(f)?.physical;
     const map = { grok: at((i) => i.case === "Grokbot"), refC: at((i) => i.reference === "C"), ai: at((i) => i.case === "AI교양"),
       brk: at((i) => i.kind === "break"), ceo: at((i) => i.case === "CEO Agent"), qa: at((i) => i.kind === "qa") };
-    if (JSON.stringify(map) !== JSON.stringify({ grok: 20, refC: 21, ai: 28, brk: 29, ceo: 34, qa: VER >= "v18" ? 44 : 45 })) fail(`v16 physical map: ${JSON.stringify(map)}`);
+    if (JSON.stringify(map) !== JSON.stringify({ grok: 20, refC: 21, ai: 28, brk: 29, ceo: 34, qa: VER >= "v18" ? 44 : 45 }) && VER < "v20") fail(`v16 physical map: ${JSON.stringify(map)}`);
+    if (VER >= "v20" && JSON.stringify(map) !== JSON.stringify({ grok: 21, refC: 22, ai: 29, brk: 30, ceo: 35, qa: 45 })) fail(`v20 physical map: ${JSON.stringify(map)}`);
     const v = await page.evaluate(() => {
       const read = (id) => {
         const s = document.querySelector(id);
@@ -507,11 +514,11 @@ try {
         const [x, y, w, h] = ["x", "y", "width", "height"].map((a) => parseFloat(el.getAttribute(a)));
         return [x, y, x + w, y + h];
       };
-      const cloud = document.querySelector('#s20 [data-box="cloud"]');
-      const bots = [...document.querySelectorAll("#s20 [data-bot]")].map((el) => [el.getAttribute("data-bot"), box(el)]);
+      const cloud = document.querySelector(`${window.__refs.grok} [data-box="cloud"]`);
+      const bots = [...document.querySelectorAll(`${window.__refs.grok} [data-bot]`)].map((el) => [el.getAttribute("data-bot"), box(el)]);
       const qa = [...document.querySelectorAll(".slide[data-kind='qa'] b")].map((b) => Number(b.textContent));
-      return { s20: read("#s20"), s21: read("#s21"), s43: read("#s43"), s2notes: document.querySelector("#s2 .notes").innerHTML,
-        cloud: cloud && box(cloud), bots, axes: !!document.querySelector("#s20 .grok-axes"), qa };
+      return { s20: read(window.__refs.grok), s21: read(window.__refs.c), s43: read(window.__refs.syn), s2notes: document.querySelector("#s2 .notes").innerHTML,
+        cloud: cloud && box(cloud), bots, axes: !!document.querySelector(`${window.__refs.grok} .grok-axes`), qa };
     });
     // slide 20: the four confirmed bots in one cloud, the no-own-hardware message, no stale captions anywhere current
     const names = ["록식이", "에식이", "소식이", "최저가봇"];
@@ -536,7 +543,7 @@ try {
       "셋의 공통점", "클라우드의 자기 컴퓨터", "연결한 앱", "이어지는 기억", "사람의 확인"];
     const lack21 = need21.filter((w) => !v.s21.text.includes(w));
     if (lack21.length) fail(`slide 21 lacks: ${lack21.join(", ")}`);
-    if (v.s21.skip !== "#s22") fail(`slide 21 skip link: ${v.s21.skip}`);
+    if (v.s21.skip !== `#s${AFTER_C}`) fail(`slide 21 skip link: ${v.s21.skip}`);
     if (/\d{4}\.\s?\d|요금|구독|무료|Pro|Premium|\d,\d{3}|베타|미국|\$/.test(v.s21.text)) fail("slide 21 shows dates, pricing or regions");
     const src21 = ["https://help.openai.com/en/articles/20001530-getting-started-with-your-dot", "https://x.ai/news/introducing-grok-bot",
       "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/"];
@@ -552,11 +559,11 @@ try {
   if (VER >= "v19") {
     // the epilogue: last page, after the Q&A, with exactly the approved words and nothing of the old closing
     const last = items[items.length - 1];
-    if (last.physical !== 45 || last.kind !== "closing" || last.original !== 41) fail(`v19 last page: ${JSON.stringify(last)}`);
+    if (last.physical !== TOTAL || last.kind !== "closing" || last.original !== 41) fail(`v19 last page: ${JSON.stringify(last)}`);
     const qa = items.find((i) => i.kind === "qa");
-    if (qa.physical !== 44) fail(`v19 Q&A page: ${qa.physical}`);
+    if (qa.physical !== TOTAL - 1) fail(`v19 Q&A page: ${qa.physical}`);
     const ep = await page.evaluate(() => {
-      const s = document.querySelector("#s45");
+      const s = document.querySelector(window.__refs.last);
       const c = s.querySelector(".canvas");
       return { theme: c.className, title: c.querySelector(".ep-title")?.textContent,
         groups: [...c.querySelectorAll(".ep-body p")].map((g) => g.innerHTML.split("<br>")),
@@ -576,8 +583,54 @@ try {
     const prev = canv(readFileSync(path.join(slidesDir, "harness-engineering-workshop-v18.html"), "utf8"));
     const now = canv(readFileSync(file, "utf8"));
     const diff = prev.map((c, k) => (c === now[k] ? 0 : k + 1)).filter(Boolean);
-    if (prev.length !== 44 || diff.length) fail(`v19 changed pages other than the epilogue: ${diff}`);
-    evidence.v19_epilogue = { physical: 45, original: 41, qa: 44, lines: want.flat().length, pages_1_44_as_v18: true };
+    if (VER === "v19" && (prev.length !== 44 || diff.length)) fail(`v19 changed pages other than the epilogue: ${diff}`);
+    evidence.v19_epilogue = { physical: last.physical, original: last.original, qa: qa.physical, lines: want.flat().length,
+      ...(VER === "v19" ? { pages_1_44_as_v18: true } : {}) };
+  }
+
+  if (VER >= "v20") {
+    // the OMH follow-up: page 15, a case detail (not a sixth case, not a reference), the author's three stages
+    const d = items.find((i) => i.kind === "case-detail");
+    if (!d || d.physical !== 15 || d.original !== "omh-evolution" || items.filter((i) => i.kind === "case-detail").length !== 1) {
+      fail(`v20 case detail: ${JSON.stringify(d)}`);
+    }
+    if (items.filter((i) => i.kind === "case").length !== 5) fail("v20 must keep five cases");
+    const v = await page.evaluate(() => {
+      const s = document.querySelector("#s15");
+      const c = s.querySelector(".canvas");
+      const layer = (stage, kind) => {
+        const r = c.querySelector(`[data-stage="${stage}"][data-layer="${kind}"]`);
+        return r ? [parseFloat(r.getAttribute("y")), parseFloat(r.getAttribute("height")), r.getAttribute("stroke-dasharray")] : null;
+      };
+      return { text: c.textContent, notes: s.querySelector(".notes").innerHTML, title: c.querySelector(".case-title")?.textContent,
+        v05: [layer("v05", "own"), layer("v05", "base")], omp: [layer("omp", "own"), layer("omp", "base")],
+        v06: [layer("v06", "own"), layer("v06", "base")] };
+    });
+    if (v.title !== "며칠을 만들었는데, 옮겨 보니 이미 있었다") fail(`v20 slide 15 title: ${v.title}`);
+    const need = ["사례 2 이어서", "OMH에서 OMP로", "OMH v05", "OpenCode + OMO", "직접 덧붙인 부분", "OMP(Oh My Pi)로 옮김", "OMP 기본 기능",
+      "직접 덧붙일 필요가 없어짐", "OMH v06", "omh-rigorous, 내 업무 절차", "작성자 경험", "며칠 동안 v05까지 만들었는데",
+      "v06에는 필요한 절차만 얇게"];
+    const lack = need.filter((w) => !v.text.includes(w));
+    if (lack.length) fail(`v20 slide 15 lacks: ${lack.join(", ")}`);
+    if (/data_inspect|data_compare|%|줄 수 \d|\d+ ?(KB|MB|LOC)/.test(v.text)) fail("v20 slide 15 claims tool equivalence or measured sizes");
+    // the own layer shrinks: tall in v05, gone (dashed) after the move, a thin strip in v06 on a larger base
+    const [o5, b5] = v.v05, [oo, bo] = v.omp, [o6, b6] = v.v06;
+    if (!(o5 && b5 && oo && bo && o6 && b6)) fail(`v20 slide 15 layers missing: ${JSON.stringify(v)}`);
+    else {
+      if (!(o5[1] > b5[1] && o6[1] * 3 < o5[1] && o6[1] * 4 < b6[1] && b6[1] > b5[1] && oo[2])) fail(`v20 slide 15 layer sizes: ${JSON.stringify(v)}`);
+      if (!(o5[0] < b5[0] && o6[0] < b6[0])) fail("v20 slide 15 own layers must sit on top of their base");
+    }
+    if (!v.notes.includes("https://github.com/can1357/oh-my-pi") || !v.notes.includes("작성자의 전환 경험")) fail("v20 slide 15 notes lack sources");
+    // every v19 page is still there one later after 14, identical except the moved page pointers
+    const norm = (c) => c.replace(/href="#s\d+">본문으로, \d+쪽/g, "SKIP").replace(/<b>\d+<\/b>/g, "<b>N</b>");
+    const canv = (html) => [...html.matchAll(/<section class="slide" id="s(\d+)"[\s\S]*?<div class="stage">([\s\S]*?)<aside class="notes">/g)]
+      .map((m) => m[2].replace(/<p class="pageno"[^>]*>[\s\S]*?<\/p>/, ""));
+    const prev = canv(readFileSync(path.join(slidesDir, "harness-engineering-workshop-v19.html"), "utf8"));
+    const now = canv(readFileSync(file, "utf8"));
+    const moved = prev.map((c, k) => (norm(c) === norm(now[k < 14 ? k : k + 1]) ? 0 : k + 1)).filter(Boolean);
+    if (prev.length !== 45 || moved.length) fail(`v20 changed v19 pages beyond pointers: ${moved}`);
+    evidence.v20 = { detail_physical: d.physical, refs: [REF_A, REF_B, REF_C], skip: [AFTER_AB, AFTER_C],
+      v19_pages_same_except_pointers: true, layers: { v05: o5, v06: o6 } };
   }
 
   if (VER >= "v08") {
@@ -767,19 +820,19 @@ try {
   await p2.screenshot({ path: path.join(outDir, "interaction-s7.png") });
   if (VER >= "v07") {
     // the optional reference slides can be skipped in one click
-    await p2.goto(url + "#s15");
+    await p2.goto(url + `#s${REF_A}`);
     await p2.waitForSelector(".slide.active");
-    await p2.click("#s15 a.ref-skip");
-    await p2.waitForFunction(() => document.querySelector(".slide.active")?.id === "s17");
+    await p2.click(`#s${REF_A} a.ref-skip`);
+    await p2.waitForFunction((x) => document.querySelector(".slide.active")?.id === x, `s${AFTER_AB}`);
     ix.referenceSkip = await at();
-    if (ix.referenceSkip !== "s17") fail(`reference skip link: ${ix.referenceSkip}`);
+    if (ix.referenceSkip !== `s${AFTER_AB}`) fail(`reference skip link: ${ix.referenceSkip}`);
     if (VER >= "v16") {
-      await p2.goto(url + "#s21");
+      await p2.goto(url + `#s${REF_C}`);
       await p2.waitForSelector(".slide.active");
-      await p2.click("#s21 a.ref-skip");
-      await p2.waitForFunction(() => document.querySelector(".slide.active")?.id === "s22");
+      await p2.click(`#s${REF_C} a.ref-skip`);
+      await p2.waitForFunction((x) => document.querySelector(".slide.active")?.id === x, `s${AFTER_C}`);
       ix.referenceSkipC = await at();
-      if (ix.referenceSkipC !== "s22") fail(`reference C skip link: ${ix.referenceSkipC}`);
+      if (ix.referenceSkipC !== `s${AFTER_C}`) fail(`reference C skip link: ${ix.referenceSkipC}`);
     }
   }
   evidence.interactions = ix;
