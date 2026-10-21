@@ -1,0 +1,450 @@
+{
+  "compare_first": {
+    "facts": {
+      "comparison": "keyed",
+      "differences": [
+        {
+          "kind": "left_only",
+          "location": {
+            "key_ordinal": 1
+          }
+        },
+        {
+          "kind": "value_changed",
+          "location": {
+            "fields": [
+              "amount"
+            ],
+            "key_ordinal": 2
+          }
+        },
+        {
+          "kind": "right_only",
+          "location": {
+            "key_ordinal": 4
+          }
+        }
+      ],
+      "differences_in_scope": 3,
+      "differences_omitted": 0,
+      "equal_in_scope": false,
+      "key": "id",
+      "left": {
+        "bytes_read": 37,
+        "encoding": "utf-8-sig",
+        "file_bytes": 37,
+        "format": "csv",
+        "null_counts": [
+          {
+            "count": 1,
+            "name": "amount"
+          },
+          {
+            "count": 0,
+            "name": "id"
+          },
+          {
+            "count": 0,
+            "name": "item"
+          }
+        ],
+        "path": "data/before.csv",
+        "records_scanned": 3,
+        "schema": [
+          {
+            "name": "amount",
+            "observed_types": [
+              "integer-text",
+              "null"
+            ],
+            "present": 3
+          },
+          {
+            "name": "id",
+            "observed_types": [
+              "integer-text"
+            ],
+            "present": 3
+          },
+          {
+            "name": "item",
+            "observed_types": [
+              "string"
+            ],
+            "present": 3
+          }
+        ],
+        "scope": "full",
+        "stopped_by": null
+      },
+      "right": {
+        "bytes_read": 38,
+        "encoding": "utf-8-sig",
+        "file_bytes": 38,
+        "format": "csv",
+        "null_counts": [
+          {
+            "count": 0,
+            "name": "amount"
+          },
+          {
+            "count": 0,
+            "name": "id"
+          },
+          {
+            "count": 0,
+            "name": "item"
+          }
+        ],
+        "path": "data/after-first.csv",
+        "records_scanned": 3,
+        "schema": [
+          {
+            "name": "amount",
+            "observed_types": [
+              "integer-text"
+            ],
+            "present": 3
+          },
+          {
+            "name": "id",
+            "observed_types": [
+              "integer-text"
+            ],
+            "present": 3
+          },
+          {
+            "name": "item",
+            "observed_types": [
+              "string"
+            ],
+            "present": 3
+          }
+        ],
+        "scope": "full",
+        "stopped_by": null
+      },
+      "schema_difference": {
+        "left_only": [],
+        "right_only": [],
+        "type_changes": [
+          "amount"
+        ]
+      },
+      "scope": "full",
+      "values_returned": false
+    },
+    "limitations": [
+      "Equality applies only to the stated scope. Sample results cannot prove full-file equality or global key uniqueness.",
+      "Values are omitted by default. Explicit values are bounded and best-effort redacted, not guaranteed anonymous.",
+      "CSV values remain strings. JSONL comparisons preserve types; nested values compare canonically."
+    ],
+    "ok": true,
+    "tool": "data_compare",
+    "version": "v02"
+  },
+  "compare_fixed": {
+    "facts": {
+      "comparison": "keyed",
+      "differences": [
+        {
+          "kind": "value_changed",
+          "location": {
+            "fields": [
+              "amount"
+            ],
+            "key_ordinal": 2
+          }
+        }
+      ],
+      "differences_in_scope": 1,
+      "differences_omitted": 0,
+      "equal_in_scope": false,
+      "key": "id",
+      "left": {
+        "bytes_read": 37,
+        "encoding": "utf-8-sig",
+        "file_bytes": 37,
+        "format": "csv",
+        "null_counts": [
+          {
+            "count": 1,
+            "name": "amount"
+          },
+          {
+            "count": 0,
+            "name": "id"
+          },
+          {
+            "count": 0,
+            "name": "item"
+          }
+        ],
+        "path": "data/before.csv",
+        "records_scanned": 3,
+        "schema": [
+          {
+            "name": "amount",
+            "observed_types": [
+              "integer-text",
+              "null"
+            ],
+            "present": 3
+          },
+          {
+            "name": "id",
+            "observed_types": [
+              "integer-text"
+            ],
+            "present": 3
+          },
+          {
+            "name": "item",
+            "observed_types": [
+              "string"
+            ],
+            "present": 3
+          }
+        ],
+        "scope": "full",
+        "stopped_by": null
+      },
+      "right": {
+        "bytes_read": 38,
+        "encoding": "utf-8-sig",
+        "file_bytes": 38,
+        "format": "csv",
+        "null_counts": [
+          {
+            "count": 0,
+            "name": "amount"
+          },
+          {
+            "count": 0,
+            "name": "id"
+          },
+          {
+            "count": 0,
+            "name": "item"
+          }
+        ],
+        "path": "data/after-fixed.csv",
+        "records_scanned": 3,
+        "schema": [
+          {
+            "name": "amount",
+            "observed_types": [
+              "integer-text"
+            ],
+            "present": 3
+          },
+          {
+            "name": "id",
+            "observed_types": [
+              "integer-text"
+            ],
+            "present": 3
+          },
+          {
+            "name": "item",
+            "observed_types": [
+              "string"
+            ],
+            "present": 3
+          }
+        ],
+        "scope": "full",
+        "stopped_by": null
+      },
+      "schema_difference": {
+        "left_only": [],
+        "right_only": [],
+        "type_changes": [
+          "amount"
+        ]
+      },
+      "scope": "full",
+      "values_returned": false
+    },
+    "limitations": [
+      "Equality applies only to the stated scope. Sample results cannot prove full-file equality or global key uniqueness.",
+      "Values are omitted by default. Explicit values are bounded and best-effort redacted, not guaranteed anonymous.",
+      "CSV values remain strings. JSONL comparisons preserve types; nested values compare canonically."
+    ],
+    "ok": true,
+    "tool": "data_compare",
+    "version": "v02"
+  },
+  "inspect_before": {
+    "facts": {
+      "bytes_read": 37,
+      "encoding": "utf-8-sig",
+      "file_bytes": 37,
+      "format": "csv",
+      "null_counts": [
+        {
+          "count": 1,
+          "name": "amount"
+        },
+        {
+          "count": 0,
+          "name": "id"
+        },
+        {
+          "count": 0,
+          "name": "item"
+        }
+      ],
+      "path": "data/before.csv",
+      "records_scanned": 3,
+      "schema": [
+        {
+          "name": "amount",
+          "observed_types": [
+            "integer-text",
+            "null"
+          ],
+          "present": 3
+        },
+        {
+          "name": "id",
+          "observed_types": [
+            "integer-text"
+          ],
+          "present": 3
+        },
+        {
+          "name": "item",
+          "observed_types": [
+            "string"
+          ],
+          "present": 3
+        }
+      ],
+      "scope": "full",
+      "stopped_by": null,
+      "values_returned": false
+    },
+    "limitations": [
+      "Types and null counts describe scanned records only; CSV inference does not coerce values.",
+      "No row values are returned. Excel/Parquet unsupported in v02."
+    ],
+    "ok": true,
+    "tool": "data_inspect",
+    "version": "v02"
+  },
+  "inspect_first": {
+    "facts": {
+      "bytes_read": 38,
+      "encoding": "utf-8-sig",
+      "file_bytes": 38,
+      "format": "csv",
+      "null_counts": [
+        {
+          "count": 0,
+          "name": "amount"
+        },
+        {
+          "count": 0,
+          "name": "id"
+        },
+        {
+          "count": 0,
+          "name": "item"
+        }
+      ],
+      "path": "data/after-first.csv",
+      "records_scanned": 3,
+      "schema": [
+        {
+          "name": "amount",
+          "observed_types": [
+            "integer-text"
+          ],
+          "present": 3
+        },
+        {
+          "name": "id",
+          "observed_types": [
+            "integer-text"
+          ],
+          "present": 3
+        },
+        {
+          "name": "item",
+          "observed_types": [
+            "string"
+          ],
+          "present": 3
+        }
+      ],
+      "scope": "full",
+      "stopped_by": null,
+      "values_returned": false
+    },
+    "limitations": [
+      "Types and null counts describe scanned records only; CSV inference does not coerce values.",
+      "No row values are returned. Excel/Parquet unsupported in v02."
+    ],
+    "ok": true,
+    "tool": "data_inspect",
+    "version": "v02"
+  },
+  "inspect_fixed": {
+    "facts": {
+      "bytes_read": 38,
+      "encoding": "utf-8-sig",
+      "file_bytes": 38,
+      "format": "csv",
+      "null_counts": [
+        {
+          "count": 0,
+          "name": "amount"
+        },
+        {
+          "count": 0,
+          "name": "id"
+        },
+        {
+          "count": 0,
+          "name": "item"
+        }
+      ],
+      "path": "data/after-fixed.csv",
+      "records_scanned": 3,
+      "schema": [
+        {
+          "name": "amount",
+          "observed_types": [
+            "integer-text"
+          ],
+          "present": 3
+        },
+        {
+          "name": "id",
+          "observed_types": [
+            "integer-text"
+          ],
+          "present": 3
+        },
+        {
+          "name": "item",
+          "observed_types": [
+            "string"
+          ],
+          "present": 3
+        }
+      ],
+      "scope": "full",
+      "stopped_by": null,
+      "values_returned": false
+    },
+    "limitations": [
+      "Types and null counts describe scanned records only; CSV inference does not coerce values.",
+      "No row values are returned. Excel/Parquet unsupported in v02."
+    ],
+    "ok": true,
+    "tool": "data_inspect",
+    "version": "v02"
+  }
+}

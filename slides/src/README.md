@@ -30,8 +30,8 @@ Layout of `v02/`:
 - `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body. Slide 2 has a v02 and a v03 variant.
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
-- `build_v02.py`: assembles v11 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v11).
+- `build_v02.py`: assembles v12 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v12).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 
@@ -175,6 +175,10 @@ v05 keeps the v04 presentation and removes only the slide 3 break marker, with f
 ### v08 coordinator wording
 
 `copy_v08.py` changes only original slide9: 업무 난이도 자동 판단, with notes on choosing direct handling or delegation under user instructions. Historical versions remain reproducible.
+
+### v12 impact and reading order (slides 14, 15 and 27)
+
+`copy_v12.py` changes three slides and nothing else. Slide 14 leads with a concrete catch: the request is to fill blank `amount` values and add or delete no rows; the first result keeps the row count and clears the blank, but the keyed data_compare finds one original ID gone and one new ID, the review criterion sends it back, and the fixed result compares clean. The counts come from a real run of the OMH engine on the synthetic fixture in `examples/omh-v12/` (`run_example.py --engine ...` writes `evidence/summary.json`, cross-checked with the csv module); the role and review flow is illustrative. Slide 15 puts the thesis in the title and reads Superpowers first, then pstack in blue. Slide 27 replaces its compressed flow with slide 2's seven steps, colours and role labels; a correction precedes the S21 excerpt. The check keeps the v10/v11 slide 14 labels and the v11 slide 15 title and layer order for those versions; for v12 it tests the scene order and that the on-screen counts equal the recorded run, no absolute or speed claims on 14, the title above both rows and Superpowers above a blue pstack box on 15, and that slide 27's seven step labels, fills, strokes and roles equal slide 2's. Builder, check and contact sheet default to v12.
 
 ### v11 reference framing (slides 15 and 16)
 

@@ -33,9 +33,9 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-// versions compare as strings: always two digits after "v" (v02 ... v11)
-const VER = process.env.DECK_VERSION || "v11";
-if (!/^v(0[2-9]|1[01])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+// versions compare as strings: always two digits after "v" (v02 ... v12)
+const VER = process.env.DECK_VERSION || "v12";
+if (!/^v(0[2-9]|1[0-2])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case
 const TOTAL = VER >= "v07" ? 44 : 42;
@@ -141,7 +141,7 @@ try {
     }
     const nt = squash(meta.notes[i]);
     const fixes = { 9: "v02", 23: "v02", 29: "v02", 30: "v02", ...(VER >= "v03" ? { 2: "v03" } : {}),
-      ...(VER >= "v06" ? { 18: "v06", 31: "v06" } : {}), ...(VER >= "v10" ? { 14: "v10" } : {}) };
+      ...(VER >= "v06" ? { 18: "v06", 31: "v06" } : {}), ...(VER >= "v10" ? { 14: "v10" } : {}), ...(VER >= "v12" ? { 25: "v12" } : {}) };
     const orig = it.original || it.physical;  // corrections are keyed by the original slide
     if (it.kind !== "reference" && fixes[orig]) {
       const label = TIMED ? `${fixes[orig]} 정정 (아래 v10 원문보다 우선)` : "정정 (아래 v10 발췌보다 우선)";
@@ -201,7 +201,12 @@ try {
     if (roles.toolRoute.length) fail(`"도구로 처리" on screen (route must be 직접 처리): ${roles.toolRoute}`);
     // slide 14: the same task before and after the OMH additions, with the evidence limit on screen
     const s14 = await page.evaluate(() => document.querySelector("#s14 .canvas").textContent);
-    const need14 = VER >= "v10"
+    const need14 = VER >= "v12"
+      ? ["요청", "행 수는 그대로, 빠진 ID까지 찾아내기", "OpenCode 순정", "전용 도구가 없으면 직접 준비할 것", "OMH 통합 구성",
+        "OMO: 역할 분담, 검토", "data_inspect, data_compare", "omh-rigorous", "첫 결과", "행 3 → 3", "빈 값 1 → 0",
+        "id 기준 비교", "left_only 1", "right_only 1", "검토 기준", "추가, 삭제 0건", "완료 보고 전에 되돌림", "수정 결과",
+        "left_only 0", "right_only 0", "자동 병합 없음", "행 값 없이", "쓰는 이유", "실제 실행한 개수", "설명용"]
+      : VER >= "v10"
       ? ["같은 일", "OpenCode 순정", "범용 코딩 에이전트", "OMH 통합 구성", "OMO + 업무 도구 + 작업 절차",
         "OMO의 역할 구성까지 묶은 OMH", "OMO", "data_inspect", "data_compare", "자동 병합 없음", "행 값 없이",
         "omh-rigorous", "달라진 것", "사람이 결정", "사내 모델의 품질 비교는 하지 않음"]
@@ -210,6 +215,25 @@ try {
     const lack14 = need14.filter((w) => !s14.includes(w));
     if (lack14.length) fail(`slide 14 lacks: ${lack14.join(", ")}`);
     evidence.omh_before_after = { has: need14.filter((w) => s14.includes(w)) };
+    if (VER >= "v12") {
+      // the scene: first result, keyed comparison, review criterion, fixed result, left to right;
+      // the counts on screen are the ones the real tool run recorded for the synthetic fixture
+      const sum = JSON.parse(readFileSync(path.join(root, "examples", "omh-v12", "evidence", "summary.json"), "utf8"));
+      const steps = await page.evaluate(() => [...document.querySelectorAll("#s14 [data-step]")]
+        .map((r) => [r.getAttribute("data-step"), parseFloat(r.getAttribute("x"))]));
+      const order = steps.map((x) => x[0]).join(",");
+      if (order !== "first,compare,review,fixed" || !steps.every((x, k) => !k || x[1] > steps[k - 1][1])) {
+        fail(`slide 14 scene order: ${JSON.stringify(steps)}`);
+      }
+      const f1 = sum.first, f2 = sum.fixed;
+      const agrees = f1.rows_before === 3 && f1.rows_after === 3 && sum.amount_blanks_before === 1 && f1.amount_blanks_after === 0 &&
+        f1.left_only === 1 && f1.right_only === 1 && f1.scope === "full" && !f1.values_returned && f1.meets_criterion === false &&
+        f2.left_only === 0 && f2.right_only === 0 && f2.scope === "full" && JSON.stringify(f2.changed_fields) === '["amount"]' &&
+        f2.value_changed === 1 && f2.meets_criterion === true;
+      if (!agrees) fail(`slide 14 counts do not match the recorded tool run: ${JSON.stringify(sum)}`);
+      if (/%|항상|보장|자동으로 막|일마다|매번/.test(s14)) fail("slide 14 makes an absolute or speed claim on screen");
+      evidence.omh_v12_scene = { order, first: f1, fixed: f2, engine_version: sum.engine_version };
+    }
     if (VER >= "v10") {
       // OMO must sit inside the OMH boundary, and bare OpenCode outside it
       const geo = await page.evaluate(() => {
@@ -240,7 +264,11 @@ try {
       return { text: s.querySelector(".canvas").textContent, notes: s.querySelector(".notes").innerHTML,
         skip: s.querySelector(".canvas a.ref-skip")?.getAttribute("href") };
     }));
-    const needA = VER >= "v11"
+    const needA = VER >= "v12"
+      ? ["참고 A", "기본기는 모델에, 업무 기준과 위임은 하네스에", "Superpowers", "pstack", "먼저, 실행 기본기", "다음 초점",
+        "그 위에서, 이 일에 맞게", "잘 만든 기본 절차,", "계속 다듬어지는 습관", "성공 기준과 근거", "작업별 절차 선택",
+        "범위 정한 위임", "돌아온 결과 검증", "계획하고 시험하는 기본기는 모델에 스며들고", "111cf6a", "b739a8a"]
+      : VER === "v11"
       ? ["참고 A", "기본기 다음은, 검증과 위임", "Superpowers", "pstack", "업무 운영 층", "실행 기본기", "잘 만든 기본 절차,",
         "계속 다듬어지는 습관", "성공 기준과 근거", "작업별 절차 선택", "범위 정한 위임", "돌아온 결과 검증",
         "계획하고 시험하는 기본기는 모델에 스며들고", "기본기는 모델에, 업무 기준과 위임은 하네스에", "111cf6a", "b739a8a"]
@@ -284,14 +312,14 @@ try {
           dashedSuper: !!s.querySelector('svg polyline[points="520,282 570,282 570,270 614,270"][stroke-dasharray]') };
       }));
       const [a, b] = v11;
-      if (a.title !== "기본기 다음은, 검증과 위임") fail(`slide 15 title: ${a.title}`);
+      if (VER === "v11" && a.title !== "기본기 다음은, 검증과 위임") fail(`slide 15 title: ${a.title}`);
       v11.forEach((r, k) => {
         const n = 15 + k;
         if (/AS-IS|TO-BE/i.test(r.screen)) fail(`slide ${n} still shows AS-IS/TO-BE on screen`);
         if (/AS-IS|TO-BE/i.test(r.notes)) fail(`slide ${n} notes still frame AS-IS/TO-BE`);
       });
       if (a.polygons) fail("slide 15 keeps the migration arrow");
-      if (!(a.upper < a.lower)) fail(`slide 15 layers: ${JSON.stringify({ upper: a.upper, lower: a.lower })}`);
+      if (VER === "v11" && !(a.upper < a.lower)) fail(`slide 15 layers: ${JSON.stringify({ upper: a.upper, lower: a.lower })}`);
       if (!b.dashedSuper) fail("slide 16 Superpowers line is no longer dashed");
       const sweeping = ["모든 모델", "모든 프론티어", "100%", "빠짐없이 따른다", "항상 따른다", "Superpowers를 학습했", "RL 때문에", "강화학습 때문에"];
       const said = sweeping.filter((w) => a.screen.includes(w) || b.screen.includes(w));
@@ -305,6 +333,55 @@ try {
       evidence.reference_v11 = { title: a.title, polygons: a.polygons, upper_y: a.upper, lower_y: a.lower,
         superpowers_line_dashed: b.dashedSuper, as_is_to_be_on_15_16: false };
     }
+    if (VER >= "v12") {
+      // slide 15: the thesis is the title, above both rows; Superpowers is read first, pstack below it in blue
+      const h = await page.evaluate(() => {
+        const s = document.querySelector("#s15");
+        const svg = s.querySelector("svg");
+        const texts = [...svg.querySelectorAll("text")];
+        const at = (w) => texts.find((n) => n.textContent === w);
+        const boxFill = (w) => {  // the rect drawn just before a label is the box it sits in
+          let n = at(w)?.previousElementSibling;
+          while (n && n.tagName !== "rect") n = n.previousElementSibling;
+          return n?.getAttribute("fill");
+        };
+        return { title: s.querySelector(".case-title").textContent,
+          titleTop: parseFloat(getComputedStyle(s.querySelector(".case-title")).top), svgTop: parseFloat(svg.style.top),
+          superY: parseFloat(at("Superpowers")?.getAttribute("y")), pstackY: parseFloat(at("pstack")?.getAttribute("y")),
+          pstackFill: boxFill("pstack"), superFill: boxFill("Superpowers") };
+      });
+      if (h.title !== "기본기는 모델에, 업무 기준과 위임은 하네스에") fail(`slide 15 title: ${h.title}`);
+      if (!(h.titleTop < h.svgTop)) fail(`slide 15 thesis must sit above both rows: ${JSON.stringify(h)}`);
+      if (!(h.superY < h.pstackY)) fail(`slide 15 reading order (Superpowers then pstack): ${JSON.stringify(h)}`);
+      if (h.pstackFill !== "#2457A6" || h.superFill === "#2457A6") fail(`slide 15 emphasis: ${JSON.stringify(h)}`);
+      evidence.reference_v12 = h;
+    }
+  }
+
+  if (VER >= "v12") {
+    const flow = await page.evaluate(() => {
+      const labels = (svg, rects) => rects.map((r) => {
+        const out = [];
+        for (let n = r.nextElementSibling; n && n.tagName === "text"; n = n.nextElementSibling) out.push(n.textContent);
+        return [out.join(" "), r.getAttribute("fill"), r.getAttribute("stroke")];
+      });
+      const s2 = document.querySelector("#s2 svg");
+      const r2 = [...s2.querySelectorAll("rect")].filter((r) => r.getAttribute("height") === "140");
+      const s27 = document.querySelector("#s27");
+      const r27 = [...s27.querySelectorAll("svg rect[data-step]")];
+      return { s2: labels(s2, r2), s27: labels(s27, r27), roles: r27.map((r) => r.getAttribute("data-role")),
+        text: s27.querySelector(".canvas").textContent, sec: s27.dataset };
+    });
+    if (flow.s27.length !== 7 || JSON.stringify(flow.s27) !== JSON.stringify(flow.s2)) {
+      fail(`slide 27 flow must match slide 2: ${JSON.stringify(flow)}`);
+    }
+    if (flow.roles.join(",") !== "author,author,ai,author,run,run,run") fail(`slide 27 roles: ${flow.roles}`);
+    const need27 = ["사례 4 / 5", "초고 v01을", "직접 쓰기", "AI와 함께", "작가가 결정", "확정 뒤 정해진 절차", "공개 발행은 이 흐름 밖",
+      "규칙", "컨텍스트", "도구", "상태", "검증"];
+    const lack27 = need27.filter((w) => !flow.text.includes(w));
+    if (lack27.length) fail(`slide 27 lacks: ${lack27.join(", ")}`);
+    if (flow.sec.original !== "25" || flow.sec.case !== "AI교양" || flow.sec.v10 !== "S21") fail("slide 27 source fields changed");
+    evidence.ai_flow_v12 = { steps: flow.s27.map((x) => x[0]), roles: flow.roles, matches_slide2: true };
   }
 
   if (VER >= "v08") {
@@ -553,6 +630,16 @@ try {
   await pp.waitForSelector(".slide.active");
   const activeBeforePrint = await pp.evaluate(() => document.querySelector(".slide.active").id);
   await pp.emulateMedia({ media: "print" });
+  if (VER >= "v12") {
+    // print makes every slide visible at once: let fonts load and paint settle before printing,
+    // and give the PDF the deck's own title rather than the active slide's label
+    await pp.evaluate(async (title) => {
+      document.title = title;
+      await document.fonts.ready;
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+    }, `하네스 엔지니어링 워크숍 ${VER}`);
+    await pp.waitForTimeout(250);
+  }
   await pp.pdf({ path: pdfPath, preferCSSPageSize: true, printBackground: true });
   const raw = readFileSync(pdfPath).toString("latin1");
   const pages = (raw.match(/\/Type\s*\/Page(?![a-zA-Z])/g) || []).length;
