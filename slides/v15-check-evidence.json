@@ -1,0 +1,748 @@
+{
+  "version": "v15",
+  "browser": "Chrome 156.0.8078.47 (headless)",
+  "file": "slides/harness-engineering-workshop-v15.html",
+  "slides": [
+    {
+      "physical": 1,
+      "kind": "cover",
+      "layout": "cover",
+      "text_runs": 15,
+      "min_font_px": 24,
+      "page_number": "1 / 44",
+      "page_number_color": "rgb(162, 170, 181)",
+      "png": "slides/render/v15/s01.png"
+    },
+    {
+      "physical": 2,
+      "kind": "opening",
+      "layout": "opening",
+      "text_runs": 33,
+      "min_font_px": 24,
+      "page_number": "2 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s02.png"
+    },
+    {
+      "physical": 3,
+      "kind": "roadmap",
+      "layout": "roadmap",
+      "text_runs": 34,
+      "min_font_px": 24,
+      "page_number": "3 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s03.png"
+    },
+    {
+      "physical": 4,
+      "kind": "chapter",
+      "layout": "chapter",
+      "text_runs": 16,
+      "min_font_px": 24,
+      "page_number": "4 / 44",
+      "page_number_color": "rgb(191, 211, 255)",
+      "png": "slides/render/v15/s04.png"
+    },
+    {
+      "physical": 5,
+      "kind": "term",
+      "layout": "compare",
+      "text_runs": 27,
+      "min_font_px": 24,
+      "page_number": "5 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s05.png"
+    },
+    {
+      "physical": 6,
+      "kind": "term",
+      "layout": "split",
+      "text_runs": 24,
+      "min_font_px": 24,
+      "page_number": "6 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s06.png"
+    },
+    {
+      "physical": 7,
+      "kind": "term",
+      "layout": "split",
+      "text_runs": 37,
+      "min_font_px": 24,
+      "page_number": "7 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s07.png"
+    },
+    {
+      "physical": 8,
+      "kind": "term",
+      "layout": "boundary",
+      "text_runs": 31,
+      "min_font_px": 24,
+      "page_number": "8 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s08.png"
+    },
+    {
+      "physical": 9,
+      "kind": "case",
+      "layout": "case",
+      "text_runs": 31,
+      "min_font_px": 24,
+      "page_number": "9 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s09.png"
+    },
+    {
+      "physical": 10,
+      "kind": "chapter",
+      "layout": "chapter",
+      "text_runs": 14,
+      "min_font_px": 24,
+      "page_number": "10 / 44",
+      "page_number_color": "rgb(191, 211, 255)",
+      "png": "slides/render/v15/s10.png"
+    },
+    {
+      "physical": 11,
+      "kind": "term",
+      "layout": "lane",
+      "text_runs": 23,
+      "min_font_px": 24,
+      "page_number": "11 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s11.png"
+    },
+    {
+      "physical": 12,
+      "kind": "term",
+      "layout": "compare",
+      "text_runs": 31,
+      "min_font_px": 24,
+      "page_number": "12 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s12.png"
+    },
+    {
+      "physical": 13,
+      "kind": "term",
+      "layout": "split-mirror",
+      "text_runs": 27,
+      "min_font_px": 24,
+      "page_number": "13 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s13.png"
+    },
+    {
+      "physical": 14,
+      "kind": "case",
+      "layout": "case",
+      "text_runs": 53,
+      "min_font_px": 24,
+      "page_number": "14 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s14.png"
+    },
+    {
+      "physical": 15,
+      "kind": "reference",
+      "layout": "reference",
+      "text_runs": 35,
+      "min_font_px": 24,
+      "page_number": "15 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s15.png"
+    },
+    {
+      "physical": 16,
+      "kind": "reference",
+      "layout": "reference",
+      "text_runs": 35,
+      "min_font_px": 24,
+      "page_number": "16 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s16.png"
+    },
+    {
+      "physical": 17,
+      "kind": "term",
+      "layout": "boundary",
+      "text_runs": 30,
+      "min_font_px": 24,
+      "page_number": "17 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s17.png"
+    },
+    {
+      "physical": 18,
+      "kind": "term",
+      "layout": "sequence",
+      "text_runs": 26,
+      "min_font_px": 24,
+      "page_number": "18 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s18.png"
+    },
+    {
+      "physical": 19,
+      "kind": "term",
+      "layout": "sequence",
+      "text_runs": 26,
+      "min_font_px": 24,
+      "page_number": "19 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s19.png"
+    },
+    {
+      "physical": 20,
+      "kind": "case",
+      "layout": "case",
+      "text_runs": 32,
+      "min_font_px": 24,
+      "page_number": "20 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s20.png"
+    },
+    {
+      "physical": 21,
+      "kind": "chapter",
+      "layout": "chapter",
+      "text_runs": 18,
+      "min_font_px": 24,
+      "page_number": "21 / 44",
+      "page_number_color": "rgb(191, 211, 255)",
+      "png": "slides/render/v15/s21.png"
+    },
+    {
+      "physical": 22,
+      "kind": "term",
+      "layout": "compare",
+      "text_runs": 23,
+      "min_font_px": 24,
+      "page_number": "22 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s22.png"
+    },
+    {
+      "physical": 23,
+      "kind": "term",
+      "layout": "boundary",
+      "text_runs": 24,
+      "min_font_px": 24,
+      "page_number": "23 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s23.png"
+    },
+    {
+      "physical": 24,
+      "kind": "term",
+      "layout": "typographic",
+      "text_runs": 29,
+      "min_font_px": 24,
+      "page_number": "24 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s24.png"
+    },
+    {
+      "physical": 25,
+      "kind": "term",
+      "layout": "typographic",
+      "text_runs": 23,
+      "min_font_px": 24,
+      "page_number": "25 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s25.png"
+    },
+    {
+      "physical": 26,
+      "kind": "term",
+      "layout": "sequence",
+      "text_runs": 29,
+      "min_font_px": 24,
+      "page_number": "26 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s26.png"
+    },
+    {
+      "physical": 27,
+      "kind": "case",
+      "layout": "case",
+      "text_runs": 44,
+      "min_font_px": 24,
+      "page_number": "27 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s27.png"
+    },
+    {
+      "physical": 28,
+      "kind": "break",
+      "layout": "break",
+      "text_runs": 5,
+      "min_font_px": 24,
+      "page_number": "28 / 44",
+      "page_number_color": "rgb(162, 170, 181)",
+      "png": "slides/render/v15/s28.png"
+    },
+    {
+      "physical": 29,
+      "kind": "chapter",
+      "layout": "chapter",
+      "text_runs": 14,
+      "min_font_px": 24,
+      "page_number": "29 / 44",
+      "page_number_color": "rgb(191, 211, 255)",
+      "png": "slides/render/v15/s29.png"
+    },
+    {
+      "physical": 30,
+      "kind": "term",
+      "layout": "boundary",
+      "text_runs": 29,
+      "min_font_px": 24,
+      "page_number": "30 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s30.png"
+    },
+    {
+      "physical": 31,
+      "kind": "term",
+      "layout": "split",
+      "text_runs": 26,
+      "min_font_px": 24,
+      "page_number": "31 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s31.png"
+    },
+    {
+      "physical": 32,
+      "kind": "term",
+      "layout": "split-mirror",
+      "text_runs": 26,
+      "min_font_px": 24,
+      "page_number": "32 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s32.png"
+    },
+    {
+      "physical": 33,
+      "kind": "case",
+      "layout": "case",
+      "text_runs": 31,
+      "min_font_px": 24,
+      "page_number": "33 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s33.png"
+    },
+    {
+      "physical": 34,
+      "kind": "chapter",
+      "layout": "chapter",
+      "text_runs": 14,
+      "min_font_px": 24,
+      "page_number": "34 / 44",
+      "page_number_color": "rgb(191, 211, 255)",
+      "png": "slides/render/v15/s34.png"
+    },
+    {
+      "physical": 35,
+      "kind": "term",
+      "layout": "sequence",
+      "text_runs": 31,
+      "min_font_px": 24,
+      "page_number": "35 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s35.png"
+    },
+    {
+      "physical": 36,
+      "kind": "term",
+      "layout": "sequence",
+      "text_runs": 28,
+      "min_font_px": 24,
+      "page_number": "36 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s36.png"
+    },
+    {
+      "physical": 37,
+      "kind": "term",
+      "layout": "compare",
+      "text_runs": 29,
+      "min_font_px": 24,
+      "page_number": "37 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s37.png"
+    },
+    {
+      "physical": 38,
+      "kind": "term",
+      "layout": "compare",
+      "text_runs": 31,
+      "min_font_px": 24,
+      "page_number": "38 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s38.png"
+    },
+    {
+      "physical": 39,
+      "kind": "term",
+      "layout": "boundary",
+      "text_runs": 24,
+      "min_font_px": 24,
+      "page_number": "39 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s39.png"
+    },
+    {
+      "physical": 40,
+      "kind": "term",
+      "layout": "compare",
+      "text_runs": 30,
+      "min_font_px": 24,
+      "page_number": "40 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s40.png"
+    },
+    {
+      "physical": 41,
+      "kind": "term",
+      "layout": "boundary",
+      "text_runs": 25,
+      "min_font_px": 24,
+      "page_number": "41 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s41.png"
+    },
+    {
+      "physical": 42,
+      "kind": "synthesis",
+      "layout": "synthesis",
+      "text_runs": 24,
+      "min_font_px": 24,
+      "page_number": "42 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s42.png"
+    },
+    {
+      "physical": 43,
+      "kind": "closing",
+      "layout": "closing",
+      "text_runs": 20,
+      "min_font_px": 24,
+      "page_number": "43 / 44",
+      "page_number_color": "rgb(162, 170, 181)",
+      "png": "slides/render/v15/s43.png"
+    },
+    {
+      "physical": 44,
+      "kind": "qa",
+      "layout": "qa",
+      "text_runs": 70,
+      "min_font_px": 24,
+      "page_number": "44 / 44",
+      "page_number_color": "rgb(94, 101, 112)",
+      "png": "slides/render/v15/s44.png"
+    }
+  ],
+  "nanum_gothic_available": true,
+  "manifest": {
+    "slides": 44,
+    "terms": [
+      "모델",
+      "에이전트",
+      "런타임",
+      "하네스",
+      "오케스트레이션",
+      "도구",
+      "스킬",
+      "플러그인",
+      "커넥터",
+      "MCP",
+      "프롬프트",
+      "컨텍스트",
+      "토큰",
+      "컨텍스트 창",
+      "메모리",
+      "세션",
+      "워커",
+      "서브에이전트",
+      "워크플로우",
+      "자동화",
+      "완료 보고",
+      "검증",
+      "로컬 실행",
+      "클라우드 실행",
+      "리모트 컨트롤"
+    ],
+    "cases": [
+      "클식이",
+      "OMH",
+      "Grokbot",
+      "AI교양",
+      "CEO Agent"
+    ],
+    "chapters": 5,
+    "breaks": [
+      28
+    ],
+    "ceo": [
+      {
+        "physical": 33
+      }
+    ],
+    "layouts": [
+      "compare",
+      "split",
+      "boundary",
+      "lane",
+      "split-mirror",
+      "sequence",
+      "typographic"
+    ]
+  },
+  "reference_slides": [
+    {
+      "physical": 15,
+      "reference": "A",
+      "label": "참고 A: 기본기는 모델에, 업무 기준과 위임은 하네스에"
+    },
+    {
+      "physical": 16,
+      "reference": "B",
+      "label": "참고 B: 가져올 것은 기능 목록보다 작업 방식"
+    }
+  ],
+  "lecture_time_references": {
+    "screen_and_labels": 0,
+    "page_head": 0,
+    "notes": 0
+  },
+  "omh_before_after": {
+    "has": [
+      "요청",
+      "표의 금액 빈칸만 0으로 채워 줘. 번호와 상품은 그대로",
+      "빈칸만 채우랬는데, 번호까지 바뀌었다면?",
+      "OpenCode 순정",
+      "같은 일을 직접 꾸려 진행",
+      "표를 고침",
+      "금액 빈칸에 0을 채움",
+      "원본과 비교",
+      "비교 코드를 짜서 맞춰 봄",
+      "기준에 따라 검토",
+      "번호, 상품이 그대로인지",
+      "필요하면 다시 맡김",
+      "고칠 것을 되돌림",
+      "OMH 통합 구성",
+      "OMO 역할 협업",
+      "총괄",
+      "작업 담당",
+      "검토 담당",
+      "맡김",
+      "고친 표",
+      "다시 고침",
+      "원본과 결과",
+      "검토 결과",
+      "검토 통과 뒤 보고",
+      "금액 빈칸 → 0",
+      "요청한 변경",
+      "상품 A 번호 0 → 3",
+      "요청 밖 변경",
+      "준비된 비교 도구",
+      "data_compare",
+      "쓰는 이유",
+      "반복할수록, 복잡할수록 커지는 하네스의 효용",
+      "분업, 비교, 재검토 절차를 재사용해 복잡한 반복 작업의 준비와 확인 부담을 줄이기"
+    ]
+  },
+  "omh_v12_scene": {
+    "order": "1,2,3,4",
+    "first": {
+      "amount_blanks_after": 0,
+      "changed_fields": [
+        "amount"
+      ],
+      "differences_in_scope": 3,
+      "left_only": 1,
+      "meets_criterion": false,
+      "right_only": 1,
+      "rows_after": 3,
+      "rows_before": 3,
+      "scope": "full",
+      "value_changed": 1,
+      "values_returned": false
+    },
+    "fixed": {
+      "amount_blanks_after": 0,
+      "changed_fields": [
+        "amount"
+      ],
+      "differences_in_scope": 1,
+      "left_only": 0,
+      "meets_criterion": true,
+      "right_only": 0,
+      "rows_after": 3,
+      "rows_before": 3,
+      "scope": "full",
+      "value_changed": 1,
+      "values_returned": false
+    },
+    "engine_version": "v02"
+  },
+  "omh_v13_roles": {
+    "handoffs": "lead>worker:assign worker>lead:result lead>worker:return lead>reviewer:assign reviewer>lead:evidence lead>requester:report",
+    "roles_inside_omo": true,
+    "arrows_join_roles": true
+  },
+  "omh_v14_process": {
+    "steps": [
+      "표를 고침",
+      "원본과 비교",
+      "기준에 따라 검토",
+      "필요하면 다시 맡김"
+    ],
+    "summary_top": 900,
+    "summary_bottom": 990,
+    "pageno_top": 1000,
+    "footnote": false
+  },
+  "omh_v10_structure": {
+    "omo_tools_procedure_inside_omh": true,
+    "opencode_outside_omh": true
+  },
+  "role_wording": {
+    "slide9_has": [
+      "코디네이터",
+      "직접 처리",
+      "워커에게 위임",
+      "결과 검증",
+      "코디네이터가 확인",
+      "같은 코디네이터",
+      "작업 확인 화면"
+    ],
+    "parent_on_screen": [],
+    "tool_route_label": []
+  },
+  "reference_checks": {
+    "skip_links": [
+      "#s17",
+      "#s17"
+    ],
+    "pinned_sources_in_notes": true
+  },
+  "reference_v11": {
+    "title": "기본기는 모델에, 업무 기준과 위임은 하네스에",
+    "polygons": 0,
+    "upper_y": null,
+    "lower_y": null,
+    "superpowers_line_dashed": true,
+    "as_is_to_be_on_15_16": false
+  },
+  "reference_v12": {
+    "title": "기본기는 모델에, 업무 기준과 위임은 하네스에",
+    "titleTop": 236,
+    "svgTop": 330,
+    "superY": 67.2,
+    "pstackY": 338,
+    "pstackFill": "#2457A6",
+    "superFill": "#ECE9E1"
+  },
+  "ai_flow_v12": {
+    "steps": [
+      "주제를 찾고 고르기",
+      "초고 v01을 직접 쓰기",
+      "AI와 함께 검토, 수정",
+      "최종본 확정",
+      "삽화 생성, 보관",
+      "네이버 비공개 초안",
+      "다시 열어 확인"
+    ],
+    "roles": [
+      "author",
+      "author",
+      "ai",
+      "author",
+      "run",
+      "run",
+      "run"
+    ],
+    "matches_slide2": true
+  },
+  "interactions": {
+    "arrowRight": "s2",
+    "pageDown": "s3",
+    "arrowLeft": "s2",
+    "end": "s44",
+    "home": "s1",
+    "nextButton": "s2",
+    "prevButton": "s1",
+    "prevDisabledOnFirst": true,
+    "notes": {
+      "open": true,
+      "chars": 341
+    },
+    "notesClosed": true,
+    "fullscreenOn": true,
+    "fullscreenOff": true,
+    "deepLinkCeo": {
+      "id": "s33",
+      "notesOpen": true,
+      "canonical": true,
+      "counter": "33 / 44"
+    },
+    "deepLinkNumber": "s7",
+    "referenceSkip": "s17"
+  },
+  "viewports": [
+    {
+      "size": "1280x720",
+      "notes": false,
+      "stageW": 1131,
+      "fits": true,
+      "controlsVisible": true
+    },
+    {
+      "size": "1920x1080",
+      "notes": true,
+      "stageW": 1243,
+      "fits": true,
+      "controlsVisible": true
+    },
+    {
+      "size": "390x844",
+      "notes": false,
+      "stageW": 366,
+      "fits": true,
+      "controlsVisible": true
+    },
+    {
+      "size": "390x844",
+      "notes": true,
+      "stageW": 366,
+      "fits": true,
+      "controlsVisible": true
+    }
+  ],
+  "no_javascript_visible_slides": 44,
+  "standalone_copy": {
+    "folder": "fresh temporary folder, no other files",
+    "count": 44,
+    "active": "s15",
+    "styled": true,
+    "stageW": 1450.65625
+  },
+  "pdf": {
+    "file": "slides/harness-engineering-workshop-v15.pdf",
+    "printed_from": "s20",
+    "pages": 44,
+    "media_box": [
+      1440,
+      810
+    ],
+    "ratio": 1.7778,
+    "page_numbers_in_text": "all 44 pages"
+  },
+  "console_errors": [],
+  "external_requests": [],
+  "problems": [],
+  "passed": true
+}

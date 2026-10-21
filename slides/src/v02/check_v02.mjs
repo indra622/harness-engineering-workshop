@@ -33,9 +33,9 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-// versions compare as strings: always two digits after "v" (v02 ... v14)
-const VER = process.env.DECK_VERSION || "v14";
-if (!/^v(0[2-9]|1[0-4])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+// versions compare as strings: always two digits after "v" (v02 ... v15)
+const VER = process.env.DECK_VERSION || "v15";
+if (!/^v(0[2-9]|1[0-5])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case
 const TOTAL = VER >= "v07" ? 44 : 42;
@@ -207,7 +207,9 @@ try {
         "기준에 따라 검토", "번호, 상품이 그대로인지", "필요하면 다시 맡김", "고칠 것을 되돌림", "OMH 통합 구성", "OMO 역할 협업",
         "총괄", "작업 담당", "검토 담당", "맡김", "고친 표", "다시 고침", "원본과 결과", "검토 결과", "검토 통과 뒤 보고",
         "금액 빈칸 → 0", "요청한 변경", "상품 A 번호 0 → 3", "요청 밖 변경", "준비된 비교 도구", "data_compare", "쓰는 이유",
-        "OpenCode 순정도 네 단계를 할 수 있지만"]
+        ...(VER >= "v15" ? ["반복할수록, 복잡할수록 커지는 하네스의 효용",
+          "분업, 비교, 재검토 절차를 재사용해 복잡한 반복 작업의 준비와 확인 부담을 줄이기"]
+          : ["OpenCode 순정도 네 단계를 할 수 있지만"])]
       : VER === "v13"
       ? ["요청", "표의 금액 빈칸만 0으로 채워 줘. 번호와 상품은 그대로", "빈칸만 채우랬는데, 번호까지 바뀌었다면?",
         "OpenCode 순정", "전용 도구가 없으면", "직접 준비할 것", "OMH 통합 구성", "OMO 역할 협업", "총괄", "작업 담당",
