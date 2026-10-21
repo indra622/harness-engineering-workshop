@@ -34,8 +34,8 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
 // versions compare as strings: always two digits after "v" (v02 ... v16)
-const VER = process.env.DECK_VERSION || "v16";
-if (!/^v(0[2-9]|1[0-6])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+const VER = process.env.DECK_VERSION || "v17";
+if (!/^v(0[2-9]|1[0-7])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case; v16 adds a third after the Grokbot case
 const TOTAL = VER >= "v16" ? 45 : VER >= "v07" ? 44 : 42;

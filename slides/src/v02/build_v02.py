@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v16
+    python3 slides/src/v02/build_v02.py                 # current version, v17
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -56,6 +56,7 @@ import copy_v13  # noqa: E402
 import copy_v14  # noqa: E402
 import copy_v15  # noqa: E402
 import copy_v16  # noqa: E402
+import copy_v17  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
@@ -63,8 +64,8 @@ from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
 # versions compare as strings; two digits after "v" keep that ordering correct up to v99
-CURRENT = "v16"
-VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14", "v15", "v16")
+CURRENT = "v17"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14", "v15", "v16", "v17")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -358,6 +359,8 @@ def main():
         raw = copy_v12.apply_refs(raw)
     if ver >= "v16":
         raw = copy_v16.insert(raw)
+    if ver >= "v17":
+        raw = copy_v17.apply_refs(raw)
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
