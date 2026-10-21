@@ -1,10 +1,10 @@
 """Tile the slide renders into contact sheets of twelve.
 
 Usage (from the project root, after check_v02.mjs):
-    python3 slides/src/v02/contact_sheet_deck.py [v13]
+    python3 slides/src/v02/contact_sheet_deck.py [v14]
 
 Writes slides/render/VER/contact-1.png to contact-4.png (git-ignored); the
-version defaults to v13. Needs Pillow and fontconfig (fc-match) to find
+version defaults to v14. Needs Pillow and fontconfig (fc-match) to find
 Nanum Gothic for the labels.
 """
 
@@ -16,7 +16,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[3]
-VER = sys.argv[1] if len(sys.argv) > 1 else "v13"
+VER = sys.argv[1] if len(sys.argv) > 1 else "v14"
 DIR = ROOT / "slides" / "render" / VER
 MANIFEST = ROOT / "slides" / f"harness-engineering-workshop-{VER}.manifest.json"
 W, H, PAD, LAB, COLS, PER = 576, 324, 28, 40, 3, 12

@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v13
+    python3 slides/src/v02/build_v02.py                 # current version, v14
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -17,7 +17,8 @@ lecture timing (screen, notes, manifest, data attributes) and applies the
 edited presentation copy from copy_v04.py; v05 drops the roadmap break marker
 (copy_v05.py); v06 clarifies roles and wording (copy_v06.py); v07 inserts two
 reference slides after the OMH case for 44 pages (copy_v07.py); v08 to v11 revise single slides
-(copy_v08.py ... copy_v13.py, v11 reframes slide 15, v12 rewrites 14, 15 and 27, v13 retells 14 by role). Everything else is shared, so v02
+(copy_v08.py ... copy_v14.py, v11 reframes slide 15, v12 rewrites 14, 15 and 27, v13 retells 14 by role,
+v14 shows the bare OpenCode process on 14). Everything else is shared, so v02
 and v03 still build byte-for-byte as exported.
 
 Slide content lives in deck_a.py and deck_b.py. Term and case notes carry the
@@ -51,6 +52,7 @@ import copy_v10  # noqa: E402
 import copy_v11  # noqa: E402
 import copy_v12  # noqa: E402
 import copy_v13  # noqa: E402
+import copy_v14  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
@@ -58,8 +60,8 @@ from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
 # versions compare as strings; two digits after "v" keep that ordering correct up to v99
-CURRENT = "v13"
-VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13")
+CURRENT = "v14"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -331,6 +333,8 @@ def main():
                 copy_v12.apply(i + 1, sl)
             if ver >= "v13":
                 copy_v13.apply(i + 1, sl)
+            if ver >= "v14":
+                copy_v14.apply(i + 1, sl)
         sl["orig"] = i + 1
     if ver >= "v07":
         raw = copy_v07.insert(raw)

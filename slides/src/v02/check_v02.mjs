@@ -33,9 +33,9 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-// versions compare as strings: always two digits after "v" (v02 ... v13)
-const VER = process.env.DECK_VERSION || "v13";
-if (!/^v(0[2-9]|1[0-3])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+// versions compare as strings: always two digits after "v" (v02 ... v14)
+const VER = process.env.DECK_VERSION || "v14";
+if (!/^v(0[2-9]|1[0-4])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case
 const TOTAL = VER >= "v07" ? 44 : 42;
@@ -201,7 +201,14 @@ try {
     if (roles.toolRoute.length) fail(`"도구로 처리" on screen (route must be 직접 처리): ${roles.toolRoute}`);
     // slide 14: the same task before and after the OMH additions, with the evidence limit on screen
     const s14 = await page.evaluate(() => document.querySelector("#s14 .canvas").textContent);
-    const need14 = VER >= "v13"
+    const need14 = VER >= "v14"
+      ? ["요청", "표의 금액 빈칸만 0으로 채워 줘. 번호와 상품은 그대로", "빈칸만 채우랬는데, 번호까지 바뀌었다면?",
+        "OpenCode 순정", "같은 일을 직접 꾸려 진행", "표를 고침", "금액 빈칸에 0을 채움", "원본과 비교", "비교 코드를 짜서 맞춰 봄",
+        "기준에 따라 검토", "번호, 상품이 그대로인지", "필요하면 다시 맡김", "고칠 것을 되돌림", "OMH 통합 구성", "OMO 역할 협업",
+        "총괄", "작업 담당", "검토 담당", "맡김", "고친 표", "다시 고침", "원본과 결과", "검토 결과", "검토 통과 뒤 보고",
+        "금액 빈칸 → 0", "요청한 변경", "상품 A 번호 0 → 3", "요청 밖 변경", "준비된 비교 도구", "data_compare", "쓰는 이유",
+        "OpenCode 순정도 네 단계를 할 수 있지만"]
+      : VER === "v13"
       ? ["요청", "표의 금액 빈칸만 0으로 채워 줘. 번호와 상품은 그대로", "빈칸만 채우랬는데, 번호까지 바뀌었다면?",
         "OpenCode 순정", "전용 도구가 없으면", "직접 준비할 것", "OMH 통합 구성", "OMO 역할 협업", "총괄", "작업 담당",
         "검토 담당", "맡김", "고친 표", "다시 고침", "원본과 결과", "검토 결과", "검토 통과 뒤 보고", "금액 빈칸 → 0", "요청한 변경", "상품 A 번호 0 → 3", "요청 밖 변경",
@@ -289,6 +296,40 @@ try {
         fail("slide 14 change strip no longer matches the recorded tool run");
       }
       evidence.omh_v13_roles = { handoffs: seq, roles_inside_omo: true, arrows_join_roles: ends };
+    }
+    if (VER >= "v14") {
+      // slide 14 left panel: four process steps in order, every line inside the OpenCode box;
+      // no on-screen footnote, and the summary strip sits lower than in v13 yet clear of the page number
+      await page.evaluate(() => { location.hash = "#s14"; });
+      await page.waitForFunction(() => document.querySelector(".slide.active")?.id === "s14");
+      await page.waitForTimeout(80);
+      const v = await page.evaluate(() => {
+        const s = document.querySelector("#s14");
+        const canvas = s.querySelector(".canvas").getBoundingClientRect();
+        const k = canvas.width / 1920;
+        const rel = (q) => ({ top: (q.top - canvas.top) / k, bottom: (q.bottom - canvas.top) / k,
+          left: (q.left - canvas.left) / k, right: (q.right - canvas.left) / k });
+        const oc = rel(s.querySelector('[data-box="opencode"]').getBoundingClientRect());
+        const steps = [...s.querySelectorAll("g[data-step]")].map((g) => ({ n: g.getAttribute("data-step"),
+          texts: [...g.querySelectorAll("text")].map((tx) => ({ t: tx.textContent, ...rel(tx.getBoundingClientRect()) })) }));
+        const loop = s.querySelector('[data-box="opencode"] ~ polyline[stroke-dasharray]');
+        return { oc, steps, foot: !!s.querySelector(".foot"),
+          summary: rel(s.querySelector('[data-box="summary"]').getBoundingClientRect()),
+          pageno: rel(s.querySelector(".pageno").getBoundingClientRect()), loop: !!loop };
+      });
+      if (v.steps.map((x) => x.n).join(",") !== "1,2,3,4") fail(`slide 14 left steps: ${v.steps.map((x) => x.n)}`);
+      const want = ["표를 고침", "원본과 비교", "기준에 따라 검토", "필요하면 다시 맡김"];
+      if (JSON.stringify(v.steps.map((x) => x.texts[1]?.t)) !== JSON.stringify(want)) fail(`slide 14 step order: ${JSON.stringify(v.steps)}`);
+      const tops = v.steps.map((x) => x.texts[0].top);
+      if (!tops.every((y, i) => !i || y > tops[i - 1])) fail("slide 14 steps must run top to bottom");
+      const out = v.steps.flatMap((x) => x.texts).filter((r) => r.left < v.oc.left || r.right > v.oc.right || r.top < v.oc.top || r.bottom > v.oc.bottom);
+      if (out.length) fail(`slide 14 step text outside the OpenCode box: ${JSON.stringify(out)}`);
+      if (!v.loop) fail("slide 14 lacks the dashed return from step 4");
+      if (v.foot) fail("slide 14 still shows a footnote");
+      if (!(v.summary.top >= 890)) fail(`slide 14 summary must sit lower than v13 (top ${v.summary.top})`);
+      if (!(v.summary.bottom <= v.pageno.top - 4)) fail(`slide 14 summary overlaps the page number: ${JSON.stringify(v)}`);
+      evidence.omh_v14_process = { steps: want, summary_top: Math.round(v.summary.top), summary_bottom: Math.round(v.summary.bottom),
+        pageno_top: Math.round(v.pageno.top), footnote: v.foot };
     }
     if (VER >= "v10") {
       // OMO must sit inside the OMH boundary, and bare OpenCode outside it

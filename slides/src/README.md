@@ -30,8 +30,8 @@ Layout of `v02/`:
 - `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body. Slide 2 has a v02 and a v03 variant.
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
-- `build_v02.py`: assembles v13 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v13).
+- `build_v02.py`: assembles v14 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v14).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 
@@ -175,6 +175,10 @@ v05 keeps the v04 presentation and removes only the slide 3 break marker, with f
 ### v08 coordinator wording
 
 `copy_v08.py` changes only original slide9: 업무 난이도 자동 판단, with notes on choosing direct handling or delegation under user instructions. Historical versions remain reproducible.
+
+### v14 bare OpenCode process (slide 14)
+
+`copy_v14.py` changes slide 14 and nothing else. The left panel walks the same plain request through four steps (표를 고침, 원본과 비교, 기준에 따라 검토, 필요하면 다시 맡김), each a `g[data-step]`, with one dashed return from step 4 to step 1. The on-screen footnote is removed; the factual boundary stays in the notes. The diagram is 650 tall, the panels 460, and the summary strip (`data-box="summary"`) moves to canvas y 900 to 990, clear of the page number at 1000. The right side reuses the v13 roles, flows and change strip, re-spaced. The check keeps the v13 slide 14 label set for v13 only and the role and hand-off tests for v13 and later; for v14 it also tests the four steps in order and top to bottom, every step line drawn inside the OpenCode box (measured on the active slide), the dashed return, no footnote, and the summary below 890 and above the page number. Builder, check and contact sheet default to v14.
 
 ### v13 role handoff (slide 14)
 
