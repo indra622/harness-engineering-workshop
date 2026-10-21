@@ -33,8 +33,8 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-const VER = process.env.DECK_VERSION || "v08";
-if (!/^v0[2345678]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+const VER = process.env.DECK_VERSION || "v09";
+if (!/^v0[23456789]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case
 const TOTAL = VER >= "v07" ? 44 : 42;
@@ -235,6 +235,10 @@ try {
     const screen = await page.locator(".canvas").allTextContents();
     if (screen.some(t => t.includes("OpenClaw"))) fail("case naming still shows OpenClaw on screen");
     if (!text.includes("클식이")) fail("slide9 lacks the familiar case name");
+  }
+
+  if (VER >= "v09") {
+    if (!(await page.locator("#s9 .canvas").textContent()).includes("채널, 세션, 스케줄러")) fail("slide9 gateway lacks scheduler");
   }
 
   // ---------------------------------------------------------------- per-slide layout

@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v08
+    python3 slides/src/v02/build_v02.py                 # current version, v09
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -45,14 +45,15 @@ import copy_v05  # noqa: E402
 import copy_v06  # noqa: E402
 import copy_v07  # noqa: E402
 import copy_v08  # noqa: E402
+import copy_v09  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
 from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
-CURRENT = "v08"
-VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08")
+CURRENT = "v09"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -314,6 +315,8 @@ def main():
                 copy_v07.apply(i + 1, sl)
             if ver >= "v08":
                 copy_v08.apply(i + 1, sl)
+            if ver >= "v09":
+                copy_v09.apply(i + 1, sl)
         sl["orig"] = i + 1
     if ver >= "v07":
         raw = copy_v07.insert(raw)
