@@ -1,0 +1,707 @@
+{
+ "deck": "harness-engineering-workshop",
+ "version": "v11",
+ "slides": 44,
+ "excerpt_edits": [
+  [
+   "부모가 테스트와 파일 상태를 독립적으로 확인한 뒤 답장한다",
+   "같은 코디네이터가 테스트와 파일 상태로 결과를 확인한 뒤 답장한다"
+  ],
+  [
+   "코디네이터가 판단하고 워커가 쓰며 부모가 검증한다",
+   "코디네이터가 판단하고 결과를 확인하며, 워커가 쓴다"
+  ],
+  [
+   "[부모 독립 검증]  산출물과 프로세스 확인",
+   "[코디네이터 결과 검증]  산출물과 프로세스 확인"
+  ],
+  [
+   "부모의 독립 검증",
+   "코디네이터의 결과 검증"
+  ],
+  [
+   "직접 도구 또는 원격 워커",
+   "직접 처리 또는 워커에게 위임"
+  ],
+  [
+   "[직접 도구]  조회, 단순 편집",
+   "[직접 처리]  조회, 단순 편집"
+  ],
+  [
+   "원격 앱은 같은 워커를 보고 개입하는 화면이다. 두 번째 쓰기 주체가 아니다.",
+   "작업 확인 화면(원격 앱)은 같은 워커의 작업을 보고 개입하는 화면이다. 파일을 따로 고치는 두 번째 작업자가 아니다."
+  ],
+  [
+   "[원격 앱]  같은 워커를 보고 개입 (S33), 두 번째 쓰기 주체 아님",
+   "[작업 확인 화면]  같은 워커의 작업을 보고 개입 (S33), 파일을 따로 고치는 작업자 아님"
+  ],
+  [
+   "원격 앱에서 같은 세션이 보인다. 워커가 두 개인가? 아니다. 보기와 개입이 늘었을 뿐 쓰기 주체는 하나다.",
+   "작업 확인 화면에서 같은 세션이 보인다. 워커가 두 개인가? 아니다. 보기와 개입이 늘었을 뿐 파일을 고치는 작업자는 하나다."
+  ],
+  [
+   "원격 앱은 리모트 컨트롤 화면이다(S33)",
+   "작업 확인 화면은 리모트 컨트롤 화면이다(S33)"
+  ],
+  [
+   "코디네이터는 맡길지 판단하는 주체다",
+   "코디네이터는 맡길지 판단하는 쪽이다"
+  ],
+  [
+   "실행 위치와 개입 방식에 무게(워커, 원격 앱)",
+   "실행 위치와 개입 방식에 무게(워커, 작업 확인 화면)"
+  ],
+  [
+   "화면이 늘어도 세션과 쓰기 주체는 늘지 않는다",
+   "화면이 늘어도 세션과 파일을 고치는 작업자는 늘지 않는다"
+  ],
+  [
+   "쓰기 주체는 하나여야 한다",
+   "파일을 고치는 작업자는 하나여야 한다"
+  ],
+  [
+   "쓰기 주체였으니 결과가 옳다고 말해도 되는가? 아니다. 쓰기 주체라는 것은 책임 범위를 말할 뿐이며",
+   "파일을 쓴 작업자였으니 결과가 옳다고 말해도 되는가? 아니다. 파일을 쓴 작업자라는 것은 책임 범위를 말할 뿐이며"
+  ],
+  [
+   "\"앱은 두 번째 쓰기 주체가 아니다\"",
+   "\"앱은 파일을 따로 고치는 두 번째 작업자가 아니다\""
+  ],
+  [
+   "같은 워커를 보고 조종하는 것이지 두 번째 쓰기 주체가 아니다.",
+   "같은 워커를 보고 조종하는 것이지 파일을 따로 고치는 두 번째 작업자가 아니다."
+  ],
+  [
+   "세션은 실행 주체가 아니다. 실제 파일을 고치는 주체는 워커다",
+   "세션이 작업을 실행하지는 않는다. 실제로 파일을 고치는 것은 워커다"
+  ],
+  [
+   "한 실행 주체가 여러 단계를",
+   "작업자 하나가 여러 단계를"
+  ],
+  [
+   "실제 수행하는 실행 주체이며",
+   "실제 수행하는 작업자이며"
+  ],
+  [
+   "맡은 실행 주체가 워커다",
+   "맡은 작업자가 워커다"
+  ],
+  [
+   "여러 실행 주체",
+   "여러 작업자"
+  ],
+  [
+   "실무자가 반영 책임을 지고",
+   "실무자가 최종 반영을 맡고"
+  ],
+  [
+   "페르소나, 등록(register), 판단 루브릭을",
+   "페르소나, 상황별 말투(register), 검토 기준(판단 루브릭)을"
+  ],
+  [
+   "등록과 판단 기준을 고르고",
+   "상황별 말투와 검토 기준을 고르고"
+  ],
+  [
+   "말투와 등록을 정하고, 루브릭은",
+   "말투와 문체를 정하고, 루브릭(검토 기준)은"
+  ],
+  [
+   "등록과 강조를",
+   "말투와 강조를"
+  ],
+  [
+   "어떤 등록과 기준을 고를지",
+   "어떤 말투와 검토 기준을 고를지"
+  ],
+  [
+   "서버 연결 상태만으로 가시성을 주장하지 않는다",
+   "서버 연결 상태만으로 앱에서 보인다고 주장하지 않는다"
+  ],
+  [
+   "다른 경로의 앱 가시성이 보장되지는 않는다",
+   "다른 경로의 앱에서도 보인다는 보장은 없다"
+  ],
+  [
+   "모든 파일이 전역으로 공유된다",
+   "모든 파일이 어디서나 공유된다"
+  ],
+  [
+   "(사람의 확정 게이트)에 무게. 재열람으로 검증.",
+   "(사람이 확정하기 전에는 다음 단계로 가지 않음)에 무게. 초안을 다시 열어 확인."
+  ],
+  [
+   "원문 보존과 확정 게이트를 담고",
+   "원문 보존과 확정 전에는 멈추는 조건을 담고"
+  ],
+  [
+   "검증은 재열람을 맡는다",
+   "검증은 초안을 다시 열어 확인하는 일을 맡는다"
+  ],
+  [
+   "결정적으로 확인할 수 있는 검증 항목",
+   "같은 입력에 늘 같은 결과가 나오는 방법으로 확인할 수 있는 검증 항목"
+  ],
+  [
+   "모호한 행",
+   "판단이 어려운 행"
+  ],
+  [
+   "모호 행",
+   "판단이 어려운 행"
+  ]
+ ],
+ "items": [
+  {
+   "physical": 1,
+   "id": "s1",
+   "kind": "cover",
+   "label": "표지",
+   "layout": "cover",
+   "original": 1
+  },
+  {
+   "physical": 2,
+   "id": "s2",
+   "kind": "opening",
+   "label": "시작: AI교양 글 한 편",
+   "layout": "opening",
+   "v10": [
+    "S1"
+   ],
+   "original": 2
+  },
+  {
+   "physical": 3,
+   "id": "s3",
+   "kind": "roadmap",
+   "label": "오늘의 길",
+   "layout": "roadmap",
+   "v10": [
+    "S2"
+   ],
+   "original": 3
+  },
+  {
+   "physical": 4,
+   "id": "s4",
+   "kind": "chapter",
+   "label": "1장 AI는 무엇을 하고, 누가 실행할까?",
+   "layout": "chapter",
+   "original": 4
+  },
+  {
+   "physical": 5,
+   "id": "s5",
+   "kind": "term",
+   "label": "용어 1 모델",
+   "layout": "compare",
+   "chapter": 1,
+   "term": "모델",
+   "term_index": 1,
+   "v10": [
+    "S3"
+   ],
+   "original": 5
+  },
+  {
+   "physical": 6,
+   "id": "s6",
+   "kind": "term",
+   "label": "용어 2 에이전트",
+   "layout": "split",
+   "chapter": 1,
+   "term": "에이전트",
+   "term_index": 2,
+   "v10": [
+    "S4"
+   ],
+   "original": 6
+  },
+  {
+   "physical": 7,
+   "id": "s7",
+   "kind": "term",
+   "label": "용어 3 런타임",
+   "layout": "split",
+   "chapter": 1,
+   "term": "런타임",
+   "term_index": 3,
+   "v10": [
+    "S5"
+   ],
+   "original": 7
+  },
+  {
+   "physical": 8,
+   "id": "s8",
+   "kind": "term",
+   "label": "용어 4 하네스",
+   "layout": "boundary",
+   "chapter": 1,
+   "term": "하네스",
+   "term_index": 4,
+   "v10": [
+    "S6"
+   ],
+   "original": 8
+  },
+  {
+   "physical": 9,
+   "id": "s9",
+   "kind": "case",
+   "label": "사례 1 클식이",
+   "layout": "case",
+   "chapter": 1,
+   "case": "클식이",
+   "case_index": 1,
+   "v10": [
+    "S7"
+   ],
+   "original": 9
+  },
+  {
+   "physical": 10,
+   "id": "s10",
+   "kind": "chapter",
+   "label": "2장 일하는 방법을 어디에 담을까?",
+   "layout": "chapter",
+   "original": 10
+  },
+  {
+   "physical": 11,
+   "id": "s11",
+   "kind": "term",
+   "label": "용어 5 오케스트레이션",
+   "layout": "lane",
+   "chapter": 2,
+   "term": "오케스트레이션",
+   "term_index": 5,
+   "v10": [
+    "S8"
+   ],
+   "original": 11
+  },
+  {
+   "physical": 12,
+   "id": "s12",
+   "kind": "term",
+   "label": "용어 6 도구",
+   "layout": "compare",
+   "chapter": 2,
+   "term": "도구",
+   "term_index": 6,
+   "v10": [
+    "S9"
+   ],
+   "original": 12
+  },
+  {
+   "physical": 13,
+   "id": "s13",
+   "kind": "term",
+   "label": "용어 7 스킬",
+   "layout": "split-mirror",
+   "chapter": 2,
+   "term": "스킬",
+   "term_index": 7,
+   "v10": [
+    "S10"
+   ],
+   "original": 13
+  },
+  {
+   "physical": 14,
+   "id": "s14",
+   "kind": "case",
+   "label": "사례 2 OMH",
+   "layout": "case",
+   "chapter": 2,
+   "case": "OMH",
+   "case_index": 2,
+   "v10": [
+    "S11"
+   ],
+   "original": 14
+  },
+  {
+   "physical": 15,
+   "id": "s15",
+   "kind": "reference",
+   "label": "참고 A: 기본기 다음은, 검증과 위임",
+   "layout": "reference",
+   "chapter": 2,
+   "reference": "A"
+  },
+  {
+   "physical": 16,
+   "id": "s16",
+   "kind": "reference",
+   "label": "참고 B: 가져올 것은 기능 목록보다 작업 방식",
+   "layout": "reference",
+   "chapter": 2,
+   "reference": "B"
+  },
+  {
+   "physical": 17,
+   "id": "s17",
+   "kind": "term",
+   "label": "용어 8 플러그인",
+   "layout": "boundary",
+   "chapter": 2,
+   "term": "플러그인",
+   "term_index": 8,
+   "v10": [
+    "S12"
+   ],
+   "original": 15
+  },
+  {
+   "physical": 18,
+   "id": "s18",
+   "kind": "term",
+   "label": "용어 9 커넥터",
+   "layout": "sequence",
+   "chapter": 2,
+   "term": "커넥터",
+   "term_index": 9,
+   "v10": [
+    "S13"
+   ],
+   "original": 16
+  },
+  {
+   "physical": 19,
+   "id": "s19",
+   "kind": "term",
+   "label": "용어 10 MCP",
+   "layout": "sequence",
+   "chapter": 2,
+   "term": "MCP",
+   "term_index": 10,
+   "v10": [
+    "S14"
+   ],
+   "original": 17
+  },
+  {
+   "physical": 20,
+   "id": "s20",
+   "kind": "case",
+   "label": "사례 3 Grokbot",
+   "layout": "case",
+   "chapter": 2,
+   "case": "Grokbot",
+   "case_index": 3,
+   "v10": [
+    "S15"
+   ],
+   "original": 18
+  },
+  {
+   "physical": 21,
+   "id": "s21",
+   "kind": "chapter",
+   "label": "3장 AI는 무엇을 알고 있을까?",
+   "layout": "chapter",
+   "original": 19
+  },
+  {
+   "physical": 22,
+   "id": "s22",
+   "kind": "term",
+   "label": "용어 11 프롬프트",
+   "layout": "compare",
+   "chapter": 3,
+   "term": "프롬프트",
+   "term_index": 11,
+   "v10": [
+    "S16"
+   ],
+   "original": 20
+  },
+  {
+   "physical": 23,
+   "id": "s23",
+   "kind": "term",
+   "label": "용어 12 컨텍스트",
+   "layout": "boundary",
+   "chapter": 3,
+   "term": "컨텍스트",
+   "term_index": 12,
+   "v10": [
+    "S17"
+   ],
+   "original": 21
+  },
+  {
+   "physical": 24,
+   "id": "s24",
+   "kind": "term",
+   "label": "용어 13 토큰",
+   "layout": "typographic",
+   "chapter": 3,
+   "term": "토큰",
+   "term_index": 13,
+   "v10": [
+    "S18"
+   ],
+   "original": 22
+  },
+  {
+   "physical": 25,
+   "id": "s25",
+   "kind": "term",
+   "label": "용어 14 컨텍스트 창",
+   "layout": "typographic",
+   "chapter": 3,
+   "term": "컨텍스트 창",
+   "term_index": 14,
+   "v10": [
+    "S19"
+   ],
+   "original": 23
+  },
+  {
+   "physical": 26,
+   "id": "s26",
+   "kind": "term",
+   "label": "용어 15 메모리",
+   "layout": "sequence",
+   "chapter": 3,
+   "term": "메모리",
+   "term_index": 15,
+   "v10": [
+    "S20"
+   ],
+   "original": 24
+  },
+  {
+   "physical": 27,
+   "id": "s27",
+   "kind": "case",
+   "label": "사례 4 AI교양",
+   "layout": "case",
+   "chapter": 3,
+   "case": "AI교양",
+   "case_index": 4,
+   "v10": [
+    "S21"
+   ],
+   "original": 25
+  },
+  {
+   "physical": 28,
+   "id": "s28",
+   "kind": "break",
+   "label": "쉬는 시간",
+   "layout": "break",
+   "v10": [
+    "S22"
+   ],
+   "original": 26
+  },
+  {
+   "physical": 29,
+   "id": "s29",
+   "kind": "chapter",
+   "label": "4장 누가 이어서 일할까?",
+   "layout": "chapter",
+   "original": 27
+  },
+  {
+   "physical": 30,
+   "id": "s30",
+   "kind": "term",
+   "label": "용어 16 세션",
+   "layout": "boundary",
+   "chapter": 4,
+   "term": "세션",
+   "term_index": 16,
+   "v10": [
+    "S23"
+   ],
+   "original": 28
+  },
+  {
+   "physical": 31,
+   "id": "s31",
+   "kind": "term",
+   "label": "용어 17 워커",
+   "layout": "split",
+   "chapter": 4,
+   "term": "워커",
+   "term_index": 17,
+   "v10": [
+    "S24"
+   ],
+   "original": 29
+  },
+  {
+   "physical": 32,
+   "id": "s32",
+   "kind": "term",
+   "label": "용어 18 서브에이전트",
+   "layout": "split-mirror",
+   "chapter": 4,
+   "term": "서브에이전트",
+   "term_index": 18,
+   "v10": [
+    "S25"
+   ],
+   "original": 30
+  },
+  {
+   "physical": 33,
+   "id": "s33",
+   "kind": "case",
+   "label": "사례 5 CEO Agent",
+   "layout": "case",
+   "chapter": 4,
+   "case": "CEO Agent",
+   "case_index": 5,
+   "v10": [
+    "S26"
+   ],
+   "original": 31
+  },
+  {
+   "physical": 34,
+   "id": "s34",
+   "kind": "chapter",
+   "label": "5장 끝났다는 말을 어떻게 믿을까?",
+   "layout": "chapter",
+   "original": 32
+  },
+  {
+   "physical": 35,
+   "id": "s35",
+   "kind": "term",
+   "label": "용어 19 워크플로우",
+   "layout": "sequence",
+   "chapter": 5,
+   "term": "워크플로우",
+   "term_index": 19,
+   "v10": [
+    "S27"
+   ],
+   "original": 33
+  },
+  {
+   "physical": 36,
+   "id": "s36",
+   "kind": "term",
+   "label": "용어 20 자동화",
+   "layout": "sequence",
+   "chapter": 5,
+   "term": "자동화",
+   "term_index": 20,
+   "v10": [
+    "S28"
+   ],
+   "original": 34
+  },
+  {
+   "physical": 37,
+   "id": "s37",
+   "kind": "term",
+   "label": "용어 21 완료 보고",
+   "layout": "compare",
+   "chapter": 5,
+   "term": "완료 보고",
+   "term_index": 21,
+   "v10": [
+    "S29"
+   ],
+   "original": 35
+  },
+  {
+   "physical": 38,
+   "id": "s38",
+   "kind": "term",
+   "label": "용어 22 검증",
+   "layout": "compare",
+   "chapter": 5,
+   "term": "검증",
+   "term_index": 22,
+   "v10": [
+    "S30"
+   ],
+   "original": 36
+  },
+  {
+   "physical": 39,
+   "id": "s39",
+   "kind": "term",
+   "label": "용어 23 로컬 실행",
+   "layout": "boundary",
+   "chapter": 5,
+   "term": "로컬 실행",
+   "term_index": 23,
+   "v10": [
+    "S31"
+   ],
+   "original": 37
+  },
+  {
+   "physical": 40,
+   "id": "s40",
+   "kind": "term",
+   "label": "용어 24 클라우드 실행",
+   "layout": "compare",
+   "chapter": 5,
+   "term": "클라우드 실행",
+   "term_index": 24,
+   "v10": [
+    "S32"
+   ],
+   "original": 38
+  },
+  {
+   "physical": 41,
+   "id": "s41",
+   "kind": "term",
+   "label": "용어 25 리모트 컨트롤",
+   "layout": "boundary",
+   "chapter": 5,
+   "term": "리모트 컨트롤",
+   "term_index": 25,
+   "v10": [
+    "S33"
+   ],
+   "original": 39
+  },
+  {
+   "physical": 42,
+   "id": "s42",
+   "kind": "synthesis",
+   "label": "종합: 다섯 사례",
+   "layout": "synthesis",
+   "chapter": 5,
+   "v10": [
+    "S34"
+   ],
+   "original": 40
+  },
+  {
+   "physical": 43,
+   "id": "s43",
+   "kind": "closing",
+   "label": "마치며",
+   "layout": "closing",
+   "original": 41
+  },
+  {
+   "physical": 44,
+   "id": "s44",
+   "kind": "qa",
+   "label": "질의응답",
+   "layout": "qa",
+   "v10": [
+    "S35"
+   ],
+   "original": 42
+  }
+ ]
+}

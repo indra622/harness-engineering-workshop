@@ -30,8 +30,8 @@ Layout of `v02/`:
 - `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body. Slide 2 has a v02 and a v03 variant.
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
-- `build_v02.py`: assembles v10 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v10).
+- `build_v02.py`: assembles v11 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v11).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 
@@ -175,6 +175,10 @@ v05 keeps the v04 presentation and removes only the slide 3 break marker, with f
 ### v08 coordinator wording
 
 `copy_v08.py` changes only original slide9: 업무 난이도 자동 판단, with notes on choosing direct handling or delegation under user instructions. Historical versions remain reproducible.
+
+### v11 reference framing (slides 15 and 16)
+
+`copy_v11.py` changes two slides and nothing else. Slide 15 becomes '기본기 다음은, 검증과 위임': two stacked layers, execution habits (plan, implement, test, iterate; Superpowers as well-made, maintained procedures) below a job-specific operating layer (success criteria and evidence, task-specific procedure selection, bounded delegation, returned-result verification; referenced from pstack). No AS-IS/TO-BE labels and no transition arrow. The notes separate the sourced fact (coding agents trained with reinforcement learning on coding tasks with test loops, historical Codex source) from the presenter's interpretation, and add the pinned Superpowers release notes and two background articles to the source list. Slide 16 relabels its two left boxes and keeps the dashed Superpowers line and the OMH rows. The check keeps the v10 AS-IS/TO-BE labels and direction test for v10 only; for v11 it requires the new title, no AS-IS/TO-BE on the screens or notes of 15 and 16, no polygon arrow, the operating layer drawn above the habits, no sweeping training claim on screen, the fact/interpretation notes with the three source links, and the new slide 16 labels with the dashed line. Builder, check and contact sheet default to v11.
 
 ### v10 comparison axes (slides 14 to 16)
 

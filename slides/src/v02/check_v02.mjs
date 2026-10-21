@@ -33,9 +33,9 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-// versions compare as strings: always two digits after "v" (v02 ... v10)
-const VER = process.env.DECK_VERSION || "v10";
-if (!/^v(0[2-9]|10)$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+// versions compare as strings: always two digits after "v" (v02 ... v11)
+const VER = process.env.DECK_VERSION || "v11";
+if (!/^v(0[2-9]|1[01])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case
 const TOTAL = VER >= "v07" ? 44 : 42;
@@ -240,13 +240,19 @@ try {
       return { text: s.querySelector(".canvas").textContent, notes: s.querySelector(".notes").innerHTML,
         skip: s.querySelector(".canvas a.ref-skip")?.getAttribute("href") };
     }));
-    const needA = VER >= "v10"
+    const needA = VER >= "v11"
+      ? ["참고 A", "기본기 다음은, 검증과 위임", "Superpowers", "pstack", "업무 운영 층", "실행 기본기", "잘 만든 기본 절차,",
+        "계속 다듬어지는 습관", "성공 기준과 근거", "작업별 절차 선택", "범위 정한 위임", "돌아온 결과 검증",
+        "계획하고 시험하는 기본기는 모델에 스며들고", "기본기는 모델에, 업무 기준과 위임은 하네스에", "111cf6a", "b739a8a"]
+      : VER === "v10"
       ? ["참고 A", "AS-IS", "TO-BE", "Superpowers", "pstack", "작업별 절차 선택으로", "바뀌는 초점", "의도와 설계 합의",
         "테스트 먼저 구현", "작업별 플레이북", "범위 정해 위임", "실제 동작으로 검증", "111cf6a", "b739a8a"]
       : ["참고 A", "같은 개발 요청, 서로 다른 작업 설계", "pstack", "Superpowers", "공통점", "실제 동작으로 검증",
         "테스트 먼저 구현", "111cf6a", "b739a8a"];
-    const needB = ["참고 B", "가져올 것은 기능 목록보다 작업 방식", "내 환경에서 쓸", "적용 예: OMH", "비교 참고", "omh-rigorous",
-      ...(VER >= "v10" ? ["TO-BE pstack", "AS-IS Superpowers", "OMO 역할 구성"] : [])];
+    const needB = ["참고 B", "가져올 것은 기능 목록보다 작업 방식", "내 환경에서 쓸", "적용 예: OMH", "omh-rigorous",
+      ...(VER < "v11" ? ["비교 참고"] : []),
+      ...(VER === "v10" ? ["TO-BE pstack", "AS-IS Superpowers", "OMO 역할 구성"] : []),
+      ...(VER >= "v11" ? ["pstack에서 참고할 운영 방식", "Superpowers에서 참고할 기본기", "포함", "OMO 역할 구성", "같음"] : [])];
     const pins = ["cursor/plugins/blob/111cf6a16b11cc822782c1585859af4a580a2490", "obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12"];
     [[ref[0], needA, "15"], [ref[1], needB, "16"]].forEach(([r, need, n]) => {
       const lack = need.filter((w) => !r.text.includes(w));
@@ -255,7 +261,7 @@ try {
       if (!pins.every((u) => r.notes.includes(u))) fail(`slide ${n} notes lack pinned source links`);
     });
     evidence.reference_checks = { skip_links: ref.map((r) => r.skip), pinned_sources_in_notes: true };
-    if (VER >= "v10") {
+    if (VER === "v10") {
       // AS-IS sits above TO-BE on slide 15, joined by the transition arrow
       const order = await page.evaluate(() => {
         const at = (w) => parseFloat([...document.querySelectorAll("#s15 svg text")].find((n) => n.textContent === w)?.getAttribute("y"));
@@ -263,6 +269,41 @@ try {
       });
       if (!(order.asis < order.tobe) || !order.arrow) fail(`slide 15 direction: ${JSON.stringify(order)}`);
       evidence.reference_direction = order;
+    }
+    if (VER >= "v11") {
+      // slide 15 is an emphasis shift: no AS-IS/TO-BE anywhere on 15 or 16, no migration arrow,
+      // the operating layer drawn above the execution habits, and no sweeping training claim
+      const v11 = await page.evaluate(() => ["#s15", "#s16"].map((id) => {
+        const s = document.querySelector(id);
+        const c = s.querySelector(".canvas");
+        const labels = [...c.querySelectorAll("[aria-label]")].map((n) => n.getAttribute("aria-label")).join(" ");
+        const at = (w) => parseFloat([...s.querySelectorAll("svg text")].find((n) => n.textContent === w)?.getAttribute("y"));
+        return { screen: c.textContent + " " + labels, notes: s.querySelector(".notes").innerHTML,
+          title: s.querySelector(".case-title")?.textContent, polygons: s.querySelectorAll("svg polygon").length,
+          upper: at("업무 운영 층"), lower: at("실행 기본기"),
+          dashedSuper: !!s.querySelector('svg polyline[points="520,282 570,282 570,270 614,270"][stroke-dasharray]') };
+      }));
+      const [a, b] = v11;
+      if (a.title !== "기본기 다음은, 검증과 위임") fail(`slide 15 title: ${a.title}`);
+      v11.forEach((r, k) => {
+        const n = 15 + k;
+        if (/AS-IS|TO-BE/i.test(r.screen)) fail(`slide ${n} still shows AS-IS/TO-BE on screen`);
+        if (/AS-IS|TO-BE/i.test(r.notes)) fail(`slide ${n} notes still frame AS-IS/TO-BE`);
+      });
+      if (a.polygons) fail("slide 15 keeps the migration arrow");
+      if (!(a.upper < a.lower)) fail(`slide 15 layers: ${JSON.stringify({ upper: a.upper, lower: a.lower })}`);
+      if (!b.dashedSuper) fail("slide 16 Superpowers line is no longer dashed");
+      const sweeping = ["모든 모델", "모든 프론티어", "100%", "빠짐없이 따른다", "항상 따른다", "Superpowers를 학습했", "RL 때문에", "강화학습 때문에"];
+      const said = sweeping.filter((w) => a.screen.includes(w) || b.screen.includes(w));
+      if (said.length) fail(`slides 15/16 make a sweeping claim on screen: ${said.join(", ")}`);
+      const factNeed = ["사실과 해석", "강화학습", "이 발표의 관점", "https://openai.com/index/introducing-codex/",
+        "https://openai.com/index/harness-engineering/",
+        "obra/superpowers/blob/b739a8af570e10a95898f2bdf6cec97467fa6c12/RELEASE-NOTES.md"];
+      const lackFact = factNeed.filter((w) => !a.notes.includes(w));
+      if (lackFact.length) fail(`slide 15 notes lack fact/interpretation: ${lackFact.join(", ")}`);
+      if (!b.notes.includes("RELEASE-NOTES.md")) fail("slide 16 notes lack the pinned release notes");
+      evidence.reference_v11 = { title: a.title, polygons: a.polygons, upper_y: a.upper, lower_y: a.lower,
+        superpowers_line_dashed: b.dashedSuper, as_is_to_be_on_15_16: false };
     }
   }
 

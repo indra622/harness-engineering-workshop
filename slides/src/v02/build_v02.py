@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v10
+    python3 slides/src/v02/build_v02.py                 # current version, v11
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -16,7 +16,8 @@ author finds the topic and writes v01 before any AI review. v04 removes all
 lecture timing (screen, notes, manifest, data attributes) and applies the
 edited presentation copy from copy_v04.py; v05 drops the roadmap break marker
 (copy_v05.py); v06 clarifies roles and wording (copy_v06.py); v07 inserts two
-reference slides after the OMH case for 44 pages (copy_v07.py). Everything else is shared, so v02
+reference slides after the OMH case for 44 pages (copy_v07.py); v08 to v11 revise single slides
+(copy_v08.py ... copy_v11.py, v11 reframes slide 15). Everything else is shared, so v02
 and v03 still build byte-for-byte as exported.
 
 Slide content lives in deck_a.py and deck_b.py. Term and case notes carry the
@@ -47,6 +48,7 @@ import copy_v07  # noqa: E402
 import copy_v08  # noqa: E402
 import copy_v09  # noqa: E402
 import copy_v10  # noqa: E402
+import copy_v11  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
@@ -54,8 +56,8 @@ from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
 # versions compare as strings; two digits after "v" keep that ordering correct up to v99
-CURRENT = "v10"
-VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10")
+CURRENT = "v11"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -327,6 +329,8 @@ def main():
         raw = copy_v07.insert(raw)
     if ver >= "v10":
         raw = copy_v10.apply_refs(raw)
+    if ver >= "v11":
+        raw = copy_v11.apply_refs(raw)
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
