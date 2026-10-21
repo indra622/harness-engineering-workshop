@@ -33,8 +33,8 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-const VER = process.env.DECK_VERSION || "v07";
-if (!/^v0[234567]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+const VER = process.env.DECK_VERSION || "v08";
+if (!/^v0[2345678]$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case
 const TOTAL = VER >= "v07" ? 44 : 42;
@@ -227,6 +227,14 @@ try {
       if (!pins.every((u) => r.notes.includes(u))) fail(`slide ${n} notes lack pinned source links`);
     });
     evidence.reference_checks = { skip_links: ref.map((r) => r.skip), pinned_sources_in_notes: true };
+  }
+
+  if (VER >= "v08") {
+    const text = await page.locator("#s9 .canvas").textContent();
+    if (!text.includes("업무 난이도 자동 판단")) fail("slide9 lacks automatic difficulty judgment");
+    const screen = await page.locator(".canvas").allTextContents();
+    if (screen.some(t => t.includes("OpenClaw"))) fail("case naming still shows OpenClaw on screen");
+    if (!text.includes("클식이")) fail("slide9 lacks the familiar case name");
   }
 
   // ---------------------------------------------------------------- per-slide layout
