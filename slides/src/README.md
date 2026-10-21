@@ -1,3 +1,7 @@
+# v18 마무리 슬라이드 삭제
+
+현재 제작본은 v18(44장)이다. v17의 44쪽 마무리만 삭제했고, 종합 다음에 질의응답이 이어진다. 기본 빌드와 검사는 v18이다. 아래 이전 판 설명은 제작 기록이다.
+
 # v17 로고 보완
 
 현재 제작본은 v17이다. v16의 참고 C(21쪽)에 AILC 원본의 OpenAI, Grok, Meta 로고를 내장했다. 45장 구성과 내용은 그대로이며, 아래 이전 버전 설명은 제작 기록이다.
@@ -34,8 +38,8 @@ Layout of `v02/`:
 - `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body. Slide 2 has a v02 and a v03 variant.
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
-- `build_v02.py`: assembles v17 by default (45 slides including three optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v17).
+- `build_v02.py`: assembles v18 by default (45 slides including three optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v18).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 

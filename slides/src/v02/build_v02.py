@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v17
+    python3 slides/src/v02/build_v02.py                 # current version, v18
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -64,8 +64,8 @@ from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
 # versions compare as strings; two digits after "v" keep that ordering correct up to v99
-CURRENT = "v17"
-VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14", "v15", "v16", "v17")
+CURRENT = "v18"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14", "v15", "v16", "v17", "v18")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -274,8 +274,9 @@ def slide_html(n, sl, notes, total=42):
 def validate(slides):
     problems = []
     refs = [s for s in slides if s["kind"] == "reference"]
-    want = 45 if kit.VERSION >= "v16" else 44 if kit.VERSION >= "v07" else 42
-    if len(slides) != want or len(refs) != want - 42:
+    want = 44 if kit.VERSION >= "v18" else 45 if kit.VERSION >= "v16" else 44 if kit.VERSION >= "v07" else 42
+    expected_refs = 3 if kit.VERSION >= "v16" else 2 if kit.VERSION >= "v07" else 0
+    if len(slides) != want or len(refs) != expected_refs:
         problems.append(f"{len(slides)} slides with {len(refs)} reference slides, expected {want}")
     if all("minutes" in s for s in slides) and sum(s["minutes"] for s in slides) != 120:
         problems.append(f"minutes sum to {sum(s['minutes'] for s in slides)}, expected 120")
@@ -361,6 +362,11 @@ def main():
         raw = copy_v16.insert(raw)
     if ver >= "v17":
         raw = copy_v17.apply_refs(raw)
+    if ver >= "v18":
+        # Remove only the former physical 44 closing page; original ids stay stable.
+        if len([s for s in raw if s.get("orig") == 41 and s["kind"] == "closing"]) != 1:
+            raise SystemExit("v18: expected one closing slide (original 41)")
+        raw = [s for s in raw if s.get("orig") != 41]
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
@@ -411,7 +417,7 @@ def main():
             html = html.replace(old, new)
         html = html.replace("발표 자료 v04.", f"발표 자료 {ver}.")
         if ver >= "v07":
-            html = html.replace("42장, 용어 25개와 사례 5개.", f"{len(raw)}장(참고 {len(raw) - 42}장 포함), 용어 25개와 사례 5개.")
+            html = html.replace("42장, 용어 25개와 사례 5개.", f"{len(raw)}장(참고 {sum(s['kind'] == 'reference' for s in raw)}장 포함), 용어 25개와 사례 5개.")
     html = (html.replace("{{CSS}}", css).replace("{{JS}}", js).replace("{{MANIFEST}}", man)
             .replace("{{COUNT}}", str(len(raw))).replace("{{SLIDES}}", "\n\n".join(sections)))
     if "{{" in html:

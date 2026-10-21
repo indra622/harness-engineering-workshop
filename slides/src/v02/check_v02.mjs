@@ -34,11 +34,11 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
 // versions compare as strings: always two digits after "v" (v02 ... v16)
-const VER = process.env.DECK_VERSION || "v17";
-if (!/^v(0[2-9]|1[0-7])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+const VER = process.env.DECK_VERSION || "v18";
+if (!/^v(0[2-9]|1[0-8])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case; v16 adds a third after the Grokbot case
-const TOTAL = VER >= "v16" ? 45 : VER >= "v07" ? 44 : 42;
+const TOTAL = VER >= "v18" ? 44 : VER >= "v16" ? 45 : VER >= "v07" ? 44 : 42;
 // v02 and v03 carry the 120-minute lecture schedule; v04 has no lecture timing at all
 const TIMED = VER < "v04";
 // lecture time on screen or in notes (tool and task times such as 09:12 or cron do not match)
@@ -113,11 +113,11 @@ try {
   evidence.manifest = m;
   if (m.slides !== TOTAL || meta.attrs.length !== TOTAL) fail(`slide count ${m.slides}/${meta.attrs.length} != ${TOTAL}`);
   const refs = items.filter((it) => it.kind === "reference");
-  if (refs.length !== TOTAL - 42) fail(`reference slides: ${refs.length}`);
+  if (refs.length !== (VER >= "v16" ? 3 : VER >= "v07" ? 2 : 0)) fail(`reference slides: ${refs.length}`);
   if (VER >= "v07") {
     // originals keep their v06 numbering; references sit right after original 14
     const origs = items.filter((it) => it.kind !== "reference").map((it) => it.original);
-    if (JSON.stringify(origs) !== JSON.stringify([...Array(42).keys()].map((k) => k + 1))) fail("original numbering broken");
+    if (JSON.stringify(origs) !== JSON.stringify([...Array(42).keys()].map((k) => k + 1).filter((n) => VER < "v18" || n !== 41))) fail("original numbering broken");
     const place = VER >= "v16" ? "15A,16B,21C" : "15A,16B";
     if (refs.map((r) => `${r.physical}${r.reference}`).join(",") !== place) fail(`reference placement: ${refs.map((r) => r.physical)}`);
     evidence.reference_slides = refs.map((r) => ({ physical: r.physical, reference: r.reference, label: r.label }));
@@ -491,7 +491,7 @@ try {
     const at = (f) => items.find(f)?.physical;
     const map = { grok: at((i) => i.case === "Grokbot"), refC: at((i) => i.reference === "C"), ai: at((i) => i.case === "AI교양"),
       brk: at((i) => i.kind === "break"), ceo: at((i) => i.case === "CEO Agent"), qa: at((i) => i.kind === "qa") };
-    if (JSON.stringify(map) !== JSON.stringify({ grok: 20, refC: 21, ai: 28, brk: 29, ceo: 34, qa: 45 })) fail(`v16 physical map: ${JSON.stringify(map)}`);
+    if (JSON.stringify(map) !== JSON.stringify({ grok: 20, refC: 21, ai: 28, brk: 29, ceo: 34, qa: VER >= "v18" ? 44 : 45 })) fail(`v16 physical map: ${JSON.stringify(map)}`);
     const v = await page.evaluate(() => {
       const read = (id) => {
         const s = document.querySelector(id);
