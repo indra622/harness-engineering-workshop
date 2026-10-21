@@ -5,3 +5,7 @@
 !.env.example
 logs/
 docs/import-manifest.json
+
+# Local generated files retained when switching from develop
+/slides/render/
+/slides/src/**/__pycache__/
