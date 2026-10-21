@@ -1,4 +1,4 @@
-// Browser check, render and print for the deck (42 slides, 44 from v07 with two reference slides).
+// Browser check, render and print for the deck (42 slides, 44 from v07 with two reference slides, 45 from v16).
 //
 // Usage (from the project root, after build_v02.py):
 //   PLAYWRIGHT_MODULE=/path/to/node_modules/playwright/index.js \
@@ -33,12 +33,12 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-// versions compare as strings: always two digits after "v" (v02 ... v15)
-const VER = process.env.DECK_VERSION || "v15";
-if (!/^v(0[2-9]|1[0-5])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+// versions compare as strings: always two digits after "v" (v02 ... v16)
+const VER = process.env.DECK_VERSION || "v16";
+if (!/^v(0[2-9]|1[0-6])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
-// v07 adds two optional reference slides after the OMH case
-const TOTAL = VER >= "v07" ? 44 : 42;
+// v07 adds two optional reference slides after the OMH case; v16 adds a third after the Grokbot case
+const TOTAL = VER >= "v16" ? 45 : VER >= "v07" ? 44 : 42;
 // v02 and v03 carry the 120-minute lecture schedule; v04 has no lecture timing at all
 const TIMED = VER < "v04";
 // lecture time on screen or in notes (tool and task times such as 09:12 or cron do not match)
@@ -118,7 +118,8 @@ try {
     // originals keep their v06 numbering; references sit right after original 14
     const origs = items.filter((it) => it.kind !== "reference").map((it) => it.original);
     if (JSON.stringify(origs) !== JSON.stringify([...Array(42).keys()].map((k) => k + 1))) fail("original numbering broken");
-    if (refs.map((r) => `${r.physical}${r.reference}`).join(",") !== "15A,16B") fail(`reference placement: ${refs.map((r) => r.physical)}`);
+    const place = VER >= "v16" ? "15A,16B,21C" : "15A,16B";
+    if (refs.map((r) => `${r.physical}${r.reference}`).join(",") !== place) fail(`reference placement: ${refs.map((r) => r.physical)}`);
     evidence.reference_slides = refs.map((r) => ({ physical: r.physical, reference: r.reference, label: r.label }));
   }
   if (TIMED && m.minutes !== 120) fail(`minutes ${m.minutes} != 120`);
@@ -141,7 +142,8 @@ try {
     }
     const nt = squash(meta.notes[i]);
     const fixes = { 9: "v02", 23: "v02", 29: "v02", 30: "v02", ...(VER >= "v03" ? { 2: "v03" } : {}),
-      ...(VER >= "v06" ? { 18: "v06", 31: "v06" } : {}), ...(VER >= "v10" ? { 14: "v10" } : {}), ...(VER >= "v12" ? { 25: "v12" } : {}) };
+      ...(VER >= "v06" ? { 18: "v06", 31: "v06" } : {}), ...(VER >= "v10" ? { 14: "v10" } : {}), ...(VER >= "v12" ? { 25: "v12" } : {}),
+      ...(VER >= "v16" ? { 40: "v16" } : {}) };
     const orig = it.original || it.physical;  // corrections are keyed by the original slide
     if (it.kind !== "reference" && fixes[orig]) {
       const label = TIMED ? `${fixes[orig]} 정정 (아래 v10 원문보다 우선)` : "정정 (아래 v10 발췌보다 우선)";
@@ -467,7 +469,7 @@ try {
       });
       const s2 = document.querySelector("#s2 svg");
       const r2 = [...s2.querySelectorAll("rect")].filter((r) => r.getAttribute("height") === "140");
-      const s27 = document.querySelector("#s27");
+      const s27 = document.querySelector('.slide[data-case="AI교양"]');  // physical 27 until v15, 28 from v16
       const r27 = [...s27.querySelectorAll("svg rect[data-step]")];
       return { s2: labels(s2, r2), s27: labels(s27, r27), roles: r27.map((r) => r.getAttribute("data-role")),
         text: s27.querySelector(".canvas").textContent, sec: s27.dataset };
@@ -482,6 +484,66 @@ try {
     if (lack27.length) fail(`slide 27 lacks: ${lack27.join(", ")}`);
     if (flow.sec.original !== "25" || flow.sec.case !== "AI교양" || flow.sec.v10 !== "S21") fail("slide 27 source fields changed");
     evidence.ai_flow_v12 = { steps: flow.s27.map((x) => x[0]), roles: flow.roles, matches_slide2: true };
+  }
+
+  if (VER >= "v16") {
+    // physical map: Grokbot case 20, 참고 C 21, AI교양 28, break 29, CEO Agent 34, Q&A 45
+    const at = (f) => items.find(f)?.physical;
+    const map = { grok: at((i) => i.case === "Grokbot"), refC: at((i) => i.reference === "C"), ai: at((i) => i.case === "AI교양"),
+      brk: at((i) => i.kind === "break"), ceo: at((i) => i.case === "CEO Agent"), qa: at((i) => i.kind === "qa") };
+    if (JSON.stringify(map) !== JSON.stringify({ grok: 20, refC: 21, ai: 28, brk: 29, ceo: 34, qa: 45 })) fail(`v16 physical map: ${JSON.stringify(map)}`);
+    const v = await page.evaluate(() => {
+      const read = (id) => {
+        const s = document.querySelector(id);
+        const c = s.querySelector(".canvas");
+        const aria = [...c.querySelectorAll("[aria-label]")].map((n) => n.getAttribute("aria-label")).join(" ");
+        return { text: c.textContent, aria, notes: s.querySelector(".notes").innerHTML,
+          title: s.querySelector(".case-title")?.textContent, skip: c.querySelector("a.ref-skip")?.getAttribute("href") };
+      };
+      const box = (el) => {
+        const [x, y, w, h] = ["x", "y", "width", "height"].map((a) => parseFloat(el.getAttribute(a)));
+        return [x, y, x + w, y + h];
+      };
+      const cloud = document.querySelector('#s20 [data-box="cloud"]');
+      const bots = [...document.querySelectorAll("#s20 [data-bot]")].map((el) => [el.getAttribute("data-bot"), box(el)]);
+      const qa = [...document.querySelectorAll(".slide[data-kind='qa'] b")].map((b) => Number(b.textContent));
+      return { s20: read("#s20"), s21: read("#s21"), s43: read("#s43"), s2notes: document.querySelector("#s2 .notes").innerHTML,
+        cloud: cloud && box(cloud), bots, axes: !!document.querySelector("#s20 .grok-axes"), qa };
+    });
+    // slide 20: the four confirmed bots in one cloud, the no-own-hardware message, no stale captions anywhere current
+    const names = ["록식이", "에식이", "소식이", "최저가봇"];
+    if (JSON.stringify(v.bots.map((b) => b[0])) !== JSON.stringify(names)) fail(`slide 20 bots: ${v.bots.map((b) => b[0])}`);
+    const inside = (a, b) => a && b && a[0] >= b[0] && a[1] >= b[1] && a[2] <= b[2] && a[3] <= b[3];
+    if (!v.bots.every((b) => inside(b[1], v.cloud))) fail("slide 20 bots must sit inside the cloud box");
+    const need20 = ["내 맥미니 없이도, 클라우드에서 도는 봇 넷", "클라우드", "공유 컴퓨터", "연결한 앱", "루틴", "직접 운영", "클식이",
+      "클라우드 서비스", "Grok Bot", "늘 켜 둔 내 장비 없이도", "하네스를 쓸 수 있음", "서비스마다 권한과 이용 조건은 다름", "참고 C"];
+    const lack20 = need20.filter((w) => !v.s20.text.includes(w));
+    if (lack20.length) fail(`slide 20 lacks: ${lack20.join(", ")}`);
+    if (v.axes || v.s20.text.includes("네 개의 비교 축")) fail("slide 20 still leads with the axis comparison");
+    const stale = /미확인|첨부|원자료|설명상/;
+    for (const [n, r] of [["20", v.s20], ["21", v.s21], ["43", v.s43]]) {
+      if (stale.test(r.text) || stale.test(r.aria)) fail(`slide ${n} still shows a stale attachment caption`);
+    }
+    if (stale.test(v.s20.notes.replace(/<h3>v10 발췌[\s\S]*$/, ""))) fail("slide 20 current notes still call the source unverified");
+    if (/첨부 자료를 열 수 없었다|첨부 미확인/.test(v.s20.notes + v.s43.notes)) fail("v16 excerpts still carry the stale attachment lines");
+    if (!v.s20.notes.includes("https://x.ai/news/introducing-grok-bot")) fail("slide 20 notes lack the xAI source");
+    // 참고 C: three cloud personal agents, their differences and what they share; no volatile conditions on screen
+    const need21 = ["참고 C", "맥미니 없이도, 클라우드에서 쓰는 개인 에이전트", "dots", "OpenAI", "Grok Bot", "xAI", "Muse", "Meta",
+      "들어가는 곳", "맡기는 일", "사람이 보는 곳", "ChatGPT에서 시작", "봇별 대화, 그룹 대화", "앱이나 WhatsApp",
+      "셋의 공통점", "클라우드의 자기 컴퓨터", "연결한 앱", "이어지는 기억", "사람의 확인"];
+    const lack21 = need21.filter((w) => !v.s21.text.includes(w));
+    if (lack21.length) fail(`slide 21 lacks: ${lack21.join(", ")}`);
+    if (v.s21.skip !== "#s22") fail(`slide 21 skip link: ${v.s21.skip}`);
+    if (/\d{4}\.\s?\d|요금|구독|무료|Pro|Premium|\d,\d{3}|베타|미국|\$/.test(v.s21.text)) fail("slide 21 shows dates, pricing or regions");
+    const src21 = ["https://help.openai.com/en/articles/20001530-getting-started-with-your-dot", "https://x.ai/news/introducing-grok-bot",
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/"];
+    if (!src21.every((u) => v.s21.notes.includes(u))) fail("slide 21 notes lack the three official sources");
+    // pointers: the Q&A index and the slide 2 notes name the v16 physical pages
+    const wantQa = items.filter((i) => i.kind === "term" || i.kind === "case").map((i) => i.physical);
+    if (JSON.stringify(v.qa) !== JSON.stringify(wantQa)) fail(`Q&A index ${v.qa} != ${wantQa}`);
+    const wf = at((i) => i.term === "워크플로우");
+    if (!v.s2notes.includes(`AI교양 사례(${map.ai}번)`) || !v.s2notes.includes(`워크플로우(${wf}번)`)) fail("slide 2 note pointers not moved");
+    evidence.v16 = { physical_map: map, bots: names, qa_index: v.qa, refC_skip: v.s21.skip };
   }
 
   if (VER >= "v08") {
@@ -501,7 +563,13 @@ try {
     const id = `s${i + 1}`;
     await page.evaluate((h) => { location.hash = h; }, `#${id}`);
     await page.waitForFunction((x) => document.querySelector(".slide.active")?.id === x, id);
-    await page.waitForTimeout(40);
+    if (VER >= "v16") {
+      // a newly shown slide can paint its Korean headings late; let fonts and paint settle before measuring
+      await page.evaluate(() => document.fonts.ready);
+      await page.waitForTimeout(220);
+    } else {
+      await page.waitForTimeout(40);
+    }
     const r = await page.evaluate(() => {
       const slide = document.querySelector(".slide.active");
       const canvas = slide.querySelector(".canvas");
@@ -671,6 +739,14 @@ try {
     await p2.waitForFunction(() => document.querySelector(".slide.active")?.id === "s17");
     ix.referenceSkip = await at();
     if (ix.referenceSkip !== "s17") fail(`reference skip link: ${ix.referenceSkip}`);
+    if (VER >= "v16") {
+      await p2.goto(url + "#s21");
+      await p2.waitForSelector(".slide.active");
+      await p2.click("#s21 a.ref-skip");
+      await p2.waitForFunction(() => document.querySelector(".slide.active")?.id === "s22");
+      ix.referenceSkipC = await at();
+      if (ix.referenceSkipC !== "s22") fail(`reference C skip link: ${ix.referenceSkipC}`);
+    }
   }
   evidence.interactions = ix;
 

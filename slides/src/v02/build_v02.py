@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v15
+    python3 slides/src/v02/build_v02.py                 # current version, v16
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -18,7 +18,8 @@ edited presentation copy from copy_v04.py; v05 drops the roadmap break marker
 (copy_v05.py); v06 clarifies roles and wording (copy_v06.py); v07 inserts two
 reference slides after the OMH case for 44 pages (copy_v07.py); v08 to v11 revise single slides
 (copy_v08.py ... copy_v15.py, v11 reframes slide 15, v12 rewrites 14, 15 and 27, v13 retells 14 by role,
-v14 shows the bare OpenCode process on 14, v15 changes its summary). Everything else is shared, so v02
+v14 shows the bare OpenCode process on 14, v15 changes its summary); v16 redraws the Grokbot case and adds
+참고 C after it for 45 pages (copy_v16.py). Everything else is shared, so v02
 and v03 still build byte-for-byte as exported.
 
 Slide content lives in deck_a.py and deck_b.py. Term and case notes carry the
@@ -54,6 +55,7 @@ import copy_v12  # noqa: E402
 import copy_v13  # noqa: E402
 import copy_v14  # noqa: E402
 import copy_v15  # noqa: E402
+import copy_v16  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
@@ -61,8 +63,8 @@ from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
 # versions compare as strings; two digits after "v" keep that ordering correct up to v99
-CURRENT = "v15"
-VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14", "v15")
+CURRENT = "v16"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14", "v15", "v16")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -210,7 +212,10 @@ def build_notes_v04(n, sl):
     o = sl.get("orig")  # original slide number; reference slides added in v07 have none
     fixes = [CORRECTIONS_V03.get(o), CORRECTIONS.get(o), copy_v06.CORRECTIONS.get(o) if v06 else None,
              copy_v10.CORRECTIONS.get(o) if kit.VERSION >= "v10" else None,
-             copy_v12.CORRECTIONS.get(o) if kit.VERSION >= "v12" else None]
+             copy_v12.CORRECTIONS.get(o) if kit.VERSION >= "v12" else None,
+             copy_v16.CORRECTIONS.get(o) if kit.VERSION >= "v16" else None]
+    if kit.VERSION >= "v16":  # corrections that name a physical page follow the v16 numbering
+        fixes = [copy_v16.fix_text(f) if f else f for f in fixes]
     for fix in filter(None, fixes):
         html.append(f'<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> {escape(fix)}</p>')
         md += [f"정정 (아래 v10 발췌보다 우선): {fix}", ""]
@@ -230,6 +235,8 @@ def build_notes_v04(n, sl):
         label, note = "v04 편집", copy_v04.EXCERPT_NOTE
         if v06:  # v06 also swaps outdated expressions for the current wording
             body, label, note = copy_v06.excerpt_edit(body), "v06 편집", copy_v06.EXCERPT_NOTE
+        if kit.VERSION >= "v16":  # drops stale lines about the Grokbot attachment; a correction above says so
+            body = copy_v16.excerpt(sid, body)
         html.append(f"<h3>v10 발췌 S{sid} ({label})</h3>")
         html.append(f'<p class="src">{escape(note)}</p>')
         html.append(v10_html(body))
@@ -266,7 +273,7 @@ def slide_html(n, sl, notes, total=42):
 def validate(slides):
     problems = []
     refs = [s for s in slides if s["kind"] == "reference"]
-    want = 44 if kit.VERSION >= "v07" else 42
+    want = 45 if kit.VERSION >= "v16" else 44 if kit.VERSION >= "v07" else 42
     if len(slides) != want or len(refs) != want - 42:
         problems.append(f"{len(slides)} slides with {len(refs)} reference slides, expected {want}")
     if all("minutes" in s for s in slides) and sum(s["minutes"] for s in slides) != 120:
@@ -338,6 +345,8 @@ def main():
                 copy_v14.apply(i + 1, sl)
             if ver >= "v15":
                 copy_v15.apply(i + 1, sl)
+            if ver >= "v16":
+                copy_v16.apply(i + 1, sl)
         sl["orig"] = i + 1
     if ver >= "v07":
         raw = copy_v07.insert(raw)
@@ -347,6 +356,8 @@ def main():
         raw = copy_v11.apply_refs(raw)
     if ver >= "v12":
         raw = copy_v12.apply_refs(raw)
+    if ver >= "v16":
+        raw = copy_v16.insert(raw)
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
@@ -397,7 +408,7 @@ def main():
             html = html.replace(old, new)
         html = html.replace("발표 자료 v04.", f"발표 자료 {ver}.")
         if ver >= "v07":
-            html = html.replace("42장, 용어 25개와 사례 5개.", "44장(참고 2장 포함), 용어 25개와 사례 5개.")
+            html = html.replace("42장, 용어 25개와 사례 5개.", f"{len(raw)}장(참고 {len(raw) - 42}장 포함), 용어 25개와 사례 5개.")
     html = (html.replace("{{CSS}}", css).replace("{{JS}}", js).replace("{{MANIFEST}}", man)
             .replace("{{COUNT}}", str(len(raw))).replace("{{SLIDES}}", "\n\n".join(sections)))
     if "{{" in html:

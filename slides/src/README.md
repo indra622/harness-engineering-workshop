@@ -30,8 +30,8 @@ Layout of `v02/`:
 - `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body. Slide 2 has a v02 and a v03 variant.
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
-- `build_v02.py`: assembles v15 by default (44 slides including two optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v15).
+- `build_v02.py`: assembles v16 by default (45 slides including three optional reference slides); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v16).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 
@@ -175,6 +175,10 @@ v05 keeps the v04 presentation and removes only the slide 3 break marker, with f
 ### v08 coordinator wording
 
 `copy_v08.py` changes only original slide9: 업무 난이도 자동 판단, with notes on choosing direct handling or delegation under user instructions. Historical versions remain reproducible.
+
+### v16 cloud Grokbot case and 참고 C (slides 20 and 21, 45 pages)
+
+`copy_v16.py` redraws the Grokbot case (original 18, physical 20) with the four bots the author confirmed (록식이, 에식이, 소식이, 최저가봇) in one cloud box with shared computer, connected apps and routines, beside a self-run 클식이 versus cloud service panel and the message that a harness can run without always-on hardware of one's own. It inserts 참고 C (physical 21) after it: dots (OpenAI), Grok Bot (xAI) and Muse (Meta), adapted from one AILC Lv3 course slide, with official sources in the notes and no dates, pricing or regions. Originals 19 to 42 move to physical 22 to 45; the Q&A index, the slide 2 note pointers and the slide 28 correction follow, and the synthesis row on 43 drops the stale attachment caption. In the S15 and S34 excerpts only the stale attachment lines are cut, with v16 corrections first. The validator expects 45 slides with three references. The check accepts v16 (45 pages, references 15A, 16B, 21C, physical map 20/21/28/29/34/45), tests the bots inside the cloud box, the message, no stale captions on screen, aria or current notes, the 참고 C content, skip link and sources, and the Q&A numbers against the manifest; the AI교양 flow check finds the slide by its case. From v16 each slide waits for fonts and 220 ms before measuring. Builder, check and contact sheet default to v16.
 
 ### v15 repetition and complexity (slide 14)
 
