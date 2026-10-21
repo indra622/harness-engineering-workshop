@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v18
+    python3 slides/src/v02/build_v02.py                 # current version, v19
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -19,7 +19,8 @@ edited presentation copy from copy_v04.py; v05 drops the roadmap break marker
 reference slides after the OMH case for 44 pages (copy_v07.py); v08 to v11 revise single slides
 (copy_v08.py ... copy_v15.py, v11 reframes slide 15, v12 rewrites 14, 15 and 27, v13 retells 14 by role,
 v14 shows the bare OpenCode process on 14, v15 changes its summary); v16 redraws the Grokbot case and adds
-참고 C after it for 45 pages (copy_v16.py). Everything else is shared, so v02
+참고 C after it for 45 pages (copy_v16.py); v17 adds logos to 참고 C, v18 removes the old closing for 44
+pages, and v19 appends a reflective epilogue after the Q&A for 45 (copy_v19.py). Everything else is shared, so v02
 and v03 still build byte-for-byte as exported.
 
 Slide content lives in deck_a.py and deck_b.py. Term and case notes carry the
@@ -57,6 +58,7 @@ import copy_v14  # noqa: E402
 import copy_v15  # noqa: E402
 import copy_v16  # noqa: E402
 import copy_v17  # noqa: E402
+import copy_v19  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
@@ -64,8 +66,8 @@ from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
 # versions compare as strings; two digits after "v" keep that ordering correct up to v99
-CURRENT = "v18"
-VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14", "v15", "v16", "v17", "v18")
+CURRENT = "v19"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14", "v15", "v16", "v17", "v18", "v19")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -274,7 +276,7 @@ def slide_html(n, sl, notes, total=42):
 def validate(slides):
     problems = []
     refs = [s for s in slides if s["kind"] == "reference"]
-    want = 44 if kit.VERSION >= "v18" else 45 if kit.VERSION >= "v16" else 44 if kit.VERSION >= "v07" else 42
+    want = 45 if kit.VERSION >= "v19" else 44 if kit.VERSION >= "v18" else 45 if kit.VERSION >= "v16" else 44 if kit.VERSION >= "v07" else 42
     expected_refs = 3 if kit.VERSION >= "v16" else 2 if kit.VERSION >= "v07" else 0
     if len(slides) != want or len(refs) != expected_refs:
         problems.append(f"{len(slides)} slides with {len(refs)} reference slides, expected {want}")
@@ -367,6 +369,8 @@ def main():
         if len([s for s in raw if s.get("orig") == 41 and s["kind"] == "closing"]) != 1:
             raise SystemExit("v18: expected one closing slide (original 41)")
         raw = [s for s in raw if s.get("orig") != 41]
+    if ver >= "v19":
+        raw = copy_v19.append(raw)
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
@@ -399,6 +403,8 @@ def main():
         css += V04_CSS
     if ver >= "v07":
         css += copy_v07.V07_CSS
+    if ver >= "v19":
+        css += copy_v19.V19_CSS
     js = (HERE / "v02.js").read_text(encoding="utf-8")
     head = {"deck": "harness-engineering-workshop", "version": ver, "slides": len(raw)}
     if timed:

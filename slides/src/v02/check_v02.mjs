@@ -33,12 +33,12 @@ const pw = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
-// versions compare as strings: always two digits after "v" (v02 ... v16)
-const VER = process.env.DECK_VERSION || "v18";
-if (!/^v(0[2-9]|1[0-8])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+// versions compare as strings: always two digits after "v" (v02 ... v19)
+const VER = process.env.DECK_VERSION || "v19";
+if (!/^v(0[2-9]|1[0-9])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case; v16 adds a third after the Grokbot case
-const TOTAL = VER >= "v18" ? 44 : VER >= "v16" ? 45 : VER >= "v07" ? 44 : 42;
+const TOTAL = VER >= "v19" ? 45 : VER >= "v18" ? 44 : VER >= "v16" ? 45 : VER >= "v07" ? 44 : 42;
 // v02 and v03 carry the 120-minute lecture schedule; v04 has no lecture timing at all
 const TIMED = VER < "v04";
 // lecture time on screen or in notes (tool and task times such as 09:12 or cron do not match)
@@ -117,7 +117,10 @@ try {
   if (VER >= "v07") {
     // originals keep their v06 numbering; references sit right after original 14
     const origs = items.filter((it) => it.kind !== "reference").map((it) => it.original);
-    if (JSON.stringify(origs) !== JSON.stringify([...Array(42).keys()].map((k) => k + 1).filter((n) => VER < "v18" || n !== 41))) fail("original numbering broken");
+    // v18 drops original 41; v19 brings id 41 back as the epilogue after the Q&A (42)
+    const wantOrigs = [...Array(42).keys()].map((k) => k + 1).filter((n) => VER < "v18" || n !== 41);
+    if (VER >= "v19") wantOrigs.push(41);
+    if (JSON.stringify(origs) !== JSON.stringify(wantOrigs)) fail("original numbering broken");
     const place = VER >= "v16" ? "15A,16B,21C" : "15A,16B";
     if (refs.map((r) => `${r.physical}${r.reference}`).join(",") !== place) fail(`reference placement: ${refs.map((r) => r.physical)}`);
     evidence.reference_slides = refs.map((r) => ({ physical: r.physical, reference: r.reference, label: r.label }));
@@ -544,6 +547,37 @@ try {
     const wf = at((i) => i.term === "워크플로우");
     if (!v.s2notes.includes(`AI교양 사례(${map.ai}번)`) || !v.s2notes.includes(`워크플로우(${wf}번)`)) fail("slide 2 note pointers not moved");
     evidence.v16 = { physical_map: map, bots: names, qa_index: v.qa, refC_skip: v.s21.skip };
+  }
+
+  if (VER >= "v19") {
+    // the epilogue: last page, after the Q&A, with exactly the approved words and nothing of the old closing
+    const last = items[items.length - 1];
+    if (last.physical !== 45 || last.kind !== "closing" || last.original !== 41) fail(`v19 last page: ${JSON.stringify(last)}`);
+    const qa = items.find((i) => i.kind === "qa");
+    if (qa.physical !== 44) fail(`v19 Q&A page: ${qa.physical}`);
+    const ep = await page.evaluate(() => {
+      const s = document.querySelector("#s45");
+      const c = s.querySelector(".canvas");
+      return { theme: c.className, title: c.querySelector(".ep-title")?.textContent,
+        groups: [...c.querySelectorAll(".ep-body p")].map((g) => g.innerHTML.split("<br>")),
+        graphics: c.querySelectorAll("svg, img, ol, ul, table, .close-list, .close-thesis").length, text: c.textContent };
+    });
+    const want = [["공부할수록, 오히려 확신이 줄었어요.", "에이전트가 더 똑똑해지면 해결될 일은 아닐까.", "우리가 더해야 할 구조는 어디까지일까."],
+      ["누군가는 필요성을 느끼고,", "누군가는 저처럼 질문이 더 생겼을지도 모르겠어요."],
+      ["그래도 직접 시도하고 알아간 시간은 남겠죠.", "오늘은 답 하나보다, 각자의 질문 하나가 남았으면 해요."]];
+    if (ep.title !== "만들어 보고도, 남아 있는 질문") fail(`v19 epilogue title: ${ep.title}`);
+    if (JSON.stringify(ep.groups) !== JSON.stringify(want)) fail(`v19 epilogue copy: ${JSON.stringify(ep.groups)}`);
+    if (ep.graphics) fail("v19 epilogue must have no diagrams, lists or images");
+    if (!ep.theme.includes("t-night")) fail("v19 epilogue must use the night theme");
+    if (/마치며|모델 바깥의 구조|이어서 질문을 받겠습니다/.test(ep.text)) fail("v19 epilogue reuses the old closing");
+    // pages 1 to 44 show exactly what v18 showed (page numbers and the total aside)
+    const canv = (html) => [...html.matchAll(/<section class="slide" id="s(\d+)"[\s\S]*?<div class="stage">([\s\S]*?)<aside class="notes">/g)]
+      .map((m) => m[2].replace(/<p class="pageno"[^>]*>[\s\S]*?<\/p>/, ""));
+    const prev = canv(readFileSync(path.join(slidesDir, "harness-engineering-workshop-v18.html"), "utf8"));
+    const now = canv(readFileSync(file, "utf8"));
+    const diff = prev.map((c, k) => (c === now[k] ? 0 : k + 1)).filter(Boolean);
+    if (prev.length !== 44 || diff.length) fail(`v19 changed pages other than the epilogue: ${diff}`);
+    evidence.v19_epilogue = { physical: 45, original: 41, qa: 44, lines: want.flat().length, pages_1_44_as_v18: true };
   }
 
   if (VER >= "v08") {
