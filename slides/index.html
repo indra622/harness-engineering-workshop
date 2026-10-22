@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>하네스 엔지니어링 | 워크숍</title>
-<meta name="description" content="하네스 엔지니어링 워크숍 발표 자료 v20. 46장(참고 3장 포함), 용어 25개와 사례 5개.">
+<meta name="description" content="하네스 엔지니어링 워크숍 발표 자료 v22. 47장(참고 3장 포함), 용어 26개와 사례 5개.">
 <style>
 /* Harness Engineering deck, v02 redesign proof.
    Every slide is a 1920 x 1080 canvas scaled as one unit, so composition is
@@ -375,7 +375,7 @@ html:not(.js) .controls { display: none; }
   <h1 class="abs cover-title">하네스<br>엔지니어링</h1>
   <p class="abs cover-sub">AI에게 일을 맡기는<br>구조를 설계하는 법</p>
   <div class="abs cover-rule"></div>
-  <p class="abs cover-foot">용어 25개와 사례 5개로 읽는 작업의 틀</p>
+  <p class="abs cover-foot">용어 26개와 사례 5개로 읽는 작업의 틀</p>
   <svg class="svg" style="left:1030px;top:140px" width="800" height="800" viewBox="0 0 800 800" role="img" aria-label="모델을 둘러싼 하네스 구조도">
     <rect x="40" y="40" width="720" height="720" fill="none" stroke="#3B4552" stroke-width="2"/>
     <path d="M40 92 V40 H92 M708 40 H760 V92 M760 708 V760 H708 M92 760 H40 V708" fill="none" stroke="#8DB4FF" stroke-width="5"/>
@@ -400,14 +400,14 @@ html:not(.js) .controls { display: none; }
     <rect x="378" y="738" width="44" height="44" transform="rotate(45 400 760)" fill="#B45309"/>
     <text x="400" y="700" font-size="28" font-weight="800" fill="#E8A86A" text-anchor="middle">사람의 확인</text>
   </svg>
-  <p class="pageno" aria-label="1쪽, 전체 46쪽">1 / 46</p>
+  <p class="pageno" aria-label="1쪽, 전체 47쪽">1 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 1번. 표지</h3>
+<h3>v22 1번. 표지</h3>
 <p>주제는 하네스 엔지니어링. 모델 하나를 바꾸는 이야기가 아니라, 모델이 일하도록 둘러싼 구조를 설계하는 이야기입니다.</p>
 <p>그림 읽기: 가운데가 모델이고, 둘레에 컨텍스트, 도구, 실행 위치, 상태, 검증이 있습니다. 바깥 틀 전체를 하네스라고 부르고, 틀 아래쪽의 사람의 확인은 결과를 넘길지 정하는 마지막 결정입니다.</p>
 <p>이 정의는 이 워크숍의 작업 정의이고, 제품마다 하네스의 범위는 다를 수 있습니다. 하네스를 바꾼다고 결과가 반드시 좋아진다고 말하지 않습니다.</p>
-<p>진행: 다섯 가지 질문을 따라 용어 25개를 하나씩 보고, 사례 다섯 개는 관련 용어 바로 뒤에 둡니다. 참가자 실습은 없습니다.</p>
+<p>진행: 다섯 가지 질문을 따라 용어 26개를 하나씩 보고, 사례 다섯 개는 관련 용어 바로 뒤에 둡니다. 참가자 실습은 없습니다.</p>
 </aside>
 </section>
 
@@ -473,14 +473,14 @@ html:not(.js) .controls { display: none; }
   </svg>
   <h3 class="abs big-q" style="left:120px;top:830px;width:1680px;font-size:56px">단계를 건너뛰지 않게 지켜 주는 건 누구일까, 무엇일까?</h3>
   <p class="abs foot" style="left:120px;top:960px;width:1680px;margin:0">설명용 정리 (실제 화면과 계정 정보는 싣지 않음). 낯선 용어는 뒤에서 하나씩.</p>
-  <p class="pageno" aria-label="2쪽, 전체 46쪽">2 / 46</p>
+  <p class="pageno" aria-label="2쪽, 전체 47쪽">2 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 2번. 시작: AI교양 글 한 편</h3>
+<h3>v22 2번. 시작: AI교양 글 한 편</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10 S1과 2.3은 &#x27;사용자가 원문을 보냈고, 받은 본문을 v01로 보존한다&#x27;고만 적어, v01이 누가 쓴 원고인지 드러내지 않는다. 실제 순서는 작가가 주제를 찾고 고른다, 작가가 초고 v01을 직접 쓴다, AI와 함께 검토하고 수정한다, 작가가 최종 확정한다, 삽화를 만들어 보관한다, 네이버 비공개 초안을 만든다, 다시 열어 확인한다이다. v01은 작가의 원고이며 AI가 생성한 초안이 아니다. v02 화면의 &#x27;원문을 받아 v01로 보존&#x27; 표현도 이 순서로 대체한다.</p>
 <p>장면부터. AI교양 글 한 편이 끝났습니다. 순서가 중요합니다. 작가가 주제를 찾아 골랐고, 초고 v01을 직접 썼습니다. v01은 작가의 원고이지 AI가 만든 초안이 아닙니다. 그다음에야 AI와 함께 문장과 논지를 검토하고 고쳤고(v02, v03처럼 새 버전으로 남기고 이전 본은 보존), 작가가 최종본을 확정했습니다. 확정 뒤에 삽화를 만들어 보관하고, 네이버 비공개 초안을 만든 뒤 다시 열어 확인했습니다. 공개 발행은 이 흐름에 없습니다.</p>
 <p>색 읽기: 호박색은 작가가 하거나 정하는 단계, 파랑은 AI와 함께하는 단계, 흰 상자는 확정 뒤 정해진 절차.</p>
-<p>질문만 던지고 답은 미룹니다. 단계를 건너뛰지 않게 지켜 주는 건 사람의 확정일까, 기록된 규칙일까? 답은 AI교양 사례(29번)와 워크플로우(37번)에서 돌아옵니다.</p>
+<p>질문만 던지고 답은 미룹니다. 단계를 건너뛰지 않게 지켜 주는 건 사람의 확정일까, 기록된 규칙일까? 답은 AI교양 사례(30번)와 워크플로우(38번)에서 돌아옵니다.</p>
 <h3>v10 발췌 S1 (v06 편집)</h3>
 <p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p><strong>S1. 시작:</strong> 완성된 업무 한 건</p>
@@ -508,7 +508,7 @@ html:not(.js) .controls { display: none; }
     <p class="road-terms">오케스트레이션, 도구, 스킬, 플러그인, 커넥터, MCP</p><p class="road-case">사례 OMH, Grokbot</p></div>
   <div class="abs road-col" style="left:802px">
     <p class="road-num">03</p><p class="road-q">AI는 무엇을 알고 있을까?</p>
-    <p class="road-terms">프롬프트, 컨텍스트, 토큰, 컨텍스트 창, 메모리</p><p class="road-case">사례 AI교양</p></div>
+    <p class="road-terms">프롬프트, 컨텍스트, 토큰, 컨텍스트 창, 메모리, LLM wiki</p><p class="road-case">사례 AI교양</p></div>
   <div class="abs road-col" style="left:1143px">
     <p class="road-num">04</p><p class="road-q">누가 이어서 일할까?</p>
     <p class="road-terms">세션, 워커, 서브에이전트</p><p class="road-case">사례 CEO Agent</p></div>
@@ -517,10 +517,10 @@ html:not(.js) .controls { display: none; }
     <p class="road-terms">워크플로우, 자동화, 완료 보고, 검증, 로컬 실행, 클라우드 실행, 리모트 컨트롤</p><p class="road-case">다섯 사례 종합</p></div>
 
   <p class="abs foot" style="left:120px;top:960px;width:1680px;margin:0">개념 다음엔 바로 사례. 사례에 먼저 나오는 낯선 용어는 이름만 보고, 설명은 해당 슬라이드에서.</p>
-  <p class="pageno" aria-label="3쪽, 전체 46쪽">3 / 46</p>
+  <p class="pageno" aria-label="3쪽, 전체 47쪽">3 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 3번. 오늘의 길</h3>
+<h3>v22 3번. 오늘의 길</h3>
 <p>개념과 사례를 번갈아 봅니다. 각 장은 질문 하나로 열고, 그 질문에 답하는 용어를 익힌 뒤 사례에서 다시 찾습니다.</p>
 
 <h3>v10 발췌 S2 (v06 편집)</h3>
@@ -586,10 +586,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1690" y="96" font-size="38" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">사례 클식이</text>
     <text x="1690" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">구조 안에서 찾기</text>
   </svg>
-  <p class="pageno" aria-label="4쪽, 전체 46쪽">4 / 46</p>
+  <p class="pageno" aria-label="4쪽, 전체 47쪽">4 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 4번. 1장 AI는 무엇을 하고, 누가 실행할까?</h3>
+<h3>v22 4번. 1장 AI는 무엇을 하고, 누가 실행할까?</h3>
 <p>질문: AI는 무엇을 하고, 누가 실행할까?</p>
 <p>순서: 모델, 에이전트, 런타임, 하네스, 그리고 사례 OpenClaw.</p>
 <p>왜 이 순서인가: 모델은 요청만 만든다는 점을 먼저 세우고, 반복 구조(에이전트), 실제 실행(런타임), 작업 틀(하네스)로 넓힙니다. 그다음 OpenClaw 구조에서 방금 배운 네 개념을 찾습니다. 워커와 세션은 OpenClaw에서 이름만 보고 4장에서 다룹니다.</p>
@@ -600,7 +600,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 5 용어 1 모델 -->
 <section class="slide" id="s5" data-physical="5" data-kind="term" data-label="5. 용어 1 모델" data-layout="compare" data-original="5" data-chapter="1" data-term="모델" data-term-index="1" data-v10="S3">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>1장<span class="gap"></span>용어 1 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>1장<span class="gap"></span>용어 1 / 26</p>
   <h2 class="abs tp-word">모델</h2>
   <p class="abs tp-def">입력된 텍스트와 맥락을 받아 다음 출력을 만드는 학습된 계산 장치. 그 출력은 답변이거나 도구 호출 요청.</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">"내일 회의 준비해 줘." 안건도, 참석자도 없이.</p><p class="ask">그럴듯한 준비안이 나올까?</p></div>
@@ -633,10 +633,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1652" y="429" font-size="28" fill="#3A4049" text-anchor="end" dominant-baseline="central">요청까지만. 파일은 여기서 열리지 않음</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">모델은 출력을 만드는 쪽. 그 출력이 도구 실행, 결과 확인으로 이어지며 여러 단계를 도는 구성이 에이전트</span></div>
-  <p class="pageno" aria-label="5쪽, 전체 46쪽">5 / 46</p>
+  <p class="pageno" aria-label="5쪽, 전체 47쪽">5 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 5번. 용어 1 모델</h3>
+<h3>v22 5번. 용어 1 모델</h3>
 <p><strong>장면 먼저:</strong> 팀장이 AI에게 &#x27;내일 회의 준비해 줘&#x27;라고 한 줄만 보낸다. 안건과 참석자는 적지 않았다. 질문: 안건을 모르는데도 그럴듯한 준비안이 나올까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S3 (v06 편집)</h3>
@@ -661,7 +661,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 6 용어 2 에이전트 -->
 <section class="slide" id="s6" data-physical="6" data-kind="term" data-label="6. 용어 2 에이전트" data-layout="split" data-original="6" data-chapter="1" data-term="에이전트" data-term-index="2" data-v10="S4">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker sp-kicker"><span class="dot"></span>1장<span class="gap"></span>용어 2 / 25</p>
+  <p class="abs kicker sp-kicker"><span class="dot"></span>1장<span class="gap"></span>용어 2 / 26</p>
   <h2 class="abs sp-word" style="font-size:140px">에이전트</h2>
   <p class="abs sp-def">목표를 받아 모델의 판단, 도구 실행, 결과 확인을 되풀이하다가 종료 조건에서 멈추는 실행 구성</p>
   <div class="abs scene sp-scene"><p class="lab">장면</p><p class="say">일정 안내 메일 초안 맡기기. 빠진 일정은 되물어 채우고, 발송은 빼고.</p><p class="ask">끝나는 조건이 있는 반복이면 에이전트일까?</p></div>
@@ -689,10 +689,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="555" y="417.7" font-size="26" fill="#3A4049" text-anchor="middle" dominant-baseline="central">발송은 루프 밖</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">기준은 응답 횟수가 아니라, 결과를 보고 다음 행동이나 종료를 고르는 구조인지</span></div>
-  <p class="pageno" aria-label="6쪽, 전체 46쪽">6 / 46</p>
+  <p class="pageno" aria-label="6쪽, 전체 47쪽">6 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 6번. 용어 2 에이전트</h3>
+<h3>v22 6번. 용어 2 에이전트</h3>
 <p><strong>장면 먼저:</strong> 일정 안내 메일의 초안을 AI에게 맡긴다. 일정 정보가 빠지면 되물어 채우고 고쳐 쓴다. 발송은 하지 않는다. 질문: 초안을 쓰고, 빠진 정보를 확인하고, 고치는 일을 끝나는 조건이 있는 반복으로 돌리면 에이전트에 가까울까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S4 (v06 편집)</h3>
@@ -717,7 +717,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 7 용어 3 런타임 -->
 <section class="slide" id="s7" data-physical="7" data-kind="term" data-label="7. 용어 3 런타임" data-layout="split" data-original="7" data-chapter="1" data-term="런타임" data-term-index="3" data-v10="S5">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker sp-kicker"><span class="dot"></span>1장<span class="gap"></span>용어 3 / 25</p>
+  <p class="abs kicker sp-kicker"><span class="dot"></span>1장<span class="gap"></span>용어 3 / 26</p>
   <h2 class="abs sp-word" style="font-size:140px">런타임</h2>
   <p class="abs sp-def">모델의 도구 호출 요청을 받아 권한을 확인하고 도구를 실행한 뒤, 결과를 다시 모델 입력으로 돌려주는 실행 계층</p>
   <div class="abs scene sp-scene"><p class="lab">장면</p><p class="say">"지난주 회의 메모 파일 열어 줘."</p><p class="ask">실제로 파일을 여는 쪽은 누구일까?</p></div>
@@ -731,10 +731,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <rect x="372" y="96" width="550" height="88" fill="none" stroke="#5E6570" stroke-width="2" stroke-dasharray="8 7"/><text x="647" y="140" font-size="28" fill="#3A4049" text-anchor="middle" dominant-baseline="central">모델 쪽에선 파일이 열리지 않음</text><rect x="808" y="540" width="262" height="120" fill="none" stroke="#5E6570" stroke-width="2" stroke-dasharray="8 7"/><text x="939" y="586" font-size="26" fill="#3A4049" text-anchor="middle">오류도</text><text x="939" y="624" font-size="26" fill="#3A4049" text-anchor="middle">같은 길로 돌아옴</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">Python, Node.js 같은 언어 실행 환경과는 다른 말. 하네스보다 좁은, 실행을 잇는 층</span></div>
-  <p class="pageno" aria-label="7쪽, 전체 46쪽">7 / 46</p>
+  <p class="pageno" aria-label="7쪽, 전체 47쪽">7 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 7번. 용어 3 런타임</h3>
+<h3>v22 7번. 용어 3 런타임</h3>
 <p><strong>장면 먼저:</strong> &#x27;지난주 회의 메모 파일 열어 줘&#x27;라는 요청을 보낸다. 실제로 파일을 여는 쪽은 누구일까? 질문: AI 모델이 파일을 직접 열까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S5 (v06 편집)</h3>
@@ -760,7 +760,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 8 용어 4 하네스 -->
 <section class="slide" id="s8" data-physical="8" data-kind="term" data-label="8. 용어 4 하네스" data-layout="boundary" data-original="8" data-chapter="1" data-term="하네스" data-term-index="4" data-v10="S6">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>1장<span class="gap"></span>용어 4 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>1장<span class="gap"></span>용어 4 / 26</p>
   <h2 class="abs tp-word">하네스</h2>
   <p class="abs tp-def">모델이 안정적으로 일하도록 컨텍스트, 도구와 실행 위치, 상태 저장, 검증 절차를 묶은 작업 틀 전체 (이 워크숍의 정의, 제품마다 범위는 다름)</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">체크리스트 파일을 폴더에 넣어 두고 검토 시작.</p><p class="ask">파일이 폴더에 있으면 검토 틀이 갖춰진 걸까?</p></div>
@@ -794,10 +794,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="352" y="400" font-size="28" fill="#3A4049" dominant-baseline="central">파일을 넣어 둔 것과 틀을 갖춘 것은 별개. 읽히고 확인되는 경로까지가 틀</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">하네스는 틀, 오케스트레이션은 그 안의 순서와 역할 배정, 런타임은 실행을 잇는 층</span></div>
-  <p class="pageno" aria-label="8쪽, 전체 46쪽">8 / 46</p>
+  <p class="pageno" aria-label="8쪽, 전체 47쪽">8 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 8번. 용어 4 하네스</h3>
+<h3>v22 8번. 용어 4 하네스</h3>
 <p><strong>장면 먼저:</strong> 문서 검토자가 체크리스트 파일을 폴더에 넣어 두고 검토를 시작한다. 질문: 체크리스트 파일이 폴더에 있는 것만으로 검토 틀이 갖춰질까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S6 (v06 편집)</h3>
@@ -873,10 +873,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1200" y="214" font-size="24" font-weight="700" fill="#2457A6" text-anchor="middle" dominant-baseline="central">런타임이 도구 실행</text>
   </svg>
   <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">운영 문서 기준의 가상 예시. 두 파란 상자는 같은 코디네이터의 단계. 결과는 테스트와 파일로 확인</p>
-  <p class="pageno" aria-label="9쪽, 전체 46쪽">9 / 46</p>
+  <p class="pageno" aria-label="9쪽, 전체 47쪽">9 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 9번. 사례 1 클식이</h3>
+<h3>v22 9번. 사례 1 클식이</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10은 OpenClaw를 &#x27;로컬 구조&#x27;라고 부른다. v02 화면은 &#x27;작업 구조&#x27;라고 쓴다. 게이트웨이, 코디네이터, 워커가 어디서 도는지와 모델 추론이 어디서 일어나는지는 따로 확인하고 따로 말한다.</p>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10의 &#x27;부모의 독립 검증&#x27;은 별도의 부모 에이전트가 아니라, 같은 코디네이터가 워커에게서 돌아온 결과를 확인하는 단계를 가리킨다. 아래 발췌의 해당 줄도 이 표현으로 바꿨다. 테스트 실행, 파일 상태, 원본과의 비교는 코디네이터가 쓰는 확인 방법이자 증거이지 새로운 행위자가 아니다. 독립된 방법이나 독립된 출처로 확인해도 확인하는 쪽은 같은 코디네이터이며, 같은 모델이라면 워커와 같은 오류를 함께 놓칠 수 있다. 코디네이터는 어떤 도구를 쓸지 고를 뿐이고, 도구를 실제로 실행하는 것은 런타임이다. 직접 처리는 코디네이터가 원격 워커에게 맡기지 않고 조회나 간단한 수정을 스스로 하는 경로이고, 워커에게 위임은 Codex나 Claude Code 같은 워커가 작업을 맡는 경로다. 위임 기준은 운영 지침이지 자동 라우터가 아니며, 모델 추론이 어디서 일어나는지는 따로 확인한다. 작업 확인 화면은 워커가 하고 있는 같은 작업과 세션을 보는 화면(예: 워커 쪽 공식 원격 앱)이며, 보고 지시할 뿐 파일을 따로 고치는 두 번째 작업자가 아니다. 게이트웨이와 연결된 화면으로 그리지 않았다.</p>
 <p><strong>장면 먼저:</strong> 디스코드에서 &#x27;보고서 검증해 줘&#x27;라는 요청이 들어왔다. 질문: 이 요청을 받는 쪽, 맡기는 쪽, 확인하는 쪽은 각각 누구일까?</p>
@@ -950,10 +950,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <rect x="1664" y="124" width="52" height="52" fill="#FFFFFF"/>
     <text x="1690" y="214" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">사례 Grokbot</text>
   </svg>
-  <p class="pageno" aria-label="10쪽, 전체 46쪽">10 / 46</p>
+  <p class="pageno" aria-label="10쪽, 전체 47쪽">10 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 10번. 2장 일하는 방법을 어디에 담을까?</h3>
+<h3>v22 10번. 2장 일하는 방법을 어디에 담을까?</h3>
 <p>질문: 일하는 방법을 어디에 담을까?</p>
 <p>순서: 오케스트레이션, 도구, 스킬, 사례 OMH, 플러그인, 커넥터, MCP, 사례 Grokbot.</p>
 <p>왜 이 순서인가: 누가 언제 무엇을 하는지(오케스트레이션), 실제로 실행되는 기능(도구), 다시 쓰는 절차(스킬)를 먼저 나눕니다. OMH에서 이 셋을 바꾼 사례를 본 뒤, 포장(플러그인), 외부 연결(커넥터), 통신 규약(MCP)을 가르고 Grokbot 설명과 비교합니다.</p>
@@ -964,7 +964,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 11 용어 5 오케스트레이션 -->
 <section class="slide" id="s11" data-physical="11" data-kind="term" data-label="11. 용어 5 오케스트레이션" data-layout="lane" data-original="11" data-chapter="2" data-term="오케스트레이션" data-term-index="5" data-v10="S8">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 5 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 5 / 26</p>
   <h2 class="abs tp-word">오케스트레이션</h2>
   <p class="abs tp-def">여러 단계나 여러 작업자에게 순서, 입출력, 역할, 다음 단계로 넘어가는 조건을 배정하고 조율하는 일</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">회의 준비에 필요한 안건 초안, 확인, 최종 정리. 맡을 사람은 아직 미정.</p><p class="ask">담당이 없으면 같은 일을 두 번 하게 될까?</p></div>
@@ -992,10 +992,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1420" y="88.2" font-size="26" fill="#5E6570" dominant-baseline="central">넘길지 정하는 일</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">역할 분담이 곧 독립 검토는 아님. 에이전트 하나 안에서 단계를 배정하는 것도 오케스트레이션</span></div>
-  <p class="pageno" aria-label="11쪽, 전체 46쪽">11 / 46</p>
+  <p class="pageno" aria-label="11쪽, 전체 47쪽">11 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 11번. 용어 5 오케스트레이션</h3>
+<h3>v22 11번. 용어 5 오케스트레이션</h3>
 <p><strong>장면 먼저:</strong> 회의 준비에서 안건 초안, 확인, 최종 정리가 필요하다. 세 가지를 누가 언제 맡을지 아직 정하지 않았다. 질문: 맡는 사람이 정해지지 않으면 같은 일을 두 번 하게 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S8 (v06 편집)</h3>
@@ -1020,7 +1020,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 12 용어 6 도구 -->
 <section class="slide" id="s12" data-physical="12" data-kind="term" data-label="12. 용어 6 도구" data-layout="compare" data-original="12" data-chapter="2" data-term="도구" data-term-index="6" data-v10="S9">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 6 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 6 / 26</p>
   <h2 class="abs tp-word">도구</h2>
   <p class="abs tp-def">모델이 요청하고 런타임이 실행하는, 이름과 입력 형식과 결과 형식이 정해진 호출 가능한 기능</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">폴더에서 최근 회의 파일 목록 뽑기.</p><p class="ask">목록을 가져오는 기능과 찾는 순서 메모, 무엇이 실행될까?</p></div>
@@ -1055,10 +1055,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="964" y="434" font-size="30" font-weight="800" fill="#B45309" dominant-baseline="central">절차일 뿐. 실행 수단이 있어야 결과가 나옴</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">"날짜를 ISO 형식으로 바꾼다"는 절차, 그 변환을 실행하는 호출이 도구. MCP는 도구를 잇는 규약</span></div>
-  <p class="pageno" aria-label="12쪽, 전체 46쪽">12 / 46</p>
+  <p class="pageno" aria-label="12쪽, 전체 47쪽">12 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 12번. 용어 6 도구</h3>
+<h3>v22 12번. 용어 6 도구</h3>
 <p><strong>장면 먼저:</strong> 폴더에서 최근 회의 파일을 찾아 목록을 만든다. 손이 실제로 가는 곳은 어디일까? 질문: 목록을 가져오는 기능과, 찾는 순서를 적은 메모 중 무엇이 실제로 실행될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S9 (v06 편집)</h3>
@@ -1083,7 +1083,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 13 용어 7 스킬 -->
 <section class="slide" id="s13" data-physical="13" data-kind="term" data-label="13. 용어 7 스킬" data-layout="split-mirror" data-original="13" data-chapter="2" data-term="스킬" data-term-index="7" data-v10="S10">
 <div class="stage"><div class="canvas t-paper mirror">
-  <p class="abs kicker sp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 7 / 25</p>
+  <p class="abs kicker sp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 7 / 26</p>
   <h2 class="abs sp-word" style="font-size:140px">스킬</h2>
   <p class="abs sp-def">특정 작업의 절차, 입력과 출력 규칙, 필요한 자원을 묶어 다시 쓸 수 있게 만든 지침 묶음</p>
   <div class="abs scene sp-scene"><p class="lab">장면</p><p class="say">주간 고객 문의 요약, 매주 같은 순서로.</p><p class="ask">그 순서를 묶어 둔 것을 무엇이라 부를까?</p></div>
@@ -1119,10 +1119,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="670" y="695" font-size="30" font-weight="700" fill="#14171C" dominant-baseline="central">같은 형식의 요약</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">스킬은 도구가 아니고 스스로 실행되지도 않음. 플러그인은 스킬 등을 배포하는 포장</span></div>
-  <p class="pageno" aria-label="13쪽, 전체 46쪽">13 / 46</p>
+  <p class="pageno" aria-label="13쪽, 전체 47쪽">13 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 13번. 용어 7 스킬</h3>
+<h3>v22 13번. 용어 7 스킬</h3>
 <p><strong>장면 먼저:</strong> 주간 고객 문의 요약을 매주 같은 순서로 만든다. 그 순서를 적은 메모가 있다. 질문: 매주 다시 쓸 수 있도록 순서를 묶어 둔 것은 무엇이라고 부를까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S10 (v06 편집)</h3>
@@ -1224,10 +1224,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="190" y="588" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">반복할수록, 복잡할수록 커지는 하네스의 효용</text>
     <text x="190" y="626" font-size="24" fill="#3A4049" dominant-baseline="central">분업, 비교, 재검토 절차를 재사용해 복잡한 반복 작업의 준비와 확인 부담을 줄이기</text>
   </svg>
-  <p class="pageno" aria-label="14쪽, 전체 46쪽">14 / 46</p>
+  <p class="pageno" aria-label="14쪽, 전체 47쪽">14 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 14번. 사례 2 OMH</h3>
+<h3>v22 14번. 사례 2 OMH</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10부터 14쪽은 사용자 요청에 따라 &#x27;OpenCode 순정&#x27;과 &#x27;OMO까지 묶은 OMH 통합 구성&#x27;을 비교한다. 아래 v10 기획 발췌(S11)와 v06부터 v09까지의 14쪽은 OpenCode와 OMO를 양쪽 공통 기반으로 두고 OMH가 더한 부분만 비교했는데, 그 비교 축은 이전 판의 기록이다. 발췌 속 &#x27;OMH&#x27;는 OMH가 더한 도구와 절차를 가리키며, 이 화면의 &#x27;OMH 통합 구성&#x27;과 범위가 다르다.</p>
 <p><strong>장면 먼저:</strong> 새 CSV 파일을 받았다. 열이 무엇인지, 빈 값이 얼마나 있는지 먼저 알아야 한다. 질문: 모델만 더 좋은 것으로 바꾸면 이 일이 해결될까?</p>
 <p><strong>반복성과 복잡성에 따른 효용:</strong> 이 화면의 선택 이유는 한 번의 단순한 일을 무조건 더 많은 역할로 처리하자는 것이 아닙니다. 비슷한 작업을 반복하면 역할 배정, 비교 방식 준비, 검토 기준 확인과 재수정 연결도 반복됩니다. 그 작업이 복잡해 챙길 관계와 검증 지점이 많을수록, 미리 갖춘 분업과 검증 절차를 재사용하는 가치가 커진다는 것이 이 발표의 메시지입니다. 실제 속도나 비용을 측정한 결과나 복잡도에 비례한 성능 보장은 아닙니다. 단발성이고 단순한 작업에서는 순정이 더 가벼울 수 있고, 하네스 자체의 준비와 유지, 조율 비용도 있습니다. 순정에서도 절차와 도구를 잘 갖춰 재사용하면 자기 업무에 맞는 하네스를 만든 셈입니다.</p><p><strong>장면:</strong> 요청은 '표의 금액 빈칸만 0으로 채워 줘. 번호와 상품은 그대로'입니다. 표에는 세 줄이 있습니다. 번호 0 상품 A 금액 1200, 번호 1 상품 B 금액 빈칸, 번호 2 상품 C 금액 800. 바뀌어야 할 것은 상품 B의 금액 빈칸 하나뿐입니다.</p>
@@ -1308,16 +1308,17 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="220" y="516" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">며칠 동안 v05까지 만들었는데, 상당 부분은 이미 기본 기능이었음</text>
     <text x="220" y="560" font-size="24" fill="#3A4049" dominant-baseline="central">v06에는 필요한 절차만 얇게. 하네스가 사라진 게 아니라 내가 덧붙일 부분이 줄어듦</text>
   </svg>
-  <p class="pageno" aria-label="15쪽, 전체 46쪽">15 / 46</p>
+  <p class="abs foot okf-update" style="left:120px;top:946px;width:1560px;margin:0;">이후 OKF도 적용: 작업 지식을 정리해 다음 작업에서 재사용</p>
+  <p class="pageno" aria-label="15쪽, 전체 47쪽">15 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 15번. 사례 2 이어서: OMH에서 OMP로</h3>
+<h3>v22 15번. 사례 2 이어서: OMH에서 OMP로</h3>
 <p><strong>이 화면의 자리:</strong> 14쪽 OMH 사례에 이어지는 한 장입니다. 여섯 번째 사례나 참고 화면이 아니라, 같은 사례를 만든 작성자가 그 뒤에 겪은 일입니다.</p>
 <p><strong>작성자의 전환 경험 (2026-10-21 작성자 진술):</strong> OpenCode와 OMO 위에 며칠 동안 하네스를 덧붙여 OMH v05까지 만들었습니다. 그 뒤 OMP(Oh My Pi)로 옮겨 보니, 직접 덧붙였던 것 중 상당 부분이 이미 기본으로 들어 있었고, 따로 남길 만한 것은 omh-rigorous 절차 정도였습니다. 며칠 들인 작업이 허무하게 느껴졌고, 그래서 v06은 v05보다 훨씬 얇게, 내 업무에 필요한 절차만 남기는 쪽으로 정리할 수 있었습니다. 이 단계와 결과는 작성자의 경험이며, v05와 v06 패키지를 따로 열어 코드나 테스트로 대조한 기록은 아닙니다.</p>
 <p><strong>공식 문서로 확인한 일반 기능:</strong> OMP 공식 README(2026-10-21 확인, 커밋 57b5663 기준)는 파일을 읽고 쓰고 고치는 기본 도구, 명령 실행, 하위 에이전트에 작업을 맡기고 조율하는 기능을 설명합니다. 이 화면의 'OMP 기본 기능' 세 줄은 이 일반 기능만 가리키며, 작성자가 설치한 버전과 같다는 뜻은 아닙니다. OMH의 data_inspect, data_compare 같은 업무 도구가 OMP에 같은 방식으로 들어 있다거나 그대로 대체된다고 말하지 않습니다. 출처: <a href="https://github.com/can1357/oh-my-pi/blob/57b56631ee009098a78d9badf91afc3a48eef32e/README.md">https://github.com/can1357/oh-my-pi/blob/57b56631ee009098a78d9badf91afc3a48eef32e/README.md</a></p>
 <p><strong>읽는 법:</strong> 하네스가 필요 없어졌다는 이야기가 아닙니다. 바탕이 되는 도구가 많은 것을 기본으로 갖추면, 내가 직접 덧붙일 부분은 얇아질 수 있다는 이야기입니다. 크기 비교, 코드 줄 수, 성능 측정은 하지 않았습니다.</p>
 <p><strong>맺음말과의 연결:</strong> 마지막 쪽의 '공부할수록, 오히려 확신이 줄었어요'는 이 경험에서 나온 말입니다. 어디까지 직접 구조를 더해야 하는지는 여기서도 답을 내리지 않습니다.</p>
-<h3>출처</h3><ul><li><a href="https://github.com/can1357/oh-my-pi/blob/57b56631ee009098a78d9badf91afc3a48eef32e/README.md">oh-my-pi README (can1357/oh-my-pi, 57b5663)</a><br><span class="src">https://github.com/can1357/oh-my-pi/blob/57b56631ee009098a78d9badf91afc3a48eef32e/README.md</span></li></ul>
+<h3>출처</h3><ul><li><a href="https://github.com/can1357/oh-my-pi/blob/57b56631ee009098a78d9badf91afc3a48eef32e/README.md">oh-my-pi README (can1357/oh-my-pi, 57b5663)</a><br><span class="src">https://github.com/can1357/oh-my-pi/blob/57b56631ee009098a78d9badf91afc3a48eef32e/README.md</span></li></ul><p><strong>이후의 작은 추가 (2026-10-22 작성자 진술):</strong> OMP로 옮겨 직접 덧붙일 부분을 줄인 뒤, OKF(Open Knowledge Format) 기반의 폴더형 지식 정리도 적용했습니다. 작업에서 확인한 지식을 노트로 정리하고 다음 작업에 필요한 내용을 찾아 재사용하려는 용도입니다. 작성자는 동작한다고 보고했지만 이 발표 자료에서는 내부 구현이나 다음 세션의 검색 정확도, 성능 향상을 독립 검증하지 않았습니다. OKF 자체가 기억을 검색하거나 자동 갱신하는 실행기라는 뜻은 아니며, OMP 기본 기능 상자에도 포함시키지 않았습니다. 형식 출처: <a href="https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/ad30107c31c06aec8a7d5636e0d1058118604e6f/SPEC.md">OKF v0.2 명세 (고정 커밋 ad30107)</a>.</p>
 </aside>
 </section>
 
@@ -1376,11 +1377,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="220" y="558" font-size="24" fill="#3A4049" dominant-baseline="central">계획하고 시험하는 기본기는 모델에 스며들고, 하네스는 이 일의 기준과 근거, 위임을 챙김</text>
   </svg>
   <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">출처: pstack 0.15.29 (cursor/plugins 111cf6a), Superpowers 7.0.0 (obra/superpowers b739a8a), 2026-10-21 기준 편집 요약</p>
-  <p class="pageno" aria-label="16쪽, 전체 46쪽">16 / 46</p>
+  <p class="pageno" aria-label="16쪽, 전체 47쪽">16 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 16번. 참고 A: 기본기는 모델에, 업무 기준과 위임은 하네스에</h3>
-<p><strong>이 화면의 위치:</strong> 본문(25개 용어와 다섯 사례)에 들지 않는 참고 화면입니다. 필요하면 오른쪽 위 '본문으로'를 눌러 18쪽으로 건너뜁니다.</p>
+<h3>v22 16번. 참고 A: 기본기는 모델에, 업무 기준과 위임은 하네스에</h3>
+<p><strong>이 화면의 위치:</strong> 본문(26개 용어와 다섯 사례)에 들지 않는 참고 화면입니다. 필요하면 오른쪽 위 '본문으로'를 눌러 18쪽으로 건너뜁니다.</p>
 <p><strong>전달 의도:</strong> Superpowers는 잘 만든 절차 모음이고 지금도 꾸준히 다듬어지고 있습니다. 낡았거나 필요 없다는 이야기가 아닙니다. 다만 계획하고, 구현하고, 테스트하고, 고쳐 가는 실행 기본기는 점점 모델이 스스로 해내는 방향으로 가고 있습니다. 그래서 이 발표는 하네스의 다음 초점을 그다음 단계, 곧 이 일에 맞는 성공 기준과 근거, 작업에 맞는 절차 선택, 범위를 정한 위임, 돌아온 결과의 검증에 둡니다. pstack은 이 층을 앞에 두는 예로 참고합니다. 어느 쪽이 더 낫다는 점수나 제품 순위가 아닙니다.</p>
 <p><strong>사실과 해석:</strong> 사실로 말할 수 있는 것은 이렇습니다. OpenAI는 2025년 5월 Codex를 소개하며, codex-1이 실제 코딩 작업에 대한 강화학습으로 훈련됐고 테스트를 반복 실행해 통과할 때까지 고치도록 학습됐다고 밝혔습니다(당시 기록이며, 제품의 다른 세부는 그 뒤 바뀌었을 수 있습니다). 같은 회사의 Harness engineering 글은 에이전트가 일하는 환경을 설계하고, 의도를 전하고, 되먹임 고리와 강제할 수 있는 검증을 갖추는 일을 다룹니다. Superpowers의 변경 기록(RELEASE-NOTES)은 절차와 검토 방식이 계속 고쳐지고 있음을 보여 줍니다. 그 위의 해석, 곧 '이런 습관이 기본이 될수록 하네스의 가치는 일에 맞춘 검증과 위임으로 옮겨 간다'는 것은 이 발표의 관점입니다. 모든 모델이 Superpowers 문서 자체를 학습했다거나, 모델이 늘 절차를 빠짐없이 따른다거나, 추가 지시가 더는 쓸모없다는 뜻이 아닙니다.</p>
 <p><strong>먼저 읽는 위 줄, 실행 기본기:</strong> Superpowers에서는 brainstorming이 먼저 의도를 끌어내고 이해한 내용을 되짚습니다. 작은 변경은 대화로, 큰 작업은 설계 문서로 합의합니다. 이어서 작은 단위의 계획을 쓰고, 실행할 때는 작업마다 새 하위 에이전트가 테스트 먼저(RED, GREEN, REFACTOR) 구현하고 작업별 검토 한 번이 명세 충족과 코드 품질을 함께 봅니다. 마지막에 브랜치 전체를 검토하고 마무리 방식을 고릅니다. 하위 에이전트 대신 한 세션에서 실행하고 마지막에 한 번 검토하는 방식(executing-plans)도 있습니다. 위임과 검토도 이미 갖추고 있다는 뜻입니다.</p>
@@ -1439,10 +1440,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="110" y="530" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">OMH는 모델을 유지하고, 절차와 확인 도구를 업무에 맞게</text>
   </svg>
   <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">출처: pstack 0.15.29 (cursor/plugins 111cf6a), Superpowers 7.0.0 (obra/superpowers b739a8a), 2026-10-21 기준 편집 요약</p>
-  <p class="pageno" aria-label="17쪽, 전체 46쪽">17 / 46</p>
+  <p class="pageno" aria-label="17쪽, 전체 47쪽">17 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 17번. 참고 B: 가져올 것은 기능 목록보다 작업 방식</h3>
+<h3>v22 17번. 참고 B: 가져올 것은 기능 목록보다 작업 방식</h3>
 <p><strong>이 화면의 위치:</strong> 참고 A에 이어지는 참고 화면입니다. 오른쪽 위 '본문으로'를 누르면 18쪽(플러그인)으로 갑니다.</p>
 <p><strong>읽는 법:</strong> 왼쪽은 두 스킬 묶음에서 눈여겨볼 작업 방식, 아래는 내 환경의 조건입니다. 셋이 가운데 '내 환경에서 쓸 절차와 도구 선택'으로 모입니다. 스킬 묶음을 통째로 설치해 그대로 따르기보다, 작업 방식을 보고 내 도구와 모델, 제약에 맞게 골라 쓰자는 교육용 정리입니다.</p>
 <p><strong>OMH와의 연결:</strong> 적용 예로 든 OMH는 14쪽의 OMH 통합 구성입니다. OMO의 역할 구성까지 한 묶음에 담고, 설정된 모델 하나를 그대로 쓰며, 업무 도구(data_inspect, data_compare)와 필요할 때 골라 쓰는 절차(omh-rigorous)를 더했습니다. 오른쪽 상자의 '포함'은 OMO가 OMH 안에 들어 있다는 뜻입니다. v10 기획(S11)에는 omh-rigorous가 pstack에서 버그 수정, 기능 구현, 근거 기반 조사 절차를 골라 적응시킨 것이라고 적혀 있습니다. 이 화면의 pstack 연결은 그 기록에만 근거합니다. 어느 pstack 버전에서 가져왔는지는 이 저장소에 기록이 없어, 참고 A가 인용한 0.15.29와 같다고 말하지 않습니다.</p>
@@ -1455,7 +1456,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 18 용어 8 플러그인 -->
 <section class="slide" id="s18" data-physical="18" data-kind="term" data-label="18. 용어 8 플러그인" data-layout="boundary" data-original="15" data-chapter="2" data-term="플러그인" data-term-index="8" data-v10="S12">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 8 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 8 / 26</p>
   <h2 class="abs tp-word">플러그인</h2>
   <p class="abs tp-def">여러 기능, 지침, 설정을 한 번에 설치하고 버전으로 관리하려고 배포하는 패키지 단위. 범위와 설치 방식은 제품마다 다름</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">쓰기 지침, 서식 기능, 계정 연결 설정을 한 묶음으로 설치.</p><p class="ask">계정 연결까지 끝난 걸까?</p></div>
@@ -1492,10 +1493,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="940" y="20" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">설치 뒤에도 남는 단계</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">플러그인 안에 MCP 서버 설정이 들어갈 수는 있어도, 배포 단위와 통신 규약은 다른 층</span></div>
-  <p class="pageno" aria-label="18쪽, 전체 46쪽">18 / 46</p>
+  <p class="pageno" aria-label="18쪽, 전체 47쪽">18 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 18번. 용어 8 플러그인</h3>
+<h3>v22 18번. 용어 8 플러그인</h3>
 <p><strong>장면 먼저:</strong> 메일 작성 도구에 쓰기 지침, 서식 기능, 외부 계정 연결 설정이 한 묶음으로 설치된다. 질문: 이 묶음을 설치하면 계정 연결까지 끝난 것으로 봐도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S12 (v06 편집)</h3>
@@ -1520,7 +1521,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 19 용어 9 커넥터 -->
 <section class="slide" id="s19" data-physical="19" data-kind="term" data-label="19. 용어 9 커넥터" data-layout="sequence" data-original="16" data-chapter="2" data-term="커넥터" data-term-index="9" data-v10="S13">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 9 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 9 / 26</p>
   <h2 class="abs tp-word">커넥터</h2>
   <p class="abs tp-def">모델과 런타임이 외부 서비스, 데이터 저장소, 다른 앱의 기능에 닿도록 만든 연결 지점. 연결 설정과 인증 절차까지 포함</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">이번 주 회의 일정을 캘린더에서 가져오기.</p><p class="ask">AI가 캘린더를 바로 읽을 수 있을까?</p></div>
@@ -1554,10 +1555,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1300" y="366.4" font-size="26" fill="#5E6570" dominant-baseline="central">확인은 호출 결과로</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">커넥터는 외부와의 연결 지점, 도구는 모델이 호출하는 기능. 커넥터 하나가 도구 여럿을 제공하기도 함</span></div>
-  <p class="pageno" aria-label="19쪽, 전체 46쪽">19 / 46</p>
+  <p class="pageno" aria-label="19쪽, 전체 47쪽">19 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 19번. 용어 9 커넥터</h3>
+<h3>v22 19번. 용어 9 커넥터</h3>
 <p><strong>장면 먼저:</strong> 이번 주 회의 일정을 캘린더에서 가져와 준비 목록에 넣어야 한다. 질문: AI가 캘린더를 바로 읽을 수 있을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S13 (v06 편집)</h3>
@@ -1582,7 +1583,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 20 용어 10 MCP -->
 <section class="slide" id="s20" data-physical="20" data-kind="term" data-label="20. 용어 10 MCP" data-layout="sequence" data-original="17" data-chapter="2" data-term="MCP" data-term-index="10" data-v10="S14">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 10 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>2장<span class="gap"></span>용어 10 / 26</p>
   <h2 class="abs tp-word">MCP</h2>
   <p class="abs tp-def">Model Context Protocol. 호스트 앱과 외부 도구, 자원 서버가 도구 목록 조회, 도구 호출, 자원 읽기를 주고받는 방식을 정한 통신 규약.</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">여러 도구가 파일 목록과 내용을 같은 방식으로 주고받아야 하는 상황.</p><p class="ask">도구마다 따로 약속을 만들어야 할까?</p></div>
@@ -1616,10 +1617,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1128" y="418" font-size="28" fill="#3A4049" dominant-baseline="central">계정 연결과 허용 범위는 따로 정함</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">로컬 함수나 셸 명령은 MCP 없이도 도구. 모든 도구가 MCP인 것은 아님</span></div>
-  <p class="pageno" aria-label="20쪽, 전체 46쪽">20 / 46</p>
+  <p class="pageno" aria-label="20쪽, 전체 47쪽">20 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 20번. 용어 10 MCP</h3>
+<h3>v22 20번. 용어 10 MCP</h3>
 <p><strong>장면 먼저:</strong> 여러 도구가 파일 목록과 파일 내용을 서로 같은 방식으로 주고받아야 한다. 질문: 도구마다 따로 약속을 만들어야 할까, 공통 약속이 있으면 충분할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S14 (v06 편집)</h3>
@@ -1685,10 +1686,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="0" y="520" font-size="24" fill="#3A4049" dominant-baseline="central">서비스마다 권한과 이용 조건은 다름</text>
     <text x="0" y="554" font-size="24" font-weight="800" fill="#2457A6" dominant-baseline="central">다른 서비스는 다음 쪽, 참고 C</text>
   </svg>
-  <p class="pageno" aria-label="21쪽, 전체 46쪽">21 / 46</p>
+  <p class="pageno" aria-label="21쪽, 전체 47쪽">21 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 21번. 사례 3 Grokbot</h3>
+<h3>v22 21번. 사례 3 Grokbot</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> OpenClaw 줄의 확인 역할은 v10의 &#x27;부모&#x27;가 아니라 같은 코디네이터다. 결과 확인을 코디네이터가 하더라도 그것이 독립된 다른 에이전트의 검토가 되지는 않는다.</p>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v16부터 이 화면은 작성자가 2026-10-21에 확인한 구성(록식이, 에식이, 소식이, 최저가봇 네 봇과 공유 클라우드 컴퓨터, 연결한 앱, 루틴)을 그린다. 아래 v10 발췌의 &#x27;사용자가 설명한 패턴&#x27;은 이 확인으로 대신하고, 네 비교 축 목록은 &#x27;늘 켜 둔 내 장비 없이도 클라우드에서 하네스를 쓸 수 있다&#x27;는 메시지로 바꿨다. 발췌에서 자료 상태에 관한 옛 메모 두 줄은 뺐다. 발췌의 &#x27;클라우드가 항상 동작한다고 말하지 않는다&#x27;는 이전 화면의 패턴 설명에 대한 주의였고, v16 화면의 &#x27;늘 켜진 컴퓨터&#x27;는 xAI 공식 설명을 따른다. 위의 OpenClaw 줄 정정은 발췌의 구체 예시에만 해당한다.</p>
 <p><strong>장면 먼저:</strong> 여러 봇이 역할을 나눠 맡고 하나의 공유 공간을 쓴다는 설명을 들었다. 질문: 우리 팀에도 이런 구조가 맞을까?</p>
@@ -1767,11 +1768,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1430.0" y="497" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">사람의 확인</text>
   </svg>
   <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">출처: 각 회사 공식 발표와 도움말 (2026-10-21 확인). 이용 조건과 제공 지역은 서비스마다 다름</p>
-  <p class="pageno" aria-label="22쪽, 전체 46쪽">22 / 46</p>
+  <p class="pageno" aria-label="22쪽, 전체 47쪽">22 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 22번. 참고 C: 맥미니 없이도, 클라우드에서 쓰는 개인 에이전트</h3>
-<p><strong>이 화면의 위치:</strong> 본문(25개 용어와 다섯 사례)에 들지 않는 참고 화면입니다. 필요하면 오른쪽 위 '본문으로'를 눌러 23쪽으로 건너뜁니다.</p>
+<h3>v22 22번. 참고 C: 맥미니 없이도, 클라우드에서 쓰는 개인 에이전트</h3>
+<p><strong>이 화면의 위치:</strong> 본문(26개 용어와 다섯 사례)에 들지 않는 참고 화면입니다. 필요하면 오른쪽 위 '본문으로'를 눌러 23쪽으로 건너뜁니다.</p>
 <p><strong>읽는 법:</strong> 앞 쪽의 Grok Bot처럼, 클라우드에 자기 컴퓨터를 두고 일하는 개인 에이전트 서비스는 여럿입니다. 셋은 들어가는 곳과 주로 맡기는 일이 다르지만, 클라우드의 자기 컴퓨터, 연결한 앱, 이어지는 기억, 사람이 확인하는 자리를 함께 갖습니다. 오늘 본 도구, 메모리, 검증과 사람의 개입이 서비스 안에 들어간 모습입니다. 순위나 성능 비교가 아닙니다.</p>
 <p><strong>dots (OpenAI):</strong> ChatGPT에서 설정해 시작합니다. 자기 클라우드 컴퓨터에서 연결한 앱으로 일하고, 맥락을 이어 가며 대화와 대화 사이에도 계속 일합니다. 사용자가 목표와 맡길 범위를 정하고 결과를 검토하며, 판단은 사람에게 남깁니다. 내 컴퓨터와의 연결은 선택 사항이며 기본으로 꺼져 있어, 클라우드에서 쓰는 데 필요하지 않습니다. 화면의 'dots'는 원래 강의의 표기이고, 도움말에서는 한 개를 'dot'이라고 부릅니다.</p>
 <p><strong>Grok Bot (xAI):</strong> 자기 컴퓨터와 도구, 앱을 클라우드에 두고 계속 일하며, 여러 봇이 그 컴퓨터를 함께 씁니다. 봇마다 따로 부를 수 있고, 그룹 대화와 봇 사이 넘김이 있습니다. 선호와 루틴을 기억하고, 필요할 때 승인을 구합니다. 앞 쪽의 네 봇 이름은 작성자의 구성이지 공식 이름이 아닙니다.</p>
@@ -1787,34 +1788,37 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   <div class="abs ch-num" aria-hidden="true">03</div>
   <p class="abs ch-label">3장</p>
   <h2 class="abs ch-question">AI는 무엇을<br>알고 있을까?</h2>
-  <p class="abs ch-goal">이번 호출에 무엇이 들어갔을까? 지시와 입력, 처리 단위와 한계, 저장과 불러오기. AI교양으로 이어지는 맥락</p>
-  <svg class="svg" style="left:0px;top:700px" width="1920" height="300" viewBox="0 0 1920 300" role="img" aria-label="이번 장의 경로: 프롬프트, 컨텍스트, 토큰, 컨텍스트 창, 메모리, AI교양">
+  <p class="abs ch-goal">이번 호출에 무엇이 들어갔을까? 지시와 입력, 처리 단위와 한계, 저장과 불러오기, 다시 찾아 쓰기. AI교양으로 이어지는 맥락</p>
+  <svg class="svg" style="left:0px;top:700px" width="1920" height="300" viewBox="0 0 1920 300" role="img" aria-label="이번 장의 경로: 프롬프트, 컨텍스트, 토큰, 컨텍스트 창, 메모리, LLM wiki, AI교양">
     <line x1="128" y1="150" x2="1792" y2="150" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.45"/>
     <circle cx="230" cy="150" r="15" fill="#FFFFFF"/>
-    <text x="230" y="96" font-size="38" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">프롬프트</text>
-    <text x="230" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">지시와 제약</text>
-    <circle cx="522" cy="150" r="15" fill="#FFFFFF"/>
-    <text x="522" y="96" font-size="38" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">컨텍스트</text>
-    <text x="522" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">이번 호출의 입력</text>
-    <circle cx="814" cy="150" r="15" fill="#FFFFFF"/>
-    <text x="814" y="96" font-size="38" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">토큰</text>
-    <text x="814" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">세는 단위</text>
-    <circle cx="1106" cy="150" r="15" fill="#FFFFFF"/>
-    <text x="1106" y="96" font-size="38" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">컨텍스트 창</text>
-    <text x="1106" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">한 호출의 한계</text>
-    <circle cx="1398" cy="150" r="15" fill="#FFFFFF"/>
-    <text x="1398" y="96" font-size="38" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">메모리</text>
-    <text x="1398" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">저장과 불러오기</text>
+    <text x="230" y="96" font-size="36" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">프롬프트</text>
+    <text x="230" y="212" font-size="26" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">지시와 제약</text>
+    <circle cx="473" cy="150" r="15" fill="#FFFFFF"/>
+    <text x="473" y="96" font-size="36" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">컨텍스트</text>
+    <text x="473" y="212" font-size="26" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">이번 호출의 입력</text>
+    <circle cx="717" cy="150" r="15" fill="#FFFFFF"/>
+    <text x="717" y="96" font-size="36" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">토큰</text>
+    <text x="717" y="212" font-size="26" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">세는 단위</text>
+    <circle cx="960" cy="150" r="15" fill="#FFFFFF"/>
+    <text x="960" y="96" font-size="36" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">컨텍스트 창</text>
+    <text x="960" y="212" font-size="26" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">한 호출의 한계</text>
+    <circle cx="1203" cy="150" r="15" fill="#FFFFFF"/>
+    <text x="1203" y="96" font-size="36" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">메모리</text>
+    <text x="1203" y="212" font-size="26" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">저장과 불러오기</text>
+    <circle cx="1447" cy="150" r="15" fill="#FFFFFF"/>
+    <text x="1447" y="96" font-size="36" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">LLM wiki</text>
+    <text x="1447" y="212" font-size="26" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">정리해 다시 찾기</text>
     <rect x="1664" y="124" width="52" height="52" fill="#FFFFFF"/>
-    <text x="1690" y="96" font-size="38" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">사례 AI교양</text>
-    <text x="1690" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">작가의 확정</text>
+    <text x="1690" y="96" font-size="36" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">사례 AI교양</text>
+    <text x="1690" y="212" font-size="26" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">작가의 확정</text>
   </svg>
-  <p class="pageno" aria-label="23쪽, 전체 46쪽">23 / 46</p>
+  <p class="pageno" aria-label="23쪽, 전체 47쪽">23 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 23번. 3장 AI는 무엇을 알고 있을까?</h3>
+<h3>v22 23번. 3장 AI는 무엇을 알고 있을까?</h3>
 <p>질문: AI는 무엇을 알고 있을까?</p>
-<p>순서: 프롬프트, 컨텍스트, 토큰, 컨텍스트 창, 메모리, 그리고 사례 AI교양.</p>
+<p>순서: 프롬프트, 컨텍스트, 토큰, 컨텍스트 창, 메모리, LLM wiki, 그리고 사례 AI교양.</p>
 <p>핵심 구분: 디스크에 있는 파일이 아니라 이번 호출에 실제로 들어간 정보가 컨텍스트입니다. 모델은 학습으로 얻은 일반 지식도 갖고 있지만, 이 업무의 파일, 결정, 규칙은 입력에 들어가야 근거로 쓸 수 있습니다.</p>
 <p>이 장이 끝나면 쉬는 시간입니다.</p>
 </aside>
@@ -1823,7 +1827,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 24 용어 11 프롬프트 -->
 <section class="slide" id="s24" data-physical="24" data-kind="term" data-label="24. 용어 11 프롬프트" data-layout="compare" data-original="20" data-chapter="3" data-term="프롬프트" data-term-index="11" data-v10="S16">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 11 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 11 / 26</p>
   <h2 class="abs tp-word">프롬프트</h2>
   <p class="abs tp-def">모델 입력 중 지시, 질문, 역할, 제약을 담은 부분. 일회성 요청일 수도, 여러 실행에 되풀이해 쓰는 지속 지침일 수도</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">"회의 준비해 줘" 한 줄, 그리고 안건, 참석자, 지난 결정을 넣은 요청.</p><p class="ask">어느 쪽이 결과를 더 좌우할까?</p></div>
@@ -1847,10 +1851,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="0" y="436" font-size="28" fill="#5E6570" dominant-baseline="central">빈 곳은 모델의 추측으로</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">프롬프트는 지시 문장, 컨텍스트는 실제로 입력된 전체. 폴더 속 규칙 파일은 읽혀야 비로소 입력</span></div>
-  <p class="pageno" aria-label="24쪽, 전체 46쪽">24 / 46</p>
+  <p class="pageno" aria-label="24쪽, 전체 47쪽">24 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 24번. 용어 11 프롬프트</h3>
+<h3>v22 24번. 용어 11 프롬프트</h3>
 <p><strong>장면 먼저:</strong> 회의 준비를 AI에게 맡기면서 두 가지 요청 중 하나를 고른다. 하나는 &#x27;회의 준비해 줘&#x27;다. 질문: 안건, 참석자, 지난 결정을 넣은 요청과 한 줄 요청 중 어느 쪽이 결과를 더 좌우할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S16 (v06 편집)</h3>
@@ -1875,7 +1879,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 25 용어 12 컨텍스트 -->
 <section class="slide" id="s25" data-physical="25" data-kind="term" data-label="25. 용어 12 컨텍스트" data-layout="boundary" data-original="21" data-chapter="3" data-term="컨텍스트" data-term-index="12" data-v10="S17">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 12 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 12 / 26</p>
   <h2 class="abs tp-word">컨텍스트</h2>
   <p class="abs tp-def">특정 호출에서 모델이 실제로 입력받은 모든 내용. 지시, 파일 내용, 도구 결과, 이전 대화 중 포함된 부분까지</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">지난 회의록은 경로만 알려 주고 내용은 넣지 않은 상태.</p><p class="ask">AI는 지난 결정을 떠올릴 수 있을까?</p></div>
@@ -1904,10 +1908,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1160" y="417.6" font-size="26" font-weight="800" fill="#2457A6" dominant-baseline="central">근거로 쓸 수 있음</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">저장된 파일과 지금 읽은 파일은 별개. 메모리는 나중에 불러올 저장 정보, 컨텍스트는 지금 입력에 든 정보</span></div>
-  <p class="pageno" aria-label="25쪽, 전체 46쪽">25 / 46</p>
+  <p class="pageno" aria-label="25쪽, 전체 47쪽">25 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 25번. 용어 12 컨텍스트</h3>
+<h3>v22 25번. 용어 12 컨텍스트</h3>
 <p><strong>장면 먼저:</strong> 회의 요청에 안건과 참석자, 지난 결정 사항을 빼고 보낸다. 지난 회의록 파일 경로는 알려 준다. 질문: AI는 지난 회의의 결정을 떠올릴 수 있을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S17 (v06 편집)</h3>
@@ -1932,7 +1936,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 26 용어 13 토큰 -->
 <section class="slide" id="s26" data-physical="26" data-kind="term" data-label="26. 용어 13 토큰" data-layout="typographic" data-original="22" data-chapter="3" data-term="토큰" data-term-index="13" data-v10="S18">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 13 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 13 / 26</p>
   <h2 class="abs tp-word">토큰</h2>
   <p class="abs tp-def">모델이 입력과 출력을 처리할 때 세는 텍스트 조각의 단위. 단어 수, 글자 수와는 다른 기준</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">같은 안내 메일, 한국어판과 영어판.</p><p class="ask">글자 수가 같으면 토큰 수도 같을까?</p></div>
@@ -1969,10 +1973,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1110" y="339.2" font-size="28" fill="#3A4049" dominant-baseline="central">계산 방식으로 확인</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">토큰은 측정 단위, 컨텍스트 창은 그 단위로 잰 한계. 여기서는 개수를 어림하지 않음</span></div>
-  <p class="pageno" aria-label="26쪽, 전체 46쪽">26 / 46</p>
+  <p class="pageno" aria-label="26쪽, 전체 47쪽">26 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 26번. 용어 13 토큰</h3>
+<h3>v22 26번. 용어 13 토큰</h3>
 <p><strong>장면 먼저:</strong> 같은 안내 메일을 한국어 한 통과 영어 한 통으로 준비한다. 질문: 두 메일의 글자 수가 같으면 토큰 수도 같을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S18 (v06 편집)</h3>
@@ -1997,7 +2001,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 27 용어 14 컨텍스트 창 -->
 <section class="slide" id="s27" data-physical="27" data-kind="term" data-label="27. 용어 14 컨텍스트 창" data-layout="typographic" data-original="23" data-chapter="3" data-term="컨텍스트 창" data-term-index="14" data-v10="S19">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 14 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 14 / 26</p>
   <h2 class="abs tp-word">컨텍스트 창</h2>
   <p class="abs tp-def">모델이 한 번의 호출에서 입력과 출력을 함께 처리할 수 있는 토큰 범위의 한계. 크기는 모델과 제품 설정에 따라 다름</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">100쪽 계약 문서를 한 번에 넣고 검토 요청.</p><p class="ask">앞부분 내용도 끝까지 기억될까?</p></div>
@@ -2023,10 +2027,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="0" y="362.5" font-size="26" fill="#3A4049" dominant-baseline="central">장별로 넣고, 장마다 메모 저장</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">압축은 창에 넣는 내용의 분량을 줄이는 일, 창의 크기는 그대로. 메모리는 호출 밖에 저장했다가 다시 불러오는 일</span></div>
-  <p class="pageno" aria-label="27쪽, 전체 46쪽">27 / 46</p>
+  <p class="pageno" aria-label="27쪽, 전체 47쪽">27 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 27번. 용어 14 컨텍스트 창</h3>
+<h3>v22 27번. 용어 14 컨텍스트 창</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10의 &#x27;압축은 현재 창을 줄이는 일&#x27;은 이전 표현이다. 압축은 창에 넣는 내용, 즉 입력의 분량을 줄이는 일이며 모델의 컨텍스트 창 크기는 그대로다. 화면의 현재 표현을 따른다.</p>
 <p><strong>장면 먼저:</strong> 100쪽짜리 계약 문서를 한 번에 넣고 검토를 맡긴다. 질문: 문서 전체가 한 번의 입력에 들어가고, 앞부분 내용도 끝까지 기억될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
@@ -2052,7 +2056,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <!-- ===================================================== 28 용어 15 메모리 -->
 <section class="slide" id="s28" data-physical="28" data-kind="term" data-label="28. 용어 15 메모리" data-layout="sequence" data-original="24" data-chapter="3" data-term="메모리" data-term-index="15" data-v10="S20">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 15 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 15 / 26</p>
   <h2 class="abs tp-word">메모리</h2>
   <p class="abs tp-def">세션이나 실행이 끝난 뒤에도 다시 불러올 수 있게 파일이나 저장소에 남긴 정보. 모델의 가중치는 그대로</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">어제 정한 회의 날짜는 인계 파일에.</p><p class="ask">오늘 새 대화를 열면 그 결정이 따라올까?</p></div>
@@ -2089,10 +2093,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="886" y="228" font-size="24" font-weight="800" fill="#2457A6" dominant-baseline="central">읽기</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">세션이 이어진다고 메모리가 생기는 것은 아님. 재학습도 아니고, 달라지는 건 입력에 들어가는 내용뿐</span></div>
-  <p class="pageno" aria-label="28쪽, 전체 46쪽">28 / 46</p>
+  <p class="pageno" aria-label="28쪽, 전체 47쪽">28 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 28번. 용어 15 메모리</h3>
+<h3>v22 28번. 용어 15 메모리</h3>
 <p><strong>장면 먼저:</strong> 어제 정한 회의 날짜를 적은 인계 파일이 있다. 오늘은 새 대화를 연다. 질문: 새 대화를 열면 어제의 결정이 자동으로 따라올까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S20 (v06 편집)</h3>
@@ -2114,8 +2118,66 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 29 사례 4 AI교양 -->
-<section class="slide" id="s29" data-physical="29" data-kind="case" data-label="29. 사례 4 AI교양" data-layout="case" data-original="25" data-chapter="3" data-case="AI교양" data-case-index="4" data-v10="S21">
+<!-- ===================================================== 29 용어 16 LLM wiki -->
+<section class="slide" id="s29" data-physical="29" data-kind="term" data-label="29. 용어 16 LLM wiki" data-layout="sequence" data-original="llm-wiki" data-chapter="3" data-term="LLM wiki" data-term-index="16">
+<div class="stage"><div class="canvas t-paper">
+  <p class="abs kicker tp-kicker"><span class="dot"></span>3장<span class="gap"></span>용어 16 / 26</p>
+  <h2 class="abs tp-word">LLM wiki</h2>
+  <p class="abs tp-def">LLM과 함께 지식을 정리하고 연결해, 필요할 때 다시 찾아 쓰는 방식</p>
+  <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">지난 AI교양 글에서 정리한 개념을 새 글에도 쓰고 싶다.</p><p class="ask">저장해 둔 노트, 새 세션이 저절로 떠올릴까?</p></div>
+  <svg class="svg" style="left:120px;top:440px" width="1680" height="470" viewBox="0 0 1680 470" role="img" aria-label="AI교양 예시로 본 LLM wiki 네 단계. 원문 보존: 내가 쓴 원고와 참고 자료를 따로 둔다. 정리와 연결: 개념 노트에 출처와 관련 글, 인덱스를 단다. 여기까지는 파일로 남긴 위키다. 관련 노트 찾고 읽기: 새 글 주제로 검색해 실제 내용을 읽어 이번 작업의 컨텍스트로 가져온다. 다음 글에 재사용: 이전 관점을 가져오고 근거는 사람이 다시 확인한다. LLM wiki는 정리하고 쓰는 방식, OKF(Open Knowledge Format)는 출처와 상태를 적는 형식. 저장만으로 기억되는 건 아님. 필요한 노트를 찾아 읽는 단계까지."><defs><marker id="sllmwiki-blue" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#2457A6"/></marker><marker id="sllmwiki-blue-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#2457A6"/></marker><marker id="sllmwiki-ink" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.5 L10,5 L0,9.5 z" fill="#14171C"/></marker><marker id="sllmwiki-ink-s" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M10,0.5 L0,5 L10,9.5 z" fill="#14171C"/></marker></defs>
+    <text x="0" y="14" font-size="30" font-weight="800" fill="#14171C" dominant-baseline="central">쌓아 둔 기록을, 다음 작업의 재료로</text>
+    <rect x="0" y="64" width="390" height="170" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5" data-stage="1"/>
+    <text x="195.0" y="109.2" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">원문 보존</text>
+    <text x="195.0" y="149.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">내가 쓴 AI교양 원고</text>
+    <text x="195.0" y="188.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">참고 자료는 따로 둠</text>
+    <circle cx="0" cy="64" r="20" fill="#14171C"/>
+    <text x="0" y="65" font-size="24" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">1</text>
+    <polyline points="392,149 424,149" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#sllmwiki-ink)"/>
+    <rect x="430" y="64" width="390" height="170" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5" data-stage="2"/>
+    <text x="625.0" y="109.2" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">정리와 연결</text>
+    <text x="625.0" y="149.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">개념 노트와 출처</text>
+    <text x="625.0" y="188.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">관련 글, 인덱스</text>
+    <circle cx="430" cy="64" r="20" fill="#14171C"/>
+    <text x="430" y="65" font-size="24" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">2</text>
+    <polyline points="822,149 854,149" fill="none" stroke="#2457A6" stroke-width="3" marker-end="url(#sllmwiki-blue)"/>
+    <rect x="860" y="64" width="390" height="170" fill="#FFFFFF" stroke="#2457A6" stroke-width="3.5" data-stage="3"/>
+    <text x="1055.0" y="109.2" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">관련 노트 찾고 읽기</text>
+    <text x="1055.0" y="149.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">새 글 주제로 검색</text>
+    <text x="1055.0" y="188.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">실제 내용을 읽음</text>
+    <circle cx="860" cy="64" r="20" fill="#2457A6"/>
+    <text x="860" y="65" font-size="24" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">3</text>
+    <polyline points="1252,149 1284,149" fill="none" stroke="#14171C" stroke-width="3" marker-end="url(#sllmwiki-ink)"/>
+    <rect x="1290" y="64" width="390" height="170" fill="#FFFFFF" stroke="#14171C" stroke-width="2.5" data-stage="4"/>
+    <text x="1485.0" y="109.2" font-size="28" font-weight="800" fill="#14171C" text-anchor="middle" dominant-baseline="central">다음 글에 재사용</text>
+    <text x="1485.0" y="149.0" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">이전 관점을 가져옴</text>
+    <text x="1485.0" y="188.8" font-size="24" fill="#3A4049" text-anchor="middle" dominant-baseline="central">근거는 사람이 다시 확인</text>
+    <circle cx="1290" cy="64" r="20" fill="#14171C"/>
+    <text x="1290" y="65" font-size="24" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">4</text>
+    <rect x="0" y="258" width="820" height="56" fill="#ECE9E1" data-zone="stored"/>
+    <text x="24" y="286" font-size="26" font-weight="800" fill="#5E6570" dominant-baseline="central">파일로 남긴 위키 (예: Obsidian)</text>
+    <rect x="860" y="258" width="820" height="56" fill="#E1E9F6" data-zone="context"/>
+    <text x="884" y="286" font-size="26" font-weight="800" fill="#2457A6" dominant-baseline="central">이번 작업의 컨텍스트로 읽어 옴</text>
+    <text x="0" y="372" font-size="28" font-weight="800" fill="#14171C" dominant-baseline="central">LLM wiki는 정리하고 쓰는 방식, OKF(Open Knowledge Format)는 출처와 상태를 적는 형식</text>
+    <text x="0" y="424" font-size="26" font-weight="800" fill="#B45309" dominant-baseline="central">저장만으로 기억되는 건 아님. 필요한 노트를 찾아 읽는 단계까지.</text>
+  </svg>
+  <p class="pageno" aria-label="29쪽, 전체 47쪽">29 / 47</p>
+</div></div>
+<aside class="notes">
+<h3>v22 29번. 용어 16 LLM wiki</h3>
+<p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
+<p><strong>정의:</strong> LLM wiki는 LLM과 함께 지식을 정리하고 연결해, 필요할 때 다시 찾아 쓰는 방식입니다. 이 발표에서 우리가 일하는 방식을 부르는 이름이며, 정해진 제품이나 업계 표준을 뜻하지 않습니다.</p>
+<p><strong>장면과 예시 (AI교양, 설명용):</strong> 새 세션에서 지난 글의 핵심을 다시 설명해야 하는 일이 있습니다. 대화 전문을 무조건 쌓아 두는 대신, 먼저 내가 쓴 원고와 참고 자료를 원문 그대로 따로 보존합니다. 다시 쓸 개념과 판단은 노트로 정리해 출처와 관련 글, 인덱스를 달아 둡니다. 다음 글을 쓸 때 에이전트가 새 주제로 관련 노트를 검색하고, 실제 내용을 읽어 이번 작업의 컨텍스트에 넣습니다. 그다음 이전 관점을 가져와 쓰되, 근거가 지금도 맞는지는 사람이 다시 확인합니다. 화면의 노트 이름과 내용은 만든 예시이며 실제 개인 노트가 아닙니다. Obsidian은 우리가 쓰는 파일 기반 도구의 예일 뿐 필요 조건이 아닙니다.</p>
+<p><strong>헷갈리는 지점, 저장과 읽기:</strong> 폴더에 저장해 둔 위키와, 이번 작업에 실제로 들어간 컨텍스트는 다릅니다. 앞의 메모리처럼, 저장해 둔 노트도 찾아서 읽어야 이번 작업의 근거가 됩니다. 저장만으로 모델이 기억하게 되는 것은 아니고, 모델을 다시 학습시키는 것도 아닙니다.</p>
+<p><strong>헷갈리는 지점, LLM wiki와 OKF:</strong> LLM wiki는 정리하고 찾아 쓰는 방식이고, OKF(Open Knowledge Format)는 그 노트에 출처와 상태를 적는 형식입니다. OKF v0.2 명세는 Markdown 본문과 YAML 머리말로 출처, 상태 같은 메타데이터와 링크를 적는 방법을 정합니다. 검색기나 실행 방식, 자동 기억 갱신은 정하지 않습니다. 형식 출처: <a href="https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/ad30107c31c06aec8a7d5636e0d1058118604e6f/SPEC.md">OKF v0.2 명세 (고정 커밋 ad30107)</a></p>
+<p><strong>운영 근거:</strong> '클식이 지식 정리 운영 방식, 2026-10-22 확인'을 일반화한 설명입니다. 원문은 따로 보존하고, 다시 쓸 노트는 AI와 함께 검토하며 출처와 의미 있는 연결, 인덱스를 달아 정리하고, 노트는 버전을 남기고, 사실과 해석과 열린 질문을 나눠 적고, 작업할 때는 실제 파일을 찾아 읽어 컨텍스트로 씁니다. 모든 문서가 자동으로 노트가 되거나 모든 대화가 보관되는 것은 아닙니다. 원문과 경로는 공개하지 않습니다.</p>
+<p><strong>말하지 않는 것:</strong> 검색 정확도나 업무 성능을 잰 결과, 빠짐없이 기억한다는 보장, 모두에게 필요하다는 주장은 하지 않습니다.</p>
+<p><strong>확인 질문과 모범 답안:</strong> 폴더에 저장만 해 두면 새 세션에서도 자동으로 알고 있을까? 아닙니다. 필요한 노트를 찾아 읽어 이번 작업의 컨텍스트에 넣어야 근거로 쓸 수 있습니다.</p>
+</aside>
+</section>
+
+<!-- ===================================================== 30 사례 4 AI교양 -->
+<section class="slide" id="s30" data-physical="30" data-kind="case" data-label="30. 사례 4 AI교양" data-layout="case" data-original="25" data-chapter="3" data-case="AI교양" data-case-index="4" data-v10="S21">
 <div class="stage"><div class="canvas t-paper">
   <p class="abs kicker case-head"><span class="tag-case">사례 4 / 5</span>AI교양</p>
   <p class="abs qline case-q"><b>질문</b>최종본 확정 전인데 삽화부터 만들자는 요청. 만들어도 될까?</p>
@@ -2190,11 +2252,11 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="883" y="536" font-size="26" fill="#3A4049" dominant-baseline="central">저장본과 비교, 초안 다시 열어 확인</text>
   </svg>
   <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">완료 기록을 설명용으로 인용 (이번 작업으로 제작하지 않음). 별도 상태 머신이 전환을 강제한다는 뜻은 아님</p>
-  <p class="pageno" aria-label="29쪽, 전체 46쪽">29 / 46</p>
+  <p class="pageno" aria-label="30쪽, 전체 47쪽">30 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 29번. 사례 4 AI교양</h3>
-<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v12부터 이 화면(v20부터 29쪽) 가운데 흐름은 2쪽 시작 화면과 같은 일곱 단계(주제 찾고 고르기, 초고 v01 직접 쓰기, AI와 함께 검토와 수정, 작가 최종 확정, 삽화 생성과 보관, 네이버 비공개 초안, 다시 열어 확인)로 바꿨다. 이전 판의 네 단계 압축 흐름(초고 보존, AI와 함께 수정, 작가 확정 마름모, 이후 단계 묶음)은 이 순서로 대체한다. 아래 v10 발췌(S21)의 &#x27;원문이 들어왔다&#x27;와 &#x27;원문 보존&#x27;은 작가가 직접 쓴 초고 v01을 가리키며, AI가 만든 초안이 아니다.</p>
+<h3>v22 30번. 사례 4 AI교양</h3>
+<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v12부터 이 화면(v22부터 30쪽) 가운데 흐름은 2쪽 시작 화면과 같은 일곱 단계(주제 찾고 고르기, 초고 v01 직접 쓰기, AI와 함께 검토와 수정, 작가 최종 확정, 삽화 생성과 보관, 네이버 비공개 초안, 다시 열어 확인)로 바꿨다. 이전 판의 네 단계 압축 흐름(초고 보존, AI와 함께 수정, 작가 확정 마름모, 이후 단계 묶음)은 이 순서로 대체한다. 아래 v10 발췌(S21)의 &#x27;원문이 들어왔다&#x27;와 &#x27;원문 보존&#x27;은 작가가 직접 쓴 초고 v01을 가리키며, AI가 만든 초안이 아니다.</p>
 <p><strong>장면 먼저:</strong> AI교양 원문이 들어왔다. 최종본은 아직 확정되지 않았는데, 삽화부터 만들어 보자는 요청이 온다. 질문: 확정 전에 삽화를 만들어도 될까?</p>
 <p><strong>화면 읽기:</strong> 가운데 일곱 단계는 2쪽 시작 화면과 같은 순서, 같은 색입니다. 작가가 주제를 찾고 고르고, 초고 v01을 직접 씁니다(AI가 만든 초안이 아님). 그다음 AI와 함께 검토하고 수정하며 새 버전으로 남기고, 작가가 최종본을 확정합니다. 확정 뒤에 삽화를 만들어 보관하고, 네이버 비공개 초안을 만든 뒤 다시 열어 확인합니다. 공개 발행은 이 흐름 밖입니다.</p>
 <p><strong>질문에 대한 답:</strong> 확정 전에 삽화를 만들자는 요청이 오면, 4단계 작가 확정을 기다립니다. 확정되지 않았으면 3단계로 돌아가 다시 고칩니다. 확정은 사람이 정하는 단계이고, 확정 뒤 단계는 정해진 절차로 이어집니다.</p>
@@ -2219,18 +2281,18 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 30 쉬는 시간 -->
-<section class="slide" id="s30" data-physical="30" data-kind="break" data-label="30. 쉬는 시간" data-layout="break" data-original="26" data-v10="S22">
+<!-- ===================================================== 31 쉬는 시간 -->
+<section class="slide" id="s31" data-physical="31" data-kind="break" data-label="31. 쉬는 시간" data-layout="break" data-original="26" data-v10="S22">
 <div class="stage"><div class="canvas t-night">
   <h2 class="abs brk-word">쉬는 시간</h2>
 
   <div class="abs cover-rule" style="top:690px"></div>
   <p class="abs brk-next">돌아오면 4장<br><b>누가 이어서 일할까?</b></p>
   <p class="abs brk-done">지금까지: 모델과 실행, 일하는 방법을 담는 곳, 모델이 아는 것</p>
-  <p class="pageno" aria-label="30쪽, 전체 46쪽">30 / 46</p>
+  <p class="pageno" aria-label="31쪽, 전체 47쪽">31 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 30번. 쉬는 시간</h3>
+<h3>v22 31번. 쉬는 시간</h3>
 <p>쉬는 시간. 돌아오면 4장에서 세션, 워커, 서브에이전트를 보고 CEO Agent 사례로 넘어갑니다.</p>
 <h3>v10 발췌 S22 (v06 편집)</h3>
 <p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
@@ -2238,8 +2300,8 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 31 4장 누가 이어서 일할까? -->
-<section class="slide" id="s31" data-physical="31" data-kind="chapter" data-label="31. 4장 누가 이어서 일할까?" data-layout="chapter" data-original="27">
+<!-- ===================================================== 32 4장 누가 이어서 일할까? -->
+<section class="slide" id="s32" data-physical="32" data-kind="chapter" data-label="32. 4장 누가 이어서 일할까?" data-layout="chapter" data-original="27">
 <div class="stage"><div class="canvas t-chapter">
   <div class="abs ch-num" aria-hidden="true">04</div>
   <p class="abs ch-label">4장</p>
@@ -2260,20 +2322,20 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1690" y="96" font-size="38" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">사례 CEO Agent</text>
     <text x="1690" y="212" font-size="28" fill="#BFD3FF" text-anchor="middle" dominant-baseline="central">상황별 선택</text>
   </svg>
-  <p class="pageno" aria-label="31쪽, 전체 46쪽">31 / 46</p>
+  <p class="pageno" aria-label="32쪽, 전체 47쪽">32 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 31번. 4장 누가 이어서 일할까?</h3>
+<h3>v22 32번. 4장 누가 이어서 일할까?</h3>
 <p>질문: 누가 이어서 일할까?</p>
 <p>순서: 세션, 워커, 서브에이전트, 그리고 사례 CEO Agent.</p>
 <p>핵심 구분: 세션은 작업 맥락, 워커는 실행 담당. 역할을 나눠도 그것만으로 독립 검증이 되지는 않습니다.</p>
 </aside>
 </section>
 
-<!-- ===================================================== 32 용어 16 세션 -->
-<section class="slide" id="s32" data-physical="32" data-kind="term" data-label="32. 용어 16 세션" data-layout="boundary" data-original="28" data-chapter="4" data-term="세션" data-term-index="16" data-v10="S23">
+<!-- ===================================================== 33 용어 17 세션 -->
+<section class="slide" id="s33" data-physical="33" data-kind="term" data-label="33. 용어 17 세션" data-layout="boundary" data-original="28" data-chapter="4" data-term="세션" data-term-index="17" data-v10="S23">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>4장<span class="gap"></span>용어 16 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>4장<span class="gap"></span>용어 17 / 26</p>
   <h2 class="abs tp-word">세션</h2>
   <p class="abs tp-def">하나의 작업 흐름을 묶어 두는 대화와 상태의 단위. 입력, 출력, 도구 기록, 진행 상태를 한데 묶음</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">같은 회의 준비 대화를 노트북과 휴대폰에서 함께 열기.</p><p class="ask">같은 대화를 두 화면에서 보면 작업자도 두 명일까?</p></div>
@@ -2307,10 +2369,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1300" y="416" font-size="26" fill="#5E6570" dominant-baseline="central">파일을 고치는 작업자는 하나</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">세션 자체가 작업을 실행하지는 않음. 저장된 이력 가운데 이번 호출에 들어간 부분만 컨텍스트</span></div>
-  <p class="pageno" aria-label="32쪽, 전체 46쪽">32 / 46</p>
+  <p class="pageno" aria-label="33쪽, 전체 47쪽">33 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 32번. 용어 16 세션</h3>
+<h3>v22 33번. 용어 17 세션</h3>
 <p><strong>장면 먼저:</strong> 같은 회의 준비 대화를 노트북과 휴대폰에서 연다. 질문: 같은 대화를 두 화면에서 보면 작업자도 두 명일까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S23 (v06 편집)</h3>
@@ -2332,10 +2394,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 33 용어 17 워커 -->
-<section class="slide" id="s33" data-physical="33" data-kind="term" data-label="33. 용어 17 워커" data-layout="split" data-original="29" data-chapter="4" data-term="워커" data-term-index="17" data-v10="S24">
+<!-- ===================================================== 34 용어 18 워커 -->
+<section class="slide" id="s34" data-physical="34" data-kind="term" data-label="34. 용어 18 워커" data-layout="split" data-original="29" data-chapter="4" data-term="워커" data-term-index="18" data-v10="S24">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker sp-kicker"><span class="dot"></span>4장<span class="gap"></span>용어 17 / 25</p>
+  <p class="abs kicker sp-kicker"><span class="dot"></span>4장<span class="gap"></span>용어 18 / 26</p>
   <h2 class="abs sp-word" style="font-size:140px">워커</h2>
   <p class="abs sp-def">배정받은 작업을 실제로 수행하는 작업자. 읽기 전용 조사인지, 파일 수정인지에 따라 권한과 작업 범위도 달라짐</p>
   <div class="abs scene sp-scene"><p class="lab">장면</p><p class="say">한 사람은 고치기만, 다른 사람은 메모만.</p><p class="ask">문서를 실제로 고칠 담당은 누구로 정할까?</p></div>
@@ -2366,10 +2428,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="664" y="690" font-size="26" font-weight="800" fill="#B45309" dominant-baseline="central">지시상 쓰기 금지</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">워커는 맡은 일을 하는 역할, 서브에이전트는 상위와 하위의 위임 관계. 하위 에이전트가 워커 역할을 맡기도 함</span></div>
-  <p class="pageno" aria-label="33쪽, 전체 46쪽">33 / 46</p>
+  <p class="pageno" aria-label="34쪽, 전체 47쪽">34 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 33번. 용어 17 워커</h3>
+<h3>v22 34번. 용어 18 워커</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> 그림의 경계는 작업 지시상 범위이지 권한 샌드박스가 아니다. 실제로 강제되는 권한은 도구와 런타임 설정이 정한다. v10의 &#x27;권한 경계&#x27;, &#x27;쓰기 금지&#x27; 표현을 기술적으로 막힌 환경을 시연한 것으로 읽지 않는다.</p>
 <p><strong>장면 먼저:</strong> 문서 검토에서 한 사람은 고치기만 하고 다른 사람은 메모만 쓰기로 나뉘어 있다. 질문: 문서를 실제로 고칠 담당은 누구로 정해야 할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
@@ -2392,10 +2454,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 34 용어 18 서브에이전트 -->
-<section class="slide" id="s34" data-physical="34" data-kind="term" data-label="34. 용어 18 서브에이전트" data-layout="split-mirror" data-original="30" data-chapter="4" data-term="서브에이전트" data-term-index="18" data-v10="S25">
+<!-- ===================================================== 35 용어 19 서브에이전트 -->
+<section class="slide" id="s35" data-physical="35" data-kind="term" data-label="35. 용어 19 서브에이전트" data-layout="split-mirror" data-original="30" data-chapter="4" data-term="서브에이전트" data-term-index="19" data-v10="S25">
 <div class="stage"><div class="canvas t-paper mirror">
-  <p class="abs kicker sp-kicker"><span class="dot"></span>4장<span class="gap"></span>용어 18 / 25</p>
+  <p class="abs kicker sp-kicker"><span class="dot"></span>4장<span class="gap"></span>용어 19 / 26</p>
   <h2 class="abs sp-word" style="font-size:100px">서브에이전트</h2>
   <p class="abs sp-def">다른 에이전트가 맡긴 작업을 별도의 입력 맥락에서 수행하고 결과를 돌려주는 하위 에이전트. 권한은 설정에 따라 읽기 전용일 수도, 쓰기 가능일 수도</p>
   <div class="abs scene sp-scene"><p class="lab">장면</p><p class="say">긴 문서에서 용어 정의만 뽑는 일을 떼어 맡기기.</p><p class="ask">그 작업자가 원문을 고쳐도 될까?</p></div>
@@ -2421,10 +2483,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="40" y="752" font-size="26" font-weight="800" fill="#B45309" dominant-baseline="central">같은 모델, 비슷한 맥락이면 오류도 겹칠 수 있음</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">오케스트레이션은 배정 방식, 서브에이전트는 실행 단위. 서브에이전트를 둔다고 독립 검토가 되지는 않음</span></div>
-  <p class="pageno" aria-label="34쪽, 전체 46쪽">34 / 46</p>
+  <p class="pageno" aria-label="35쪽, 전체 47쪽">35 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 34번. 용어 18 서브에이전트</h3>
+<h3>v22 35번. 용어 19 서브에이전트</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10 화면 구성의 &#x27;쓰기 권한 없음&#x27;은 v02에서 &#x27;읽기 전용 작업 지시 (이번 예시)&#x27;로 바뀌었다. 지시만으로 실제 쓰기 권한이 사라지지는 않는다. 권한은 설정에 따라 다르다.</p>
 <p><strong>장면 먼저:</strong> 긴 문서에서 용어 정의만 따로 뽑는 일을 다른 작업자에게 나눠 준다. 질문: 그 작업자가 원문을 고쳐도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
@@ -2447,8 +2509,8 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 35 사례 5 CEO Agent -->
-<section class="slide" id="s35" data-physical="35" data-kind="case" data-label="35. 사례 5 CEO Agent" data-layout="case" data-original="31" data-chapter="4" data-case="CEO Agent" data-case-index="5" data-v10="S26">
+<!-- ===================================================== 36 사례 5 CEO Agent -->
+<section class="slide" id="s36" data-physical="36" data-kind="case" data-label="36. 사례 5 CEO Agent" data-layout="case" data-original="31" data-chapter="4" data-case="CEO Agent" data-case-index="5" data-v10="S26">
 <div class="stage"><div class="canvas t-paper">
   <p class="abs kicker case-head"><span class="tag-case">사례 5 / 5</span>CEO Agent</p>
   <p class="abs qline case-q"><b>질문</b>같은 사실이라면 사내 보고와 외부 발언의 강조도 같아야 할까?</p>
@@ -2513,10 +2575,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1528" y="238" font-size="28" font-weight="800" fill="#B45309">피드백</text>
   </svg>
   <p class="abs foot ceo-foot">같은 사실(가상): 분기 일정 지연 두 건. 원자료와 인물 정보는 비공개. 모델 학습은 없고, 각 단계도 독립된 작업자가 아님</p>
-  <p class="pageno" aria-label="35쪽, 전체 46쪽">35 / 46</p>
+  <p class="pageno" aria-label="36쪽, 전체 47쪽">36 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 35번. 사례 5 CEO Agent</h3>
+<h3>v22 36번. 사례 5 CEO Agent</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v10의 &#x27;등록(register)&#x27;은 데이터 등록이 아니라 상황에 맞는 말투와 문체를 뜻한다. &#x27;판단 루브릭&#x27;은 결과에서 무엇을 짚을지 정하는 검토 기준이다. 둘은 서로 다른 명세이며, 과업, 독자, 자리에 따라 각각 고른다. 아래 발췌의 해당 줄도 이 표현으로 바꿨다.</p>
 <p><strong>장면 먼저:</strong> 같은 사실을 사내 검토용 보고와 외부 연설용 문장으로 옮겨야 한다. 질문: 같은 사실이라면 강조도 같아야 할까?</p>
 <h3>v10 발췌 S26 (v06 편집)</h3>
@@ -2545,8 +2607,8 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 36 5장 끝났다는 말을 어떻게 믿을까? -->
-<section class="slide" id="s36" data-physical="36" data-kind="chapter" data-label="36. 5장 끝났다는 말을 어떻게 믿을까?" data-layout="chapter" data-original="32">
+<!-- ===================================================== 37 5장 끝났다는 말을 어떻게 믿을까? -->
+<section class="slide" id="s37" data-physical="37" data-kind="chapter" data-label="37. 5장 끝났다는 말을 어떻게 믿을까?" data-layout="chapter" data-original="32">
 <div class="stage"><div class="canvas t-chapter">
   <div class="abs ch-num" aria-hidden="true">05</div>
   <p class="abs ch-label">5장</p>
@@ -2571,20 +2633,20 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <rect x="1664" y="124" width="52" height="52" fill="#FFFFFF"/>
     <text x="1690" y="214" font-size="32" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central">종합</text>
   </svg>
-  <p class="pageno" aria-label="36쪽, 전체 46쪽">36 / 46</p>
+  <p class="pageno" aria-label="37쪽, 전체 47쪽">37 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 36번. 5장 끝났다는 말을 어떻게 믿을까?</h3>
+<h3>v22 37번. 5장 끝났다는 말을 어떻게 믿을까?</h3>
 <p>질문: 끝났다는 말을 어떻게 믿을까?</p>
 <p>순서: 워크플로우, 자동화, 완료 보고, 검증, 로컬 실행, 클라우드 실행, 리모트 컨트롤, 그리고 종합.</p>
 <p>왜 실행 위치가 이 장에 있나: "끝났다"는 말을 믿으려면 무엇이 어디서 돌았고 누가 개입했는지까지 적어야 하기 때문입니다. 로컬과 클라우드는 실행 위치, 리모트 컨트롤은 개입 방식이라는 다른 축입니다.</p>
 </aside>
 </section>
 
-<!-- ===================================================== 37 용어 19 워크플로우 -->
-<section class="slide" id="s37" data-physical="37" data-kind="term" data-label="37. 용어 19 워크플로우" data-layout="sequence" data-original="33" data-chapter="5" data-term="워크플로우" data-term-index="19" data-v10="S27">
+<!-- ===================================================== 38 용어 20 워크플로우 -->
+<section class="slide" id="s38" data-physical="38" data-kind="term" data-label="38. 용어 20 워크플로우" data-layout="sequence" data-original="33" data-chapter="5" data-term="워크플로우" data-term-index="20" data-v10="S27">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 19 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 20 / 26</p>
   <h2 class="abs tp-word">워크플로우</h2>
   <p class="abs tp-def">입력, 단계, 단계별 산출물, 다음 단계로 넘어가는 조건을 정해 둔 작업 흐름. 사람이 손으로 따라가도 워크플로우</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">작가의 초고 v01 도착. 최종본은 아직 확정 전.</p><p class="ask">삽화부터 만들어도 될까?</p></div>
@@ -2619,10 +2681,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1180" y="420" font-size="26" fill="#5E6570" dominant-baseline="central">공개 발행은 이 흐름 밖</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">자동화는 그중 일부를 조건이 맞을 때 시작하는 장치, 하네스는 이 단계를 돌리고 검증하는 틀</span></div>
-  <p class="pageno" aria-label="37쪽, 전체 46쪽">37 / 46</p>
+  <p class="pageno" aria-label="38쪽, 전체 47쪽">38 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 37번. 용어 19 워크플로우</h3>
+<h3>v22 38번. 용어 20 워크플로우</h3>
 <p><strong>장면 먼저:</strong> AI교양 원문을 받았다. 최종본은 아직 확정되지 않았고, 삽화부터 만들어 보고 싶다. 질문: 최종 확정 전에 삽화를 만들어도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S27 (v06 편집)</h3>
@@ -2644,10 +2706,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 38 용어 20 자동화 -->
-<section class="slide" id="s38" data-physical="38" data-kind="term" data-label="38. 용어 20 자동화" data-layout="sequence" data-original="34" data-chapter="5" data-term="자동화" data-term-index="20" data-v10="S28">
+<!-- ===================================================== 39 용어 21 자동화 -->
+<section class="slide" id="s39" data-physical="39" data-kind="term" data-label="39. 용어 21 자동화" data-layout="sequence" data-original="34" data-chapter="5" data-term="자동화" data-term-index="21" data-v10="S28">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 20 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 21 / 26</p>
   <h2 class="abs tp-word">자동화</h2>
   <p class="abs tp-def">시간, 이벤트, 앞 단계 결과 같은 조건이 충족되면 사람이 다시 시작하지 않아도 정해진 작업을 실행하게 만든 장치</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">최종 확정 메시지 도착. 저장과 초안 작성까지 이어서 돌리고 싶은 상황.</p><p class="ask">확정 메시지 하나로 뒤의 제작 전체를 시작해도 될까?</p></div>
@@ -2682,10 +2744,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="796" y="424" font-size="28" font-weight="700" fill="#B45309" dominant-baseline="central">공개 발행은 조건에서 제외</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">자동 기억은 저장과 불러오기의 문제, 자동화는 실행 시작의 문제. 이 장면은 설명용이며 실제로 돌리지 않음</span></div>
-  <p class="pageno" aria-label="38쪽, 전체 46쪽">38 / 46</p>
+  <p class="pageno" aria-label="39쪽, 전체 47쪽">39 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 38번. 용어 20 자동화</h3>
+<h3>v22 39번. 용어 21 자동화</h3>
 <p><strong>장면 먼저:</strong> AI교양 최종 확정 메시지가 도착했다. 저장과 비공개 초안 작성을 자동으로 이어 가게 하고 싶다. 질문: 확정 메시지 하나로 뒤의 제작 전체를 자동으로 시작해도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S28 (v06 편집)</h3>
@@ -2707,10 +2769,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 39 용어 21 완료 보고 -->
-<section class="slide" id="s39" data-physical="39" data-kind="term" data-label="39. 용어 21 완료 보고" data-layout="compare" data-original="35" data-chapter="5" data-term="완료 보고" data-term-index="21" data-v10="S29">
+<!-- ===================================================== 40 용어 22 완료 보고 -->
+<section class="slide" id="s40" data-physical="40" data-kind="term" data-label="40. 용어 22 완료 보고" data-layout="compare" data-original="35" data-chapter="5" data-term="완료 보고" data-term-index="22" data-v10="S29">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 21 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 22 / 26</p>
   <h2 class="abs tp-word">완료 보고</h2>
   <p class="abs tp-def">작업자가 "끝났다"고 남긴 기록. 한 일과 확인했다고 주장하는 내용을 담을 뿐, 그 자체가 검증 증거는 아님</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">작업자의 보고는 "검토 완료" 한 줄.</p><p class="ask">이 한 줄로 검토가 끝났다고 할 수 있을까?</p></div>
@@ -2744,10 +2806,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="0" y="420" font-size="34" font-weight="800" fill="#B45309" dominant-baseline="central">보고는 완료, 검증은 실패. 둘을 나란히 기록</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">실행 도구의 done은 실행이 끝났다는 증거일 수는 있어도, 요구 조건을 만족했다는 증거는 아님</span></div>
-  <p class="pageno" aria-label="39쪽, 전체 46쪽">39 / 46</p>
+  <p class="pageno" aria-label="40쪽, 전체 47쪽">40 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 39번. 용어 21 완료 보고</h3>
+<h3>v22 40번. 용어 22 완료 보고</h3>
 <p><strong>장면 먼저:</strong> 작업자가 &#x27;검토 완료&#x27;라는 한 줄로 보고했다. 질문: 그 한 줄이면 검토가 끝났다고 말할 수 있을까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S29 (v06 편집)</h3>
@@ -2769,10 +2831,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 40 용어 22 검증 -->
-<section class="slide" id="s40" data-physical="40" data-kind="term" data-label="40. 용어 22 검증" data-layout="compare" data-original="36" data-chapter="5" data-term="검증" data-term-index="22" data-v10="S30">
+<!-- ===================================================== 41 용어 23 검증 -->
+<section class="slide" id="s41" data-physical="41" data-kind="term" data-label="41. 용어 23 검증" data-layout="compare" data-original="36" data-chapter="5" data-term="검증" data-term-index="23" data-v10="S30">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 22 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 23 / 26</p>
   <h2 class="abs tp-word">검증</h2>
   <p class="abs tp-def">미리 정한 기준으로 산출물, 숫자, 인용, 파일 상태, 실행 결과를 작업자의 말과 독립된 방법으로 확인해 판단하는 과정</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">주간 요약에 적힌 "이번 주 문의 42건".</p><p class="ask">누가 어떻게 확인할까? 한 번 보면 충분할까?</p></div>
@@ -2802,10 +2864,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="0" y="440" font-size="30" font-weight="800" fill="#2457A6" dominant-baseline="central">기준은 작업 전에. 한 항목 통과가 전체 통과는 아님</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">같은 작업자가 다시 읽는 것은 약한 점검. 리뷰는 판단, 검증은 기준에 따른 확인</span></div>
-  <p class="pageno" aria-label="40쪽, 전체 46쪽">40 / 46</p>
+  <p class="pageno" aria-label="41쪽, 전체 47쪽">41 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 40번. 용어 22 검증</h3>
+<h3>v22 41번. 용어 23 검증</h3>
 <p><strong>장면 먼저:</strong> 주간 요약에 &#x27;이번 주 문의 42건&#x27;이라고 적혀 있다. 질문: 이 숫자가 맞는지 누가 어떻게 확인할까? 한 번 보는 것으로 충분할까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S30 (v06 편집)</h3>
@@ -2827,10 +2889,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 41 용어 23 로컬 실행 -->
-<section class="slide" id="s41" data-physical="41" data-kind="term" data-label="41. 용어 23 로컬 실행" data-layout="boundary" data-original="37" data-chapter="5" data-term="로컬 실행" data-term-index="23" data-v10="S31">
+<!-- ===================================================== 42 용어 24 로컬 실행 -->
+<section class="slide" id="s42" data-physical="42" data-kind="term" data-label="42. 용어 24 로컬 실행" data-layout="boundary" data-original="37" data-chapter="5" data-term="로컬 실행" data-term-index="24" data-v10="S31">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 23 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 24 / 26</p>
   <h2 class="abs tp-word">로컬 실행</h2>
   <p class="abs tp-def">도구와 프로세스가 사용자의 컴퓨터에서 돌고, 파일 접근과 명령이 그 기기 안에서 일어나는 방식. 모델 추론 위치는 따로 따짐</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">AI 도구가 노트북의 메모 폴더를 읽고 요약.</p><p class="ask">요약 답변도 노트북에서 만들어질까?</p></div>
@@ -2859,10 +2921,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="1260" y="416.2" font-size="24" fill="#5E6570" dominant-baseline="central">계정이 필요할 수 있음</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">"로컬에서 돌렸다"가 모델도 기기 안에서 돌았다는 뜻은 아님. 로컬이 곧 안전하다는 뜻도 아님</span></div>
-  <p class="pageno" aria-label="41쪽, 전체 46쪽">41 / 46</p>
+  <p class="pageno" aria-label="42쪽, 전체 47쪽">42 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 41번. 용어 23 로컬 실행</h3>
+<h3>v22 42번. 용어 24 로컬 실행</h3>
 <p><strong>장면 먼저:</strong> 내 노트북의 메모 폴더를 AI 도구가 읽고 요약한다. 질문: 파일을 읽는 일이 노트북에서 일어나면 모델의 요약 답변도 노트북에서 만들어질까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S31 (v06 편집)</h3>
@@ -2884,10 +2946,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 42 용어 24 클라우드 실행 -->
-<section class="slide" id="s42" data-physical="42" data-kind="term" data-label="42. 용어 24 클라우드 실행" data-layout="compare" data-original="38" data-chapter="5" data-term="클라우드 실행" data-term-index="24" data-v10="S32">
+<!-- ===================================================== 43 용어 25 클라우드 실행 -->
+<section class="slide" id="s43" data-physical="43" data-kind="term" data-label="43. 용어 25 클라우드 실행" data-layout="compare" data-original="38" data-chapter="5" data-term="클라우드 실행" data-term-index="25" data-v10="S32">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 24 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 25 / 26</p>
   <h2 class="abs tp-word">클라우드 실행</h2>
   <p class="abs tp-def">도구, 워커, 모델 추론 중 일부나 전부가 사용자 기기가 아닌 외부 서버에서 도는 방식. 어느 구성 요소가 그런지 함께 밝혀야 함</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">초안은 외부 서버의 모델이 쓰고, 파일은 노트북에 저장.</p><p class="ask">"클라우드 작업"이라고 한 단어로 불러도 될까?</p></div>
@@ -2917,10 +2979,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="0" y="430" font-size="32" font-weight="800" fill="#2457A6" dominant-baseline="central">"클라우드 작업" 한 마디로는 어느 부분인지 알 수 없음</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">클라우드 실행과 리모트 컨트롤은 다른 축. 공유 범위는 제품 설정에 따르며, 모든 파일이 어디서나 공유된다고 가정하지 않음</span></div>
-  <p class="pageno" aria-label="42쪽, 전체 46쪽">42 / 46</p>
+  <p class="pageno" aria-label="43쪽, 전체 47쪽">43 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 42번. 용어 24 클라우드 실행</h3>
+<h3>v22 43번. 용어 25 클라우드 실행</h3>
 <p><strong>장면 먼저:</strong> 모델은 외부 서버에서 초안을 쓰고, 초안 파일은 내 노트북에 저장한다. 질문: 이 작업을 클라우드 작업이라고 한 단어로 불러도 될까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S32 (v06 편집)</h3>
@@ -2942,10 +3004,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 43 용어 25 리모트 컨트롤 -->
-<section class="slide" id="s43" data-physical="43" data-kind="term" data-label="43. 용어 25 리모트 컨트롤" data-layout="boundary" data-original="39" data-chapter="5" data-term="리모트 컨트롤" data-term-index="25" data-v10="S33">
+<!-- ===================================================== 44 용어 26 리모트 컨트롤 -->
+<section class="slide" id="s44" data-physical="44" data-kind="term" data-label="44. 용어 26 리모트 컨트롤" data-layout="boundary" data-original="39" data-chapter="5" data-term="리모트 컨트롤" data-term-index="26" data-v10="S33">
 <div class="stage"><div class="canvas t-paper">
-  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 25 / 25</p>
+  <p class="abs kicker tp-kicker"><span class="dot"></span>5장<span class="gap"></span>용어 26 / 26</p>
   <h2 class="abs tp-word">리모트 컨트롤</h2>
   <p class="abs tp-def">실제 실행은 원래 환경에서 계속하고, 다른 화면이나 기기에서 그 세션을 보고 지시하거나 중단 신호를 보내는 개입 방식</p>
   <div class="abs scene tp-scene"><p class="lab">장면</p><p class="say">노트북에서 돌아가는 작업, 휴대폰으로 보다가 멈추고 싶을 때.</p><p class="ask">멈춤을 누르면 작업 장소가 휴대폰으로 옮겨질까?</p></div>
@@ -2973,10 +3035,10 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
     <text x="0" y="448" font-size="28" font-weight="800" fill="#3A4049" dominant-baseline="central">앱이 파일을 따로 고치는 두 번째 작업자는 아님. 실행 위치는 그대로 노트북</text>
   </svg>
   <div class="abs term-diff"><span class="lab">헷갈리기 쉬운 점</span><span class="txt">실행 위치와 개입 방식은 다른 축. 한 경로로 연결됐다고 다른 경로의 앱에서도 보인다는 보장은 없음</span></div>
-  <p class="pageno" aria-label="43쪽, 전체 46쪽">43 / 46</p>
+  <p class="pageno" aria-label="44쪽, 전체 47쪽">44 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 43번. 용어 25 리모트 컨트롤</h3>
+<h3>v22 44번. 용어 26 리모트 컨트롤</h3>
 <p><strong>장면 먼저:</strong> 노트북에서 돌고 있는 회의 준비 작업을 휴대폰에서 보고 멈추고 싶다. 질문: 휴대폰에서 멈춤을 누르면 작업 장소가 휴대폰으로 옮겨질까?</p>
 <p><strong>진행:</strong> 장면을 먼저 들려주고 예측 질문을 던집니다. 답을 들은 뒤 화면의 정의를 읽고, 그림으로 장면에 다시 적용하고, 헷갈리기 쉬운 점과 확인 질문으로 마무리합니다.</p>
 <h3>v10 발췌 S33 (v06 편집)</h3>
@@ -2999,18 +3061,18 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 44 종합: 다섯 사례 -->
-<section class="slide" id="s44" data-physical="44" data-kind="synthesis" data-label="44. 종합: 다섯 사례" data-layout="synthesis" data-original="40" data-chapter="5" data-v10="S34">
+<!-- ===================================================== 45 종합: 다섯 사례 -->
+<section class="slide" id="s45" data-physical="45" data-kind="synthesis" data-label="45. 종합: 다섯 사례" data-layout="synthesis" data-original="40" data-chapter="5" data-v10="S34">
 <div class="stage"><div class="canvas t-paper">
   <p class="abs kicker op-kicker">종합</p>
   <h2 class="abs op-title">다섯 사례, 같은 요소, 다른 무게</h2>
   <div class="abs syn-chips"><span>규칙</span><span>컨텍스트</span><span>도구와 실행 위치</span><span>상태</span><span>검증과 사람의 최종 책임</span></div>
   <ol class="abs syn-list"><li><span class="c">AI교양</span><span class="w">흐름과 넘어가는 조건, 작가의 확정</span><span class="n">다시 열어 확인</span></li><li><span class="c">클식이</span><span class="w">실행 위치와 개입 방식</span><span class="n">워커와 작업 확인 화면</span></li><li><span class="c">OMH</span><span class="w">제약에 맞춘 도구와 권한, 증거와 한계</span><span class="n">사내 모델 품질 미검증</span></li><li><span class="c">Grokbot</span><span class="w">클라우드 서비스에서 도는 봇 넷</span><span class="n">작성자가 확인한 구성</span></li><li><span class="c">CEO Agent</span><span class="w">조사한 페르소나를 상황에 맞게 고르는 흐름</span><span class="n">단계는 독립 작업자가 아님</span></li></ol>
   <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">측정한 성과의 비교가 아니라, 설계와 기록 구조의 비교</p>
-  <p class="pageno" aria-label="44쪽, 전체 46쪽">44 / 46</p>
+  <p class="pageno" aria-label="45쪽, 전체 47쪽">45 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 44번. 종합: 다섯 사례</h3>
+<h3>v22 45번. 종합: 다섯 사례</h3>
 <p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v16부터 Grokbot 줄은 작성자가 확인한 구성(네 봇과 공유 클라우드 컴퓨터)을 따른다. 화면의 Grokbot 줄을 &#x27;클라우드 서비스에서 도는 봇 넷, 작성자가 확인한 구성&#x27;으로 바꿨고, 아래 발췌의 자료 상태에 관한 옛 문구는 뺐다.</p>
 <p><strong>장면 먼저:</strong> 처음의 AI교양 글로 돌아간다. 원문을 받고, 확정을 기다리고, 삽화와 보존, 비공개 초안, 재열람까지 이어진 흐름을 용어로 다시 읽는다. 질문: 다른 네 사례에서도 같은 질문이 통할까?</p>
 <h3>v10 발췌 S34 (v06 편집)</h3>
@@ -3034,22 +3096,23 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 45 질의응답 -->
-<section class="slide" id="s45" data-physical="45" data-kind="qa" data-label="45. 질의응답" data-layout="qa" data-original="42" data-v10="S35">
+<!-- ===================================================== 46 질의응답 -->
+<section class="slide" id="s46" data-physical="46" data-kind="qa" data-label="46. 질의응답" data-layout="qa" data-original="42" data-v10="S35">
 <div class="stage"><div class="canvas t-paper">
   <p class="abs kicker op-kicker">질의응답</p>
   <h2 class="abs op-title">질문과 이야기</h2>
   <p class="abs qline" style="left:120px;top:262px;width:1680px;margin:0">질문이 없다면: 가장 헷갈렸던 용어 하나와 그 이유는?</p>
   <div class="abs qa-col" style="left:120px"><p class="qa-ch">1장</p><ul><li><b>5</b>모델</li><li><b>6</b>에이전트</li><li><b>7</b>런타임</li><li><b>8</b>하네스</li><li class="case"><b>9</b>클식이</li></ul></div>
   <div class="abs qa-col" style="left:464px"><p class="qa-ch">2장</p><ul><li><b>11</b>오케스트레이션</li><li><b>12</b>도구</li><li><b>13</b>스킬</li><li class="case"><b>14</b>OMH</li><li><b>18</b>플러그인</li><li><b>19</b>커넥터</li><li><b>20</b>MCP</li><li class="case"><b>21</b>Grokbot</li></ul></div>
-  <div class="abs qa-col" style="left:808px"><p class="qa-ch">3장</p><ul><li><b>24</b>프롬프트</li><li><b>25</b>컨텍스트</li><li><b>26</b>토큰</li><li><b>27</b>컨텍스트 창</li><li><b>28</b>메모리</li><li class="case"><b>29</b>AI교양</li></ul></div>
-  <div class="abs qa-col" style="left:1152px"><p class="qa-ch">4장</p><ul><li><b>32</b>세션</li><li><b>33</b>워커</li><li><b>34</b>서브에이전트</li><li class="case"><b>35</b>CEO Agent</li></ul></div>
-  <div class="abs qa-col" style="left:1496px"><p class="qa-ch">5장</p><ul><li><b>37</b>워크플로우</li><li><b>38</b>자동화</li><li><b>39</b>완료 보고</li><li><b>40</b>검증</li><li><b>41</b>로컬 실행</li><li><b>42</b>클라우드 실행</li><li><b>43</b>리모트 컨트롤</li></ul></div>
+  <div class="abs qa-col" style="left:808px"><p class="qa-ch">3장</p><ul><li><b>24</b>프롬프트</li><li><b>25</b>컨텍스트</li><li><b>26</b>토큰</li><li><b>27</b>컨텍스트 창</li><li><b>28</b>메모리</li><li><b>29</b>LLM wiki</li><li class="case"><b>30</b>AI교양</li></ul></div>
+  <div class="abs qa-col" style="left:1152px"><p class="qa-ch">4장</p><ul><li><b>33</b>세션</li><li><b>34</b>워커</li><li><b>35</b>서브에이전트</li><li class="case"><b>36</b>CEO Agent</li></ul></div>
+  <div class="abs qa-col" style="left:1496px"><p class="qa-ch">5장</p><ul><li><b>38</b>워크플로우</li><li><b>39</b>자동화</li><li><b>40</b>완료 보고</li><li><b>41</b>검증</li><li><b>42</b>로컬 실행</li><li><b>43</b>클라우드 실행</li><li><b>44</b>리모트 컨트롤</li></ul></div>
   <p class="abs foot" style="left:120px;top:968px;width:1680px;margin:0">숫자는 슬라이드 번호, 사각형 표시는 사례. 확인되지 않은 내용은 확인이 필요하다고 답하기</p>
-  <p class="pageno" aria-label="45쪽, 전체 46쪽">45 / 46</p>
+  <p class="pageno" aria-label="46쪽, 전체 47쪽">46 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 45번. 질의응답</h3>
+<h3>v22 46번. 질의응답</h3>
+<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> v22부터 용어는 메모리 다음의 LLM wiki를 더해 26개다. 아래 발췌의 &#x27;용어 25개&#x27;는 이전 구성을 기준으로 한 표현이다.</p>
 <h3>v10 발췌 S35 (v06 편집)</h3>
 <p class="src">v06 편집 발췌: 강의 시간 표기를 뺐고, 화면과 맞지 않던 표현 몇 곳(부모, 쓰기 주체, 실행 주체, 등록, 모호 행, 원격 앱 등)을 현재 표현으로 바꿨습니다. 나머지 문장은 원문 그대로이며, 원문 전체는 docs/plans/slide-content-plan-v10.md에 있습니다.</p>
 <p>S35. 질의응답과 정리</p>
@@ -3066,16 +3129,16 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 </aside>
 </section>
 
-<!-- ===================================================== 46 맺음말: 남아 있는 질문 -->
-<section class="slide" id="s46" data-physical="46" data-kind="closing" data-label="46. 맺음말: 남아 있는 질문" data-layout="closing" data-original="41">
+<!-- ===================================================== 47 맺음말: 남아 있는 질문 -->
+<section class="slide" id="s47" data-physical="47" data-kind="closing" data-label="47. 맺음말: 남아 있는 질문" data-layout="closing" data-original="41">
 <div class="stage"><div class="canvas t-night">
   <div class="abs ep-rule" aria-hidden="true"></div>
   <h2 class="abs ep-title">만들어 보고도, 남아 있는 질문</h2>
   <div class="abs ep-body"><p>공부할수록, 오히려 확신이 줄었어요.<br>에이전트가 더 똑똑해지면 해결될 일은 아닐까.<br>우리가 더해야 할 구조는 어디까지일까.</p><p>누군가는 필요성을 느끼고,<br>누군가는 저처럼 질문이 더 생겼을지도 모르겠어요.</p><p>그래도 직접 시도하고 알아간 시간은 남겠죠.<br>오늘은 답 하나보다, 각자의 질문 하나가 남았으면 해요.</p></div>
-  <p class="pageno" aria-label="46쪽, 전체 46쪽">46 / 46</p>
+  <p class="pageno" aria-label="47쪽, 전체 47쪽">47 / 47</p>
 </div></div>
 <aside class="notes">
-<h3>v20 46번. 맺음말: 남아 있는 질문</h3>
+<h3>v22 47번. 맺음말: 남아 있는 질문</h3>
 <p><strong>이 화면의 자리:</strong> 질의응답 뒤에 두는 짧은 맺음말입니다. 앞에서 정리한 결론을 다시 요약하는 화면이 아니라, 발표를 준비하며 남은 생각을 솔직하게 나누는 자리입니다. 천천히 읽고 길게 덧붙이지 않습니다.</p>
 <p><strong>작성자의 생각:</strong> 직접 만들어 보고 공부할수록 오히려 확신이 줄었습니다. 모델이 더 똑똑해지면 지금 우리가 더하는 구조 중 일부는 필요 없어질 수도 있고, 어디까지 구조를 더해야 하는지는 아직 잘 모르겠습니다. 고정된 절차와 다시 쓰는 도구는 반복되는 일에서 분명 쓸모가 있지만, 모든 일에 꼭 필요한 것은 아니라고 생각합니다.</p>
 <p><strong>듣는 분들께:</strong> 오늘 이야기를 듣고 누군가는 이런 구조가 필요하다고 느끼고, 누군가는 저처럼 질문이 더 생겼을 수 있습니다. 둘 다 괜찮습니다. 꼭 무언가를 만들어 가지 않아도, 직접 시도해 보고 알아 간 경험과 각자의 질문이 남는다면 그것으로 충분하다고 생각합니다.</p>
@@ -3090,7 +3153,7 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <nav class="controls" aria-label="슬라이드 이동">
 <button type="button" class="ctl" id="prev" aria-label="이전 슬라이드">이전</button>
 <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
-<span class="counter" id="counter">1 / 46</span>
+<span class="counter" id="counter">1 / 47</span>
 <span class="now" id="now-title"></span>
 <button type="button" class="ctl" id="notes-toggle" aria-pressed="false" aria-controls="notes-panel">노트 (N)</button>
 <button type="button" class="ctl" id="next" aria-label="다음 슬라이드">다음</button>
@@ -3099,8 +3162,8 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
 <script type="application/json" id="deck-manifest">
 {
  "deck": "harness-engineering-workshop",
- "version": "v20",
- "slides": 46,
+ "version": "v22",
+ "slides": 47,
  "excerpt_edits": [
   [
    "부모가 테스트와 파일 상태를 독립적으로 확인한 뒤 답장한다",
@@ -3597,6 +3660,17 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
   {
    "physical": 29,
    "id": "s29",
+   "kind": "term",
+   "label": "용어 16 LLM wiki",
+   "layout": "sequence",
+   "chapter": 3,
+   "term": "LLM wiki",
+   "term_index": 16,
+   "original": "llm-wiki"
+  },
+  {
+   "physical": 30,
+   "id": "s30",
    "kind": "case",
    "label": "사례 4 AI교양",
    "layout": "case",
@@ -3609,8 +3683,8 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
    "original": 25
   },
   {
-   "physical": 30,
-   "id": "s30",
+   "physical": 31,
+   "id": "s31",
    "kind": "break",
    "label": "쉬는 시간",
    "layout": "break",
@@ -3620,58 +3694,58 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
    "original": 26
   },
   {
-   "physical": 31,
-   "id": "s31",
+   "physical": 32,
+   "id": "s32",
    "kind": "chapter",
    "label": "4장 누가 이어서 일할까?",
    "layout": "chapter",
    "original": 27
   },
   {
-   "physical": 32,
-   "id": "s32",
+   "physical": 33,
+   "id": "s33",
    "kind": "term",
-   "label": "용어 16 세션",
+   "label": "용어 17 세션",
    "layout": "boundary",
    "chapter": 4,
    "term": "세션",
-   "term_index": 16,
+   "term_index": 17,
    "v10": [
     "S23"
    ],
    "original": 28
   },
   {
-   "physical": 33,
-   "id": "s33",
+   "physical": 34,
+   "id": "s34",
    "kind": "term",
-   "label": "용어 17 워커",
+   "label": "용어 18 워커",
    "layout": "split",
    "chapter": 4,
    "term": "워커",
-   "term_index": 17,
+   "term_index": 18,
    "v10": [
     "S24"
    ],
    "original": 29
   },
   {
-   "physical": 34,
-   "id": "s34",
+   "physical": 35,
+   "id": "s35",
    "kind": "term",
-   "label": "용어 18 서브에이전트",
+   "label": "용어 19 서브에이전트",
    "layout": "split-mirror",
    "chapter": 4,
    "term": "서브에이전트",
-   "term_index": 18,
+   "term_index": 19,
    "v10": [
     "S25"
    ],
    "original": 30
   },
   {
-   "physical": 35,
-   "id": "s35",
+   "physical": 36,
+   "id": "s36",
    "kind": "case",
    "label": "사례 5 CEO Agent",
    "layout": "case",
@@ -3684,114 +3758,114 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
    "original": 31
   },
   {
-   "physical": 36,
-   "id": "s36",
+   "physical": 37,
+   "id": "s37",
    "kind": "chapter",
    "label": "5장 끝났다는 말을 어떻게 믿을까?",
    "layout": "chapter",
    "original": 32
   },
   {
-   "physical": 37,
-   "id": "s37",
+   "physical": 38,
+   "id": "s38",
    "kind": "term",
-   "label": "용어 19 워크플로우",
+   "label": "용어 20 워크플로우",
    "layout": "sequence",
    "chapter": 5,
    "term": "워크플로우",
-   "term_index": 19,
+   "term_index": 20,
    "v10": [
     "S27"
    ],
    "original": 33
   },
   {
-   "physical": 38,
-   "id": "s38",
+   "physical": 39,
+   "id": "s39",
    "kind": "term",
-   "label": "용어 20 자동화",
+   "label": "용어 21 자동화",
    "layout": "sequence",
    "chapter": 5,
    "term": "자동화",
-   "term_index": 20,
+   "term_index": 21,
    "v10": [
     "S28"
    ],
    "original": 34
   },
   {
-   "physical": 39,
-   "id": "s39",
+   "physical": 40,
+   "id": "s40",
    "kind": "term",
-   "label": "용어 21 완료 보고",
+   "label": "용어 22 완료 보고",
    "layout": "compare",
    "chapter": 5,
    "term": "완료 보고",
-   "term_index": 21,
+   "term_index": 22,
    "v10": [
     "S29"
    ],
    "original": 35
   },
   {
-   "physical": 40,
-   "id": "s40",
+   "physical": 41,
+   "id": "s41",
    "kind": "term",
-   "label": "용어 22 검증",
+   "label": "용어 23 검증",
    "layout": "compare",
    "chapter": 5,
    "term": "검증",
-   "term_index": 22,
+   "term_index": 23,
    "v10": [
     "S30"
    ],
    "original": 36
   },
   {
-   "physical": 41,
-   "id": "s41",
+   "physical": 42,
+   "id": "s42",
    "kind": "term",
-   "label": "용어 23 로컬 실행",
+   "label": "용어 24 로컬 실행",
    "layout": "boundary",
    "chapter": 5,
    "term": "로컬 실행",
-   "term_index": 23,
+   "term_index": 24,
    "v10": [
     "S31"
    ],
    "original": 37
   },
   {
-   "physical": 42,
-   "id": "s42",
+   "physical": 43,
+   "id": "s43",
    "kind": "term",
-   "label": "용어 24 클라우드 실행",
+   "label": "용어 25 클라우드 실행",
    "layout": "compare",
    "chapter": 5,
    "term": "클라우드 실행",
-   "term_index": 24,
+   "term_index": 25,
    "v10": [
     "S32"
    ],
    "original": 38
   },
   {
-   "physical": 43,
-   "id": "s43",
+   "physical": 44,
+   "id": "s44",
    "kind": "term",
-   "label": "용어 25 리모트 컨트롤",
+   "label": "용어 26 리모트 컨트롤",
    "layout": "boundary",
    "chapter": 5,
    "term": "리모트 컨트롤",
-   "term_index": 25,
+   "term_index": 26,
    "v10": [
     "S33"
    ],
    "original": 39
   },
   {
-   "physical": 44,
-   "id": "s44",
+   "physical": 45,
+   "id": "s45",
    "kind": "synthesis",
    "label": "종합: 다섯 사례",
    "layout": "synthesis",
@@ -3802,8 +3876,8 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
    "original": 40
   },
   {
-   "physical": 45,
-   "id": "s45",
+   "physical": 46,
+   "id": "s46",
    "kind": "qa",
    "label": "질의응답",
    "layout": "qa",
@@ -3813,8 +3887,8 @@ T-1002,10/3/2026,chat,,배송지 변경 요청,긴급!!,,closed,2026-10-04</pre>
    "original": 42
   },
   {
-   "physical": 46,
-   "id": "s46",
+   "physical": 47,
+   "id": "s47",
    "kind": "closing",
    "label": "맺음말: 남아 있는 질문",
    "layout": "closing",

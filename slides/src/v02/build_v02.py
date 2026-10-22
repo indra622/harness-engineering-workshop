@@ -1,7 +1,7 @@
 """Build the 42-slide deck as one self-contained HTML file.
 
 Usage (from the project root):
-    python3 slides/src/v02/build_v02.py                 # current version, v20
+    python3 slides/src/v02/build_v02.py                 # current version, v22
     python3 slides/src/v02/build_v02.py --version v03   # reproduces the v03 export
     python3 slides/src/v02/build_v02.py --version v02 --out-dir /tmp/x
 
@@ -21,7 +21,8 @@ reference slides after the OMH case for 44 pages (copy_v07.py); v08 to v11 revis
 v14 shows the bare OpenCode process on 14, v15 changes its summary); v16 redraws the Grokbot case and adds
 참고 C after it for 45 pages (copy_v16.py); v17 adds logos to 참고 C, v18 removes the old closing for 44
 pages, v19 appends a reflective epilogue after the Q&A for 45 (copy_v19.py), and v20 inserts an OMH
-follow-up (kind case-detail) after the OMH case for 46 (copy_v20.py). Everything else is shared, so v02
+follow-up (kind case-detail) after the OMH case for 46 (copy_v20.py); v21 adds an OKF line on 15, and v22
+adds a 26th term, LLM wiki, after 메모리 for 47 (copy_v22.py). Everything else is shared, so v02
 and v03 still build byte-for-byte as exported.
 
 Slide content lives in deck_a.py and deck_b.py. Term and case notes carry the
@@ -61,6 +62,8 @@ import copy_v16  # noqa: E402
 import copy_v17  # noqa: E402
 import copy_v19  # noqa: E402
 import copy_v20  # noqa: E402
+import copy_v21  # noqa: E402
+import copy_v22  # noqa: E402
 import kit  # noqa: E402
 from deck import notes as v10notes  # noqa: E402
 from deck_a import SLIDES_A  # noqa: E402
@@ -68,8 +71,8 @@ from deck_b import SLIDES_B  # noqa: E402
 
 SLIDES_DIR = ROOT / "slides"
 # versions compare as strings; two digits after "v" keep that ordering correct up to v99
-CURRENT = "v20"
-VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14", "v15", "v16", "v17", "v18", "v19", "v20")
+CURRENT = "v22"
+VERSIONS = ("v02", "v03", "v04", "v05", "v06", "v07", "v08", "v09", "v10", "v11", "v12", "v13", "v14", "v15", "v16", "v17", "v18", "v19", "v20", "v21", "v22")
 PLAN = ROOT / v10notes.PLAN
 
 # Page number: inside the canvas, so it prints; bottom right, clear of the footers.
@@ -218,15 +221,18 @@ def build_notes_v04(n, sl):
     fixes = [CORRECTIONS_V03.get(o), CORRECTIONS.get(o), copy_v06.CORRECTIONS.get(o) if v06 else None,
              copy_v10.CORRECTIONS.get(o) if kit.VERSION >= "v10" else None,
              copy_v12.CORRECTIONS.get(o) if kit.VERSION >= "v12" else None,
-             copy_v16.CORRECTIONS.get(o) if kit.VERSION >= "v16" else None]
+             copy_v16.CORRECTIONS.get(o) if kit.VERSION >= "v16" else None,
+             copy_v22.CORRECTIONS.get(o) if kit.VERSION >= "v22" else None]
     if kit.VERSION >= "v16":  # corrections that name a physical page follow the v16 numbering
         fixes = [copy_v16.fix_text(f) if f else f for f in fixes]
     if kit.VERSION >= "v20":
         fixes = [copy_v20.fix_text(f) if f else f for f in fixes]
+    if kit.VERSION >= "v22":
+        fixes = [copy_v22.fix_text(f) if f else f for f in fixes]
     for fix in filter(None, fixes):
         html.append(f'<p class="fix"><strong>정정 (아래 v10 발췌보다 우선):</strong> {escape(fix)}</p>')
         md += [f"정정 (아래 v10 발췌보다 우선): {fix}", ""]
-    if sl["kind"] in ("term", "case", "synthesis"):
+    if sl["kind"] in ("term", "case", "synthesis") and sl.get("v10"):  # the v22 term LLM wiki has no v10 block
         sc = v10_scene(sl["v10"][0])
         if sc:
             html.append(f"<p><strong>장면 먼저:</strong> {escape(sc)}</p>")
@@ -280,17 +286,21 @@ def slide_html(n, sl, notes, total=42):
 def validate(slides):
     problems = []
     refs = [s for s in slides if s["kind"] == "reference"]
-    want = 46 if kit.VERSION >= "v20" else 45 if kit.VERSION >= "v19" else 44 if kit.VERSION >= "v18" else 45 if kit.VERSION >= "v16" else 44 if kit.VERSION >= "v07" else 42
+    want = 47 if kit.VERSION >= "v22" else 46 if kit.VERSION >= "v20" else 45 if kit.VERSION >= "v19" else 44 if kit.VERSION >= "v18" else 45 if kit.VERSION >= "v16" else 44 if kit.VERSION >= "v07" else 42
     expected_refs = 3 if kit.VERSION >= "v16" else 2 if kit.VERSION >= "v07" else 0
     if len(slides) != want or len(refs) != expected_refs:
         problems.append(f"{len(slides)} slides with {len(refs)} reference slides, expected {want}")
     if all("minutes" in s for s in slides) and sum(s["minutes"] for s in slides) != 120:
         problems.append(f"minutes sum to {sum(s['minutes'] for s in slides)}, expected 120")
     terms = [s for s in slides if s["kind"] == "term"]
-    if [s["term"] for s in terms] != V10_TERMS:
-        problems.append("terms are not the 25 v10 terms in order")
-    if [s["term_index"] for s in terms] != list(range(1, 26)):
-        problems.append("term indexes are not 1 to 25")
+    want_terms = V10_TERMS
+    if kit.VERSION >= "v22":  # LLM wiki joins after 메모리
+        k = V10_TERMS.index("메모리") + 1
+        want_terms = V10_TERMS[:k] + [copy_v22.TERM] + V10_TERMS[k:]
+    if [s["term"] for s in terms] != want_terms:
+        problems.append(f"terms are not the {len(want_terms)} expected terms in order")
+    if [s["term_index"] for s in terms] != list(range(1, len(want_terms) + 1)):
+        problems.append(f"term indexes are not 1 to {len(want_terms)}")
     cases = [s for s in slides if s["kind"] == "case"]
     if [s["case"] for s in cases] != ["클식이" if kit.VERSION >= "v08" else "OpenClaw", "OMH", "Grokbot", "AI교양", "CEO Agent"]:
         problems.append("cases are not the five cases in order")
@@ -302,8 +312,8 @@ def validate(slides):
         problems.append("break must be one slide (ten minutes where timed)")
     if len([s for s in slides if s["kind"] == "chapter"]) != 5:
         problems.append("expected five chapter screens")
-    v10_terms = [s["v10"][0] for s in terms]
-    for sid, s in zip(v10_terms, terms):
+    v10_terms = [s for s in terms if s.get("v10")]
+    for sid, s in zip([s["v10"][0] for s in v10_terms], v10_terms):
         title = v10notes.heading(ROOT, sid)["title"]
         if title != s["term"]:
             problems.append(f"S{sid} title {title} does not match term {s['term']}")
@@ -377,6 +387,10 @@ def main():
         raw = copy_v19.append(raw)
     if ver >= "v20":
         raw = copy_v20.apply(raw)
+    if ver >= "v21":
+        raw = copy_v21.apply(raw)
+    if ver >= "v22":
+        raw = copy_v22.apply(raw)
     problems = validate(raw)
     if problems:
         raise SystemExit("deck does not add up:\n  " + "\n  ".join(problems))
@@ -429,7 +443,7 @@ def main():
             html = html.replace(old, new)
         html = html.replace("발표 자료 v04.", f"발표 자료 {ver}.")
         if ver >= "v07":
-            html = html.replace("42장, 용어 25개와 사례 5개.", f"{len(raw)}장(참고 {sum(s['kind'] == 'reference' for s in raw)}장 포함), 용어 25개와 사례 5개.")
+            html = html.replace("42장, 용어 25개와 사례 5개.", f"{len(raw)}장(참고 {sum(s['kind'] == 'reference' for s in raw)}장 포함), 용어 {sum(s['kind'] == 'term' for s in raw)}개와 사례 5개.")
     html = (html.replace("{{CSS}}", css).replace("{{JS}}", js).replace("{{MANIFEST}}", man)
             .replace("{{COUNT}}", str(len(raw))).replace("{{SLIDES}}", "\n\n".join(sections)))
     if "{{" in html:

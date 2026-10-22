@@ -34,11 +34,11 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..", "..", "..");
 const slidesDir = path.join(root, "slides");
 // versions compare as strings: always two digits after "v" (v02 ... v20)
-const VER = process.env.DECK_VERSION || "v20";
-if (!/^v(0[2-9]|1[0-9]|20)$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
+const VER = process.env.DECK_VERSION || "v22";
+if (!/^v(0[2-9]|1[0-9]|2[0-2])$/.test(VER)) throw new Error(`unknown DECK_VERSION ${VER}`);
 const PAGENO = VER >= "v03";
 // v07 adds two optional reference slides after the OMH case; v16 adds a third after the Grokbot case
-const TOTAL = VER >= "v20" ? 46 : VER >= "v19" ? 45 : VER >= "v18" ? 44 : VER >= "v16" ? 45 : VER >= "v07" ? 44 : 42;
+const TOTAL = VER >= "v22" ? 47 : VER >= "v20" ? 46 : VER >= "v19" ? 45 : VER >= "v18" ? 44 : VER >= "v16" ? 45 : VER >= "v07" ? 44 : 42;
 // v02 and v03 carry the 120-minute lecture schedule; v04 has no lecture timing at all
 const TIMED = VER < "v04";
 // lecture time on screen or in notes (tool and task times such as 09:12 or cron do not match)
@@ -122,7 +122,8 @@ try {
   if (refs.length !== (VER >= "v16" ? 3 : VER >= "v07" ? 2 : 0)) fail(`reference slides: ${refs.length}`);
   if (VER >= "v07") {
     // originals keep their v06 numbering; references sit right after original 14
-    const origs = items.filter((it) => it.kind !== "reference" && it.kind !== "case-detail").map((it) => it.original);
+    // v20 case detail and v22 LLM wiki carry string ids outside the original 1 to 42 numbering
+    const origs = items.filter((it) => it.kind !== "reference" && it.kind !== "case-detail" && it.original !== "llm-wiki").map((it) => it.original);
     // v18 drops original 41; v19 brings id 41 back as the epilogue after the Q&A (42)
     const wantOrigs = [...Array(42).keys()].map((k) => k + 1).filter((n) => VER < "v18" || n !== 41);
     if (VER >= "v19") wantOrigs.push(41);
@@ -138,7 +139,9 @@ try {
     const attrSched = meta.attrs.filter((a) => "minutes" in a || "start" in a).map((a) => a.physical);
     if (attrSched.length) fail(`v04 data attributes still carry schedule fields: ${attrSched}`);
   }
-  if (JSON.stringify(m.terms) !== JSON.stringify(V10_TERMS)) fail("terms do not match the 25 v10 terms in order");
+  // v22 adds LLM wiki after 메모리 as the 16th of 26 terms; earlier versions keep the 25 v10 terms
+  const WANT_TERMS = VER >= "v22" ? [...V10_TERMS.slice(0, 15), "LLM wiki", ...V10_TERMS.slice(15)] : V10_TERMS;
+  if (JSON.stringify(m.terms) !== JSON.stringify(WANT_TERMS)) fail(`terms do not match the ${WANT_TERMS.length} expected terms in order`);
   if (m.cases.length !== 5) fail(`cases: ${m.cases.length}`);
   if (m.ceo.length !== 1 || (TIMED && m.ceo[0].minutes !== 3)) fail(`CEO Agent: ${JSON.stringify(m.ceo)}`);
   if (m.breaks.length !== 1 || (TIMED && m.breaks[0] !== 10)) fail(`break: ${m.breaks}`);
@@ -501,7 +504,8 @@ try {
     const map = { grok: at((i) => i.case === "Grokbot"), refC: at((i) => i.reference === "C"), ai: at((i) => i.case === "AI교양"),
       brk: at((i) => i.kind === "break"), ceo: at((i) => i.case === "CEO Agent"), qa: at((i) => i.kind === "qa") };
     if (JSON.stringify(map) !== JSON.stringify({ grok: 20, refC: 21, ai: 28, brk: 29, ceo: 34, qa: VER >= "v18" ? 44 : 45 }) && VER < "v20") fail(`v16 physical map: ${JSON.stringify(map)}`);
-    if (VER >= "v20" && JSON.stringify(map) !== JSON.stringify({ grok: 21, refC: 22, ai: 29, brk: 30, ceo: 35, qa: 45 })) fail(`v20 physical map: ${JSON.stringify(map)}`);
+    if (VER >= "v22" && JSON.stringify(map) !== JSON.stringify({ grok: 21, refC: 22, ai: 30, brk: 31, ceo: 36, qa: 46 })) fail(`v22 physical map: ${JSON.stringify(map)}`);
+    if (VER >= "v20" && VER < "v22" && JSON.stringify(map) !== JSON.stringify({ grok: 21, refC: 22, ai: 29, brk: 30, ceo: 35, qa: 45 })) fail(`v20 physical map: ${JSON.stringify(map)}`);
     const v = await page.evaluate(() => {
       const read = (id) => {
         const s = document.querySelector(id);
@@ -628,9 +632,78 @@ try {
     const prev = canv(readFileSync(path.join(slidesDir, "harness-engineering-workshop-v19.html"), "utf8"));
     const now = canv(readFileSync(file, "utf8"));
     const moved = prev.map((c, k) => (norm(c) === norm(now[k < 14 ? k : k + 1]) ? 0 : k + 1)).filter(Boolean);
-    if (prev.length !== 45 || moved.length) fail(`v20 changed v19 pages beyond pointers: ${moved}`);
+    if (VER < "v22" && (prev.length !== 45 || moved.length)) fail(`v20 changed v19 pages beyond pointers: ${moved}`);
     evidence.v20 = { detail_physical: d.physical, refs: [REF_A, REF_B, REF_C], skip: [AFTER_AB, AFTER_C],
       v19_pages_same_except_pointers: true, layers: { v05: o5, v06: o6 } };
+  }
+
+  if (VER >= "v21") {
+    const copy = "이후 OKF도 적용: 작업 지식을 정리해 다음 작업에서 재사용";
+    const note = page.locator("#s15 .okf-update");
+    if (await note.count() !== 1 || await note.textContent() !== copy) fail("v21 OKF update missing on page 15");
+    const notes = await page.locator("#s15 .notes").textContent();
+    if (!notes.includes("2026-10-22 작성자 진술") || !notes.includes("독립 검증하지 않았습니다")) fail("v21 OKF source boundary missing");
+    const canv = (html) => [...html.matchAll(/<section class="slide" id="s(\d+)"[\s\S]*?<div class="stage">([\s\S]*?)<aside class="notes">/g)]
+      .map((m) => m[2]);
+    const previous = canv(readFileSync(path.join(slidesDir, "harness-engineering-workshop-v20.html"), "utf8"));
+    const current = canv(readFileSync(file, "utf8"));
+    const changed = previous.map((s, i) => s === current[i] ? 0 : i + 1).filter(Boolean);
+    if (VER === "v21" && (previous.length !== 46 || JSON.stringify(changed) !== "[15]")) fail(`v21 changed pages beyond 15: ${changed}`);
+    evidence.v21 = { okf_physical: 15, other_45_canvases_unchanged: true, author_report_not_independent_test: true };
+  }
+
+  if (VER >= "v22") {
+    // LLM wiki: one normal term right after 메모리, 16 of 26, with OKF on the same page and the read step drawn
+    const terms = items.filter((i) => i.kind === "term");
+    const wiki = items.find((i) => i.term === "LLM wiki");
+    const mem = items.find((i) => i.term === "메모리");
+    if (!wiki || wiki.kind !== "term" || wiki.physical !== mem.physical + 1 || wiki.physical !== 29 || wiki.term_index !== 16 ||
+        wiki.reference || wiki.original !== "llm-wiki") fail(`v22 LLM wiki placement: ${JSON.stringify(wiki)}`);
+    if (terms.length !== 26 || terms.some((x, k) => x.term_index !== k + 1)) fail("v22 terms must be numbered 1 to 26");
+    if (items.filter((i) => i.kind === "reference").length !== 3 || items.filter((i) => i.kind === "case").length !== 5 ||
+        items.filter((i) => i.kind === "case-detail").length !== 1 || items[items.length - 1].kind !== "closing") fail("v22 deck shape");
+    const w = await page.evaluate(() => {
+      const s = document.querySelector("#s29");
+      const c = s.querySelector(".canvas");
+      const stage = (k) => c.querySelector(`[data-stage="${k}"]`);
+      const zone = (z) => c.querySelector(`[data-zone="${z}"]`);
+      const box = (el) => el && [parseFloat(el.getAttribute("x")), parseFloat(el.getAttribute("x")) + parseFloat(el.getAttribute("width"))];
+      return { text: c.textContent, notes: s.querySelector(".notes").innerHTML, skip: !!c.querySelector("a.ref-skip"),
+        kicker: c.querySelector(".tp-kicker")?.textContent, word: c.querySelector(".tp-word")?.textContent,
+        stages: [1, 2, 3, 4].map((k) => box(stage(k))), stored: box(zone("stored")), context: box(zone("context")),
+        kickers: [...document.querySelectorAll('.slide[data-kind="term"] .tp-kicker, .slide[data-kind="term"] .kicker')]
+          .map((k) => k.textContent.replace(/\s+/g, " ").trim()) };
+    });
+    if (w.word !== "LLM wiki" || !/용어 16 \/ 26/.test(w.kicker || "") || w.skip) fail(`v22 LLM wiki head: ${JSON.stringify(w.kicker)}`);
+    const need = ["쌓아 둔 기록을, 다음 작업의 재료로", "LLM과 함께 지식을 정리하고 연결해, 필요할 때 다시 찾아 쓰는 방식", "원문 보존",
+      "정리와 연결", "관련 노트 찾고 읽기", "다음 글에 재사용", "파일로 남긴 위키 (예: Obsidian)", "이번 작업의 컨텍스트로 읽어 옴",
+      "LLM wiki는 정리하고 쓰는 방식, OKF(Open Knowledge Format)는 출처와 상태를 적는 형식", "저장만으로 기억되는 건 아님. 필요한 노트를 찾아 읽는 단계까지."];
+    const lack = need.filter((x) => !w.text.includes(x));
+    if (lack.length) fail(`v22 LLM wiki lacks: ${lack.join(", ")}`);
+    // source and read distinction: stages 1-2 sit over the stored wiki, 3-4 over this task's context
+    const over = (a, z) => a && z && a[0] >= z[0] && a[1] <= z[1];
+    if (!(over(w.stages[0], w.stored) && over(w.stages[1], w.stored) && over(w.stages[2], w.context) && over(w.stages[3], w.context))) {
+      fail(`v22 LLM wiki zones: ${JSON.stringify(w)}`);
+    }
+    if (/자동으로 기억|모든 대화|완벽|성능 향상/.test(w.text)) fail("v22 LLM wiki screen overclaims");
+    const notesNeed = ["open-knowledge-format/blob/ad30107c31c06aec8a7d5636e0d1058118604e6f/SPEC.md", "클식이 지식 정리 운영 방식, 2026-10-22 확인",
+      "확인 질문과 모범 답안", "저장과 읽기", "LLM wiki와 OKF"];
+    const lackN = notesNeed.filter((x) => !w.notes.includes(x));
+    if (lackN.length) fail(`v22 LLM wiki notes lack: ${lackN.join(", ")}`);
+    const bad = w.kickers.filter((k) => /용어 \d+ \/ 25/.test(k));
+    if (bad.length) fail(`v22 term kickers still say / 25: ${bad}`);
+    // every v21 page is still there (one later after 28); only the expected pages change beyond term ordinals
+    const norm = (c) => c.replace(/용어 \d+ \/ 2[56]/g, "용어 N / T");
+    const canv = (html) => [...html.matchAll(/<section class="slide" id="s(\d+)"[\s\S]*?<div class="stage">([\s\S]*?)<aside class="notes">/g)]
+      .map((m) => m[2].replace(/<p class="pageno"[^>]*>[\s\S]*?<\/p>/, ""));
+    const prev = canv(readFileSync(path.join(slidesDir, "harness-engineering-workshop-v21.html"), "utf8"));
+    const now = canv(readFileSync(file, "utf8"));
+    const changed = prev.map((c, k) => (norm(c) === norm(now[k < 28 ? k : k + 1]) ? 0 : k + 1)).filter(Boolean);
+    if (prev.length !== 46 || JSON.stringify(changed) !== "[1,3,23,45]") fail(`v22 changed v21 pages: ${changed}`);
+    const cover = await page.locator("#s1 .canvas").textContent();
+    if (!cover.includes("용어 26개와 사례 5개")) fail("v22 cover term count");
+    evidence.v22 = { llm_wiki_physical: wiki.physical, term_index: wiki.term_index, terms: terms.length, references: 3, cases: 5,
+      v21_pages_changed_beyond_ordinals: changed, stored_vs_context_zones: true };
   }
 
   if (VER >= "v08") {

@@ -1,3 +1,11 @@
+# v22 용어 LLM wiki
+
+현재 제작본은 v22(47장)이다. 메모리 다음 29쪽에 26번째 용어 LLM wiki를 넣었다(`copy_v22.py`, 원래 번호 `llm-wiki`, OKF는 같은 장에서 설명). 용어 머리말은 'n / 26'이 되고 메모리 뒤 용어 번호와 28쪽 뒤 쪽 표기(2쪽 노트, 질의응답, AI교양 정정)가 하나씩 밀렸다. 표지, 오늘의 길, 3장 표지도 새 용어를 담는다. 기본 빌드와 검사는 v22다. 아래 이전 판 설명은 제작 기록이다.
+
+# v21 OKF 적용 한 줄
+
+현재 제작본은 v21(46장)이다. 15쪽 하단에 OKF 기반 작업 지식 정리와 재사용을 짧게 덧붙였다. 기존 도식과 다른 45쪽은 그대로이며, 현재 기본 빌드와 검사는 v21이다. 아래 이전 판 설명은 제작 기록이다.
+
 # v20 OMH 이어지는 장
 
 현재 제작본은 v20(46장)이다. 14쪽 OMH 사례 뒤 15쪽에 작성자의 OMH v05 → OMP → OMH v06 전환 경험(`copy_v20.py`, 종류 `case-detail`, 원래 번호 `omh-evolution`)을 넣었고, 그 뒤 쪽과 쪽 표기(참고 링크, 질의응답 번호, 2쪽 노트, AI교양 정정)가 한 장씩 밀렸다. 검사는 참고 화면과 사례 위치를 manifest에서 찾는다. 기본 빌드와 검사는 v20이다. 아래 이전 판 설명은 제작 기록이다.
@@ -46,8 +54,8 @@ Layout of `v02/`:
 - `deck_a.py`, `deck_b.py`: one function per physical slide, 1 to 21 and 22 to 42. Each returns the slide's kind, chapter, term or case, v10 source, layout family and body. Slide 2 has a v02 and a v03 variant.
 - `deck.src.html`, `v02.css`, `v02.js`: page shell, styles and navigation, inlined by the build. The page-number styles live in `build_v02.py` and are added only from v03, so v02 output stays byte-identical.
 - `copy_v04.py`: v04 copy edits, v04 notes, v10 excerpt editor and the lecture-time pattern.
-- `build_v02.py`: assembles v20 by default (46 slides including three optional reference slides and one case follow-up); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
-- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v20).
+- `build_v02.py`: assembles v22 by default (47 slides, 26 terms, including three optional reference slides and one case follow-up); `--version v02` through `v06` reproduces the preserved 42-slide versions. `--out-dir` writes elsewhere without changing the current index. Original source and correction IDs stay stable as physical page numbers move. Lecture timing exists only in historical v02/v03; current exports omit it. Standard library only.
+- `check_v02.mjs`: headless Chrome check through an existing Playwright install; `DECK_VERSION` selects the version (default v22).
 - `contact_sheet_deck.py`: tiles the renders into four contact sheets (Pillow and fontconfig); takes the version as an argument.
 - `proof.src.html`, `build_proof.py`, `check_proof.mjs`, `contact_sheet.py`: the six-screen redesign proof in `slides/previews/`, kept as a record.
 
